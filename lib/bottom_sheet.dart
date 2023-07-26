@@ -31,7 +31,7 @@ void showBottomSheet(BuildContext context) {
   showModalBottomSheet(
     context: context,
     builder: (BuildContext context) {
-      return SizedBox(
+      return Container(
         height: 200,
         child: Column(
           children: [
@@ -46,6 +46,7 @@ void showBottomSheet(BuildContext context) {
               leading: const Icon(Icons.photo_library),
               title: const Text('Choose from Gallery'),
               onTap: () {
+                print('Choose from Gallery tapped');
                 Navigator.pop(context); // Close the bottom sheet
               },
             ),
