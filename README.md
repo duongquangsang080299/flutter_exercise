@@ -62,12 +62,12 @@ Before you continue, ensure you meet the following requirements:
 2. Checkout branch:
 ​
     ```
-    git checkout <develop> 
+    git checkout <practice-one> 
     ```
 3. Pull origin branch:
 ​
     ```
-    git pull origin <develop> 
+    git pull origin <practice-one> 
     ```
 4. Run project
    ```
