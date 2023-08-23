@@ -3,18 +3,62 @@ import 'package:go_router/go_router.dart';
 import 'package:soccer_club_app/onboarding.dart';
 import 'package:soccer_club_app/splash_screen.dart';
 
-enum AppRouteName { onBoarding, splash }
+final GoRouter appRouter = GoRouter(
+  initialLocation: AppRoutes.splashScreen.path,
+  routes: <GoRoute>[
+    GoRoute(
+      path: AppRoutes.home.path,
+      name: AppRoutes.home.name,
+      builder: (BuildContext context, GoRouterState state) =>
+          const SplashScreen(),
+    ),
+    GoRoute(
+      path: AppRoutes.onBoarding.path,
+      name: AppRoutes.onBoarding.name,
+      builder: (BuildContext context, GoRouterState state) =>
+          const OnBoarding(),
+    ),
+    GoRoute(
+      path: AppRoutes.splashScreen.path,
+      name: AppRoutes.splashScreen.name,
+      builder: (BuildContext context, GoRouterState state) =>
+          const SplashScreen(),
+    ),
+  ],
+);
 
-final GoRouter appRouter = GoRouter(initialLocation: '/', routes: <GoRoute>[
-  GoRoute(
+/// Represents the app routes and their paths.
+enum AppRoutes {
+  home(
+    name: 'home',
     path: '/',
-    name: AppRouteName.splash.name,
-    builder: (BuildContext context, GoRouterState state) =>
-        const SplashScreen(),
   ),
-  GoRoute(
+  onBoarding(
+    name: 'onBoarding',
     path: '/onBoarding',
-    name: AppRouteName.onBoarding.name,
-    builder: (BuildContext context, GoRouterState state) => const onBoarding(),
   ),
-]);
+  splashScreen(
+    name: 'splashScreen',
+    path: '/splashScreen',
+  );
+
+  const AppRoutes({
+    required this.name,
+    required this.path,
+  });
+
+  /// Represents the route name
+  ///
+  /// Example: `AppRoutes.recipesList.name`
+  /// Returns: 'recipesList'
+  final String name;
+
+  /// Represents the route path
+  ///
+  /// Example: `AppRoutes.recipesList.path`
+  /// Returns: '/recipesList'
+  final String path;
+
+  @override
+  String toString() => name;
+}
