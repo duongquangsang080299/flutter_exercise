@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:soccer_club_app/core/color/colors.dart';
 
+import 'package:soccer_club_app/core/typography/text_style.dart';
+
 class AppTheme {
   const AppTheme();
 
@@ -32,21 +34,12 @@ class AppTheme {
   }
 
   static final TextTheme _textTheme = TextTheme(
-    displayLarge: GoogleFonts.poppins(
-      color: AppColor.textPrimary,
-      fontSize: 24,
-      fontWeight: FontWeight.w500,
-    ),
-    displayMedium: GoogleFonts.poppins(
-      color: AppColor.textPrimary,
-      fontSize: 16,
-      fontWeight: FontWeight.w600,
-    ),
-    titleMedium: GoogleFonts.poppins(
-      color: AppColor.textSecondary,
-      fontSize: 14,
-      fontWeight: FontWeight.w400,
-    ),
+    displayLarge: AppTextStyles.titleLarge,
+    displayMedium: AppTextStyles.titleMedium,
+    bodyLarge: AppTextStyles.description,
+    bodyMedium: AppTextStyles.bodyBold,
+    titleMedium: AppTextStyles.subtitle,
+    bodySmall: AppTextStyles.caption,
   );
 }
 
