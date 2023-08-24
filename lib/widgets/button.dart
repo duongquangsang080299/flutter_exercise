@@ -1,16 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:soccer_club_app/widget/icon.dart';
+import 'package:soccer_club_app/widgets/icon.dart';
 import 'package:soccer_club_app/widget/text.dart';
 
-/// SCButton widget with text
+/// Define SCButton widget with text
 class SCButton extends StatelessWidget {
   const SCButton({
+    // Text displayed on the button
     required this.text,
+    // Callback function when the button is pressed
     this.onPressed,
+    // Text color of the button
     this.textColor,
+    // Optional key to uniquely identify the widget
     super.key,
+    // Optional width of the button
     this.width,
+    // Border color of the button (default is transparent)
     this.borderColor = Colors.transparent,
+    // Background color of the button (default is blue)
     this.backgroundColor = Colors.blue,
   });
   final String text;
@@ -26,8 +33,6 @@ class SCButton extends StatelessWidget {
       width: width,
       child: ElevatedButton(
         onPressed: onPressed,
-
-        /// Use the elevated button style defined in the app theme
         style: Theme.of(context).elevatedButtonTheme.style,
         child: SCText.scDisplayText(
           context,
@@ -41,11 +46,17 @@ class SCButton extends StatelessWidget {
 /// Define SCButtonIcon widget with icon and text
 class SCButtonIcon extends StatelessWidget {
   const SCButtonIcon({
+    // Text displayed on the button
     required this.text,
+    // Background color of the button (default is blue)
     this.backgroundColor = Colors.blue,
+    // Callback function when the button is pressed
     this.onPressed,
+    // Optional key to uniquely identify the widget
     super.key,
+    // Optional icon for the button
     this.icon,
+    // Optional width of the button
     this.width,
   });
   final String text;
