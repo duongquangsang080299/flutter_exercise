@@ -1,29 +1,47 @@
 import 'package:flutter/material.dart';
-
 import 'package:soccer_club_app/core/color/app_color.dart';
-
 import 'package:soccer_club_app/core/typography/app_text_style.dart';
 
 class AppTheme {
-  /// Constructor for the AppTheme class
   const AppTheme();
 
   ThemeData get themeData {
     return ThemeData(
-      /// brightness: Brightness.light,
-      /// Set the primary color
-      primary: AppColor.primaryColor,
+      /// Set the primary color for app
+      primaryColor: AppColor.primaryColor,
 
-      /// Set the background color
-      background: AppColor.backgroundColor,
-
-      /// Call the _colorScheme getter
-      colorScheme: _colorScheme,
-
-      /// Set scaffold background color
+      /// Set the background color for scaffold
       scaffoldBackgroundColor: AppColor.backgroundColor,
 
-      /// Set the text theme
+      /// Define the color scheme for the app
+      colorScheme: _colorScheme,
+
+      // Customize the default button style
+      buttonTheme: ButtonThemeData(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(20),
+        ),
+        buttonColor: AppColor.primaryColor,
+        padding: const EdgeInsets.all(12),
+      ),
+
+      /// Customize the default elevated button style
+      elevatedButtonTheme: ElevatedButtonThemeData(
+        style: ElevatedButton.styleFrom(
+          backgroundColor: AppColor.primaryColor,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20),
+          ),
+          padding: const EdgeInsets.all(16),
+        ),
+      ),
+
+      iconTheme: const IconThemeData(
+        color: AppColor.jetBlackColor,
+        size: 24,
+      ),
+
+      /// Set the text theme for the app
       textTheme: _textTheme,
     );
   }
@@ -31,12 +49,11 @@ class AppTheme {
   ColorScheme get _colorScheme {
     return const ColorScheme.light(
       primary: AppColor.primaryColor,
-      background: AppColor.backgroundColor,
     );
   }
 
+  /// Define the text theme for the app
   static final TextTheme _textTheme = TextTheme(
-    /// Assign the defined text style
     displayLarge: AppTextStyles.titleLarge,
     displayMedium: AppTextStyles.titleMedium,
     bodyLarge: AppTextStyles.extralBold,
@@ -46,8 +63,8 @@ class AppTheme {
   );
 }
 
+/// Define the dark theme for the app
 class AppDarkTheme extends AppTheme {
-  /// Constructor for the AppDarkTheme class
   const AppDarkTheme();
 
   @override
