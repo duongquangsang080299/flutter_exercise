@@ -49,6 +49,8 @@ class AppTheme {
   ColorScheme get _colorScheme {
     return const ColorScheme.light(
       primary: AppColor.primaryColor,
+      secondary: Colors.white,
+      tertiary: AppColor.jetBlackColor,
     );
   }
 
