@@ -1,85 +1,119 @@
 import 'package:flutter/material.dart';
 
-class SCTextFormField extends StatefulWidget {
+/// Define TextFormField widget with common properties
+class SCTextFormField extends StatelessWidget {
+  // Constructor for SCTextFormField
   const SCTextFormField({
-    required this.hintText,
+    required this.controller,
     required this.labelText,
+    required this.hintText,
+    required this.validator,
     super.key,
-    this.focusNode,
-    this.errorMessage,
-    this.isPassword = false,
+    this.keyboardType = TextInputType.text,
+    this.obscureText = false,
   });
 
-  /// Error message to display if validation fails
-  final String? errorMessage;
+  /// Properties
+  /// Controller for text input
+  final TextEditingController controller;
 
-  /// Indicates whether this text field is for a password
-  final bool? isPassword;
-
-  /// Hint text displayed when the field is empty
-  final String hintText;
-
-  /// Label text displayed above the field
+  /// Label text for the input field
   final String labelText;
 
-  /// Focus node to control focus behavior of the text field
-  final FocusNode? focusNode;
+  /// Hint text for the input field
+  final String hintText;
 
-  @override
-  State<SCTextFormField> createState() => _SCTextFormFieldState();
-}
+  /// Validation function for the input
+  final FormFieldValidator<String> validator;
 
-class _SCTextFormFieldState extends State<SCTextFormField> {
-  // Whether the password visibility is toggled
-  bool _passwordVisible = false;
+  /// Keyboard type for input (default: text)
+  final TextInputType keyboardType;
+
+  /// Whether input is obscured (default: not obscured)
+  final bool obscureText;
 
   @override
   Widget build(BuildContext context) {
+    /// This widget builds a TextFormField with provided properties
     return TextFormField(
+      controller: controller,
       decoration: InputDecoration(
-        hintText: widget.hintText,
-
-        // Display the label text
-        labelText: widget.labelText,
-
-        // Define text style for the label to match the design
-        labelStyle: const TextStyle(color: Colors.red),
-
-        // Define text style to match the design
-        hintStyle: const TextStyle(
-          color: Colors.black,
-          fontSize: 18,
-          fontWeight: FontWeight.w500,
-        ),
-
-        // Show the password visibility icon if it's a password field
-        suffixIcon: (widget.isPassword ?? false)
-            ? GestureDetector(
-                onTap: () {
-                  setState(() {
-                    // Toggle password visibility
-                    _passwordVisible = !_passwordVisible;
-                  });
-                },
-                child: Icon(
-                  // Display the appropriate visibility icon
-                  _passwordVisible ? Icons.visibility : Icons.visibility_off,
-                ),
-              )
-            : const SizedBox.shrink(),
+        labelText: labelText,
+        hintText: hintText,
       ),
+      validator: validator,
+      keyboardType: keyboardType,
+      obscureText: obscureText,
+    );
+  }
+}
 
-      // Associate the focus node with this text field
-      focusNode: widget.focusNode,
-      // Validate the text input
-      validator: (value) {
-        if (value == null || value.isEmpty) {
-          return widget.errorMessage;
-        }
-        return null;
-      },
-      // If it's a password field, use the password visibility state
-      obscureText: widget.isPassword! && !_passwordVisible,
+/// Subclass of SCTextFormField for handling usernames
+class SCUsernameField extends SCTextFormField {
+  const SCUsernameField({
+    // Inherits controller from parent
+    required super.controller,
+    // Inherits validator from parent
+    required super.validator,
+    super.key,
+  }) : super(
+          // Default label text
+          labelText: 'Username',
+          // Default hint text
+          hintText: 'Enter your username',
+        );
+
+  /// Factory method to create an instance with default properties
+  factory SCUsernameField.create({
+    TextEditingController? controller,
+    FormFieldValidator<String>? validator,
+  }) {
+    return SCUsernameField(
+      controller: controller ?? TextEditingController(),
+      validator: validator ??
+          (value) {
+            if (value == null || value.isEmpty) {
+              return 'Please enter a username';
+            }
+            return null;
+          },
+    );
+  }
+}
+
+/// Subclass of SCTextFormField for handling passwords
+class SCPasswordField extends SCTextFormField {
+  const SCPasswordField({
+    // Inherits controller from parent
+    required super.controller,
+    // Inherits validator from parent
+    required super.validator,
+    super.key,
+  }) : super(
+          // Default label text
+          labelText: 'Password',
+          // Default hint text
+          hintText: 'Enter your password',
+          // Password input is obscured
+          obscureText: true,
+        );
+  // Factory method to create an instance with default properties
+  factory SCPasswordField.create({
+    TextEditingController? controller,
+    FormFieldValidator<String>? validator,
+  }) {
+    return SCPasswordField(
+      controller: controller ?? TextEditingController(),
+      validator: validator ??
+          (value) {
+            if (value == null || value.isEmpty) {
+              return 'Please enter a password';
+            }
+            if (value.length < 8) {
+              return 'Password must be at least 8 characters long';
+            }
+            return null;
+          },
     );
   }
 }
