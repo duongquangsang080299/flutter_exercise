@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+import 'package:go_router/go_router.dart'; // Import GoRouter if you're using it
+import 'package:soccer_club_app/core/color/app_color.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -13,32 +14,29 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
+
     // Simulate a delay for demonstration purposes
     Timer(const Duration(seconds: 5), () {
-      context.go('/onBoarding'); // Navigate to the next screen
+      // Navigate to the next screen using GoRouter
+      GoRouter.of(context).go('/onBoarding');
     });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        color: const Color(0xFF04764E),
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              SizedBox(
-                height: MediaQuery.of(context).size.height * 0.17,
-                child: const Image(
-                  image: AssetImage('assets/images/logo.png'),
-                  width: 124,
-                  height: 147,
-                  fit: BoxFit.contain,
-                ),
-              ),
-            ],
-          ),
+      backgroundColor: AppColor.primaryColor, // Use your primary color
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            // Logo image
+            Image.asset(
+              'assets/images/logo.png', // Replace with your image path
+              width: 123,
+              height: 146,
+            ),
+          ],
         ),
       ),
     );

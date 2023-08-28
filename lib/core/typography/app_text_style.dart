@@ -9,6 +9,7 @@ class AppTextStyles {
     required FontWeight fontWeight,
     required Color color,
     required double lineHeight,
+    required String fontFamily,
   }) {
     return TextStyle(
       fontSize: fontSize,
@@ -20,6 +21,7 @@ class AppTextStyles {
 
   /// Text style for large titles
   static TextStyle titleLarge = _baseTextStyle(
+    fontFamily: 'Poppins',
     fontSize: 24,
     fontWeight: AppFontWeight.semiBold,
     color: AppColor.textPrimary,
@@ -28,6 +30,7 @@ class AppTextStyles {
 
   /// Text style for medium titles
   static TextStyle titleMedium = _baseTextStyle(
+    fontFamily: 'Poppins',
     fontSize: 16,
     fontWeight: AppFontWeight.medium,
     color: AppColor.textPrimary,
@@ -36,6 +39,7 @@ class AppTextStyles {
 
   /// Text style for extra bold content
   static TextStyle extralBold = _baseTextStyle(
+    fontFamily: 'Poppins',
     fontSize: 14,
     fontWeight: AppFontWeight.regular,
     color: AppColor.textPrimary,
@@ -44,6 +48,7 @@ class AppTextStyles {
 
   /// Text style for bold content
   static TextStyle bodyBold = _baseTextStyle(
+    fontFamily: 'Poppins',
     fontSize: 18,
     fontWeight: AppFontWeight.regular,
     color: AppColor.textPrimary,
@@ -52,6 +57,7 @@ class AppTextStyles {
 
   /// Text style for subtitles
   static TextStyle subtitle = _baseTextStyle(
+    fontFamily: 'Poppins',
     fontSize: 11,
     fontWeight: AppFontWeight.regular,
     color: AppColor.textSecondary,
@@ -60,6 +66,7 @@ class AppTextStyles {
 
   /// Text style for captions
   static TextStyle caption = _baseTextStyle(
+    fontFamily: 'Poppins',
     fontSize: 10,
     fontWeight: AppFontWeight.semiBold,
     color: AppColor.textSecondary,

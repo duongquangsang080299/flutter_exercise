@@ -7,41 +7,16 @@ class AppTheme {
 
   ThemeData get themeData {
     return ThemeData(
-      /// Set the primary color for app
       primaryColor: AppColor.primaryColor,
-
-      /// Set the background color for scaffold
       scaffoldBackgroundColor: AppColor.backgroundColor,
-
-      /// Define the color scheme for the app
       colorScheme: _colorScheme,
-
-      // Customize the default button style
-      buttonTheme: ButtonThemeData(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20),
-        ),
-        buttonColor: AppColor.primaryColor,
-        padding: const EdgeInsets.all(12),
-      ),
-
-      /// Customize the default elevated button style
-      elevatedButtonTheme: ElevatedButtonThemeData(
-        style: ElevatedButton.styleFrom(
-          backgroundColor: AppColor.primaryColor,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(20),
-          ),
-          padding: const EdgeInsets.all(16),
-        ),
-      ),
-
+      buttonTheme: _buttonTheme,
+      elevatedButtonTheme: _elevatedButtonTheme,
+      outlinedButtonTheme: _outlinedButtonTheme,
       iconTheme: const IconThemeData(
         color: AppColor.jetBlackColor,
         size: 24,
       ),
-
-      /// Set the text theme for the app
       textTheme: _textTheme,
     );
   }
@@ -49,6 +24,41 @@ class AppTheme {
   ColorScheme get _colorScheme {
     return const ColorScheme.light(
       primary: AppColor.primaryColor,
+    );
+  }
+
+  ButtonThemeData get _buttonTheme {
+    return ButtonThemeData(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(20),
+      ),
+      buttonColor: AppColor.primaryColor,
+      padding: const EdgeInsets.all(12),
+    );
+  }
+
+  ElevatedButtonThemeData get _elevatedButtonTheme {
+    return ElevatedButtonThemeData(
+      style: ElevatedButton.styleFrom(
+        backgroundColor: AppColor.primaryColor,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(20),
+        ),
+        padding: const EdgeInsets.all(16),
+      ),
+    );
+  }
+
+  OutlinedButtonThemeData get _outlinedButtonTheme {
+    return OutlinedButtonThemeData(
+      style: ButtonStyle(
+        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+          RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20),
+            side: const BorderSide(),
+          ),
+        ),
+      ),
     );
   }
 
@@ -63,7 +73,6 @@ class AppTheme {
   );
 }
 
-/// Define the dark theme for the app
 class AppDarkTheme extends AppTheme {
   const AppDarkTheme();
 

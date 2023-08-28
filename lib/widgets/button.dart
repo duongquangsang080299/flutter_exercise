@@ -16,16 +16,18 @@ class SCButton extends StatelessWidget {
     // Optional width of the button
     this.width,
     // Border color of the button (default is transparent)
-    this.borderColor = Colors.transparent,
+    this.borderColor,
     // Background color of the button (default is blue)
-    this.backgroundColor = Colors.blue,
+    this.backgroundColor,
+    this.height,
   });
   final String text;
   final Color? textColor;
   final double? width;
-  final Color backgroundColor;
-  final Color borderColor;
+  final Color? backgroundColor;
+  final Color? borderColor;
   final VoidCallback? onPressed;
+  final double? height;
 
   @override
   Widget build(BuildContext context) {
@@ -76,6 +78,45 @@ class SCButtonIcon extends StatelessWidget {
         label: SCText.displayLarge(
           context,
           text: text,
+        ),
+      ),
+    );
+  }
+}
+
+class SCOutlinedButton extends StatelessWidget {
+  const SCOutlinedButton({
+    required this.text,
+    this.height,
+    this.onPressed,
+    this.textColor,
+    super.key,
+    this.width,
+    this.borderColor,
+    this.backgroundColor,
+  });
+
+  final String text;
+  final Color? textColor;
+  final double? width;
+  final Color? backgroundColor;
+  final Color? borderColor;
+  final VoidCallback? onPressed;
+  final double? height;
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: width,
+      child: OutlinedButton(
+        onPressed: onPressed,
+        style: OutlinedButton.styleFrom(
+          side: BorderSide(color: borderColor ?? Colors.transparent),
+          backgroundColor: backgroundColor ?? Colors.transparent,
+        ),
+        child: Text(
+          text,
+          style: TextStyle(color: textColor ?? Theme.of(context).primaryColor),
         ),
       ),
     );
