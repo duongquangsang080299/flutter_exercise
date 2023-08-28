@@ -6,8 +6,8 @@ class SCDotsIndicator extends StatelessWidget {
     required this.itemCount,
     required this.currentIndex,
     super.key,
-    this.dotColor = Colors.grey,
-    this.activeDotColor = Colors.blue,
+    this.dotColor,
+    this.activeDotColor,
   });
 
   /// Total number of dots
@@ -17,10 +17,10 @@ class SCDotsIndicator extends StatelessWidget {
   final int currentIndex;
 
   /// Color of inactive dots
-  final Color dotColor;
+  final Color? dotColor;
 
   /// Color of active dot
-  final Color activeDotColor;
+  final Color? activeDotColor;
 
   // Method to build the list of dot widgets
   List<Widget> buildDots() {
