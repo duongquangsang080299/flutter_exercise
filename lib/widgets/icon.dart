@@ -1,37 +1,52 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
-class SCBackIcon extends StatelessWidget {
-  /// Constructor for the SCBackIcon widget
-  const SCBackIcon({
+class SCIcon extends StatelessWidget {
+  /// Factory constructor to create an instance of SCIcon
+  factory SCIcon({
+    // Required icon data
+    required IconData iconData,
+    // Optional color
+    Color? color,
+    // Optional size
+    double? size,
+    // Optional onTap callback function
+    VoidCallback? opTap,
+  }) {
+    return SCIcon._(
+      iconData: iconData,
+      color: color,
+      size: size,
+      // Pass the onTap callback to onPressed
+      onPressed: opTap,
+    );
+  }
+
+  const SCIcon._({
     required this.iconData,
-    super.key,
     this.color,
-    this.width = 24,
-    this.height = 24,
-    this.padding,
+    this.size,
+    this.onPressed,
   });
 
-  /// Properties for the SCBackIcon widget
+  /// Icon data for the widget
   final IconData iconData;
+  /// Color for the icon
   final Color? color;
-  final double? width;
-  final double? height;
-  final EdgeInsetsGeometry? padding;
+  /// Size of the icon
+  final double? size;
+  /// Callback function for onTap event
+  final VoidCallback? onPressed;
 
   @override
   Widget build(BuildContext context) {
-    // Build method for the widget
-    return SizedBox(
-      height: height,
-      width: width,
-      child: IconButton(
-        /// Apply padding or use zero padding if not provided
-        padding: padding ?? EdgeInsets.zero,
-        icon: const Icon(
-          Icons.arrow_back,
-        ),
-        onPressed: () => context.pop(),
+    // Wrap the Icon widget with a GestureDetector
+    return GestureDetector(
+      // Assign the onPressed callback to onTap
+      onTap: onPressed,
+      child: Icon(
+        iconData,
+        size: size,
+        color: color,
       ),
     );
   }
