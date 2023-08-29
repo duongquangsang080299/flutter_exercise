@@ -26,7 +26,7 @@ class SCBackIcon extends StatelessWidget {
       height: height,
       width: width,
       child: IconButton(
-        // Apply padding or use zero padding if not provided
+        /// Apply padding or use zero padding if not provided
         padding: padding ?? EdgeInsets.zero,
         icon: const Icon(
           Icons.arrow_back,
