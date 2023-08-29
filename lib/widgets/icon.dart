@@ -1,26 +1,15 @@
 import 'package:flutter/material.dart';
 
 class SCIcon extends StatelessWidget {
-  /// Factory constructor to create an instance of SCIcon
-  factory SCIcon ({
-    // Required icon data
-    required IconData iconData,
-    // Optional color
-    Color? color,
-    // Optional size
-    double? size,
-    // Optional onTap callback function
-    VoidCallback? onPressed,
-  }) {
-    return SCIcon._(
-      iconData: iconData,
-      color: color,
-      size: size,
-      // Pass the onTap callback to onPressed
-      onPressed: onPressed,
-    );
-  }
-   // Named constructor for Email icon
+  /// Constructor for creating an instance of SCIcon
+  const SCIcon({
+    required this.iconData, super.key,
+    this.color,
+    this.size,
+    this.onPressed,
+  });
+
+  /// Factory constructor for Email icon
   factory SCIcon.email({
     Color? color,
     double? size,
@@ -34,7 +23,7 @@ class SCIcon extends StatelessWidget {
     );
   }
 
-  // Named constructor for Notification icon
+  /// Factory constructor for Notification icon
   factory SCIcon.notification({
     Color? color,
     double? size,
@@ -48,7 +37,7 @@ class SCIcon extends StatelessWidget {
     );
   }
 
-  // Named constructor for Drawer icon
+  /// Factory constructor for Drawer icon
   factory SCIcon.drawer({
     Color? color,
     double? size,
@@ -61,7 +50,8 @@ class SCIcon extends StatelessWidget {
       onPressed: onPressed,
     );
   }
-   // Named constructor for Home icon
+
+  /// Factory constructor for Home icon
   factory SCIcon.home({
     Color? color,
     double? size,
@@ -75,8 +65,8 @@ class SCIcon extends StatelessWidget {
     );
   }
 
-  // Named constructor for Calender icon
-  factory SCIcon.fixtures({
+  /// Factory constructor for Calendar icon
+  factory SCIcon.calendar({
     Color? color,
     double? size,
     VoidCallback? onPressed,
@@ -89,7 +79,7 @@ class SCIcon extends StatelessWidget {
     );
   }
 
-  // Named constructor for Shop icon
+  /// Factory constructor for Shop icon
   factory SCIcon.shop({
     Color? color,
     double? size,
@@ -102,7 +92,8 @@ class SCIcon extends StatelessWidget {
       onPressed: onPressed,
     );
   }
-// Named constructor for Tickets icon
+
+  /// Factory constructor for Tickets icon
   factory SCIcon.tickets({
     Color? color,
     double? size,
@@ -115,8 +106,9 @@ class SCIcon extends StatelessWidget {
       onPressed: onPressed,
     );
   }
-  // Named constructor for Hiden icon
-  factory SCIcon.hiden({
+
+  /// Factory constructor for Hidden icon
+  factory SCIcon.hidden({
     Color? color,
     double? size,
     VoidCallback? onPressed,
@@ -128,19 +120,16 @@ class SCIcon extends StatelessWidget {
       onPressed: onPressed,
     );
   }
-  const SCIcon._({
-    required this.iconData,
-    this.color,
-    this.size,
-    this.onPressed,
-  });
 
   /// Icon data for the widget
   final IconData iconData;
+
   /// Color for the icon
   final Color? color;
+
   /// Size of the icon
   final double? size;
+
   /// Callback function for onTap event
   final VoidCallback? onPressed;
 
