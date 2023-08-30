@@ -1,18 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:soccer_club_app/widgets/card.dart';
+import 'package:soccer_club_app/widgets/bottom_navigation.dart';
 
 class OnBoarding extends StatelessWidget {
   const OnBoarding({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const ColoredBox(
-      color: Colors.white,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          SCCard.matchCard(title: '123', subtitle: '123',),
-          // // Logo
+    return const MaterialApp(
+      // home: SCBottomNavigationBar(),
+    );
+  }
+}
           // SizedBox(
           //   width: 243,
           //   height: 309,
@@ -73,8 +71,8 @@ class OnBoarding extends StatelessWidget {
           //         ),
           //   ],
           // ),
-        ],
-      ),
-    );
-  }
-}
+        // ],
+//       ),
+//     );
+//   }
+// }
