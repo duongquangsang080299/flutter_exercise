@@ -1,52 +1,46 @@
 import 'package:flutter/material.dart';
 
-/// Define Dots Indicator widget
 class SCDotsIndicator extends StatelessWidget {
+  // Constructor for the SCDotsIndicator widget
   const SCDotsIndicator({
     required this.itemCount,
     required this.currentIndex,
+    this.width,
+    this.height,
     super.key,
-    this.dotColor,
-    this.activeDotColor,
   });
 
-  /// Total number of dots
+  /// Total number of items
   final int itemCount;
 
-  /// Current active dot index
+  /// Index of the currently active item
   final int currentIndex;
 
-  /// Color of inactive dots
-  final Color? dotColor;
+  /// Width of each dot (optional)
+  final double? width;
 
-  /// Color of active dot
-  final Color? activeDotColor;
-
-  // Method to build list of dot widgets
-  List<Widget> buildDots() {
-    final dots = <Widget>[];
-    for (var i = 0; i < itemCount; i++) {
-      dots.add(
-        Container(
-          margin: const EdgeInsets.symmetric(horizontal: 4),
-          width: 10,
-          height: 10,
-          decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            color: i == currentIndex ? activeDotColor : dotColor,
-          ),
-        ),
-      );
-    }
-    return dots;
-  }
+  /// Height of each dot (optional)
+  final double? height;
 
   @override
   Widget build(BuildContext context) {
-    // Build a row of dots using the generated dot widgets
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
-      children: buildDots(),
+      children: List.generate(itemCount, (index) {
+        /// Check if this dot is active
+        final isActive = index == currentIndex;
+        return Container(
+          width: width ?? 10,
+          height: height ?? 10,
+          margin: const EdgeInsets.symmetric(horizontal: 5),
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+
+            /// Active dot color is blue, inactive is grey
+            color: isActive ? Colors.blue : Colors.grey,
+          ),
+        );
+      }),
     );
   }
 }
