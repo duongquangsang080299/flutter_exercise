@@ -22,7 +22,7 @@ class SCDotsIndicator extends StatelessWidget {
   /// Color of active dot
   final Color? activeDotColor;
 
-  // Method to build the list of dot widgets
+  // Method to build list of dot widgets
   List<Widget> buildDots() {
     final dots = <Widget>[];
     for (var i = 0; i < itemCount; i++) {
