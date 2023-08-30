@@ -8,14 +8,12 @@ class AppTextStyles {
     required double fontSize,
     required FontWeight fontWeight,
     required Color color,
-    required double lineHeight,
     required String fontFamily,
   }) {
     return TextStyle(
       fontSize: fontSize,
       fontWeight: fontWeight,
       color: color,
-      height: lineHeight,
     );
   }
 
@@ -25,7 +23,6 @@ class AppTextStyles {
     fontSize: 24,
     fontWeight: AppFontWeight.semiBold,
     color: AppColor.textPrimary,
-    lineHeight: 30,
   );
 
   /// Text style for medium titles
@@ -34,7 +31,6 @@ class AppTextStyles {
     fontSize: 16,
     fontWeight: AppFontWeight.medium,
     color: AppColor.textPrimary,
-    lineHeight: 25.5,
   );
 
   /// Text style for extra bold content
@@ -43,7 +39,6 @@ class AppTextStyles {
     fontSize: 14,
     fontWeight: AppFontWeight.regular,
     color: AppColor.textPrimary,
-    lineHeight: 20,
   );
 
   /// Text style for bold content
@@ -52,7 +47,6 @@ class AppTextStyles {
     fontSize: 18,
     fontWeight: AppFontWeight.regular,
     color: AppColor.textPrimary,
-    lineHeight: 20,
   );
 
   /// Text style for subtitles
@@ -61,7 +55,6 @@ class AppTextStyles {
     fontSize: 11,
     fontWeight: AppFontWeight.regular,
     color: AppColor.textSecondary,
-    lineHeight: 20,
   );
 
   /// Text style for captions
@@ -70,6 +63,5 @@ class AppTextStyles {
     fontSize: 10,
     fontWeight: AppFontWeight.semiBold,
     color: AppColor.textSecondary,
-    lineHeight: 20,
   );
 }
