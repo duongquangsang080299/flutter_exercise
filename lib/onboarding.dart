@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:soccer_club_app/widgets/bottom_navigation.dart';
 
 class OnBoarding extends StatelessWidget {
   const OnBoarding({super.key});
+  
 
   @override
   Widget build(BuildContext context) {
