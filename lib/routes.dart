@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:soccer_club_app/onboarding.dart';
+import 'package:soccer_club_app/features/onboarding.dart';
+import 'package:soccer_club_app/features/sign_in.dart';
+import 'package:soccer_club_app/features/sign_up.dart';
+import 'package:soccer_club_app/features/welcome_screen.dart';
 import 'package:soccer_club_app/splash_screen.dart';
 
 final GoRouter appRouter = GoRouter(
@@ -16,13 +19,31 @@ final GoRouter appRouter = GoRouter(
       path: AppRoutes.onBoarding.path,
       name: AppRoutes.onBoarding.name,
       builder: (BuildContext context, GoRouterState state) =>
-          const OnBoarding(),
+          OnBoarding(),
     ),
     GoRoute(
       path: AppRoutes.splashScreen.path,
       name: AppRoutes.splashScreen.name,
       builder: (BuildContext context, GoRouterState state) =>
           const SplashScreen(),
+    ),
+    GoRoute(
+      path: AppRoutes.welcomeScreen.path,
+      name: AppRoutes.welcomeScreen.name,
+      builder: (BuildContext context, GoRouterState state) =>
+          const WelcomeScreen(),
+    ),
+     GoRoute(
+      path: AppRoutes.signIn.path,
+      name: AppRoutes.signIn.name,
+      builder: (BuildContext context, GoRouterState state) =>
+          const SignIn(),
+    ),
+    GoRoute(
+      path: AppRoutes.signUp.path,
+      name: AppRoutes.signUp.name,
+      builder: (BuildContext context, GoRouterState state) =>
+          const SignUp(),
     ),
   ],
 );
@@ -40,7 +61,20 @@ enum AppRoutes {
   splashScreen(
     name: 'splashScreen',
     path: '/splashScreen',
+  ),
+  welcomeScreen(
+    name: 'welcomeScreen',
+    path: '/welcomeScreen',
+  ),
+  signIn(
+    name: 'signIn',
+    path: '/signIn',
+  ),
+  signUp(
+    name: 'signUp',
+    path: '/signUp',
   );
+  
 
   const AppRoutes({
     required this.name,

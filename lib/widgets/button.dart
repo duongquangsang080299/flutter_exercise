@@ -20,6 +20,7 @@ class SCButton extends StatelessWidget {
     // Background color of the button (default is blue)
     this.backgroundColor,
     this.height,
+    required int borderRadius, 
   });
   final String text;
   final Color? textColor;
@@ -33,6 +34,7 @@ class SCButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: width,
+      height: height,
       child: ElevatedButton(
         onPressed: onPressed,
         style: Theme.of(context).elevatedButtonTheme.style,
@@ -60,12 +62,14 @@ class SCButtonIcon extends StatelessWidget {
     this.icon,
     // Optional width of the button
     this.width,
+    this.color,
   });
   final String text;
   final double? width;
   final Color backgroundColor;
   final VoidCallback? onPressed;
   final IconData? icon;
+  final Color? color;
 
   @override
   Widget build(BuildContext context) {
@@ -75,7 +79,7 @@ class SCButtonIcon extends StatelessWidget {
         onPressed: onPressed,
         style: Theme.of(context).elevatedButtonTheme.style,
         icon: const Icon(Icons.email),
-        label: SCText.displayLarge(
+        label: SCText.bodyLarge(
           context,
           text: text,
         ),
@@ -93,7 +97,7 @@ class SCOutlinedButton extends StatelessWidget {
     super.key,
     this.width,
     this.borderColor,
-    this.backgroundColor,
+    this.backgroundColor=Colors.white,
   });
 
   final String text;
@@ -108,15 +112,13 @@ class SCOutlinedButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: width,
+      height: height,
       child: OutlinedButton(
         onPressed: onPressed,
-        style: OutlinedButton.styleFrom(
-          side: BorderSide(color: borderColor ?? Colors.transparent),
-          backgroundColor: backgroundColor ?? Colors.transparent,
-        ),
-        child: Text(
-          text,
-          style: TextStyle(color: textColor ?? Theme.of(context).primaryColor),
+        style: Theme.of(context).elevatedButtonTheme.style,
+        child: SCText.bodyLarge(
+          context,
+          text: text,
         ),
       ),
     );

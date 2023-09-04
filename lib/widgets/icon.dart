@@ -108,7 +108,7 @@ class SCIcon extends StatelessWidget {
   }
 
   /// Factory constructor for Hidden icon
-  factory SCIcon.hidden({
+  factory SCIcon.hidden(IconData visibility_off, {
     Color? color,
     double? size,
     VoidCallback? onPressed,

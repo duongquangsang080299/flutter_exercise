@@ -12,7 +12,9 @@ class AppTheme {
       colorScheme: _colorScheme,
       buttonTheme: _buttonTheme,
       elevatedButtonTheme: _elevatedButtonTheme,
-      outlinedButtonTheme: _outlinedButtonTheme,
+      outlinedButtonTheme: OutlinedButtonThemeData(
+        style: _outlinedButtonStyle,
+      ),
       iconTheme: const IconThemeData(
         color: AppColor.jetBlackColor,
         size: 24,
@@ -49,14 +51,12 @@ class AppTheme {
     );
   }
 
-  OutlinedButtonThemeData get _outlinedButtonTheme {
-    return OutlinedButtonThemeData(
-      style: ButtonStyle(
-        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-          RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(20),
-            side: const BorderSide(),
-          ),
+   ButtonStyle get _outlinedButtonStyle {
+    return ButtonStyle(
+      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+        RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(20),
+          side: const BorderSide(),
         ),
       ),
     );

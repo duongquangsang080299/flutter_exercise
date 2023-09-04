@@ -16,6 +16,7 @@ dependencies:
   widgetbook: ^3.2.0
   widgetbook_annotation: ^3.0.0
   percent_indicator: ^4.2.3
+  dots_indicator: ^3.0.0
   flutter_localizations:
     sdk: flutter
   intl: ^0.18.0
@@ -34,6 +35,8 @@ flutter:
    - assets/images/
   fonts:
     - family: Poppins-Medium
+    - family: Poppins-Regular
       fonts:
         - asset: assets/fonts/Poppins-Medium.ttf
+        - asset: assets/fonts/Poppins-Regular.ttf
           

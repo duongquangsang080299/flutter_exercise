@@ -19,7 +19,7 @@ class AppTextStyles {
 
   /// Text style for large titles
   static TextStyle titleLarge = _baseTextStyle(
-    fontFamily: 'Poppins',
+    fontFamily: 'Poppins-Regular',
     fontSize: 24,
     fontWeight: AppFontWeight.semiBold,
     color: AppColor.textPrimary,
@@ -27,15 +27,15 @@ class AppTextStyles {
 
   /// Text style for medium titles
   static TextStyle titleMedium = _baseTextStyle(
-    fontFamily: 'Poppins',
+    fontFamily: 'Poppins-Medium',
     fontSize: 16,
     fontWeight: AppFontWeight.medium,
-    color: AppColor.textPrimary,
+    color: AppColor.textSecondary,
   );
 
   /// Text style for extra bold content
   static TextStyle extralBold = _baseTextStyle(
-    fontFamily: 'Poppins',
+    fontFamily: 'Poppins-Medium',
     fontSize: 14,
     fontWeight: AppFontWeight.regular,
     color: AppColor.textPrimary,
