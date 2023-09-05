@@ -1,108 +1,109 @@
 import 'package:flutter/material.dart';
+import 'package:soccer_club_app/widgets/text.dart';
 
 class SCInput extends StatelessWidget {
   const SCInput({
-    required this.labelText,
-    super.key,
-    this.hintText,
+    super.key, // Use Key? key instead of super.key.
     this.focusNode,
-    this.errorMessage,
-    this.isPassword = false,
     this.suffixIcon,
+    this.textInputAction,
+    this.keyboardType,
+    this.labelText,
+    this.obscureText = false,
     this.controller,
     this.validator,
-    this.keyboardType,
-    this.obscureText = false,
-    this.decoration,
+    this.contentPadding,
   });
-
-  /// Factory constructor for password input
-  factory SCInput.password({
-    required String labelText,
-    Key? key,
-    FocusNode? focusNode,
-    String? hintText,
-    Widget? suffixIcon,
-    bool obscureText = true, 
-    InputDecoration? decoration,
-  }) {
-    return SCInput(
-      key: key,
-      labelText: labelText,
-      focusNode: focusNode,
-      hintText: hintText,
-      isPassword: true,
-      suffixIcon: suffixIcon,
-      obscureText: obscureText,
-      decoration: decoration,
-    );
-  }
-
-  /// Factory constructor for regular text input
-  factory SCInput.textField({
-    required String labelText,
-    Key? key,
-    FocusNode? focusNode,
-    String? hintText,
-    InputDecoration? decoration,
-  }) {
-    return SCInput(
-      key: key,
-      labelText: labelText,
-      focusNode: focusNode,
-      hintText: hintText,
-      decoration: decoration,
-    );
-  }
 
   /// Factory constructor for email input
   factory SCInput.email({
-    required String labelText,
+    FocusNode? focusNode,
+    TextInputType? keyboardType,
+    String? labelText,
+    TextInputAction? textInputAction,
+  }) {
+    return SCInput(
+      focusNode: focusNode,
+      labelText: labelText,
+      keyboardType: keyboardType,
+      textInputAction: textInputAction,
+    );
+  }
+
+  /// Factory constructor for username input
+  factory SCInput.username({
+    FocusNode? focusNode,
+    TextInputType? keyboardType,
+    TextInputAction? textInputAction,
+    String? labelText,
+  }) {
+    return SCInput(
+      focusNode: focusNode,
+      keyboardType: keyboardType,
+      labelText: labelText,
+      textInputAction: textInputAction,
+    );
+  }
+
+  /// Factory constructor for password input
+  factory SCInput.password({
     Key? key,
     FocusNode? focusNode,
-    String? hintText,
-    InputDecoration? decoration,
+    Widget? suffixIcon,
+    String? labelText,
+    bool obscureText = false, // Set default value to false.
+    TextInputType? keyboardType,
+    EdgeInsetsGeometry? contentPadding,
   }) {
     return SCInput(
       key: key,
-      labelText: labelText,
       focusNode: focusNode,
-      hintText: hintText,
-      keyboardType: TextInputType.emailAddress,
-      decoration: decoration,
+      labelText: labelText,
+      obscureText: obscureText,
+      suffixIcon: suffixIcon,
+      keyboardType: keyboardType,
+      contentPadding: contentPadding,
     );
   }
 
   /// Properties
-  final String? errorMessage;
-  final bool isPassword;
-  final String? hintText;
-  final String labelText;
-  final FocusNode? focusNode;
-  final Widget? suffixIcon;
-  final TextEditingController? controller;
-  final FormFieldValidator<String>? validator;
-  final TextInputType? keyboardType;
-  final bool obscureText;
-  final InputDecoration? decoration;
 
+  final FocusNode? focusNode;
+  final TextEditingController? controller;
+  final Widget? suffixIcon;
+  final TextInputType? keyboardType;
+  final TextInputAction? textInputAction;
+  final bool? obscureText;
+  final String? Function(String?)? validator;
+  final String? labelText;
+  final EdgeInsetsGeometry? contentPadding;
 
   @override
   Widget build(BuildContext context) {
     /// Build the TextFormField with provided properties
-    return TextFormField(
-      controller: controller,
-      decoration: InputDecoration(
-        labelText: labelText,
-        hintText: hintText,
-        suffixIcon: suffixIcon,
-        
-      ),
-      validator: validator,
-      keyboardType: keyboardType,
-      focusNode: focusNode,
-      obscureText: obscureText,
-     
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        SCText.bodyLarge(context, text: labelText ?? ''),
+        const SizedBox(height: 10),
+        TextFormField(
+          style: Theme.of(context).textTheme.titleLarge,
+          decoration: InputDecoration(
+            suffixIcon: suffixIcon ?? const SizedBox.shrink(),
+            contentPadding: contentPadding ??
+                const EdgeInsets.symmetric(
+                  vertical: 15,
+                  horizontal: 15,
+                ),
+          ),
+          keyboardType: keyboardType,
+          textInputAction: textInputAction,
+          focusNode: focusNode,
+          validator: validator,
+          controller: controller,
+          obscureText: obscureText ?? false,
+        ),
+      ],
     );
   }
 }

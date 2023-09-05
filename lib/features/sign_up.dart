@@ -52,23 +52,17 @@ class SignUp extends StatelessWidget {
             // Text Form Fields for Username and Password
             Column(
               children: [
-                SCInput.textField(
+                SCInput.username(
                   labelText: 'Username',
-                  decoration: const InputDecoration(
-                    hintText: 'Enter your username',
-                    border: OutlineInputBorder(),
-                  ),
+                  
                   // focusNode: usernameFocus,
                 ),
 
                 const SizedBox(height: 10),
 
                 SCInput.email(
-                  labelText: 'Email',
-                  decoration: const InputDecoration(
-                    hintText: 'Enter your Email',
-                    border: OutlineInputBorder(),
-                  ),
+                 labelText: 'Email',
+                  
                 ),
                 const SizedBox(
                   height: 10,
@@ -77,11 +71,7 @@ class SignUp extends StatelessWidget {
                 // Password Text Form Field
                 SCInput.password(
                   labelText: 'Password',
-                  decoration: const InputDecoration(
-                    hintText: 'Enter your password',
-                    border: OutlineInputBorder(),
-                    suffixIcon: Icon(Icons.visibility_off),
-                  ),
+                 suffixIcon: const Icon(Icons.visibility_off),
                   obscureText: true,
                   // focusNode: passwordFocus,
                 ),
