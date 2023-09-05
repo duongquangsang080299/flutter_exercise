@@ -7,6 +7,13 @@ class AppTheme {
 
   ThemeData get themeData {
     return ThemeData(
+      appBarTheme: const AppBarTheme(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(
+            bottom: Radius.circular(30),
+          ),
+        ),
+      ),
       primaryColor: AppColor.primaryColor,
       scaffoldBackgroundColor: AppColor.backgroundColor,
       colorScheme: _colorScheme,
@@ -51,7 +58,7 @@ class AppTheme {
     );
   }
 
-   ButtonStyle get _outlinedButtonStyle {
+  ButtonStyle get _outlinedButtonStyle {
     return ButtonStyle(
       shape: MaterialStateProperty.all<RoundedRectangleBorder>(
         RoundedRectangleBorder(
