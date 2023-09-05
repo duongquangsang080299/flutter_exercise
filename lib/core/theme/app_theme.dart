@@ -18,6 +18,13 @@ class AppTheme {
       scaffoldBackgroundColor: AppColor.backgroundColor,
       colorScheme: _colorScheme,
       buttonTheme: _buttonTheme,
+      cardTheme: const CardTheme(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(
+            Radius.circular(15),
+          ),
+        ),
+      ),
       elevatedButtonTheme: _elevatedButtonTheme,
       outlinedButtonTheme: OutlinedButtonThemeData(
         style: _outlinedButtonStyle,
