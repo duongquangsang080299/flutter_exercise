@@ -2,95 +2,81 @@ import 'package:flutter/material.dart';
 
 class SCInput extends StatelessWidget {
   const SCInput({
-    required this.labelText,
     super.key,
-    this.hintText,
     this.focusNode,
-    this.errorMessage,
-    this.isPassword = false,
     this.suffixIcon,
-    this.controller,
-    this.validator,
+    this.textInputAction,
     this.keyboardType,
-    this.obscureText = false,
+    this.decoration,
+    this.obscureText,
   });
-
-  /// Factory constructor for password input
-  factory SCInput.password({
-    required String labelText,
-    Key? key,
-    FocusNode? focusNode,
-    String? hintText,
-    Widget? suffixIcon,
-  }) {
-    return SCInput(
-      key: key,
-      labelText: labelText,
-      focusNode: focusNode,
-      hintText: hintText,
-      isPassword: true,
-      suffixIcon: suffixIcon,
-      obscureText: true,
-    );
-  }
-
-  /// Factory constructor for regular text input
-  factory SCInput.textField({
-    required String labelText,
-    Key? key,
-    FocusNode? focusNode,
-    String? hintText,
-  }) {
-    return SCInput(
-      key: key,
-      labelText: labelText,
-      focusNode: focusNode,
-      hintText: hintText,
-    );
-  }
 
   /// Factory constructor for email input
   factory SCInput.email({
-    required String labelText,
+    FocusNode? focusNode,
+    TextInputType? keyboardType,
+    InputDecoration? decoration,
+    TextInputAction? textInputAction,
+  }) {
+    return SCInput(
+      focusNode: focusNode,
+      decoration: decoration,
+      keyboardType: keyboardType,
+      textInputAction: textInputAction,
+    );
+  }
+
+  /// Factory constructor for usernamet input
+  factory SCInput.username({
+    FocusNode? focusNode,
+    TextInputType? keyboardType,
+    TextInputAction? textInputAction,
+    InputDecoration? decoration,
+  }) {
+    return SCInput(
+      focusNode: focusNode,
+      keyboardType: keyboardType,
+      decoration: decoration,
+      textInputAction: textInputAction,
+    );
+  }
+
+  /// Factory constructor for password input
+  factory SCInput.password({
     Key? key,
     FocusNode? focusNode,
-    String? hintText,
+    Widget? suffixIcon,
+    InputDecoration? decoration,
+    bool? obscureText,
+    TextInputType? keyboardType,
   }) {
     return SCInput(
       key: key,
-      labelText: labelText,
       focusNode: focusNode,
-      hintText: hintText,
-      keyboardType:
-          // Set the keyboard type to email
-          TextInputType.emailAddress,
+      decoration: decoration,
+      obscureText: obscureText,
+      suffixIcon: suffixIcon,
+      keyboardType: keyboardType,
     );
   }
 
   /// Properties
-  final String? errorMessage;
-  final bool isPassword;
-  final String? hintText;
-  final String labelText;
+
   final FocusNode? focusNode;
   final Widget? suffixIcon;
-  final TextEditingController? controller;
-  final FormFieldValidator<String>? validator;
   final TextInputType? keyboardType;
-  final bool obscureText;
+  final TextInputAction? textInputAction;
+  final bool? obscureText;
+  final InputDecoration? decoration;
 
   @override
   Widget build(BuildContext context) {
     /// Build the TextFormField with provided properties
     return TextFormField(
-      controller: controller,
-      decoration: InputDecoration(
-        labelText: labelText,
-        hintText: hintText,
-      ),
-      validator: validator,
+      decoration: decoration,
       keyboardType: keyboardType,
-      obscureText: obscureText,
+      textInputAction: textInputAction,
+      focusNode: focusNode,
     );
   }
 }
