@@ -4,7 +4,7 @@ import 'package:soccer_club_app/core/color/app_color.dart';
 import 'package:soccer_club_app/core/theme/app_theme.dart';
 import 'package:soccer_club_app/core/typography/app_fontweight.dart';
 import 'package:soccer_club_app/widgets/button.dart';
-
+///
 class OnBoarding extends StatefulWidget {
   const OnBoarding({super.key});
 
