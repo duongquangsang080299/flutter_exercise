@@ -2,13 +2,15 @@ import 'package:flutter/material.dart';
 
 class SCInput extends StatelessWidget {
   const SCInput({
-    super.key,
+    super.key, // Use Key? key instead of super.key.
     this.focusNode,
     this.suffixIcon,
     this.textInputAction,
     this.keyboardType,
     this.decoration,
-    this.obscureText,
+    this.obscureText = false,
+    this.controller,
+    this.validator,
   });
 
   /// Factory constructor for email input
@@ -26,7 +28,7 @@ class SCInput extends StatelessWidget {
     );
   }
 
-  /// Factory constructor for usernamet input
+  /// Factory constructor for username input
   factory SCInput.username({
     FocusNode? focusNode,
     TextInputType? keyboardType,
@@ -47,7 +49,7 @@ class SCInput extends StatelessWidget {
     FocusNode? focusNode,
     Widget? suffixIcon,
     InputDecoration? decoration,
-    bool? obscureText,
+    bool obscureText = false, // Set default value to false.
     TextInputType? keyboardType,
   }) {
     return SCInput(
@@ -63,20 +65,25 @@ class SCInput extends StatelessWidget {
   /// Properties
 
   final FocusNode? focusNode;
+  final TextEditingController? controller;
   final Widget? suffixIcon;
   final TextInputType? keyboardType;
   final TextInputAction? textInputAction;
   final bool? obscureText;
+  final String? Function(String?)? validator;
   final InputDecoration? decoration;
 
   @override
   Widget build(BuildContext context) {
     /// Build the TextFormField with provided properties
     return TextFormField(
-      decoration: decoration,
+      decoration: InputDecoration(labelText: '', suffixIcon: suffixIcon),
       keyboardType: keyboardType,
       textInputAction: textInputAction,
       focusNode: focusNode,
+      validator: validator,
+      controller: controller,
+      obscureText: obscureText ?? false,
     );
   }
 }
