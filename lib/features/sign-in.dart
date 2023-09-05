@@ -44,7 +44,7 @@ class _SignInState extends State<SignIn> {
 
             const SizedBox(height: 20),
 
-            // Text Form Fields for Username and Password
+            //Text Form Fields for Username and Password
             Column(
               children: [
                 SCInput.username(
