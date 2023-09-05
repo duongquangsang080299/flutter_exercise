@@ -17,20 +17,20 @@ class SCButton extends StatelessWidget {
     // Optional width of the button
     this.width,
     // Border color of the button (default is transparent)
-    this.borderColor,
+    
     // Background color of the button (default is blue)
     this.backgroundColor,
     this.height,
-    this.borderRadius,
+    this.borderRadius, this.style,
   });
   final String text;
   final Color? textColor;
   final double? width;
   final Color? backgroundColor;
-  final Color? borderColor;
   final VoidCallback? onPressed;
   final double? height;
   final int? borderRadius;
+  final TextStyle? style;
 
   @override
   Widget build(BuildContext context) {
@@ -39,15 +39,23 @@ class SCButton extends StatelessWidget {
       height: height,
       child: ElevatedButton(
         onPressed: onPressed,
-        style: Theme.of(context).elevatedButtonTheme.style,
+         style: ButtonStyle(
+          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+            RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(40),
+            ),
+          ),
+        ),
         child: SCText.displayMedium(
           context,
           text: text,
+          style: style,
         ),
       ),
     );
   }
 }
+
 
 /// Define SCButtonIcon widget with icon and text
 class SCButtonIcon extends StatelessWidget {
@@ -74,6 +82,7 @@ class SCButtonIcon extends StatelessWidget {
   final IconData? icon;
   final Color? color;
   final int? borderRadius;
+  
 
   @override
   Widget build(BuildContext context) {
