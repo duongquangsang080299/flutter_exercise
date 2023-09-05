@@ -3,58 +3,62 @@ import 'package:flutter/material.dart';
 /// Define Card Avata
 class SCCard extends StatelessWidget {
   const SCCard({
-    this.backgroundColor,
+    this.color,
     super.key,
-    this.avatarImage,
     this.width,
     this.height,
-    this.boderColor,
     this.child,
+    this.shape,
+    this.hoverColor,
   });
 
   /// Factory constructor for creating a simple box card.
-  factory SCCard.boxCard({
-    Color? backgroundColor,
-    Key? key,
-    DecorationImage? avatarImage,
+  factory SCCard.box({
+    ShapeBorder? shape,
+    Color? color,
     Widget? child,
   }) {
     return SCCard(
-      backgroundColor: backgroundColor,
-      key: key,
-      avatarImage: avatarImage,
+      color: color,
+      shape: shape,
       child: child,
     );
   }
 
   /// Factory constructor for creating a card with an avatar
-  factory SCCard.avatarCard({
-    Color? background,
-    Color? boderColor,
-    double? width,
-    double? height,
-    DecorationImage? avatarImage,
+  factory SCCard.avatar({
+    ShapeBorder? shape,
+    Widget? child,
+    Color? hoverColor,
+    
   }) {
     return SCCard(
-      backgroundColor: background,
-      boderColor: boderColor,
-      width: width,
-      height: height,
-      avatarImage: avatarImage,
+      shape: shape,
+      hoverColor: hoverColor,
+      child: child,
     );
   }
 
-  // The avatar image to display on the card.
-  final DecorationImage? avatarImage;
+  /// Factory constructor for creating a card with an score
+  factory SCCard.score({
+    ShapeBorder? shape,
+    Widget? child,
+  }) {
+    return SCCard(
+      shape: shape,
+      child: child,
+    );
+  }
+
   // The background color of the card.
-  final Color? backgroundColor;
+  final Color? color;
   // The width of the card.
   final double? width;
-  // The border color of the card.
-  final Color? boderColor;
   // The height of the card.
   final double? height;
   // The child widget to be placed inside the card.
+  final ShapeBorder? shape;
+  final Color? hoverColor;
   final Widget? child;
 
   @override
@@ -62,25 +66,16 @@ class SCCard extends StatelessWidget {
     return SizedBox(
       height: height,
       width: width,
-      child: Container(
-        decoration: BoxDecoration(
-          // Set the provided avatar image as the card's background image.
-          image: avatarImage,
-          border: Border.all(
-            // Set the border color to the provided color or default to white.
-            color: boderColor ?? Colors.white,
-          ),
-        ),
-        // Set the provided background color of the card.
-        color: backgroundColor,
-        // Set the provided child widget inside the card.
+      child: Card(
+        shape: shape,
+        color: color,
         child: child,
       ),
     );
   }
 }
 
-/// Define Box Card 
+/// Define Box Card
 class SCBoxCard extends StatelessWidget {
   const SCBoxCard({
     required this.title,
@@ -157,8 +152,6 @@ class SCBoxCard extends StatelessWidget {
     );
   }
 }
-
-
 
 /// Define MatchCard
 class SCMatchCard extends StatelessWidget {
