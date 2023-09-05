@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:soccer_club_app/widgets/text.dart';
 
 class SCInput extends StatelessWidget {
   const SCInput({
@@ -7,22 +8,23 @@ class SCInput extends StatelessWidget {
     this.suffixIcon,
     this.textInputAction,
     this.keyboardType,
-    this.decoration,
+    this.labelText,
     this.obscureText = false,
     this.controller,
     this.validator,
+    this.contentPadding,
   });
 
   /// Factory constructor for email input
   factory SCInput.email({
     FocusNode? focusNode,
     TextInputType? keyboardType,
-    InputDecoration? decoration,
+    String? labelText,
     TextInputAction? textInputAction,
   }) {
     return SCInput(
       focusNode: focusNode,
-      decoration: decoration,
+      labelText: labelText,
       keyboardType: keyboardType,
       textInputAction: textInputAction,
     );
@@ -33,12 +35,12 @@ class SCInput extends StatelessWidget {
     FocusNode? focusNode,
     TextInputType? keyboardType,
     TextInputAction? textInputAction,
-    InputDecoration? decoration,
+    String? labelText,
   }) {
     return SCInput(
       focusNode: focusNode,
       keyboardType: keyboardType,
-      decoration: decoration,
+      labelText: labelText,
       textInputAction: textInputAction,
     );
   }
@@ -48,17 +50,19 @@ class SCInput extends StatelessWidget {
     Key? key,
     FocusNode? focusNode,
     Widget? suffixIcon,
-    InputDecoration? decoration,
+    String? labelText,
     bool obscureText = false, // Set default value to false.
     TextInputType? keyboardType,
+    EdgeInsetsGeometry? contentPadding,
   }) {
     return SCInput(
       key: key,
       focusNode: focusNode,
-      decoration: decoration,
+      labelText: labelText,
       obscureText: obscureText,
       suffixIcon: suffixIcon,
       keyboardType: keyboardType,
+      contentPadding: contentPadding,
     );
   }
 
@@ -71,19 +75,35 @@ class SCInput extends StatelessWidget {
   final TextInputAction? textInputAction;
   final bool? obscureText;
   final String? Function(String?)? validator;
-  final InputDecoration? decoration;
+  final String? labelText;
+  final EdgeInsetsGeometry? contentPadding;
 
   @override
   Widget build(BuildContext context) {
     /// Build the TextFormField with provided properties
-    return TextFormField(
-      decoration: InputDecoration(labelText: '', suffixIcon: suffixIcon),
-      keyboardType: keyboardType,
-      textInputAction: textInputAction,
-      focusNode: focusNode,
-      validator: validator,
-      controller: controller,
-      obscureText: obscureText ?? false,
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        SCText.bodyLarge(context, text: labelText ?? ''),
+        const SizedBox(height: 10),
+        TextFormField(
+          style: Theme.of(context).textTheme.titleLarge,
+          decoration: InputDecoration(
+            suffixIcon: suffixIcon ?? const SizedBox.shrink(),
+            contentPadding: contentPadding ??
+                const EdgeInsets.symmetric(
+                  vertical: 15,
+                  horizontal: 15,
+                ),
+          ),
+          keyboardType: keyboardType,
+          textInputAction: textInputAction,
+          focusNode: focusNode,
+          validator: validator,
+          controller: controller,
+          obscureText: obscureText ?? false,
+        ),
+      ],
     );
   }
 }
