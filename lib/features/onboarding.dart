@@ -12,11 +12,8 @@ import 'package:soccer_club_app/widgets/button.dart';
 class OnBoarding extends StatelessWidget {
   const OnBoarding({super.key});
 
-  
- 
   @override
   Widget build(BuildContext context) {
-   
     final theme = AppTheme(); // Instantiate your theme
 
     return Scaffold(
@@ -42,10 +39,11 @@ class OnBoarding extends StatelessWidget {
             const SizedBox(height: 10),
 
             // Display Medium Text
-            Text(
-              'Welcome Back',
-              style: Theme.of(context).textTheme.displayMedium,
-            ),
+            Text('Welcome Back',
+                style: Theme.of(context)
+                    .textTheme
+                    .displayMedium
+                    ?.copyWith(color: AppColor.jetBlackColor)),
 
             const SizedBox(height: 20),
 
@@ -60,47 +58,46 @@ class OnBoarding extends StatelessWidget {
 
             const SizedBox(height: 30),
 
-          // SizedBox(
-          //     height: 500,
-          //     child: PageView(
-          //       controller: _controller,
-          //       onPageChanged: (index) {
-          //         _currentIndex = index;
-          //       },
-          //       children: const [
-          //         Page1(),
-          //         Page2(),
-          //         Page3(),
-          //         Page4(),
-          //       ],
-          //     ),
-          //   ),
+            // SizedBox(
+            //     height: 500,
+            //     child: PageView(
+            //       controller: _controller,
+            //       onPageChanged: (index) {
+            //         _currentIndex = index;
+            //       },
+            //       children: const [
+            //         Page1(),
+            //         Page2(),
+            //         Page3(),
+            //         Page4(),
+            //       ],
+            //     ),
+            //   ),
 
-          //   // Dots Indicator
-          //   DotsIndicator(
-          //     dotsCount: 4, // Number of dots (pages)
-          //     // position: _currentIndex.toDouble(),
-          //     decorator: const DotsDecorator(
-          //       activeColor: AppColor.primaryColor, // Active dot color
-          //       size:  Size.square(10), // Size of the dots
-          //       activeSize:  Size.square(10), // Size of the active dot
-          //     ),
-          //   ),
+            //   // Dots Indicator
+            //   DotsIndicator(
+            //     dotsCount: 4, // Number of dots (pages)
+            //     // position: _currentIndex.toDouble(),
+            //     decorator: const DotsDecorator(
+            //       activeColor: AppColor.primaryColor, // Active dot color
+            //       size:  Size.square(10), // Size of the dots
+            //       activeSize:  Size.square(10), // Size of the active dot
+            //     ),
+            //   ),
 
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 // SCOutlinedButton
-                SCOutlinedButton(
-                  onPressed: () {
-                    // Handle Skip button press
-                  },
-                  text: 'Skip',
-                  borderColor: Colors.black, // Set the border color
-                  // Set the background color
+                SCOutlineButton(
+                  onPressed: () {},
+                  text: 'SKIP',
+                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                        color: AppColor.textPrimary,
+                      ),
                   width: 154,
                   height: 60,
-                  // You can add more properties as needed
+                  borderRadius: 30,
                 ),
                 const SizedBox(width: 20),
                 // SCButton (ElevatedButton)
@@ -108,7 +105,7 @@ class OnBoarding extends StatelessWidget {
                   onPressed: () {
                     GoRouter.of(context).go('/welcomeScreen');
                   },
-                  text: 'Campaigns',
+                  text: 'CAMPAIGNS',
                   backgroundColor: AppColor.primaryColor,
                   width: 154,
                   height: 60,

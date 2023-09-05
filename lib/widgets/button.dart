@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:soccer_club_app/core/color/app_color.dart';
 // import 'package:soccer_club_app/widgets/icon.dart';
 import 'package:soccer_club_app/widgets/text.dart';
 
@@ -20,7 +21,7 @@ class SCButton extends StatelessWidget {
     // Background color of the button (default is blue)
     this.backgroundColor,
     this.height,
-    required int borderRadius, 
+    this.borderRadius,
   });
   final String text;
   final Color? textColor;
@@ -29,6 +30,7 @@ class SCButton extends StatelessWidget {
   final Color? borderColor;
   final VoidCallback? onPressed;
   final double? height;
+  final int? borderRadius;
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +40,7 @@ class SCButton extends StatelessWidget {
       child: ElevatedButton(
         onPressed: onPressed,
         style: Theme.of(context).elevatedButtonTheme.style,
-        child: SCText.displayLarge(
+        child: SCText.displayMedium(
           context,
           text: text,
         ),
@@ -63,6 +65,7 @@ class SCButtonIcon extends StatelessWidget {
     // Optional width of the button
     this.width,
     this.color,
+    this.borderRadius,
   });
   final String text;
   final double? width;
@@ -70,6 +73,7 @@ class SCButtonIcon extends StatelessWidget {
   final VoidCallback? onPressed;
   final IconData? icon;
   final Color? color;
+  final int? borderRadius;
 
   @override
   Widget build(BuildContext context) {
@@ -88,25 +92,22 @@ class SCButtonIcon extends StatelessWidget {
   }
 }
 
-class SCOutlinedButton extends StatelessWidget {
-  const SCOutlinedButton({
+class SCOutlineButton extends StatelessWidget {
+  const SCOutlineButton({
     required this.text,
-    this.height,
     this.onPressed,
-    this.textColor,
     super.key,
     this.width,
-    this.borderColor,
-    this.backgroundColor=Colors.white,
+    this.height,
+    this.borderRadius,
+    this.style,
   });
-
   final String text;
-  final Color? textColor;
-  final double? width;
-  final Color? backgroundColor;
-  final Color? borderColor;
   final VoidCallback? onPressed;
+  final double? width;
   final double? height;
+  final int? borderRadius;
+  final TextStyle? style;
 
   @override
   Widget build(BuildContext context) {
@@ -115,10 +116,21 @@ class SCOutlinedButton extends StatelessWidget {
       height: height,
       child: OutlinedButton(
         onPressed: onPressed,
-        style: Theme.of(context).elevatedButtonTheme.style,
-        child: SCText.bodyLarge(
+        style: ButtonStyle(
+          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+            RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(40),
+              // Customize the button's border
+              side: const BorderSide(
+                color: AppColor.jetBlackColor,
+              ),
+            ),
+          ),
+        ),
+        child: SCText.displayMedium(
           context,
           text: text,
+          style: style,
         ),
       ),
     );

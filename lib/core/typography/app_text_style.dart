@@ -30,7 +30,7 @@ class AppTextStyles {
     fontFamily: 'Poppins-Medium',
     fontSize: 16,
     fontWeight: AppFontWeight.medium,
-    color: AppColor.textSecondary,
+    color: AppColor.whiteSmokeColor,
   );
 
   /// Text style for extra bold content
