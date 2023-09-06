@@ -29,7 +29,7 @@ class _OnBoardingState extends State<OnBoarding> {
       body: SafeArea(
         child: Column(
           children: [
-            Expanded(
+            Flexible(
               child: PageView.builder(
                 itemCount: demoData.length,
                 controller: _pageController,
@@ -46,14 +46,17 @@ class _OnBoardingState extends State<OnBoarding> {
                 ),
               ),
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: List.generate(
-                demoData.length,
-                (index) => Padding(
-                  padding: const EdgeInsets.all(8),
-                  child: SCDotsIndicator(
-                    isActive: index == _pageIndex,
+            Container(
+              color: Colors.amber,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: List.generate(
+                  demoData.length,
+                  (index) => Padding(
+                    padding: const EdgeInsets.all(8),
+                    child: SCDotsIndicator(
+                      isActive: index == _pageIndex,
+                    ),
                   ),
                 ),
               ),
