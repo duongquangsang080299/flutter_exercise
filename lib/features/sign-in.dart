@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:soccer_club_app/core/color/app_color.dart';
+import 'package:soccer_club_app/core/typography/app_fontweight.dart';
+import 'package:soccer_club_app/util.dart';
 import 'package:soccer_club_app/widgets/button.dart';
 import 'package:soccer_club_app/widgets/input.dart';
 import 'package:soccer_club_app/widgets/text.dart';
@@ -12,90 +14,119 @@ class SignIn extends StatefulWidget {
 }
 
 class _SignInState extends State<SignIn> {
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   bool? showPassword;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const SizedBox(height: 130),
-            // Display Large Text
-            SCText.bodyLarge(
-              context,
-              text: 'Sign In',
-              style: Theme.of(context)
-                  .textTheme
-                  .displayLarge
-                  ?.copyWith(color: AppColor.primaryColor),
-            ),
+      body: Form(
+        key: _formKey,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 28),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const SizedBox(height: 130),
+              // Display Large Text
+              SCText.displayLarge(
+                context,
+                text: 'Sign In',
+                style: Theme.of(context).textTheme.displayLarge?.copyWith(
+                    color: AppColor.primaryColor,
+                    fontWeight: AppFontWeight.semiBold),
+              ),
 
-            const SizedBox(height: 30),
+              const SizedBox(height: 30),
 
-            // Title Text
-            Text(
-              'Amet minim mollit non deserunt ullamcoei italiqua dolor'
-              ' do amet sintelit officia.',
-              style: Theme.of(context).textTheme.titleLarge,
-            ),
+              // Title Text
+              SCText.bodySmall(
+                context,
+                style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                    color: AppColor.textPrimary,
+                    fontWeight: AppFontWeight.regular),
+                text: 'Amet minim mollit non deserunt ullamcoei italiqua dolor'
+                    ' do amet sintelit officia.',
+              ),
 
-            const SizedBox(height: 20),
+              const SizedBox(height: 20),
 
-            //Text Form Fields for Username and Password
-            Column(
-              children: [
-                SCInput.username(
-                  labelText: 'Username',
-
-                  // focusNode: usernameFocus,
-                ),
-
-                const SizedBox(height: 20),
-
-                // Password Text Form Field
-                SCInput.password(
-                  labelText: 'Password',
-                  suffixIcon: IconButton(
-                    icon: const Icon(Icons.visibility_off),
-                    onPressed: () {
-                      setState(() {
-                        showPassword = !(showPassword ?? false);
-                      });
-                    },
+              // Text Form Fields for Username
+              Column(
+                children: [
+                  SCInput.username(
+                    labelText: 'Username',
+                    labelStyle:
+                        const TextStyle(color: AppColor.whiteSmokeColor),
+                    validator: (value) => value?.isValidUserName(),
                   ),
-                  obscureText: showPassword ?? true,
-                  // focusNode: passwordFocus,
+
+                  const SizedBox(height: 20),
+
+                  // Password Text Form Field
+                  SCInput.password(
+                    labelText: 'Password',
+                    validator: (input) => input?.isValidPassword(),
+                    suffixIcon: IconButton(
+                      icon: const Icon(Icons.visibility),
+                      onPressed: () {
+                        setState(() {
+                          showPassword = !(showPassword ?? false);
+                        });
+                      },
+                    ),
+                    obscureText: showPassword ?? true,
+                  ),
+                ],
+              ),
+              const SizedBox(height: 30),
+
+              // Sign-In Button
+              SCButton(
+                onPressed: () {
+                  final form = _formKey.currentState ?? FormState();
+                  if (form.validate()) {
+                    debugPrint('Form is valid');
+                  } else {
+                    debugPrint('Form is invalid');
+                  }
+                },
+                text: 'LOGIN',
+                style: Theme.of(context).textTheme.displayMedium?.copyWith(
+                      color: AppColor.backgroundColor,
+                      fontWeight: AppFontWeight.semiBold,
+                    ),
+                backgroundColor: AppColor.primaryColor,
+                width: 318,
+                height: 60,
+                borderRadius: 30,
+              ),
+
+              const SizedBox(height: 20),
+
+              // Body Large Text
+              Text.rich(
+                TextSpan(
+                  children: [
+                    TextSpan(
+                      text: 'Forgot password?   ',
+                      style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                            fontWeight: AppFontWeight.medium,
+                            color: AppColor.textDimGray,
+                          ),
+                    ),
+                    TextSpan(
+                      text: 'Reset here ',
+                      style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                            fontWeight: AppFontWeight.medium,
+                            color: AppColor.primaryColor,
+                          ),
+                    ),
+                  ],
                 ),
-              ],
-            ),
-            const SizedBox(height: 30),
-
-            // Sign-In Button
-
-            // Sign-In Button
-            SCButton(
-              onPressed: () {
-                // Handle sign-in button press
-              },
-              text: 'Log In',
-              backgroundColor: AppColor.primaryColor, // Customize button color
-              width: double.infinity, // Takes the full width of the screen
-              height: 60, // Adjust the height as needed
-              borderRadius: 30, // Customize border radius
-            ),
-
-            const SizedBox(height: 20),
-
-            // Body Large Text
-            Text(
-              'Forgot Password? Reset Here',
-              style: Theme.of(context).textTheme.bodyLarge,
-              textAlign: TextAlign.center,
-            ),
-          ],
+              ),
+            ],
+          ),
         ),
       ),
     );
