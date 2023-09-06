@@ -106,6 +106,7 @@ class _SignUpState extends State<SignUp> {
                     debugPrint('Form is invalid');
                   }
                 },
+                
                 text: 'SIGN UP',
                 style: Theme.of(context).textTheme.displayMedium?.copyWith(
                       color: AppColor.backgroundColor,
