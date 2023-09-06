@@ -16,7 +16,7 @@ class SCText extends StatelessWidget {
     BuildContext context, {
     required String text,
     TextStyle? style,
-    TextAlign? textAlign,
+    TextAlign? textAlign, 
   }) {
     return SCText(
       text: text,
