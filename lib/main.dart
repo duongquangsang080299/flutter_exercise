@@ -2,7 +2,7 @@ import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:soccer_club_app/core/theme/app_theme.dart';
 import 'package:soccer_club_app/l10n/l10n.dart';
-import 'package:soccer_club_app/routes.dart';
+import 'package:soccer_club_app/routes/routes.dart';
 
 void main() => runApp(
       DevicePreview(

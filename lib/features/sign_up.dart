@@ -49,7 +49,8 @@ class _SignUpState extends State<SignUp> {
 
             // Title Text
             Text(
-              'Amet minim mollit non deserunt ullamcoei italiqua dolor do amet sintelit officia.',
+              'Amet minim mollit non deserunt ullamcoei '
+              'italiqua dolor do amet sintelit officia.',
               style: Theme.of(context).textTheme.titleLarge,
             ),
 
@@ -67,16 +68,16 @@ class _SignUpState extends State<SignUp> {
 
                 SCInput.email(
                   labelText: 'Email',
-                  validator: (value) {
-                    if (value!.isEmpty ||
-                        !RegExp(
-                          r'^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$',
-                        ).hasMatch(value)) {
-                      return 'Enter';
-                    } else {
-                      return null;
-                    }
-                  },
+                  // validator: (value) {
+                  //   if (value!.isEmpty ||
+                  //       !RegExp(
+                  //         r'^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$',
+                  //       ).hasMatch(value)) {
+                  //     return 'Enter';
+                  //   } else {
+                  //     return null;
+                  //   }
+                  // },
                 ),
                 const SizedBox(
                   height: 10,

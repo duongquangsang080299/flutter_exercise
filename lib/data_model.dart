@@ -45,4 +45,3 @@ final List<OnBoardData> demoData = [
     subtitle: 'Welcome Back',
   ),
 ];
-

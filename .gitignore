@@ -15,6 +15,12 @@
 *.ipr
 *.iws
 .idea/*
+#flutter specific
+.github/
+.idea/
+.vscode/
+.windows/
+/lib/bootstrap.dart
 
 # Visual Studio Code related
 .classpath

@@ -12,10 +12,11 @@ class SCDotsIndicator extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AnimatedContainer(
-      width: 23,
+      width: 10,
       height: 10,
+      margin: const EdgeInsets.only(right: 5),
       decoration: BoxDecoration(
-        shape: BoxShape.circle,
+       borderRadius: BorderRadius.circular(20),
         color: isActive ? AppColor.primaryColor : Colors.grey, 
       ), duration:const Duration(microseconds: 500),
     );
