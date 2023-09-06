@@ -3,45 +3,32 @@ import 'package:flutter/material.dart';
 /// Define Card Avata
 class SCCard extends StatelessWidget {
   const SCCard({
-    this.color,
     super.key,
+    this.color,
     this.width,
     this.height,
     this.child,
     this.shape,
     this.selected,
+    this.elevation,
   });
 
-  /// Factory constructor for creating a simple box card.
-  factory SCCard.box({
-    ShapeBorder? shape,
-    Color? color,
-    double? width,
-    double? height,
-    Widget? child,
-  }) {
-    return SCCard(
-      color: color,
-      shape: shape,
-      width: width,
-      height: height,
-      child: child,
-    );
-  }
 
   /// Factory constructor for creating a card with an avatar
   factory SCCard.avatar({
     ShapeBorder? shape,
     Widget? child,
-    double? width,
-    double? height,
+    double width = 45,
+    double height = 45,
     bool? selected,
+    Color color=Colors.white,
   }) {
     return SCCard(
       shape: shape,
       width: width,
       height: height,
       selected: selected,
+      color: color,
       child: child,
     );
   }
@@ -67,16 +54,17 @@ class SCCard extends StatelessWidget {
   final ShapeBorder? shape;
   final Widget? child;
   final bool? selected;
+  final double? elevation;
 
   @override
   Widget build(BuildContext context) {
     final _theme = Theme.of(context);
 
     return SizedBox(
-      height: height ?? 45,
-      width: width ?? 45,
+      height: height,
+      width: width,
       child: Card(
-        elevation: 0,
+        elevation: elevation,
         shape: RoundedRectangleBorder(
           side: BorderSide(
             color: selected ?? false
@@ -84,7 +72,7 @@ class SCCard extends StatelessWidget {
                 : _theme.primaryColor,
           ),
         ),
-        color: color ?? Colors.white,
+        color: color ,
         child: child ?? Image.asset('/default-avatar'),
       ),
     );
