@@ -3,7 +3,7 @@ import 'package:soccer_club_app/widgets/text.dart';
 
 class SCInput extends StatelessWidget {
   const SCInput({
-    super.key, // Use Key? key instead of super.key.
+    super.key, 
     this.focusNode,
     this.suffixIcon,
     this.textInputAction,
@@ -13,6 +13,7 @@ class SCInput extends StatelessWidget {
     this.controller,
     this.validator,
     this.contentPadding,
+    this.labelStyle,
   });
 
   /// Factory constructor for email input
@@ -21,12 +22,18 @@ class SCInput extends StatelessWidget {
     TextInputType keyboardType = TextInputType.emailAddress,
     String? labelText,
     TextInputAction? textInputAction,
+    String? Function(String?)? validator,
+    bool? obscureText = false,
+    TextStyle? labelStyle,
   }) {
     return SCInput(
       focusNode: focusNode,
       labelText: labelText,
       keyboardType: keyboardType,
       textInputAction: textInputAction,
+      obscureText: obscureText,
+      validator: validator,
+      labelStyle: labelStyle,
     );
   }
 
@@ -36,12 +43,18 @@ class SCInput extends StatelessWidget {
     TextInputType keyboardType = TextInputType.name,
     TextInputAction? textInputAction,
     String? labelText,
+    String? Function(String?)? validator,
+    bool? obscureText = false,
+    TextStyle? labelStyle,
   }) {
     return SCInput(
       focusNode: focusNode,
       keyboardType: keyboardType,
       labelText: labelText,
       textInputAction: textInputAction,
+      obscureText: obscureText,
+      validator: validator,
+      labelStyle: labelStyle,
     );
   }
 
@@ -51,7 +64,9 @@ class SCInput extends StatelessWidget {
     FocusNode? focusNode,
     Widget? suffixIcon,
     String? labelText,
-    bool obscureText = false, // Set default value to false.
+    TextStyle? labelStyle,
+    String? Function(String?)? validator,
+    bool obscureText = false, 
     TextInputType keyboardType = TextInputType.visiblePassword,
     EdgeInsetsGeometry? contentPadding,
   }) {
@@ -63,6 +78,8 @@ class SCInput extends StatelessWidget {
       suffixIcon: suffixIcon,
       keyboardType: keyboardType,
       contentPadding: contentPadding,
+      validator: validator,
+      labelStyle: labelStyle,
     );
   }
 
@@ -76,6 +93,7 @@ class SCInput extends StatelessWidget {
   final bool? obscureText;
   final String? Function(String?)? validator;
   final String? labelText;
+  final TextStyle? labelStyle;
   final EdgeInsetsGeometry? contentPadding;
 
   @override

@@ -33,6 +33,7 @@ class SCButton extends StatelessWidget {
       child: ElevatedButton(
         onPressed: onPressed,
         style: ButtonStyle(
+          backgroundColor: MaterialStateProperty.all(backgroundColor),
           shape: MaterialStateProperty.all<RoundedRectangleBorder>(
             RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(40),
@@ -71,7 +72,7 @@ class SCButtonIcon extends StatelessWidget {
   final double? width;
 
   final VoidCallback? onPressed;
-  final IconData? icon;
+  final Widget? icon;
   final Color? color;
   final int? borderRadius;
   final TextStyle? style;
@@ -82,7 +83,7 @@ class SCButtonIcon extends StatelessWidget {
     return SizedBox(
       width: width,
       height: height,
-      child: ElevatedButton.icon(
+      child: ElevatedButton(
         onPressed: onPressed,
         style: ButtonStyle(
           shape: MaterialStateProperty.all<RoundedRectangleBorder>(
@@ -91,11 +92,21 @@ class SCButtonIcon extends StatelessWidget {
             ),
           ),
         ),
-        icon: const Icon(Icons.email),
-        label: SCText.bodyLarge(
-          context,
-          text: text,
-          style: style,
+        // icon: Container(color: Colors.red,child: const Icon(Icons.email)),
+        child: Stack(
+            children: <Widget>[
+                Align(
+                    alignment: Alignment.centerLeft,
+                    child: icon,
+                ),
+                Align(
+                    child: SCText.bodyLarge(
+                    context,
+                    text: text,
+                    style: style,
+                  ),
+                )
+            ],
         ),
       ),
     );

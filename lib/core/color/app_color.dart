@@ -43,4 +43,6 @@ abstract class AppColor {
 
   /// TextTypography color
   static const textTypography = Color.fromRGBO(0, 0, 0, 0.50);
+
+  static const textDimGray=Color(0xFF656565);
 }

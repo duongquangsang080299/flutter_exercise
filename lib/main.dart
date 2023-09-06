@@ -5,13 +5,14 @@ import 'package:soccer_club_app/l10n/l10n.dart';
 import 'package:soccer_club_app/routes/routes.dart';
 
 void main() => runApp(
-      DevicePreview(
-        builder: (context) => const App(),
-      ),
-    );
+  DevicePreview(
+    builder: (context) => const MyApp(), // Wrap your app
+  ),
+);
 
-class App extends StatelessWidget {
-  const App({super.key});
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {

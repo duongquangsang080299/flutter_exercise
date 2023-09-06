@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 class SCIcon extends StatelessWidget {
   /// Constructor for creating an instance of SCIcon
   const SCIcon({
-    required this.iconData, super.key,
+    required this.iconData,
+    super.key,
     this.color,
     this.size,
     this.onPressed,
@@ -106,6 +107,18 @@ class SCIcon extends StatelessWidget {
       onPressed: onPressed,
     );
   }
+  factory SCIcon.back({
+    Color? color,
+    double? size,
+    VoidCallback? onPressed, 
+  }) {
+    return SCIcon(
+      iconData: Icons.arrow_back,
+      color: color,
+      size: size,
+      onPressed: onPressed,
+    );
+  }
 
   /// Factory constructor for Hidden icon
   factory SCIcon.hidden({
@@ -136,10 +149,10 @@ class SCIcon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // Wrap the Icon widget with a GestureDetector
-    return GestureDetector(
+    return IconButton(
       // Assign the onPressed callback to onTap
-      onTap: onPressed,
-      child: Icon(
+      onPressed: onPressed,
+      icon: Icon(
         iconData,
         size: size,
         color: color,

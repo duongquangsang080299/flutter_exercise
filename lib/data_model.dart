@@ -36,12 +36,5 @@ final List<OnBoardData> demoData = [
         'incididunt ut labore et dolore magna aliqua',
     subtitle: 'Welcome Back',
   ),
-  OnBoardData(
-    image: 'assets/images/clogo.png',
-    title: 'Good Afternoon',
-    description: 'Lorem ipsum dolor sit amet, consectetur '
-        'adipiscing elit, sed do eiusmod tempor '
-        'incididunt ut labore et dolore magna aliqua',
-    subtitle: 'Welcome Back',
-  ),
+  
 ];

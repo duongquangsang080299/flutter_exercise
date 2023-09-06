@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:soccer_club_app/core/color/app_color.dart';
 import 'package:soccer_club_app/core/typography/app_fontweight.dart';
 import 'package:soccer_club_app/widgets/button.dart';
+import 'package:soccer_club_app/widgets/icon.dart';
 import 'package:soccer_club_app/widgets/text.dart';
 
 class WelcomeScreen extends StatelessWidget {
@@ -13,21 +14,24 @@ class WelcomeScreen extends StatelessWidget {
     return Scaffold(
       body: Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            // Logo Image
-            SizedBox(
+            const SizedBox(
+              height: 115,
+            ),
+            Image.asset(
+              'assets/images/clogo.png',
               width: 228,
               height: 212,
-              child: Image.asset('assets/images/clogo.png'),
             ),
 
-            const SizedBox(height: 20),
+            const SizedBox(height: 71),
 
             // Large Text
             SCText.displayLarge(
               context,
-              style: Theme.of(context).textTheme.displayLarge,
+              style: Theme.of(context).textTheme.displayLarge?.copyWith(
+                  color: AppColor.textPrimary,
+                  fontWeight: AppFontWeight.semiBold,),
               textAlign: TextAlign.center,
               text: 'Welcome to \n Victory Greens App',
             ),
@@ -40,32 +44,30 @@ class WelcomeScreen extends StatelessWidget {
                   onPressed: () {
                     GoRouter.of(context).go('/signIn');
                   },
-                text: 'Login with email',
+                  text: 'Login with email',
+                  icon: SCIcon.email(color:AppColor.backgroundColor),
                   style: Theme.of(context).textTheme.displayMedium?.copyWith(
-                        color: AppColor.whiteSmokeColor,
+                        color: AppColor.backgroundColor,
                         fontWeight: AppFontWeight.semiBold,
                       ),
-                  
                   width: 318,
                   height: 60,
-                 
                 ),
-                const SizedBox(height: 30), // Add spacing between buttons
+                const SizedBox(height: 30), 
 
-                // ElevatedButton (Sign Up)
+                //Button Create Account
                 SCButton(
                   onPressed: () {
                     GoRouter.of(context).go('/signUp');
                   },
-                  text: 'CREATE AN ACCOUNT',
+                  text: 'Create An Account',
                   style: Theme.of(context).textTheme.displayMedium?.copyWith(
-                        color: AppColor.whiteSmokeColor,
+                        color: AppColor.backgroundColor,
                         fontWeight: AppFontWeight.semiBold,
                       ),
-                  
                   width: 319,
                   height: 60,
-                 
+                  backgroundColor: AppColor.jetBlackColor,
                 ),
               ],
             ),
