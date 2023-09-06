@@ -5,6 +5,7 @@ import 'package:soccer_club_app/core/typography/app_fontweight.dart';
 import 'package:soccer_club_app/data_model.dart';
 import 'package:soccer_club_app/widgets/button.dart';
 import 'package:soccer_club_app/widgets/dots_indicator.dart';
+import 'package:soccer_club_app/widgets/text.dart';
 
 class OnBoarding extends StatefulWidget {
   const OnBoarding({super.key});
@@ -27,82 +28,91 @@ class _OnBoardingState extends State<OnBoarding> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Column(
-          children: [
-            Flexible(
-              child: PageView.builder(
-                itemCount: demoData.length,
-                controller: _pageController,
-                onPageChanged: (index) {
-                  setState(() {
-                    _pageIndex = index;
-                  });
-                },
-                itemBuilder: (context, index) => OnBoardingContent(
-                  image: demoData[index].image,
-                  title: demoData[index].title,
-                  description: demoData[index].description,
-                  subtitle: demoData[index].subtitle,
-                ),
-              ),
-            ),
-            Container(
-              color: Colors.amber,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: List.generate(
-                  demoData.length,
-                  (index) => Padding(
-                    padding: const EdgeInsets.all(8),
-                    child: SCDotsIndicator(
-                      isActive: index == _pageIndex,
-                    ),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          child: Column(
+            children: [
+              Expanded(
+                flex: 3,
+                child: PageView.builder(
+                  itemCount: demoData.length,
+                  controller: _pageController,
+                  onPageChanged: (index) {
+                    setState(() {
+                      _pageIndex = index;
+                    });
+                  },
+                  itemBuilder: (context, index) => OnBoardingContent(
+                    image: demoData[index].image,
+                    title: demoData[index].title,
+                    description: demoData[index].description,
+                    subtitle: demoData[index].subtitle,
                   ),
                 ),
               ),
-            ),
-            const SizedBox(height: 10),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                SCOutlineButton(
-                  onPressed: () {
-                    _pageController.nextPage(
-                      duration: const Duration(milliseconds: 300),
-                      curve: Curves.ease,
-                    );
-                  },
-                  text: 'SKIP',
-                  style: Theme.of(context).textTheme.displayMedium?.copyWith(
-                        color: AppColor.jetBlackColor,
-                        fontWeight: AppFontWeight.semiBold,
+              Expanded(
+                child: Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: List.generate(
+                        demoData.length,
+                        (index) => Padding(
+                          padding: const EdgeInsets.all(8),
+                          child: SCDotsIndicator(
+                            isActive: index == _pageIndex,
+                          ),
+                        ),
                       ),
-                  width: 154,
-                  height: 60,
+                    ),
+                    const SizedBox(height: 40),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        SCOutlineButton(
+                          onPressed: () {
+                            GoRouter.of(context).go('/welcomeScreen');
+                          },
+                          text: 'SKIP',
+                          style: Theme.of(context)
+                              .textTheme
+                              .displayMedium
+                              ?.copyWith(
+                                color: AppColor.jetBlackColor,
+                                fontWeight: AppFontWeight.semiBold,
+                              ),
+                          width: 164,
+                          height: 60,
+                        ),
+                        const SizedBox(width: 20),
+                        SCButton(
+                          onPressed: () {
+                            GoRouter.of(context).go('/welcomeScreen');
+                          },
+                          text: 'CAMPAIGNS',
+                          style: Theme.of(context)
+                              .textTheme
+                              .displayMedium
+                              ?.copyWith(
+                                color: AppColor.backgroundColor,
+                                fontWeight: AppFontWeight.semiBold,
+                              ),
+                          backgroundColor: AppColor.primaryColor,
+                          width: 164,
+                          height: 60,
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
-                const SizedBox(width: 20),
-                SCButton(
-                  onPressed: () {
-                    GoRouter.of(context).go('/welcomeScreen');
-                  },
-                  text: 'CAMPAIGNS',
-                  style: Theme.of(context).textTheme.displayMedium?.copyWith(
-                        color: AppColor.whiteSmokeColor,
-                        fontWeight: AppFontWeight.semiBold,
-                      ),
-                  backgroundColor: AppColor.primaryColor,
-                  width: 154,
-                  height: 60,
-                ),
-              ],
-            ),
-          ],
+              ),
+            ],
+          ),
         ),
       ),
     );
   }
 }
-
 
 class OnBoardingContent extends StatelessWidget {
   const OnBoardingContent({
@@ -120,33 +130,37 @@ class OnBoardingContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        SizedBox(
-          width: 243,
-          height: 309,
-          child: Image.asset(image),
-        ),
-        const SizedBox(height: 20),
-        Text(
-          title,
-          style: Theme.of(context).textTheme.displayLarge,
-        ),
-        const SizedBox(height: 10),
-        Text(
-          subtitle,
-          style: Theme.of(context).textTheme.displayMedium?.copyWith(
-                color: AppColor.jetBlackColor,
+        const SizedBox(height: 90),
+        Image.asset(image, width: 243, height: 309),
+        const SizedBox(height: 60),
+        SCText.displayLarge(
+          context,
+          style: Theme.of(context).textTheme.displayLarge?.copyWith(
+                color: AppColor.textPrimary,
                 fontWeight: AppFontWeight.semiBold,
               ),
+          text: title,
+        ),
+        const SizedBox(height: 10),
+        SCText.bodyMedium(
+          context,
+          style: Theme.of(context).textTheme.displayMedium?.copyWith(
+                color: AppColor.textSecondary,
+                fontWeight: AppFontWeight.medium,
+              ),
+          text: subtitle,
         ),
         const SizedBox(height: 20),
-        Text(
-          description,
-          style: Theme.of(context).textTheme.bodyLarge,
+        SCText.bodySmall(
+          context,
+          style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                color: AppColor.textPrimary,
+                fontWeight: AppFontWeight.regular,
+              ),
           textAlign: TextAlign.center,
+          text: description,
         ),
-        
       ],
     );
   }
