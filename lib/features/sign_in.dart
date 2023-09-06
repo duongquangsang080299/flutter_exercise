@@ -59,7 +59,7 @@ class _SignInState extends State<SignIn> {
                 SCInput.password(
                   labelText: 'Password',
                   suffixIcon: IconButton(
-                    icon: const Icon(Icons.visibility_off),
+                    icon: const Icon(Icons.visibility),
                     onPressed: () {
                       setState(() {
                         showPassword = !(showPassword ?? false);

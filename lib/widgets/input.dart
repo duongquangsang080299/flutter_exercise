@@ -20,13 +20,16 @@ class SCInput extends StatelessWidget {
     FocusNode? focusNode,
     TextInputType? keyboardType,
     String? labelText,
+    String? Function(String?)? validator,
     TextInputAction? textInputAction,
+   
   }) {
     return SCInput(
       focusNode: focusNode,
       labelText: labelText,
       keyboardType: keyboardType,
       textInputAction: textInputAction,
+      validator: validator,
     );
   }
 
@@ -35,12 +38,14 @@ class SCInput extends StatelessWidget {
     FocusNode? focusNode,
     TextInputType? keyboardType,
     TextInputAction? textInputAction,
+    String? Function(String?)? validator,
     String? labelText,
   }) {
     return SCInput(
       focusNode: focusNode,
       keyboardType: keyboardType,
       labelText: labelText,
+      validator: validator,
       textInputAction: textInputAction,
     );
   }
@@ -51,6 +56,7 @@ class SCInput extends StatelessWidget {
     FocusNode? focusNode,
     Widget? suffixIcon,
     String? labelText,
+    String? Function(String?)? validator,
     bool obscureText = false, // Set default value to false.
     TextInputType? keyboardType,
     EdgeInsetsGeometry? contentPadding,
@@ -60,6 +66,7 @@ class SCInput extends StatelessWidget {
       focusNode: focusNode,
       labelText: labelText,
       obscureText: obscureText,
+      validator: validator,
       suffixIcon: suffixIcon,
       keyboardType: keyboardType,
       contentPadding: contentPadding,
@@ -95,6 +102,7 @@ class SCInput extends StatelessWidget {
                   vertical: 15,
                   horizontal: 15,
                 ),
+                
           ),
           keyboardType: keyboardType,
           textInputAction: textInputAction,

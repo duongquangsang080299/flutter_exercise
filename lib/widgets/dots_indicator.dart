@@ -1,31 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:soccer_club_app/core/color/app_color.dart';
 
 class SCDotsIndicator extends StatelessWidget {
   const SCDotsIndicator({
-    required this.itemCount, // Total number of items
-    required this.currentIndex, // Index of the currently active item
-    super.key, // Key to identify the widget (optional)
+    this.isActive = false,
+    super.key, 
   });
 
-  final int itemCount; // Total number of items
-  final int currentIndex; // Index of the currently active item
+  final bool isActive;
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: List.generate(itemCount, (index) {
-        final isActive = index == currentIndex; // Check if this dot is active
-        return Container(
-          width: 10,
-          height: 10,
-          margin: const EdgeInsets.symmetric(horizontal: 5),
-          decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            color: isActive ? Colors.blue : Colors.grey, // Active dot color is blue, inactive is grey
-          ),
-        );
-      }),
+    return AnimatedContainer(
+      width: 23,
+      height: 10,
+      decoration: BoxDecoration(
+        shape: BoxShape.circle,
+        color: isActive ? AppColor.primaryColor : Colors.grey, 
+      ), duration:const Duration(microseconds: 500),
     );
   }
 }

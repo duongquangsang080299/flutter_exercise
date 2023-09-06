@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:soccer_club_app/core/color/app_color.dart';
+import 'package:soccer_club_app/core/typography/app_fontweight.dart';
 import 'package:soccer_club_app/widgets/button.dart';
+import 'package:soccer_club_app/widgets/text.dart';
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({super.key});
@@ -23,37 +25,48 @@ class WelcomeScreen extends StatelessWidget {
             const SizedBox(height: 20),
 
             // Large Text
-            Text(
-              'Welcome to \n Victory Greens App',
+            SCText.displayLarge(
+              context,
               style: Theme.of(context).textTheme.displayLarge,
               textAlign: TextAlign.center,
+              text: 'Welcome to \n Victory Greens App',
             ),
 
-            const SizedBox(height: 30),
+            const SizedBox(height: 50),
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 SCButtonIcon(
-                  onPressed: () {GoRouter.of(context).go('/signIn');},
-                  text: 'Login with email',
-                  // textColor: Colors.white, // Set text color
-                  // fontWeight: FontWeight.w600, // Set font weight
+                  onPressed: () {
+                    GoRouter.of(context).go('/signIn');
+                  },
+                text: 'Login with email',
+                  style: Theme.of(context).textTheme.displayMedium?.copyWith(
+                        color: AppColor.whiteSmokeColor,
+                        fontWeight: AppFontWeight.semiBold,
+                      ),
+                  
+                  width: 318,
+                  height: 60,
+                 
                 ),
                 const SizedBox(height: 30), // Add spacing between buttons
 
                 // ElevatedButton (Sign Up)
-                 SCButton(
+                SCButton(
                   onPressed: () {
                     GoRouter.of(context).go('/signUp');
                   },
-                  text: 'Create Account',
-                  backgroundColor: AppColor.primaryColor,
-                  width: 154,
+                  text: 'CREATE AN ACCOUNT',
+                  style: Theme.of(context).textTheme.displayMedium?.copyWith(
+                        color: AppColor.whiteSmokeColor,
+                        fontWeight: AppFontWeight.semiBold,
+                      ),
+                  
+                  width: 319,
                   height: 60,
-                  borderRadius: 20,
-                  // You can add more properties as needed
+                 
                 ),
-                
               ],
             ),
           ],

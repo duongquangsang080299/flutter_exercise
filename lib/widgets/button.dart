@@ -6,22 +6,15 @@ import 'package:soccer_club_app/widgets/text.dart';
 /// Define SCButton widget with text
 class SCButton extends StatelessWidget {
   const SCButton({
-    // Text displayed on the button
     required this.text,
-    // Callback function when the button is pressed
     this.onPressed,
-    // Text color of the button
     this.textColor,
-    // Optional key to uniquely identify the widget
     super.key,
-    // Optional width of the button
     this.width,
-    // Border color of the button (default is transparent)
-    
-    // Background color of the button (default is blue)
     this.backgroundColor,
     this.height,
-    this.borderRadius, this.style,
+    this.borderRadius,
+    this.style,
   });
   final String text;
   final Color? textColor;
@@ -39,7 +32,7 @@ class SCButton extends StatelessWidget {
       height: height,
       child: ElevatedButton(
         onPressed: onPressed,
-         style: ButtonStyle(
+        style: ButtonStyle(
           shape: MaterialStateProperty.all<RoundedRectangleBorder>(
             RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(40),
@@ -56,14 +49,11 @@ class SCButton extends StatelessWidget {
   }
 }
 
-
 /// Define SCButtonIcon widget with icon and text
 class SCButtonIcon extends StatelessWidget {
   const SCButtonIcon({
     // Text displayed on the button
     required this.text,
-    // Background color of the button (default is blue)
-    this.backgroundColor = Colors.blue,
     // Callback function when the button is pressed
     this.onPressed,
     // Optional key to uniquely identify the widget
@@ -74,27 +64,38 @@ class SCButtonIcon extends StatelessWidget {
     this.width,
     this.color,
     this.borderRadius,
+    this.style,
+    this.height,
   });
   final String text;
   final double? width;
-  final Color backgroundColor;
+
   final VoidCallback? onPressed;
   final IconData? icon;
   final Color? color;
   final int? borderRadius;
-  
+  final TextStyle? style;
+  final double? height;
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       width: width,
+      height: height,
       child: ElevatedButton.icon(
         onPressed: onPressed,
-        style: Theme.of(context).elevatedButtonTheme.style,
+        style: ButtonStyle(
+          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+            RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(40),
+            ),
+          ),
+        ),
         icon: const Icon(Icons.email),
         label: SCText.bodyLarge(
           context,
           text: text,
+          style: style,
         ),
       ),
     );
