@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:soccer_club_app/core/color/app_color.dart';
-import 'package:soccer_club_app/core/theme/app_theme.dart';
 import 'package:soccer_club_app/core/typography/app_fontweight.dart';
+import 'package:soccer_club_app/data_model.dart';
 import 'package:soccer_club_app/widgets/button.dart';
-///
+import 'package:soccer_club_app/widgets/dots_indicator.dart';
+
 class OnBoarding extends StatefulWidget {
   const OnBoarding({super.key});
 
@@ -14,7 +15,7 @@ class OnBoarding extends StatefulWidget {
 
 class _OnBoardingState extends State<OnBoarding> {
   final PageController _pageController = PageController();
-  int _currentPageIndex = 0;
+  int _pageIndex = 0;
 
   @override
   void dispose() {
@@ -28,13 +29,13 @@ class _OnBoardingState extends State<OnBoarding> {
       body: SafeArea(
         child: Column(
           children: [
-            Expanded(
+            Flexible(
               child: PageView.builder(
                 itemCount: demoData.length,
                 controller: _pageController,
                 onPageChanged: (index) {
                   setState(() {
-                    _currentPageIndex = index;
+                    _pageIndex = index;
                   });
                 },
                 itemBuilder: (context, index) => OnBoardingContent(
@@ -45,29 +46,31 @@ class _OnBoardingState extends State<OnBoarding> {
                 ),
               ),
             ),
-             Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: List.generate(
-                demoData.length,
-                (index) => Container(
-                  width: 10,
-                  height: 10,
-                  margin: const EdgeInsets.symmetric(horizontal: 5),
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: index == _currentPageIndex
-                        ? AppColor.primaryColor
-                        : Colors.grey,
+            Container(
+              color: Colors.amber,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: List.generate(
+                  demoData.length,
+                  (index) => Padding(
+                    padding: const EdgeInsets.all(8),
+                    child: SCDotsIndicator(
+                      isActive: index == _pageIndex,
+                    ),
                   ),
                 ),
               ),
             ),
+            const SizedBox(height: 10),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 SCOutlineButton(
                   onPressed: () {
-                    // Handle SKIP button click
+                    _pageController.nextPage(
+                      duration: const Duration(milliseconds: 300),
+                      curve: Curves.ease,
+                    );
                   },
                   text: 'SKIP',
                   style: Theme.of(context).textTheme.displayMedium?.copyWith(
@@ -76,7 +79,6 @@ class _OnBoardingState extends State<OnBoarding> {
                       ),
                   width: 154,
                   height: 60,
-                  borderRadius: 30,
                 ),
                 const SizedBox(width: 20),
                 SCButton(
@@ -91,7 +93,6 @@ class _OnBoardingState extends State<OnBoarding> {
                   backgroundColor: AppColor.primaryColor,
                   width: 154,
                   height: 60,
-                  borderRadius: 20,
                 ),
               ],
             ),
@@ -102,57 +103,8 @@ class _OnBoardingState extends State<OnBoarding> {
   }
 }
 
-class OnBoardData {
-  OnBoardData({
-    required this.image,
-    required this.title,
-    required this.subtitle,
-    required this.description,
-  });
-  final String image;
-  final String title;
-  final String subtitle;
-  final String description;
-}
-
-final List<OnBoardData> demoData = [
-  OnBoardData(
-    image: 'assets/images/clogo.png',
-    title: 'Good Afternoon',
-    description: 'Lorem ipsum dolor sit amet, consectetur '
-        'adipiscing elit, sed do eiusmod tempor '
-        'incididunt ut labore et dolore magna aliqua',
-    subtitle: 'Welcome Back',
-  ),
-  OnBoardData(
-    image: 'assets/images/clogo.png',
-    title: 'Good Afternoon',
-    description: 'Lorem ipsum dolor sit amet, consectetur '
-        'adipiscing elit, sed do eiusmod tempor '
-        'incididunt ut labore et dolore magna aliqua',
-    subtitle: 'Welcome Back',
-  ),
-  OnBoardData(
-    image: 'assets/images/clogo.png',
-    title: 'Good Afternoon',
-    description: 'Lorem ipsum dolor sit amet, consectetur '
-        'adipiscing elit, sed do eiusmod tempor '
-        'incididunt ut labore et dolore magna aliqua',
-    subtitle: 'Welcome Back',
-  ),
-  OnBoardData(
-    image: 'assets/images/clogo.png',
-    title: 'Good Afternoon',
-    description: 'Lorem ipsum dolor sit amet, consectetur '
-        'adipiscing elit, sed do eiusmod tempor '
-        'incididunt ut labore et dolore magna aliqua',
-    subtitle: 'Welcome Back',
-  ),
-];
-
 
 class OnBoardingContent extends StatelessWidget {
-
   const OnBoardingContent({
     required this.image,
     required this.title,
@@ -165,7 +117,6 @@ class OnBoardingContent extends StatelessWidget {
   final String title;
   final String description;
   final String subtitle;
-
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -195,7 +146,7 @@ class OnBoardingContent extends StatelessWidget {
           style: Theme.of(context).textTheme.bodyLarge,
           textAlign: TextAlign.center,
         ),
-        const SizedBox(height: 30),
+        
       ],
     );
   }
