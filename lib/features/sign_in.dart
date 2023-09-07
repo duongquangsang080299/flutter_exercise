@@ -35,18 +35,18 @@ class _SignInState extends State<SignIn> {
               SizedBox(height: context.getVerticalSize(87)),
               // Display Large Text
               SCText.displayLarge(
-                text: AppLocalizations.of(context).textSignIn,
+                text: context.l10n.textSignIn,
                 context,
                 style: context.textTheme.displayLarge,
               ),
 
               SizedBox(height: context.getVerticalSize(34)),
 
-              // Display Small Text
+              // Title Text
               SCText.displaySmall(
                 context,
                 style: context.textTheme.displaySmall,
-                text: AppLocalizations.of(context).textDescription,
+                text:context.l10n.textDescription,
               ),
 
               const SizedBox(height: 20),
@@ -55,7 +55,7 @@ class _SignInState extends State<SignIn> {
               Column(
                 children: [
                   SCInput.username(
-                    labelText: AppLocalizations.of(context).textUsername,
+                    labelText:context.l10n.textUsername,
                     labelStyle:
                         const TextStyle(color: AppColor.whiteSmokeColor),
                     validator: (value) => value?.isValidUserName(),
@@ -65,7 +65,7 @@ class _SignInState extends State<SignIn> {
 
                   // Password Text Form Field
                   SCInput.password(
-                    labelText: AppLocalizations.of(context).textPassword,
+                    labelText:context.l10n.textPassword,
                     validator: (input) => input?.isValidPassword(),
                     suffixIcon: IconButton(
                       icon: const Icon(Icons.visibility),
@@ -92,7 +92,7 @@ class _SignInState extends State<SignIn> {
                   }
                   GoRouter.of(context).go('/playerPage');
                 },
-                text: AppLocalizations.of(context).loginButton,
+                text:context.l10n.loginButton,
                 style: context.textTheme.displayMedium?.copyWith(
                   fontWeight: AppFontWeight.semiBold,
                 ),
@@ -109,14 +109,14 @@ class _SignInState extends State<SignIn> {
                 TextSpan(
                   children: [
                     TextSpan(
-                      text: AppLocalizations.of(context).textForgotPassword,
+                      text:context.l10n.textForgotPassword,
                       style: context.textTheme.titleSmall?.copyWith(
                         fontWeight: AppFontWeight.medium,
                         color: AppColor.textDimGray,
                       ),
                     ),
                     TextSpan(
-                      text: AppLocalizations.of(context).textReset,
+                      text:context.l10n.textReset,
                       style: context.textTheme.titleSmall?.copyWith(
                         fontWeight: AppFontWeight.medium,
                         color: AppColor.primaryColor,
