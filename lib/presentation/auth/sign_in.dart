@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:soccer_club_app/core/color/app_color.dart';
+import 'package:soccer_club_app/core/extention.dart';
 import 'package:soccer_club_app/core/typography/app_fontweight.dart';
-import 'package:soccer_club_app/util.dart';
+import 'package:soccer_club_app/l10n/l10n.dart';
+import 'package:soccer_club_app/utils/size_utils.dart';
+import 'package:soccer_club_app/utils/validator_util.dart';
 import 'package:soccer_club_app/widgets/button.dart';
 import 'package:soccer_club_app/widgets/input.dart';
 import 'package:soccer_club_app/widgets/text.dart';
@@ -23,30 +27,26 @@ class _SignInState extends State<SignIn> {
       body: Form(
         key: _formKey,
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 28),
+          padding:
+              EdgeInsets.symmetric(horizontal: context.getHorizontalSize(10)),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const SizedBox(height: 130),
+              SizedBox(height: context.getVerticalSize(87)),
               // Display Large Text
               SCText.displayLarge(
+                text: AppLocalizations.of(context).textSignIn,
                 context,
-                text: 'Sign In',
-                style: Theme.of(context).textTheme.displayLarge?.copyWith(
-                    color: AppColor.primaryColor,
-                    fontWeight: AppFontWeight.semiBold),
+                style: context.textTheme.displayLarge,
               ),
 
-              const SizedBox(height: 30),
+              SizedBox(height: context.getVerticalSize(34)),
 
               // Title Text
-              SCText.bodySmall(
+              SCText.displaySmall(
                 context,
-                style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                    color: AppColor.textPrimary,
-                    fontWeight: AppFontWeight.regular),
-                text: 'Amet minim mollit non deserunt ullamcoei italiqua dolor'
-                    ' do amet sintelit officia.',
+                style: context.textTheme.displaySmall,
+                text: AppLocalizations.of(context).textDescription,
               ),
 
               const SizedBox(height: 20),
@@ -55,7 +55,7 @@ class _SignInState extends State<SignIn> {
               Column(
                 children: [
                   SCInput.username(
-                    labelText: 'Username',
+                    labelText: AppLocalizations.of(context).textUsername,
                     labelStyle:
                         const TextStyle(color: AppColor.whiteSmokeColor),
                     validator: (value) => value?.isValidUserName(),
@@ -65,7 +65,7 @@ class _SignInState extends State<SignIn> {
 
                   // Password Text Form Field
                   SCInput.password(
-                    labelText: 'Password',
+                    labelText: AppLocalizations.of(context).textPassword,
                     validator: (input) => input?.isValidPassword(),
                     suffixIcon: IconButton(
                       icon: const Icon(Icons.visibility),
@@ -79,7 +79,7 @@ class _SignInState extends State<SignIn> {
                   ),
                 ],
               ),
-              const SizedBox(height: 30),
+              SizedBox(height: context.getVerticalSize(30)),
 
               // Sign-In Button
               SCButton(
@@ -90,15 +90,15 @@ class _SignInState extends State<SignIn> {
                   } else {
                     debugPrint('Form is invalid');
                   }
+                  GoRouter.of(context).go('/playerPage');
                 },
-                text: 'LOGIN',
-                style: Theme.of(context).textTheme.displayMedium?.copyWith(
-                      color: AppColor.backgroundColor,
-                      fontWeight: AppFontWeight.semiBold,
-                    ),
+                text: AppLocalizations.of(context).loginButton,
+                style: context.textTheme.displayMedium?.copyWith(
+                  fontWeight: AppFontWeight.semiBold,
+                ),
                 backgroundColor: AppColor.primaryColor,
-                width: 318,
-                height: 60,
+                width: context.getHorizontalSize(318),
+                height: context.getVerticalSize(60),
                 borderRadius: 30,
               ),
 
@@ -109,18 +109,18 @@ class _SignInState extends State<SignIn> {
                 TextSpan(
                   children: [
                     TextSpan(
-                      text: 'Forgot password?   ',
-                      style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                            fontWeight: AppFontWeight.medium,
-                            color: AppColor.textDimGray,
-                          ),
+                      text: AppLocalizations.of(context).textForgotPassword,
+                      style: context.textTheme.titleSmall?.copyWith(
+                        fontWeight: AppFontWeight.medium,
+                        color: AppColor.textDimGray,
+                      ),
                     ),
                     TextSpan(
-                      text: 'Reset here ',
-                      style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                            fontWeight: AppFontWeight.medium,
-                            color: AppColor.primaryColor,
-                          ),
+                      text: AppLocalizations.of(context).textReset,
+                      style: context.textTheme.titleSmall?.copyWith(
+                        fontWeight: AppFontWeight.medium,
+                        color: AppColor.primaryColor,
+                      ),
                     ),
                   ],
                 ),

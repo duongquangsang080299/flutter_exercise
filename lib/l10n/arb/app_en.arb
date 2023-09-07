@@ -1,7 +1,28 @@
 {
     "@@locale": "en",
-    "counterAppBarTitle": "Counter",
-    "@counterAppBarTitle": {
-        "description": "Text shown in the AppBar of the Counter Page"
-    }
+    "buttonSignUp": "SIGN UP",
+    "loginButton": "LOGIN",
+    "loginWithEmailButton": "Login with email",
+    "skip": "SKIP",
+    "campaigns": "CAMPAIGNS",
+    "confirm": "CONFIRM",
+    "createAccountButton": "Create an account ",
+    "textGoodAfternoon": "Good Afternoon",
+    "textWelcomeBack": "Welcome Back",
+    "descriptionOnboarding": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
+    "textWelcomeScreen": "Welcome to Victory Greens App",
+    "textSignIn": "Sign In",
+    "textDescription": "Amet minim mollit non deserunt ullamcoe sitaliqua dolor do amet sintelit officia.",
+    "textUsername": "Username",
+    "textPassword": "Password",
+    "textEmail": "Email",
+    "textForgotPassword": "Forgot password?   ",
+    "textReset": "Reset here ",
+    "textCreateAccount": "Create an account",
+    "textSignUp": "By tapping “Sign Up” you accept our terms and condition",
+    "textPlayer": "Who is your favourite Victory players?",
+    "textSwipeToSelect": "Swipe To Select",
+    "textTitleAppBar": "Good Morning",
+    "textSubtitleAppBar": "Adrian",
+    "textNetxMatch": "Next Match"
 }

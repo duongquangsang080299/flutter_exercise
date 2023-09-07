@@ -23,6 +23,7 @@ class MyApp extends StatelessWidget {
       locale: DevicePreview.locale(context),
       builder: DevicePreview.appBuilder,
       localizationsDelegates: AppLocalizations.localizationsDelegates,
+       
       supportedLocales: const [
         Locale('en'), // English
         Locale('es'),

@@ -30,7 +30,7 @@ class WelcomeScreen extends StatelessWidget {
             SCText.displayLarge(
               context,
               style: Theme.of(context).textTheme.displayLarge?.copyWith(
-                  color: AppColor.textPrimary,
+                  color: AppColor.tertiary,
                   fontWeight: AppFontWeight.semiBold,),
               textAlign: TextAlign.center,
               text: 'Welcome to \n Victory Greens App',
@@ -45,9 +45,9 @@ class WelcomeScreen extends StatelessWidget {
                     GoRouter.of(context).go('/signIn');
                   },
                   text: 'Login with email',
-                  icon: SCIcon.email(color:AppColor.backgroundColor),
+                  icon: SCIcon.email(color:AppColor.secondaryColor),
                   style: Theme.of(context).textTheme.displayMedium?.copyWith(
-                        color: AppColor.backgroundColor,
+                        color: AppColor.secondaryColor,
                         fontWeight: AppFontWeight.semiBold,
                       ),
                   width: 318,
@@ -62,7 +62,7 @@ class WelcomeScreen extends StatelessWidget {
                   },
                   text: 'Create An Account',
                   style: Theme.of(context).textTheme.displayMedium?.copyWith(
-                        color: AppColor.backgroundColor,
+                        color: AppColor.secondaryColor,
                         fontWeight: AppFontWeight.semiBold,
                       ),
                   width: 319,

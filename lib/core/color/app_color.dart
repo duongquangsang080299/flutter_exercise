@@ -6,7 +6,10 @@ abstract class AppColor {
   static const primaryColor = Color(0xFF04764E);
 
   /// Background color for app
-  static const backgroundColor = Colors.white;
+  static const secondaryColor = Colors.white;
+
+   /// Primary tertiary color
+  static const tertiary = Colors.black;
 
   /// Surface color
   static const surfaceColor = Color(0xFFF7F7F7);
@@ -14,8 +17,7 @@ abstract class AppColor {
   /// Error color for indicating errors
   static const errorColor = Colors.red;
 
-  /// Primary text color
-  static const textPrimary = Colors.black;
+ 
 
   /// Secondary text color
   static const textSecondary = Color(0xFF595959);

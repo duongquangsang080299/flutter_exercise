@@ -100,7 +100,7 @@ class SCButtonIcon extends StatelessWidget {
                     child: icon,
                 ),
                 Align(
-                    child: SCText.bodyLarge(
+                    child: SCText.displaySmall(
                     context,
                     text: text,
                     style: style,

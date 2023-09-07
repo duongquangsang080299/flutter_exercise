@@ -40,7 +40,7 @@ class SCText extends StatelessWidget {
   }
 
   /// Factory constructor to create Body Large .
-  factory SCText.bodyLarge(
+  factory SCText.displaySmall(
     BuildContext context, {
     required String text,
     TextStyle? style,

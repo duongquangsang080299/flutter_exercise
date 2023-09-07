@@ -15,7 +15,7 @@ class AppTheme {
         ),
       ),
       primaryColor: AppColor.primaryColor,
-      scaffoldBackgroundColor: AppColor.backgroundColor,
+      scaffoldBackgroundColor: AppColor.secondaryColor,
       colorScheme: _colorScheme,
       buttonTheme: _buttonTheme,
       cardTheme: const CardTheme(
@@ -80,7 +80,7 @@ class AppTheme {
   static final TextTheme _textTheme = TextTheme(
     displayLarge: AppTextStyles.titleLarge,
     displayMedium: AppTextStyles.titleMedium,
-    bodyLarge: AppTextStyles.extralBold,
+    displaySmall: AppTextStyles.titleSmall,
     bodyMedium: AppTextStyles.bodyBold,
     titleMedium: AppTextStyles.subtitle,
     bodySmall: AppTextStyles.caption,
@@ -94,7 +94,7 @@ class AppDarkTheme extends AppTheme {
   ColorScheme get _colorScheme {
     return const ColorScheme.dark().copyWith(
       primary: AppColor.primaryColor,
-      background: AppColor.backgroundColor,
+      background: AppColor.secondaryColor,
     );
   }
 }

@@ -103,7 +103,7 @@ class SCInput extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         if (labelText?.isNotEmpty ?? false) ...[
-          SCText.bodyLarge(context, text: labelText ?? ''),
+          SCText.displaySmall(context, text: labelText ?? ''),
           const SizedBox(height: 10),
         ],
         TextFormField(

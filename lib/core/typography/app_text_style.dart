@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:soccer_club_app/core/color/app_color.dart';
 import 'package:soccer_club_app/core/typography/app_fontweight.dart';
+import 'package:soccer_club_app/utils/size_utils.dart';
 
 class AppTextStyles {
   /// Base text style generator function with common properties
@@ -21,39 +22,41 @@ class AppTextStyles {
   /// Text style for large titles
   static TextStyle titleLarge = _baseTextStyle(
     fontFamily: 'Poppins',
-    fontSize: 24,
+    fontSize: getFontSize(24),
     fontWeight: AppFontWeight.semiBold,
-    color: AppColor.textPrimary,
+    color: AppColor.primaryColor,
   );
 
   /// Text style for medium titles
   static TextStyle titleMedium = _baseTextStyle(
     fontFamily: 'Poppins',
-    fontSize: 16,
+    fontSize:  getFontSize(16),
     fontWeight: AppFontWeight.medium,
-    color: AppColor.whiteSmokeColor,
+    color: AppColor.secondaryColor,
+   
   );
 
   /// Text style for extra bold content
-  static TextStyle extralBold = _baseTextStyle(
+  static TextStyle titleSmall = _baseTextStyle(
     fontFamily: 'Poppins',
-    fontSize: 14,
+    fontSize:  getFontSize(14),
     fontWeight: AppFontWeight.regular,
-    color: AppColor.textPrimary,
+    color: AppColor.tertiary,
+    
   );
 
   /// Text style for bold content
   static TextStyle bodyBold = _baseTextStyle(
     fontFamily: 'Poppins',
-    fontSize: 18,
+    fontSize:  getFontSize(18),
     fontWeight: AppFontWeight.regular,
-    color: AppColor.textPrimary,
+    color: AppColor.tertiary,
   );
 
   /// Text style for subtitles
   static TextStyle subtitle = _baseTextStyle(
     fontFamily: 'Poppins',
-    fontSize: 11,
+    fontSize:  getFontSize(11),
     fontWeight: AppFontWeight.regular,
     color: AppColor.textSecondary,
   );
@@ -61,7 +64,7 @@ class AppTextStyles {
   /// Text style for captions
   static TextStyle caption = _baseTextStyle(
     fontFamily: 'Poppins',
-    fontSize: 10,
+    fontSize:  getFontSize(10),
     fontWeight: AppFontWeight.semiBold,
     color: AppColor.textSecondary,
   );

@@ -10,7 +10,7 @@ class SplashScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // Simulate a delay for demonstration purposes
-    Timer(const Duration(seconds: 5), () {
+    Timer(const Duration(seconds: 3), () {
       // Navigate to the next screen using GoRouter
       GoRouter.of(context).go('/onBoarding');
     });

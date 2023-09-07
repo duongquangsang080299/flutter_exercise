@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:soccer_club_app/core/color/app_color.dart';
 import 'package:soccer_club_app/core/typography/app_fontweight.dart';
-import 'package:soccer_club_app/util.dart';
+import 'package:soccer_club_app/utils/validator_util.dart';
 import 'package:soccer_club_app/widgets/button.dart';
 import 'package:soccer_club_app/widgets/icon.dart';
 import 'package:soccer_club_app/widgets/input.dart';
@@ -50,7 +50,7 @@ class _SignUpState extends State<SignUp> {
               SCText.bodySmall(
                 context,
                 style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                    color: AppColor.textPrimary,
+                    color: AppColor.tertiary,
                     fontWeight: AppFontWeight.regular),
                 text: 'Amet minim mollit non deserunt ullamcoei italiqua dolor'
                     ' do amet sintelit officia.',
@@ -108,7 +108,7 @@ class _SignUpState extends State<SignUp> {
                 },
                 text: 'SIGN UP',
                 style: Theme.of(context).textTheme.displayMedium?.copyWith(
-                      color: AppColor.backgroundColor,
+                      color: AppColor.secondaryColor,
                       fontWeight: AppFontWeight.semiBold,
                     ),
                 backgroundColor: AppColor.jetBlackColor,

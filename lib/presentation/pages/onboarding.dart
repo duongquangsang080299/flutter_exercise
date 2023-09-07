@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:soccer_club_app/core/color/app_color.dart';
 import 'package:soccer_club_app/core/typography/app_fontweight.dart';
-import 'package:soccer_club_app/data_model.dart';
+import 'package:soccer_club_app/data/models/user_model.dart';
 import 'package:soccer_club_app/widgets/button.dart';
 import 'package:soccer_club_app/widgets/dots_indicator.dart';
 import 'package:soccer_club_app/widgets/text.dart';
@@ -94,7 +94,7 @@ class _OnBoardingState extends State<OnBoarding> {
                               .textTheme
                               .displayMedium
                               ?.copyWith(
-                                color: AppColor.backgroundColor,
+                                color: AppColor.secondaryColor,
                                 fontWeight: AppFontWeight.semiBold,
                               ),
                           backgroundColor: AppColor.primaryColor,
@@ -137,7 +137,7 @@ class OnBoardingContent extends StatelessWidget {
         SCText.displayLarge(
           context,
           style: Theme.of(context).textTheme.displayLarge?.copyWith(
-                color: AppColor.textPrimary,
+                color: AppColor.tertiary,
                 fontWeight: AppFontWeight.semiBold,
               ),
           text: title,
@@ -155,7 +155,7 @@ class OnBoardingContent extends StatelessWidget {
         SCText.bodySmall(
           context,
           style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                color: AppColor.textPrimary,
+                color: AppColor.tertiary,
                 fontWeight: AppFontWeight.regular,
               ),
           textAlign: TextAlign.center,
