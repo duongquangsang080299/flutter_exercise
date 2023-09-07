@@ -20,7 +20,7 @@ final GoRouter appRouter = GoRouter(
       path: AppRoutes.onBoarding.path,
       name: AppRoutes.onBoarding.name,
       builder: (BuildContext context, GoRouterState state) =>
-          const OnBoarding(),
+          const OnBoardingPage(),
     ),
     GoRoute(
       path: AppRoutes.splashScreen.path,

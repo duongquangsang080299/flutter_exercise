@@ -1,20 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:soccer_club_app/core/color/app_color.dart';
+import 'package:soccer_club_app/core/extention.dart';
 import 'package:soccer_club_app/core/typography/app_fontweight.dart';
 import 'package:soccer_club_app/data/models/user_model.dart';
+import 'package:soccer_club_app/l10n/l10n.dart';
+import 'package:soccer_club_app/presentation/auth/onboarding_content.dart';
+import 'package:soccer_club_app/utils/size_utils.dart';
 import 'package:soccer_club_app/widgets/button.dart';
 import 'package:soccer_club_app/widgets/dots_indicator.dart';
-import 'package:soccer_club_app/widgets/text.dart';
 
-class OnBoarding extends StatefulWidget {
-  const OnBoarding({super.key});
+/// Define the OnBoardingPage widget
+class OnBoardingPage extends StatefulWidget {
+  const OnBoardingPage({super.key});
 
   @override
-  State<OnBoarding> createState() => _OnBoardingState();
+  State<OnBoardingPage> createState() => _OnBoardingPageState();
 }
 
-class _OnBoardingState extends State<OnBoarding> {
+/// Define the state for the OnBoardingPage widget
+class _OnBoardingPageState extends State<OnBoardingPage> {
   final PageController _pageController = PageController();
   int _pageIndex = 0;
 
@@ -29,7 +34,9 @@ class _OnBoardingState extends State<OnBoarding> {
     return Scaffold(
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
+          padding:
+              // Apply horizontal padding using the getHorizontalSize method
+              EdgeInsets.symmetric(horizontal: context.getHorizontalSize(20)),
           child: Column(
             children: [
               Expanded(
@@ -42,7 +49,7 @@ class _OnBoardingState extends State<OnBoarding> {
                       _pageIndex = index;
                     });
                   },
-                  itemBuilder: (context, index) => OnBoardingContent(
+                  itemBuilder: (context, index) => OnBoardingPageContent(
                     image: demoData[index].image,
                     title: demoData[index].title,
                     description: demoData[index].description,
@@ -58,48 +65,46 @@ class _OnBoardingState extends State<OnBoarding> {
                       children: List.generate(
                         demoData.length,
                         (index) => Padding(
-                          padding: const EdgeInsets.all(8),
+                          padding: EdgeInsets.all(context.getHorizontalSize(8)),
                           child: SCDotsIndicator(
                             isActive: index == _pageIndex,
                           ),
                         ),
                       ),
                     ),
-                    const SizedBox(height: 40),
+                    // Add vertical spacing using the getVerticalSize method
+                    SizedBox(height: context.getVerticalSize(40)),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         SCOutlineButton(
                           onPressed: () {
-                            GoRouter.of(context).go('/welcomeScreen');
+                            context.go('/welcomeScreen');
                           },
-                          text: 'SKIP',
-                          style: Theme.of(context)
-                              .textTheme
-                              .displayMedium
-                              ?.copyWith(
-                                color: AppColor.jetBlackColor,
-                                fontWeight: AppFontWeight.semiBold,
-                              ),
-                          width: 164,
-                          height: 60,
+                          // Localize the 'Skip' text using context.l10n
+                          text: context.l10n.skip,
+                          style: context.textTheme.displayMedium?.copyWith(
+                            color: AppColor.jetBlackColor,
+                            fontWeight: AppFontWeight.semiBold,
+                          ),
+                          // Use getHorizontalSize and getVerticalSize
+                          width: context.getHorizontalSize(164),
+                          height: context.getVerticalSize(60),
                         ),
                         const SizedBox(width: 20),
                         SCButton(
                           onPressed: () {
-                            GoRouter.of(context).go('/welcomeScreen');
+                           context.go('/welcomeScreen');
                           },
-                          text: 'CAMPAIGNS',
-                          style: Theme.of(context)
-                              .textTheme
-                              .displayMedium
-                              ?.copyWith(
-                                color: AppColor.secondaryColor,
-                                fontWeight: AppFontWeight.semiBold,
-                              ),
+                          // Localize the 'CAMPAIGNS' text using context.l10n
+                          text: context.l10n.campaigns,
+                          style: context.textTheme.displayMedium?.copyWith(
+                            color: AppColor.tertiary,
+                            fontWeight: AppFontWeight.semiBold,
+                          ),
                           backgroundColor: AppColor.primaryColor,
-                          width: 164,
-                          height: 60,
+                          width: context.getHorizontalSize(164),
+                          height: context.getVerticalSize(60),
                         ),
                       ],
                     ),
@@ -110,58 +115,6 @@ class _OnBoardingState extends State<OnBoarding> {
           ),
         ),
       ),
-    );
-  }
-}
-
-class OnBoardingContent extends StatelessWidget {
-  const OnBoardingContent({
-    required this.image,
-    required this.title,
-    required this.description,
-    required this.subtitle,
-    super.key,
-  });
-
-  final String image;
-  final String title;
-  final String description;
-  final String subtitle;
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        const SizedBox(height: 90),
-        Image.asset(image, width: 243, height: 309),
-        const SizedBox(height: 60),
-        SCText.displayLarge(
-          context,
-          style: Theme.of(context).textTheme.displayLarge?.copyWith(
-                color: AppColor.tertiary,
-                fontWeight: AppFontWeight.semiBold,
-              ),
-          text: title,
-        ),
-        const SizedBox(height: 10),
-        SCText.bodyMedium(
-          context,
-          style: Theme.of(context).textTheme.displayMedium?.copyWith(
-                color: AppColor.textSecondary,
-                fontWeight: AppFontWeight.medium,
-              ),
-          text: subtitle,
-        ),
-        const SizedBox(height: 20),
-        SCText.bodySmall(
-          context,
-          style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                color: AppColor.tertiary,
-                fontWeight: AppFontWeight.regular,
-              ),
-          textAlign: TextAlign.center,
-          text: description,
-        ),
-      ],
     );
   }
 }
