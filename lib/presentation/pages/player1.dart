@@ -64,10 +64,10 @@ class PlayerPage extends StatelessWidget {
                   color: AppColor.jetBlackColor,
                 ),
               ),
-            )
+            ),
           ],
         ),
-      )),
+      ),),
     );
   }
 }

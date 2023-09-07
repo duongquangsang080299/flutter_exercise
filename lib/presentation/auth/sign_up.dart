@@ -41,7 +41,7 @@ class _SignUpState extends State<SignUp> {
                 text: 'Create an account ',
                 style: Theme.of(context).textTheme.displayLarge?.copyWith(
                     color: AppColor.primaryColor,
-                    fontWeight: AppFontWeight.semiBold),
+                    fontWeight: AppFontWeight.semiBold,),
               ),
 
               const SizedBox(height: 30),
@@ -51,7 +51,7 @@ class _SignUpState extends State<SignUp> {
                 context,
                 style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                     color: AppColor.tertiary,
-                    fontWeight: AppFontWeight.regular),
+                    fontWeight: AppFontWeight.regular,),
                 text: 'Amet minim mollit non deserunt ullamcoei italiqua dolor'
                     ' do amet sintelit officia.',
               ),

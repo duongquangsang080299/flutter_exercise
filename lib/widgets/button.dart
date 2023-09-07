@@ -105,7 +105,7 @@ class SCButtonIcon extends StatelessWidget {
                     text: text,
                     style: style,
                   ),
-                )
+                ),
             ],
         ),
       ),

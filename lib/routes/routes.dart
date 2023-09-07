@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:soccer_club_app/presentation/pages/onboarding.dart';
-import 'package:soccer_club_app/presentation/pages/player1.dart';
 import 'package:soccer_club_app/presentation/auth/sign_in.dart';
 import 'package:soccer_club_app/presentation/auth/sign_up.dart';
+import 'package:soccer_club_app/presentation/pages/onboarding.dart';
+import 'package:soccer_club_app/presentation/pages/player1.dart';
 import 'package:soccer_club_app/presentation/pages/welcome_screen.dart';
 import 'package:soccer_club_app/splash_screen.dart';
 
