@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:soccer_club_app/core/color/app_color.dart';
+import 'package:soccer_club_app/core/extention.dart';
 import 'package:soccer_club_app/core/typography/app_fontweight.dart';
+import 'package:soccer_club_app/l10n/l10n.dart';
+import 'package:soccer_club_app/utils/size_utils.dart';
 import 'package:soccer_club_app/widgets/button.dart';
 import 'package:soccer_club_app/widgets/icon.dart';
 import 'package:soccer_club_app/widgets/text.dart';
@@ -15,58 +18,50 @@ class WelcomeScreen extends StatelessWidget {
       body: Center(
         child: Column(
           children: [
-            const SizedBox(
-              height: 115,
+            SizedBox(
+              height: context.getVerticalSize(115),
             ),
             Image.asset(
               'assets/images/clogo.png',
-              width: 228,
-              height: 212,
+              width: context.getHorizontalSize(228),
+              height: context.getVerticalSize(212),
             ),
-
-            const SizedBox(height: 71),
-
-            // Large Text
+            SizedBox(height: context.getVerticalSize(71)),
             SCText.displayLarge(
               context,
-              style: Theme.of(context).textTheme.displayLarge?.copyWith(
-                  color: AppColor.textPrimary,
-                  fontWeight: AppFontWeight.semiBold,),
+              style: context.textTheme.displayLarge?.copyWith(
+                color: AppColor.tertiary,
+              ),
               textAlign: TextAlign.center,
-              text: 'Welcome to \n Victory Greens App',
+              text: context.l10n.textWelcomeScreen,
             ),
-
-            const SizedBox(height: 50),
+            SizedBox(height: context.getVerticalSize(50)),
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 SCButtonIcon(
                   onPressed: () {
-                    GoRouter.of(context).go('/signIn');
+                    context.go('/signIn');
                   },
-                  text: 'Login with email',
-                  icon: SCIcon.email(color:AppColor.backgroundColor),
-                  style: Theme.of(context).textTheme.displayMedium?.copyWith(
-                        color: AppColor.backgroundColor,
-                        fontWeight: AppFontWeight.semiBold,
-                      ),
-                  width: 318,
-                  height: 60,
+                  text: context.l10n.loginWithEmailButton,
+                  icon: SCIcon.email(color: AppColor.secondaryColor),
+                  style: context.textTheme.displayMedium?.copyWith(
+                    fontWeight: AppFontWeight.semiBold,
+                  ),
+                  width: context.getHorizontalSize(318),
+                  height: context.getVerticalSize(60),
                 ),
-                const SizedBox(height: 30), 
-
-                ///Button Create Account
+                SizedBox(height: context.getVerticalSize(30)),
                 SCButton(
                   onPressed: () {
-                    GoRouter.of(context).go('/signUp');
+                    context.go('/signUp');
                   },
-                  text: 'Create An Account',
-                  style: Theme.of(context).textTheme.displayMedium?.copyWith(
-                        color: AppColor.backgroundColor,
-                        fontWeight: AppFontWeight.semiBold,
-                      ),
-                  width: 319,
-                  height: 60,
+                  text: context.l10n.createAccountButton,
+                  style: context.textTheme.displayMedium?.copyWith(
+                    fontWeight: AppFontWeight.semiBold,
+                  ),
+                  width: context.getHorizontalSize(319),
+                  height: context.getVerticalSize(60),
                   backgroundColor: AppColor.jetBlackColor,
                 ),
               ],
