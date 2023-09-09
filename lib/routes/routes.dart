@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:soccer_club_app/presentation/auth/sign_in.dart';
 import 'package:soccer_club_app/presentation/auth/sign_up.dart';
+import 'package:soccer_club_app/presentation/pages/home.dart';
 import 'package:soccer_club_app/presentation/pages/onboarding.dart';
 import 'package:soccer_club_app/presentation/pages/player1.dart';
 import 'package:soccer_club_app/presentation/pages/welcome_screen.dart';
@@ -52,6 +53,12 @@ final GoRouter appRouter = GoRouter(
       builder: (BuildContext context, GoRouterState state) =>
           const PlayerPage(),
     ),
+    GoRoute(
+      path: AppRoutes.homePage.path,
+      name: AppRoutes.homePage.name,
+      builder: (BuildContext context, GoRouterState state) =>
+          const HomePage(),
+    ),
   ],
 );
 
@@ -84,6 +91,10 @@ enum AppRoutes {
   playerPage(
     name: 'playerPage',
     path: '/playerPage',
+  ),
+  homePage(
+    name: 'homePage',
+    path: '/homePage',
   );
   
 

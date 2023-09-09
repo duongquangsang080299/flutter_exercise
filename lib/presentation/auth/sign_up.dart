@@ -140,7 +140,7 @@ class _SignUpState extends State<SignUp> {
                           ),
                     ),
                     TextSpan(
-                      text: context.l10n.textcondition,
+                      text: context.l10n.textCondition,
                       style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                             fontWeight: AppFontWeight.medium,
                             color: AppColor.primaryColor,

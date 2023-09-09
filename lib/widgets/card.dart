@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:soccer_club_app/core/extention.dart';
 
 /// Define Card Avata
 class SCCard extends StatelessWidget {
@@ -11,17 +12,18 @@ class SCCard extends StatelessWidget {
     this.shape,
     this.selected,
     this.elevation,
+    this.borderRadius,
   });
-
 
   /// Factory constructor for creating a card with an avatar
   factory SCCard.avatar({
     ShapeBorder? shape,
     Widget? child,
-    double width = 45,
-    double height = 45,
+    double width = 120,
+    double height = 122,
     bool? selected,
-    Color color=Colors.white,
+    Color? color ,
+    BorderRadiusGeometry? borderRadius,
   }) {
     return SCCard(
       shape: shape,
@@ -29,6 +31,7 @@ class SCCard extends StatelessWidget {
       height: height,
       selected: selected,
       color: color,
+      borderRadius: borderRadius,
       child: child,
     );
   }
@@ -55,24 +58,27 @@ class SCCard extends StatelessWidget {
   final Widget? child;
   final bool? selected;
   final double? elevation;
+  final BorderRadiusGeometry? borderRadius;
 
   @override
   Widget build(BuildContext context) {
-    final _theme = Theme.of(context);
-
     return SizedBox(
       height: height,
       width: width,
       child: Card(
         elevation: elevation,
         shape: RoundedRectangleBorder(
+          borderRadius: borderRadius ??
+              const BorderRadius.all(
+                Radius.circular(10),
+              ),
           side: BorderSide(
             color: selected ?? false
-                ? _theme.colorScheme.primary
-                : _theme.primaryColor,
+                ? context.colorScheme.primary
+                : context.themeData.primaryColor,
           ),
         ),
-        color: color ,
+        color: color,
         child: child ?? Image.asset('/default-avatar'),
       ),
     );

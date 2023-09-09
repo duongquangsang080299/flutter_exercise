@@ -89,7 +89,7 @@ class _SignInState extends State<SignIn> {
                   } else {
                     debugPrint('Form is invalid');
                   }
-                  GoRouter.of(context).go('/playerPage');
+                  context.go('/playerPage');
                 },
                 text: context.l10n.loginButton,
                 style: context.textTheme.displayMedium?.copyWith(
