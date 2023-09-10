@@ -6,20 +6,23 @@ class SCIcon extends StatelessWidget {
     required this.iconData,
     super.key,
     this.color,
-    this.size,
+    this.width,
+    this.height,
     this.onPressed,
   });
 
   /// Factory constructor for Email icon
   factory SCIcon.email({
     Color? color,
-    double? size,
+    double? width,
+    double? height,
     VoidCallback? onPressed,
   }) {
     return SCIcon(
       iconData: Icons.email,
       color: color,
-      size: size,
+      height: height,
+      width: width,
       onPressed: onPressed,
     );
   }
@@ -27,13 +30,15 @@ class SCIcon extends StatelessWidget {
   /// Factory constructor for Notification icon
   factory SCIcon.notification({
     Color? color,
-    double? size,
+    double? width,
+    double? height,
     VoidCallback? onPressed,
   }) {
     return SCIcon(
       iconData: Icons.notifications,
       color: color,
-      size: size,
+      height: height,
+      width: width,
       onPressed: onPressed,
     );
   }
@@ -41,13 +46,15 @@ class SCIcon extends StatelessWidget {
   /// Factory constructor for Drawer icon
   factory SCIcon.drawer({
     Color? color,
-    double? size,
+    double? width,
+    double? height,
     VoidCallback? onPressed,
   }) {
     return SCIcon(
       iconData: Icons.menu,
       color: color,
-      size: size,
+      height: height,
+      width: width,
       onPressed: onPressed,
     );
   }
@@ -55,13 +62,15 @@ class SCIcon extends StatelessWidget {
   /// Factory constructor for Home icon
   factory SCIcon.home({
     Color? color,
-    double? size,
+    double? width,
+    double? height,
     VoidCallback? onPressed,
   }) {
     return SCIcon(
       iconData: Icons.home,
       color: color,
-      size: size,
+      height: height,
+      width: width,
       onPressed: onPressed,
     );
   }
@@ -69,13 +78,15 @@ class SCIcon extends StatelessWidget {
   /// Factory constructor for Calendar icon
   factory SCIcon.calendar({
     Color? color,
-    double? size,
+    double? width,
+    double? height,
     VoidCallback? onPressed,
   }) {
     return SCIcon(
       iconData: Icons.calendar_today,
       color: color,
-      size: size,
+      height: height,
+      width: width,
       onPressed: onPressed,
     );
   }
@@ -83,13 +94,15 @@ class SCIcon extends StatelessWidget {
   /// Factory constructor for Shop icon
   factory SCIcon.shop({
     Color? color,
-    double? size,
+    double? width,
+    double? height,
     VoidCallback? onPressed,
   }) {
     return SCIcon(
       iconData: Icons.shopping_cart,
       color: color,
-      size: size,
+      height: height,
+      width: width,
       onPressed: onPressed,
     );
   }
@@ -97,25 +110,29 @@ class SCIcon extends StatelessWidget {
   /// Factory constructor for Tickets icon
   factory SCIcon.tickets({
     Color? color,
-    double? size,
+    double? width,
+    double? height,
     VoidCallback? onPressed,
   }) {
     return SCIcon(
       iconData: Icons.confirmation_number,
       color: color,
-      size: size,
+      height: height,
+      width: width,
       onPressed: onPressed,
     );
   }
   factory SCIcon.back({
     Color? color,
-    double? size,
-    VoidCallback? onPressed, 
+    double? width,
+    double? height,
+    VoidCallback? onPressed,
   }) {
     return SCIcon(
       iconData: Icons.arrow_back,
       color: color,
-      size: size,
+      height: height,
+      width: width,
       onPressed: onPressed,
     );
   }
@@ -123,13 +140,15 @@ class SCIcon extends StatelessWidget {
   /// Factory constructor for Hidden icon
   factory SCIcon.hidden({
     Color? color,
-    double? size,
+    double? width,
+    double? height,
     VoidCallback? onPressed,
   }) {
     return SCIcon(
       iconData: Icons.visibility_off,
       color: color,
-      size: size,
+      height: height,
+      width: width,
       onPressed: onPressed,
     );
   }
@@ -141,7 +160,9 @@ class SCIcon extends StatelessWidget {
   final Color? color;
 
   /// Size of the icon
-  final double? size;
+
+  final double? width;
+  final double? height;
 
   /// Callback function for onTap event
   final VoidCallback? onPressed;
@@ -154,7 +175,6 @@ class SCIcon extends StatelessWidget {
       onPressed: onPressed,
       icon: Icon(
         iconData,
-        size: size,
         color: color,
       ),
     );

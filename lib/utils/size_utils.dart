@@ -131,4 +131,12 @@ extension FormatWidthHeight on BuildContext {
 double getHorizontalSize(double px) {
   return (px * _width) / FIGMA_DESIGN_WIDTH;
 }
+
+}
+extension BuildContextSizeExtension on BuildContext {
+  double getSize(double px) {
+    final height = MediaQuery.of(this).size.height * (px / FIGMA_DESIGN_HEIGHT);
+    final width = MediaQuery.of(this).size.width * (px / FIGMA_DESIGN_WIDTH);
+    return height < width ? height : width;
+  }
 }

@@ -27,20 +27,17 @@ class _SignInState extends State<SignIn> {
       body: Form(
         key: _formKey,
         child: Padding(
-          padding:
-              EdgeInsets.symmetric(horizontal: context.getHorizontalSize(10)),
+          padding: const EdgeInsets.all(28),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(height: context.getVerticalSize(87)),
               // Display Large Text
               SCText.displayLarge(
-                  text: context.l10n.textSignIn,
-                  context,
-                 ),
-
-              SizedBox(height: context.getVerticalSize(34)),
-
+                text: context.l10n.textSignIn,
+                context,
+              ),
+              const SizedBox(height: 16),
               // Title Text
               SCText.displaySmall(
                 context,
@@ -48,7 +45,7 @@ class _SignInState extends State<SignIn> {
                 text: context.l10n.textDescription,
               ),
 
-              const SizedBox(height: 20),
+              SizedBox(height: context.getVerticalSize(30)),
 
               // Text Form Fields for Username
               Column(
@@ -56,7 +53,7 @@ class _SignInState extends State<SignIn> {
                   SCInput.username(
                     labelText: context.l10n.textUsername,
                     labelStyle:
-                        const TextStyle(color: AppColor.whiteSmokeColor),
+                        const TextStyle(color: AppColor.suvaGray),
                     validator: (value) => value?.isValidUserName(),
                   ),
 
@@ -101,7 +98,7 @@ class _SignInState extends State<SignIn> {
                 borderRadius: 30,
               ),
 
-              const SizedBox(height: 20),
+              const SizedBox(height: 16),
 
               // Body Large Text
               Text.rich(

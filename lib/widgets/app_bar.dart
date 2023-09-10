@@ -12,6 +12,8 @@ class SCAppBar extends StatelessWidget implements PreferredSize {
     this.actions = const [],
     this.backgroundColor,
     this.centerTitle,
+    this.toolbarHeight,
+    this.elevation,
   });
 
   /// Factory constructor for creating a home app bar
@@ -19,15 +21,19 @@ class SCAppBar extends StatelessWidget implements PreferredSize {
     required String title,
     Color? backgroundColor,
     bool? centerTitle,
+    double? elevation,
     Widget? leading,
     List<Widget>? actions,
+    double? toolbarHeight,
   }) {
     return SCAppBar(
       backgroundColor: backgroundColor,
       title: title,
       leading: leading,
+      elevation: elevation,
       centerTitle: centerTitle,
       actions: actions ?? [],
+      toolbarHeight: toolbarHeight,
     );
   }
 
@@ -36,7 +42,9 @@ class SCAppBar extends StatelessWidget implements PreferredSize {
     required String title,
     required String subtitle,
     Color? backgroundColor,
+    double? elevation,
     bool? centerTitle,
+    double? toolbarHeight,
     List<Widget>? actions,
   }) {
     return SCAppBar(
@@ -44,6 +52,8 @@ class SCAppBar extends StatelessWidget implements PreferredSize {
       subtitle: subtitle,
       backgroundColor: backgroundColor,
       actions: actions ?? [],
+      elevation: elevation,
+      toolbarHeight: toolbarHeight,
       centerTitle: centerTitle,
     );
   }
@@ -54,6 +64,8 @@ class SCAppBar extends StatelessWidget implements PreferredSize {
   final List<Widget> actions;
   final Color? backgroundColor;
   final bool? centerTitle;
+  final double? toolbarHeight;
+  final double? elevation;
 
   @override
   Widget build(BuildContext context) {
@@ -61,17 +73,16 @@ class SCAppBar extends StatelessWidget implements PreferredSize {
       /// Define leading widget
       leadingWidth: 0,
       titleSpacing: 20,
+      elevation: elevation,
+      toolbarHeight: toolbarHeight,
       leading: leading ?? const SizedBox.shrink(),
       backgroundColor: backgroundColor,
-      title: Transform(
-        transform: Matrix4.translationValues(0, 40, 0),
-        child: Column(
-          children: [
-            SCText.bodyMedium(context, text: title),
-            if (subtitle?.isNotEmpty ?? false)
-              SCText.bodyMedium(context, text: subtitle ?? ''),
-          ],
-        ),
+      title: Column(
+        children: [
+          SCText.displaySmall(context, text: title),
+          if (subtitle?.isNotEmpty ?? false)
+            SCText.displayLarge(context, text: subtitle ?? ''),
+        ],
       ),
       actions: actions,
       centerTitle: centerTitle ?? true,

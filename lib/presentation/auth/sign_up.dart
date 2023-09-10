@@ -24,22 +24,26 @@ class _SignUpState extends State<SignUp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        elevation: 0,
+        leading: GestureDetector(
+          onTap: () {
+            GoRouter.of(context).go('/signIn');
+          },
+          child: SCIcon.back(
+            color: Colors.black,
+          ),
+        ),
+      ),
       body: Form(
         key: _formKey,
         child: Padding(
-          padding:
-              EdgeInsets.symmetric(horizontal: context.getHorizontalSize(10)),
+          padding: const EdgeInsets.all(26),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(height: context.getVerticalSize(100)),
-              GestureDetector(
-                onTap: () {
-                  context.go('/signIn');
-                },
-                child: SCIcon.back(color: Colors.black, size: 24),
-              ),
-              const SizedBox(height: 50),
+              SizedBox(height: context.getVerticalSize(24)),
               SCText.displayLarge(
                 context,
                 text: context.l10n.textCreateAccount,
@@ -95,23 +99,30 @@ class _SignUpState extends State<SignUp> {
               SizedBox(height: context.getVerticalSize(30)),
 
               // Sign-Up Button
-              SCButton(
-                onPressed: () {
-                  final form = _formKey.currentState ?? FormState();
-                  if (form.validate()) {
-                    debugPrint('Form is valid');
-                  } else {
-                    debugPrint('Form is invalid');
-                  }
-                },
-                text: context.l10n.buttonSignUp,
-                style: Theme.of(context).textTheme.displayMedium?.copyWith(
-                      fontWeight: AppFontWeight.semiBold,
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SizedBox(
+                    width: context.getHorizontalSize(318),
+                    child: SCButton(
+                      onPressed: () {
+                        final form = _formKey.currentState ?? FormState();
+                        if (form.validate()) {
+                          debugPrint('Form is valid');
+                        } else {
+                          debugPrint('Form is invalid');
+                        }
+                      },
+                      text: context.l10n.buttonSignUp,
+                      style:
+                          Theme.of(context).textTheme.displayMedium?.copyWith(
+                                fontWeight: AppFontWeight.semiBold,
+                              ),
+                      backgroundColor: AppColor.jetBlackColor,
+                      borderRadius: 30,
                     ),
-                backgroundColor: AppColor.jetBlackColor,
-                width: context.getHorizontalSize(318),
-                height: context.getVerticalSize(60),
-                borderRadius: 30,
+                  ),
+                ],
               ),
               SizedBox(height: context.getVerticalSize(30)),
               // Body Large Text
@@ -119,28 +130,28 @@ class _SignUpState extends State<SignUp> {
                 TextSpan(
                   children: [
                     TextSpan(
-                      text: context.l10n.textSignUp,
+                      text: 'By tapping “Sign Up” you accept our',
                       style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                             fontWeight: AppFontWeight.medium,
                             color: AppColor.textDimGray,
                           ),
                     ),
                     TextSpan(
-                      text: context.l10n.textTerms,
+                      text: 'terms                      ',
                       style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                             fontWeight: AppFontWeight.medium,
                             color: AppColor.primaryColor,
                           ),
                     ),
                     TextSpan(
-                      text: context.l10n.textAnd,
+                      text: 'and ',
                       style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                             fontWeight: AppFontWeight.medium,
                             color: AppColor.textDimGray,
                           ),
                     ),
                     TextSpan(
-                      text: context.l10n.textCondition,
+                      text: 'condition',
                       style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                             fontWeight: AppFontWeight.medium,
                             color: AppColor.primaryColor,

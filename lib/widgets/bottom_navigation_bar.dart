@@ -1,51 +1,83 @@
 import 'package:flutter/material.dart';
 
 /// Define Bottom Navigation Bar
-class SCBottomNavigationBar extends StatelessWidget {
+class SCBottomNavigationBar extends StatefulWidget {
   const SCBottomNavigationBar({super.key});
 
   @override
+  State<SCBottomNavigationBar> createState() => _SCBottomNavigationBarState();
+}
+
+class _SCBottomNavigationBarState extends State<SCBottomNavigationBar> {
+   int currentIndex = 0;
+
+  final List<Widget> _pages = [
+    const Page1(),
+    const Page2(),
+    const Page3(),
+  ];
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text('Bottom Navigation Bar Example'),
+      ),
+      body: _pages[currentIndex],
       bottomNavigationBar: BottomNavigationBar(
-        // Set the currently selected index.
-        currentIndex: 1,
-        // Set the background color.
-        backgroundColor: Theme.of(context).colorScheme.background,
-        // Elevation for the navigation bar.
-        elevation: 4,
-        // Hide labels for selected items.
-        showSelectedLabels: false,
-        showUnselectedLabels: false,
-        // Use a fixed layout for the navigation bar.
-        type: BottomNavigationBarType.fixed,
-        // Color for the selected item's icon and text.
-        selectedItemColor: Theme.of(context).colorScheme.primary,
-        // Color for the unselected item's icon and text.
-        unselectedItemColor:
-            Theme.of(context).colorScheme.primary.withOpacity(.5),
-        items: const [
-          // Define the navigation items using BottomNavigationBarItem.
+        currentIndex: currentIndex,
+        onTap: (int index) {
+          setState(() {
+            currentIndex = index;
+          });
+        },
+        items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            // Icon for the item.
             icon: Icon(Icons.home),
-            // Text label for the item.
-            label: 'News',
+            label: 'Page 1',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.calendar_today),
-            label: 'Fixtures',
+            icon: Icon(Icons.business),
+            label: 'Page 2',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.shopping_cart),
-            label: 'Shop',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.event),
-            label: 'Tickets',
+            icon: Icon(Icons.school),
+            label: 'Page 3',
           ),
         ],
       ),
+    );
+  }
+}
+
+class Page1 extends StatelessWidget {
+  const Page1({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const Center(
+      child: Text('Page 1'),
+    );
+  }
+}
+
+class Page2 extends StatelessWidget {
+  const Page2({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const Center(
+      child: Text('Page 2'),
+    );
+  }
+}
+
+class Page3 extends StatelessWidget {
+  const Page3({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const Center(
+      child: Text('Page 3'),
     );
   }
 }

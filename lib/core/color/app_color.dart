@@ -8,7 +8,7 @@ abstract class AppColor {
   /// Background color for app
   static const secondaryColor = Colors.white;
 
-   /// Primary tertiary color
+  /// Primary tertiary color
   static const tertiary = Colors.black;
 
   /// Surface color
@@ -17,16 +17,14 @@ abstract class AppColor {
   /// Error color for indicating errors
   static const errorColor = Colors.red;
 
- 
-
   /// Secondary text color
   static const textSecondary = Color(0xFF595959);
 
   /// Text field color
-  static const textField = Color(0xFF8A8A8A);
+  static const suvaGray = Color(0xFF8A8A8A);
 
   /// Text color for cards
-  static const textCard = Color(0xFF6CAE97);
+  static const mainlyGreen = Color(0xFF6CAE97);
 
   /// Neon silver color for boder buttton and text in button
   static const neonSilverColor = Color(0xFFCBCBCB);
@@ -42,9 +40,23 @@ abstract class AppColor {
 
   /// Flash White Color
   static const flashWhiteColor = Color(0xFFEFEFEF);
+  static const hexColor = Color(0xFF070000);
+ 
+  static const transparentColor = Colors.transparent;
 
   /// TextTypography color
   static const textTypography = Color.fromRGBO(0, 0, 0, 0.50);
 
-  static const textDimGray=Color(0xFF656565);
+  static const textDimGray = Color(0xFF656565);
+  static const darkBlue= Color(0XFF5B6897);
+  static const veryDarkBlue=Color(0xFF172A6B);
+  static const linearGradientColor = [
+    Color(0xFF29B986),
+    Color(0xFF319471),
+    Color(0xFF065539),
+    Color(0xFF348B6C),
+    Color(0xFF26CA90),
+    Color(0xFF3FC194),
+    Color(0xFF1F966C),
+  ];
 }

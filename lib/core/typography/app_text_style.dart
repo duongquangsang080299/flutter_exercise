@@ -62,10 +62,10 @@ class AppTextStyles {
   );
 
   /// Text style for captions
-  static TextStyle caption = _baseTextStyle(
+  static TextStyle bodySmall = _baseTextStyle(
     fontFamily: 'Poppins',
     fontSize:  getFontSize(10),
     fontWeight: AppFontWeight.semiBold,
-    color: AppColor.textSecondary,
+    color: AppColor.secondaryColor,
   );
 }

@@ -40,6 +40,8 @@ class AppTheme {
   ColorScheme get _colorScheme {
     return const ColorScheme.light(
       primary: AppColor.primaryColor,
+      secondary: AppColor.secondaryColor,
+      onSurface:AppColor.transparentColor
     );
   }
 
@@ -83,7 +85,7 @@ class AppTheme {
     displaySmall: AppTextStyles.titleSmall,
     bodyMedium: AppTextStyles.bodyBold,
     titleMedium: AppTextStyles.subtitle,
-    bodySmall: AppTextStyles.caption,
+    bodySmall: AppTextStyles.bodySmall,
   );
 }
 

@@ -38,13 +38,11 @@ class SCCard extends StatelessWidget {
 
   /// Factory constructor for creating a card with an match
   factory SCCard.match({
-    ShapeBorder? shape,
     double? width,
     double? height,
     Widget? child,
   }) {
     return SCCard(
-      shape: shape,
       width: width,
       height: height,
       child: child,
@@ -75,11 +73,11 @@ class SCCard extends StatelessWidget {
           side: BorderSide(
             color: selected ?? false
                 ? context.colorScheme.primary
-                : context.themeData.primaryColor,
+                : context.colorScheme.onSurface,
           ),
         ),
         color: color,
-        child: child ?? Image.asset('/default-avatar'),
+        child: child ?? Image.asset(''),
       ),
     );
   }

@@ -19,13 +19,11 @@
     "textForgotPassword": "Forgot password?   ",
     "textReset": "Reset here ",
     "textCreateAccount": "Create an account",
-    "textSignUp": "By tapping “Sign Up” you accept our",
-    "textTerms":"terms                      ",
-    "textAnd":"and ",
-    "textCondition":"condition",
     "textPlayer": "Who is your favourite Victory players?",
     "textSwipeToSelect": "Swipe To Select",
     "textTitleAppBar": "Good Morning",
     "textSubtitleAppBar": "Adrian",
+    "textFavoritePlayer": "Favourite Player",
+    "textChooseNow": "Choose Now",
     "textNetxMatch": "Next Match"
 }

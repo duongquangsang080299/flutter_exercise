@@ -28,38 +28,33 @@ class _PlayerPageState extends State<PlayerPage> {
           onTap: () {
             GoRouter.of(context).go('/signIn');
           },
-          child: SCIcon.back(color: Colors.black, size: 24),
+          child: SCIcon.back(
+            color: Colors.black,
+          ),
         ),
       ),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 28),
+        padding: const EdgeInsets.all(11),
         child: Column(
           children: [
-            const SizedBox(height: 44),
+            SizedBox(
+              height: context.getVerticalSize(24),
+            ),
             SCText.displayLarge(
               context,
-              text: 'Who is your favourite Victory players? ',
-              style: Theme.of(context).textTheme.displayLarge?.copyWith(
-                    color: AppColor.primaryColor,
-                    fontWeight: AppFontWeight.semiBold,
-                  ),
+              text: context.l10n.textPlayer,
               textAlign: TextAlign.center,
             ),
-
-            const SizedBox(height: 41),
-
+            SizedBox(
+              height: context.getVerticalSize(41),
+            ),
             // Title Text
-            SCText.bodySmall(
+            SCText.displaySmall(
               context,
               textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                    color: AppColor.tertiary,
-                    fontWeight: AppFontWeight.regular,
-                  ),
-              text: 'Amet minim mollit non deserunt ullamcoei italiqua dolor'
-                  ' do amet sintelit officia.',
+              text: context.l10n.textDescription,
             ),
-            const SizedBox(height: 79),
+            SizedBox(height: context.getVerticalSize(61)),
             Stack(
               clipBehavior: Clip.none,
               alignment: Alignment.center,
@@ -68,16 +63,20 @@ class _PlayerPageState extends State<PlayerPage> {
                   borderRadius: const BorderRadius.all(Radius.circular(20)),
                   width: 149,
                   height: 152,
+                  color: AppColor.jetBlackColor,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      SCText.bodyMedium(
+                      SCText.bodySmall(
                         context,
-                        text: 'Favorite Player',
+                        text: context.l10n.textFavoritePlayer,
                       ),
-                      SCText.bodyMedium(
+                      SCText.bodySmall(
                         context,
-                        text: 'Choose Now',
+                        text: context.l10n.textChooseNow,
+                        style: context.textTheme.bodySmall?.copyWith(
+                          color: AppColor.mainlyGreen,
+                        ),
                       ),
                     ],
                   ),
@@ -85,6 +84,7 @@ class _PlayerPageState extends State<PlayerPage> {
                 Positioned(
                   bottom: 70,
                   child: SCCard.avatar(
+                    borderRadius: const BorderRadius.all(Radius.circular(20)),
                     child: Image.asset(
                       'assets/images/default_avatar.png',
                     ),
@@ -92,11 +92,11 @@ class _PlayerPageState extends State<PlayerPage> {
                 ),
               ],
             ),
-            const SizedBox(height: 44),
-            SCText.displaySmall(context, text: context.l10n.textCondition),
-            const SizedBox(height: 27),
+            SizedBox(height: context.getVerticalSize(44)),
+            SCText.displaySmall(context, text: context.l10n.textSwipeToSelect),
+            SizedBox(height: context.getVerticalSize(27)),
             SizedBox(
-              height: 50,
+              height: context.getVerticalSize(50),
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
                 shrinkWrap: true,
@@ -108,38 +108,38 @@ class _PlayerPageState extends State<PlayerPage> {
                 },
               ),
             ),
-            const SizedBox(height: 57),
+            SizedBox(height: context.getVerticalSize(57)),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                SCOutlineButton(
-                  onPressed: () {
-                    context.go('/welcomeScreen');
-                  },
-                  // Localize the 'Skip' text using context.l10n
-                  text: context.l10n.skip,
-                  style: context.textTheme.displayMedium?.copyWith(
-                    color: AppColor.jetBlackColor,
-                    fontWeight: AppFontWeight.semiBold,
+                SizedBox(
+                  width: context.getHorizontalSize(154),
+                  child: SCOutlineButton(
+                    onPressed: () {
+                      context.go('/welcomeScreen');
+                    },
+                    // Localize the 'Skip' text using context.l10n
+                    text: context.l10n.skip,
+                    style: context.textTheme.displayMedium?.copyWith(
+                      color: AppColor.neonSilverColor,
+                      fontWeight: AppFontWeight.semiBold,
+                    ),
                   ),
-                  // Use getHorizontalSize and getVerticalSize
-                  width: context.getHorizontalSize(164),
-                  height: context.getVerticalSize(60),
                 ),
                 const SizedBox(width: 20),
-                SCButton(
-                  onPressed: () {
-                    context.go('/homePage');
-                  },
-                  // Localize the 'CAMPAIGNS' text using context.l10n
-                  text: context.l10n.campaigns,
-                  style: context.textTheme.displayMedium?.copyWith(
-                    color: AppColor.tertiary,
-                    fontWeight: AppFontWeight.semiBold,
+                SizedBox(
+                  width: context.getHorizontalSize(154),
+                  child: SCButton(
+                    onPressed: () {
+                      context.go('/homePage');
+                    },
+                    // Localize the 'CAMPAIGNS' text using context.l10n
+                    text: context.l10n.confirm,
+                    style: context.textTheme.displayMedium?.copyWith(
+                      fontWeight: AppFontWeight.semiBold,
+                    ),
+                    backgroundColor: AppColor.primaryColor,
                   ),
-                  backgroundColor: AppColor.primaryColor,
-                  width: context.getHorizontalSize(134),
-                  height: context.getVerticalSize(60),
                 ),
               ],
             ),
@@ -150,9 +150,9 @@ class _PlayerPageState extends State<PlayerPage> {
   }
 
   final listAvatars = [
-    AvatarModel(id: '1', url: 'assets/images/image1.png'),
-    AvatarModel(id: '2', url: 'assets/images/logo.png'),
-    AvatarModel(id: '3', url: 'assets/images/ronaldo.png'),
+    AvatarModel(id: '1', url: 'assets/images/placeholder.png'),
+    AvatarModel(id: '2', url: 'assets/images/image1.png'),
+    AvatarModel(id: '3', url: 'assets/images/image1.png'),
     AvatarModel(id: '4', url: 'assets/images/image1.png'),
     AvatarModel(id: '5', url: 'assets/images/image1.png'),
     AvatarModel(id: '6', url: 'assets/images/image1.png'),
@@ -170,7 +170,7 @@ class AvatarItem extends StatelessWidget {
     return GestureDetector(
       onTap: () {},
       child: Container(
-        margin: const EdgeInsets.only(left: 24),
+        margin: const EdgeInsets.only(left: 10),
         padding: const EdgeInsets.all(5),
         decoration: BoxDecoration(
           border: Border.all(
@@ -180,8 +180,8 @@ class AvatarItem extends StatelessWidget {
             Radius.circular(12),
           ),
         ),
-        width: 50,
-        height: 50,
+        width:context.getHorizontalSize(50) ,
+        height: context.getVerticalSize(50),
         child: Image.asset(avatar?.url ?? ''),
       ),
     );

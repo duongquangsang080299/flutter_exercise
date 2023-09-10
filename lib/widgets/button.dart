@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:soccer_club_app/core/color/app_color.dart';
+import 'package:soccer_club_app/utils/size_utils.dart';
+
 // import 'package:soccer_club_app/widgets/icon.dart';
 import 'package:soccer_club_app/widgets/text.dart';
 
@@ -29,7 +31,7 @@ class SCButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: width,
-      height: height,
+      height:context.getVerticalSize(60),
       child: ElevatedButton(
         onPressed: onPressed,
         style: ButtonStyle(
@@ -82,7 +84,7 @@ class SCButtonIcon extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: width,
-      height: height,
+       height:context.getVerticalSize(60),
       child: ElevatedButton(
         onPressed: onPressed,
         style: ButtonStyle(
@@ -94,7 +96,7 @@ class SCButtonIcon extends StatelessWidget {
         ),
         // icon: Container(color: Colors.red,child: const Icon(Icons.email)),
         child: Stack(
-            children: <Widget>[
+            children: [
                 Align(
                     alignment: Alignment.centerLeft,
                     child: icon,
@@ -134,7 +136,7 @@ class SCOutlineButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: width,
-      height: height,
+     height:context.getVerticalSize(60),
       child: OutlinedButton(
         onPressed: onPressed,
         style: ButtonStyle(
