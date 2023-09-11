@@ -5,11 +5,10 @@ import 'package:soccer_club_app/l10n/l10n.dart';
 import 'package:soccer_club_app/routes/routes.dart';
 
 void main() => runApp(
-  DevicePreview(
-    builder: (context) => const MyApp(), // Wrap your app
-  ),
-);
-
+      DevicePreview(
+        builder: (context) => const MyApp(), // Wrap your app
+      ),
+    );
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -23,7 +22,6 @@ class MyApp extends StatelessWidget {
       locale: DevicePreview.locale(context),
       builder: DevicePreview.appBuilder,
       localizationsDelegates: AppLocalizations.localizationsDelegates,
-       
       supportedLocales: const [
         Locale('en'), // English
         Locale('es'),

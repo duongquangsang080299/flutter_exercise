@@ -7,7 +7,6 @@ class SCText extends StatelessWidget {
     required this.text,
     this.style,
     this.textAlign,
-    this.overflow,
     super.key,
   });
 
@@ -16,7 +15,7 @@ class SCText extends StatelessWidget {
     BuildContext context, {
     required String text,
     TextStyle? style,
-    TextAlign? textAlign, 
+    TextAlign? textAlign,
   }) {
     return SCText(
       text: text,
@@ -50,7 +49,6 @@ class SCText extends StatelessWidget {
       text: text,
       style: style ?? context.textThemeData.bodyLarge,
       textAlign: textAlign,
-      overflow: TextOverflow.ellipsis,
     );
   }
 
@@ -99,7 +97,6 @@ class SCText extends StatelessWidget {
   final String text;
   final TextStyle? style;
   final TextAlign? textAlign;
-  final TextOverflow? overflow;
 
   @override
   Widget build(BuildContext context) {
@@ -107,7 +104,6 @@ class SCText extends StatelessWidget {
       text,
       style: style,
       textAlign: textAlign,
-      overflow: overflow,
     );
   }
 }

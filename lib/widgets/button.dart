@@ -13,7 +13,7 @@ class SCButton extends StatelessWidget {
     this.textColor,
     super.key,
     this.backgroundColor,
-    this.height,
+    this.height = 60,
     this.borderRadius,
     this.style,
   });
@@ -21,7 +21,7 @@ class SCButton extends StatelessWidget {
   final Color? textColor;
   final Color? backgroundColor;
   final VoidCallback? onPressed;
-  final double? height;
+  final double height;
   final int? borderRadius;
   final TextStyle? style;
 
@@ -29,7 +29,7 @@ class SCButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: double.infinity,
-      height: context.getVerticalSize(60),
+      height: context.getVerticalSize(height),
       child: ElevatedButton(
         onPressed: onPressed,
         style: ButtonStyle(
@@ -107,22 +107,25 @@ class SCButtonIcon extends StatelessWidget {
 class SCOutlineButton extends StatelessWidget {
   const SCOutlineButton({
     required this.text,
-    this.onPressed,
     super.key,
-    this.height,
+    this.onPressed,
+    this.height = 60,
+    this.width = double.infinity,
     this.borderRadius,
     this.style,
   });
   final String text;
   final VoidCallback? onPressed;
-  final double? height;
+  final double height;
+  final double width;
   final int? borderRadius;
   final TextStyle? style;
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: context.getVerticalSize(60),
+      width: width,
+      height: context.getVerticalSize(height),
       child: OutlinedButton(
         onPressed: onPressed,
         style: ButtonStyle(
