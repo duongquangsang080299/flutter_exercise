@@ -36,13 +36,16 @@ class _SignInState extends State<SignIn> {
               // Display Large Text
 
               const SizedBox(height: 16),
+              SCText.displayLarge(
+                text: context.l10n.signIn,
+                context,
+              ),
+
               // Title Text
               SCText.displaySmall(
                 context,
                 text: context.l10n.description,
               ),
-
-              SizedBox(height: context.getVerticalSize(30)),
 
               // Text Form Fields for Username
               Column(
@@ -71,7 +74,6 @@ class _SignInState extends State<SignIn> {
                   ),
                 ],
               ),
-              SizedBox(height: context.getVerticalSize(30)),
 
               // Sign-In Button
 
