@@ -26,7 +26,7 @@ class _PlayerPageState extends State<PlayerPage> {
         elevation: 0,
         leading: GestureDetector(
           onTap: () {
-            GoRouter.of(context).go('/signIn');
+            context.go('/signIn');
           },
           child: SCIcon.back(
             color: Colors.black,
@@ -93,6 +93,8 @@ class _PlayerPageState extends State<PlayerPage> {
               ],
             ),
             SizedBox(height: context.getVerticalSize(44)),
+
+            /// Display Swipetoselect
             SCText.displaySmall(context, text: context.l10n.textSwipeToSelect),
             SizedBox(height: context.getVerticalSize(27)),
             SizedBox(
@@ -180,7 +182,7 @@ class AvatarItem extends StatelessWidget {
             Radius.circular(12),
           ),
         ),
-        width:context.getHorizontalSize(50) ,
+        width: context.getHorizontalSize(50),
         height: context.getVerticalSize(50),
         child: Image.asset(avatar?.url ?? ''),
       ),
