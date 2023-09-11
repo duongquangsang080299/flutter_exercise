@@ -30,7 +30,8 @@ class _SignUpState extends State<SignUp> {
         elevation: 0,
         leading: GestureDetector(
           onTap: () {
- context.go(AppRoutes.signIn.path);          },
+            context.go(AppRoutes.signIn.path);
+          },
           child: SCIcon.back(
             color: Colors.black,
           ),
@@ -39,7 +40,7 @@ class _SignUpState extends State<SignUp> {
       body: Form(
         key: _formKey,
         child: Padding(
-          padding: context.getPadding(all:16),
+          padding: context.getPadding(all: 16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -49,8 +50,6 @@ class _SignUpState extends State<SignUp> {
                 text: context.l10n.createanAccount,
               ),
 
-              SizedBox(height: context.getVerticalSize(30)),
-
               // Title Text
               SCText.displaySmall(
                 context,
@@ -58,27 +57,21 @@ class _SignUpState extends State<SignUp> {
                 text: context.l10n.description,
               ),
 
-              const SizedBox(height: 20),
-
               // Text Form Fields for Username and Password
               Column(
                 children: [
                   SCInput.username(
                     labelText: context.l10n.labelUsername,
-                    labelStyle:
-                        const TextStyle(color: AppColor.whiteSmoke),
+                    labelStyle: const TextStyle(color: AppColor.whiteSmoke),
                     validator: (value) => value?.isValidUserName(),
                   ),
 
                   const SizedBox(height: 20),
                   SCInput.email(
                     labelText: context.l10n.lablelEmail,
-                    labelStyle:
-                        const TextStyle(color: AppColor.whiteSmoke),
+                    labelStyle: const TextStyle(color: AppColor.whiteSmoke),
                     validator: (value) => value?.isValidEmail(),
                   ),
-
-                  const SizedBox(height: 20),
 
                   // Password Text Form Field
                   SCInput.password(
@@ -104,7 +97,7 @@ class _SignUpState extends State<SignUp> {
                 children: [
                   SCButton(
                     onPressed: () {
-                       context.go(AppRoutes.signIn.path);
+                      context.go(AppRoutes.signIn.path);
                       final form = _formKey.currentState ?? FormState();
                       if (form.validate()) {
                         debugPrint('Form is valid');
@@ -113,10 +106,9 @@ class _SignUpState extends State<SignUp> {
                       }
                     },
                     text: context.l10n.btnSignUp,
-                    style:
-                        Theme.of(context).textTheme.displayMedium?.copyWith(
-                              fontWeight: AppFontWeight.semiBold,
-                            ),
+                    style: Theme.of(context).textTheme.displayMedium?.copyWith(
+                          fontWeight: AppFontWeight.semiBold,
+                        ),
                     backgroundColor: AppColor.jetBlack,
                     borderRadius: 30,
                   ),
