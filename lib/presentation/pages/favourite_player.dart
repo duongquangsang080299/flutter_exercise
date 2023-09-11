@@ -4,6 +4,7 @@ import 'package:soccer_club_app/core/color/app_color.dart';
 import 'package:soccer_club_app/core/extention.dart';
 import 'package:soccer_club_app/core/typography/app_fontweight.dart';
 import 'package:soccer_club_app/l10n/l10n.dart';
+import 'package:soccer_club_app/routes/routes.dart';
 import 'package:soccer_club_app/utils/size_utils.dart';
 import 'package:soccer_club_app/widgets/button.dart';
 import 'package:soccer_club_app/widgets/card.dart';
@@ -26,7 +27,7 @@ class _PlayerPageState extends State<PlayerPage> {
         elevation: 0,
         leading: GestureDetector(
           onTap: () {
-            context.go('/signIn');
+            context.go(AppRoutes.signIn.path);
           },
           child: SCIcon.back(
             color: Colors.black,
@@ -42,7 +43,7 @@ class _PlayerPageState extends State<PlayerPage> {
             ),
             SCText.displayLarge(
               context,
-              text: context.l10n.textPlayer,
+              text: context.l10n.whoIsYourFavouriteVictoryPlayers,
               textAlign: TextAlign.center,
             ),
             SizedBox(
@@ -52,7 +53,7 @@ class _PlayerPageState extends State<PlayerPage> {
             SCText.displaySmall(
               context,
               textAlign: TextAlign.center,
-              text: context.l10n.textDescription,
+              text: context.l10n.description,
             ),
             SizedBox(height: context.getVerticalSize(61)),
             Stack(
@@ -61,19 +62,19 @@ class _PlayerPageState extends State<PlayerPage> {
               children: [
                 SCCard.avatar(
                   borderRadius: const BorderRadius.all(Radius.circular(20)),
-                  width: 149,
-                  height: 152,
-                  color: AppColor.jetBlackColor,
+                  width: context.getHorizontalSize(149),
+                  height: context.getVerticalSize(152),
+                  color: AppColor.jetBlack,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       SCText.bodySmall(
                         context,
-                        text: context.l10n.textFavoritePlayer,
+                        text: context.l10n.favoritePlayer,
                       ),
                       SCText.bodySmall(
                         context,
-                        text: context.l10n.textChooseNow,
+                        text: context.l10n.chooseNow,
                         style: context.textTheme.bodySmall?.copyWith(
                           color: AppColor.mainlyGreen,
                         ),
@@ -93,9 +94,7 @@ class _PlayerPageState extends State<PlayerPage> {
               ],
             ),
             SizedBox(height: context.getVerticalSize(44)),
-
-            /// Display Swipetoselect
-            SCText.displaySmall(context, text: context.l10n.textSwipeToSelect),
+            SCText.displaySmall(context, text: context.l10n.swipeToSelect),
             SizedBox(height: context.getVerticalSize(27)),
             SizedBox(
               height: context.getVerticalSize(50),
@@ -114,33 +113,31 @@ class _PlayerPageState extends State<PlayerPage> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                SizedBox(
-                  width: context.getHorizontalSize(154),
+                Expanded(
                   child: SCOutlineButton(
                     onPressed: () {
-                      context.go('/welcomeScreen');
+                      context.go(AppRoutes.homePage.path);
                     },
                     // Localize the 'Skip' text using context.l10n
-                    text: context.l10n.skip,
+                    text: context.l10n.btnSkip,
                     style: context.textTheme.displayMedium?.copyWith(
-                      color: AppColor.neonSilverColor,
+                      color: AppColor.neonSilver,
                       fontWeight: AppFontWeight.semiBold,
                     ),
                   ),
                 ),
                 const SizedBox(width: 20),
-                SizedBox(
-                  width: context.getHorizontalSize(154),
+                Expanded(
                   child: SCButton(
                     onPressed: () {
-                      context.go('/homePage');
+                      context.go(AppRoutes.homePage.path);
                     },
                     // Localize the 'CAMPAIGNS' text using context.l10n
-                    text: context.l10n.confirm,
+                    text: context.l10n.btnConfirm,
                     style: context.textTheme.displayMedium?.copyWith(
                       fontWeight: AppFontWeight.semiBold,
                     ),
-                    backgroundColor: AppColor.primaryColor,
+                    backgroundColor: AppColor.primary,
                   ),
                 ),
               ],
