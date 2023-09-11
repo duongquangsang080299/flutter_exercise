@@ -34,6 +34,8 @@ class _SignInState extends State<SignIn> {
             children: [
               SizedBox(height: context.getVerticalSize(87)),
               // Display Large Text
+
+              const SizedBox(height: 16),
               SCText.displayLarge(
                 text: context.l10n.signIn,
                 context,
@@ -74,21 +76,6 @@ class _SignInState extends State<SignIn> {
               ),
 
               // Sign-In Button
-              SCButton(
-                onPressed: () {
-                  final form = _formKey.currentState ?? FormState();
-                  if (form.validate()) {
-                    debugPrint('Form is valid');
-                  } else {
-                    debugPrint('Form is invalid');
-                  }
-                  context.go(AppRoutes.playerPage.path);
-                },
-                text: context.l10n.btnLogin,
-                backgroundColor: AppColor.primary,
-                height: context.getVerticalSize(60),
-                borderRadius: 30,
-              ),
 
               const SizedBox(height: 16),
 
