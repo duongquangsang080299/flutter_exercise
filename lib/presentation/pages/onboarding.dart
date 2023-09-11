@@ -5,6 +5,7 @@ import 'package:soccer_club_app/core/extention.dart';
 import 'package:soccer_club_app/core/typography/app_fontweight.dart';
 import 'package:soccer_club_app/data/models/user_model.dart';
 import 'package:soccer_club_app/l10n/l10n.dart';
+import 'package:soccer_club_app/routes/routes.dart';
 import 'package:soccer_club_app/utils/size_utils.dart';
 import 'package:soccer_club_app/widgets/button.dart';
 import 'package:soccer_club_app/widgets/dots_indicator.dart';
@@ -21,7 +22,7 @@ class OnBoardingPage extends StatefulWidget {
 /// Define the state for the OnBoardingPage widget
 class _OnBoardingPageState extends State<OnBoardingPage> {
   final PageController _pageController = PageController();
-  int _pageIndex = 0;
+  int _currentIndex = 0;
 
   @override
   void dispose() {
@@ -36,7 +37,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
         child: Padding(
           padding:
               // Apply horizontal padding using the getHorizontalSize method
-              EdgeInsets.symmetric(horizontal: context.getHorizontalSize(20)),
+              EdgeInsets.symmetric(horizontal: context.getHorizontalSize(28)),
           child: Column(
             children: [
               Expanded(
@@ -46,7 +47,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
                   controller: _pageController,
                   onPageChanged: (index) {
                     setState(() {
-                      _pageIndex = index;
+                      _currentIndex = index;
                     });
                   },
                   itemBuilder: (context, index) => OnBoardingBody(
@@ -67,7 +68,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
                         (index) => Padding(
                           padding: const EdgeInsets.all(8),
                           child: SCDotsIndicator(
-                            isActive: index == _pageIndex,
+                            isActive: index == _currentIndex,
                           ),
                         ),
                       ),
@@ -77,36 +78,32 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        SizedBox(
-                          width:context.getHorizontalSize(154),
+                        Expanded(
                           child: SCOutlineButton(
                             onPressed: () {
-                              context.go('/welcomeScreen');
+                              context.go(AppRoutes.welcomeScreen.path);
                             },
                             // Localize the 'Skip' text using context.l10n
-                            text: context.l10n.skip,
+                            text: context.l10n.btnSkip,
                             style: context.textTheme.displayMedium?.copyWith(
-                              color: AppColor.jetBlackColor,
+                              color: AppColor.jetBlack,
                               fontWeight: AppFontWeight.semiBold,
                             ),
-                            
                           ),
                         ),
-                        const SizedBox(width: 20),
-                        SizedBox(
-                           width:context.getHorizontalSize(154),
+                        const SizedBox(width: 11),
+                        Expanded(
                           child: SCButton(
                             onPressed: () {
-                              context.go('/welcomeScreen');
+                               context.go(AppRoutes.welcomeScreen.path);
                             },
                             // Localize the 'CAMPAIGNS' text using context.l10n
-                            text: context.l10n.campaigns,
+                            text: context.l10n.btnCampaigns,
                             style: context.textTheme.displayMedium?.copyWith(
                               color: AppColor.tertiary,
                               fontWeight: AppFontWeight.semiBold,
                             ),
-                            backgroundColor: AppColor.primaryColor,
-                            
+                            backgroundColor: AppColor.primary,
                           ),
                         ),
                       ],
@@ -159,7 +156,7 @@ class OnBoardingBody extends StatelessWidget {
         SCText.displayMedium(
           context,
           style: context.textTheme.displayMedium?.copyWith(
-            color: AppColor.textSecondary,
+            color: AppColor.hexGray,
           ),
           text: subtitle,
         ),

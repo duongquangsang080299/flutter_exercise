@@ -4,6 +4,7 @@ import 'package:soccer_club_app/core/color/app_color.dart';
 import 'package:soccer_club_app/core/extention.dart';
 import 'package:soccer_club_app/core/typography/app_fontweight.dart';
 import 'package:soccer_club_app/l10n/l10n.dart';
+import 'package:soccer_club_app/routes/routes.dart';
 import 'package:soccer_club_app/utils/size_utils.dart';
 import 'package:soccer_club_app/widgets/button.dart';
 import 'package:soccer_club_app/widgets/icon.dart';
@@ -36,39 +37,34 @@ class WelcomeScreen extends StatelessWidget {
                   color: AppColor.tertiary,
                 ),
                 textAlign: TextAlign.center,
-                text: context.l10n.textWelcomeScreen,
+                text: context.l10n.welcomeToVictoryGreensApp,
               ),
               SizedBox(height: context.getVerticalSize(50)),
               Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  SizedBox(
-                    width: context.getHorizontalSize(318),
-                    child: SCButtonIcon(
-                      onPressed: () {
-                        context.go('/signIn');
-                      },
-                      icon: SCIcon.email(color: AppColor.secondaryColor),
-                      text: context.l10n.loginWithEmailButton,
-                      style: context.textTheme.displayMedium?.copyWith(
-                        fontWeight: AppFontWeight.semiBold,
-                      ),
+                  SCButtonIcon(
+                    onPressed: () {
+                      context.go(AppRoutes.signIn.path);
+                    },
+                    icon: SCIcon.email(color: AppColor.secondary),
+                    text: context.l10n.btnLoginWithEmail,
+                    style: context.textTheme.displayMedium?.copyWith(
+                      fontWeight: AppFontWeight.semiBold,
                     ),
+                  ),
+              SizedBox(height: context.getVerticalSize(30)),
+                  SCButton(
+                    onPressed: () {
+                      context.go(AppRoutes.signUp.path);
+                    },
+                    text: context.l10n.btnCreateAnAccount,
+                    style: context.textTheme.displayMedium?.copyWith(
+                      fontWeight: AppFontWeight.semiBold,
+                    ),
+                    backgroundColor: AppColor.jetBlack,
                   ),
                   SizedBox(height: context.getVerticalSize(30)),
-                  SizedBox(
-                    width: context.getHorizontalSize(319),
-                    child: SCButton(
-                      onPressed: () {
-                        context.go('/signUp');
-                      },
-                      text: context.l10n.createAccountButton,
-                      style: context.textTheme.displayMedium?.copyWith(
-                        fontWeight: AppFontWeight.semiBold,
-                      ),
-                      backgroundColor: AppColor.jetBlackColor,
-                    ),
-                  ),
                 ],
               ),
             ],

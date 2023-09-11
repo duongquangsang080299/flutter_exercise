@@ -17,7 +17,7 @@ class SCDotsIndicator extends StatelessWidget {
       margin: const EdgeInsets.only(right: 5),
       decoration: BoxDecoration(
        borderRadius: BorderRadius.circular(20),
-        color: isActive ? AppColor.primaryColor : Colors.grey, 
+        color: isActive ? AppColor.primary : Colors.grey, 
       ), duration:const Duration(microseconds: 500),
     );
   }

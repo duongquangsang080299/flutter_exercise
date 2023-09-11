@@ -19,11 +19,10 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 185,
-        backgroundColor: AppColor.primaryColor,
+        backgroundColor: AppColor.primary,
         centerTitle: false,
         title: const Column(
-          crossAxisAlignment:
-              CrossAxisAlignment.start, 
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
               'Good Morning',
@@ -38,21 +37,17 @@ class _HomePageState extends State<HomePage> {
           Icon(Icons.abc_rounded),
         ],
       ),
-
       body: SingleChildScrollView(
         child: Padding(
-          padding:
-              const EdgeInsets.all(29),
+          padding: const EdgeInsets.all(29),
           child: Column(
             children: [
-              
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SCText.displayLarge(
-                    text: context.l10n.textSignIn,
+                  SCText.bodyMedium(
+                    text: context.l10n.netxMatch,
                     context,
-                    textAlign: TextAlign.left,
                   ),
                 ],
               ),
@@ -63,20 +58,20 @@ class _HomePageState extends State<HomePage> {
                 children: [
                   Positioned(
                     child: SizedBox(
-                      height: 66,
-                      width: 318,
+                      height: context.getVerticalSize(66),
+                      width: context.getHorizontalSize(318),
                       child: SCCard.match(
                         child: Container(
                           decoration: BoxDecoration(
-                            border: Border.all(color: AppColor.whiteSmokeColor),
-                            color: AppColor.whiteSmokeColor,
+                            border: Border.all(color: AppColor.whiteSmoke),
+                            color: AppColor.whiteSmoke,
                             borderRadius: const BorderRadius.only(
                               topLeft: Radius.circular(10),
                               topRight: Radius.circular(10),
                             ),
                             boxShadow: const [
                               BoxShadow(
-                                color: AppColor.whiteSmokeColor,
+                                color: AppColor.whiteSmoke,
                                 offset: Offset(0, 9),
                                 blurRadius: 8,
                               ),
@@ -94,22 +89,22 @@ class _HomePageState extends State<HomePage> {
                                   alignment: Alignment.center,
                                   children: [
                                     Container(
-                                      width: 35,
-                                      height: 35,
+                                      width: context.getHorizontalSize(35),
+                                      height: context.getVerticalSize(35),
                                       decoration: const BoxDecoration(
                                         shape: BoxShape.circle,
-                                        color: AppColor.errorColor,
+                                        color: AppColor.error,
                                       ),
                                     ),
                                     Positioned(
                                       top: 0,
                                       left: 30,
                                       child: Container(
-                                        width: 35,
-                                        height: 35,
+                                        width: context.getHorizontalSize(35),
+                                        height: context.getVerticalSize(35),
                                         decoration: const BoxDecoration(
                                           shape: BoxShape.circle,
-                                          color: AppColor.primaryColor,
+                                          color: AppColor.primary,
                                         ),
                                       ),
                                     ),
@@ -131,12 +126,12 @@ class _HomePageState extends State<HomePage> {
                   Positioned(
                     top: 65,
                     child: SizedBox(
-                      width: 318,
-                      height: 66,
+                      width:context.getVerticalSize(318),
+                      height: context.getVerticalSize(66),
                       child: SCCard.match(
                         child: Container(
                           decoration: const BoxDecoration(
-                            color: AppColor.secondaryColor,
+                            color: AppColor.secondary,
                             borderRadius: BorderRadius.only(
                               bottomLeft: Radius.circular(10),
                               bottomRight: Radius.circular(10),
@@ -158,20 +153,20 @@ class _HomePageState extends State<HomePage> {
                                     ),
                                     Padding(
                                       padding: const EdgeInsets.symmetric(
-                                        vertical: 1,
+                                        vertical: 11,
                                         horizontal: 13,
                                       ),
                                       child: Column(
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                         children: [
-                                          SCText.bodyMedium(
+                                          SCText.titleMedium(
                                             context,
-                                            text: context.l10n.textChooseNow,
+                                            text: context.l10n.chooseNow,
                                           ),
-                                          SCText.bodyMedium(
+                                          SCText.titleMedium(
                                             context,
-                                            text: context.l10n.textChooseNow,
+                                            text: context.l10n.chooseNow,
                                           ),
                                         ],
                                       ),
@@ -188,9 +183,9 @@ class _HomePageState extends State<HomePage> {
                                     const SizedBox(
                                       width: 10,
                                     ),
-                                    SCText.bodyMedium(
+                                    SCText.titleMedium(
                                       context,
-                                      text: context.l10n.textChooseNow,
+                                      text: context.l10n.championLeague,
                                     ),
                                   ],
                                 ),
@@ -203,48 +198,47 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ],
               ),
-              const SizedBox(height: 13),
-              // Row(
-              //   crossAxisAlignment: CrossAxisAlignment.start,
-              //   children: [
-              //     SCText.displayLarge(
-              //       text: context.l10n.textSignIn,
-              //       context,
+              const SizedBox(height: 60),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SCText.displayLarge(
+                    text: context.l10n.signIn,
+                    context,
 
-              //     ),
-              //   ],
-              // ),
+                  ),
+                ],
+              ),
 
-              //   child: SCText.displayLarge(context,
-              //       text: context.l10n.textCondition,),
+                // child: SCText.displayLarge(context,
+                //     text: context.l10n.textCondition,),
 
               const SizedBox(height: 100),
               SizedBox(
-              height: 170,
-              child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                shrinkWrap: true,
-                itemCount: listAvatars.length,
-                itemBuilder: (_, i) {
-                  return AvatarItem(
-                    avatar: listAvatars[i],
-                     
-                  );
-                },
+                height: context.getVerticalSize(170),
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  shrinkWrap: true,
+                  itemCount: listAvatars.length,
+                  itemBuilder: (_, i) {
+                    return AvatarItem(
+                      avatar: listAvatars[i],
+                    );
+                  },
+                ),
               ),
-            ),
               const SizedBox(
                 height: 20,
               ),
               Stack(
                 children: [
                   SizedBox(
-                    width: 317,
-                    height: 199,
+                    width: context.getHorizontalSize(317),
+                    height: context.getVerticalSize(199),
                     child: SCCard.avatar(
                       shape: const RoundedRectangleBorder(
                         borderRadius: BorderRadius.all(Radius.circular(18)),
-                        side: BorderSide(color: AppColor.primaryColor),
+                        side: BorderSide(color: AppColor.primary),
                       ),
                       child: Image.asset(
                         'assets/images/background.png',
@@ -255,8 +249,8 @@ class _HomePageState extends State<HomePage> {
                   Positioned(
                     bottom: 1,
                     child: SCCard.avatar(
-                      width: 317,
-                      height: 71,
+                      width:context.getHorizontalSize(317),
+                      height: context.getVerticalSize(71),
                       color: Colors.transparent,
                       child: const SizedBox.shrink(),
                     ),
@@ -266,8 +260,8 @@ class _HomePageState extends State<HomePage> {
                     left: 15,
                     child: Container(
                       decoration:
-                          const BoxDecoration(color: AppColor.primaryColor),
-                      width: 93,
+                          const BoxDecoration(color: AppColor.primary),
+                      width: context.getHorizontalSize(93),
                       height: 5,
                     ),
                   ),
@@ -279,13 +273,13 @@ class _HomePageState extends State<HomePage> {
                 alignment: Alignment.center,
                 children: [
                   SCCard.avatar(
-                    width: 318,
-                    height: 150,
+                    width: context.getHorizontalSize(318),
+                    height: context.getVerticalSize(150),
                     child: Container(
                       decoration: const BoxDecoration(
                         borderRadius: BorderRadius.all(Radius.circular(10)),
                         gradient: LinearGradient(
-                          colors: AppColor.linearGradientColor,
+                          colors: AppColor.linearGradient,
                         ),
                       ),
                     ),
@@ -295,24 +289,24 @@ class _HomePageState extends State<HomePage> {
                     right: 150,
                     child: Image.asset(
                       'assets/images/stadium.png',
-                      width: 317,
-                      height: 71,
+                      width: context.getHorizontalSize(317),
+                      height: context.getVerticalSize(71),
                     ),
                   ),
                   Positioned(
                     bottom: 15,
                     left: 150,
                     child: Container(
-                      width: 149,
-                      height: 30,
+                      width: context.getHorizontalSize(149),
+                      height: context.getVerticalSize(30),
                       decoration: BoxDecoration(
-                        color: AppColor.secondaryColor.withOpacity(0.2),
+                        color: AppColor.secondary.withOpacity(0.2),
                         borderRadius: BorderRadius.circular(15),
                       ),
                       child: Center(
                         child: SCText.displaySmall(
                           context,
-                          text: context.l10n.textChooseNow,
+                          text: context.l10n.chooseNow,
                         ),
                       ),
                     ),
@@ -337,10 +331,15 @@ class _HomePageState extends State<HomePage> {
             icon: Icon(Icons.school),
             label: 'Page 3',
           ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.school),
+            label: 'Page 3',
+          ),
         ],
       ),
     );
   }
+
   final listAvatars = [
     AvatarModel(id: '1', url: 'assets/images/match.png'),
     AvatarModel(id: '2', url: 'assets/images/match.png'),
@@ -366,7 +365,7 @@ class AvatarItem extends StatelessWidget {
         padding: const EdgeInsets.all(5),
         decoration: BoxDecoration(
           border: Border.all(
-            color: AppColor.primaryColor,
+            color: AppColor.primary,
           ),
           borderRadius: const BorderRadius.all(
             Radius.circular(20),
@@ -374,18 +373,22 @@ class AvatarItem extends StatelessWidget {
         ),
         width: 150,
         height: 170,
-        child: Image.asset(avatar?.url ?? '',
-        width: 150,height: 170,),
-        
+        child: Image.asset(
+          avatar?.url ?? '',
+          width: 150,
+          height: 170,
+        ),
       ),
     );
   }
 }
 
 class AvatarModel {
-  AvatarModel({required this.url, required this.id, });
+  AvatarModel({
+    required this.url,
+    required this.id,
+  });
 
   final String url;
   final String id;
-  
 }

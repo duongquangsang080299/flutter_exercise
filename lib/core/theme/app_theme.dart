@@ -14,8 +14,8 @@ class AppTheme {
           ),
         ),
       ),
-      primaryColor: AppColor.primaryColor,
-      scaffoldBackgroundColor: AppColor.secondaryColor,
+      primaryColor: AppColor.primary,
+      scaffoldBackgroundColor: AppColor.secondary,
       colorScheme: _colorScheme,
       buttonTheme: _buttonTheme,
       cardTheme: const CardTheme(
@@ -30,7 +30,7 @@ class AppTheme {
         style: _outlinedButtonStyle,
       ),
       iconTheme: const IconThemeData(
-        color: AppColor.jetBlackColor,
+        color: AppColor.jetBlack,
         size: 24,
       ),
       textTheme: _textTheme,
@@ -39,9 +39,9 @@ class AppTheme {
 
   ColorScheme get _colorScheme {
     return const ColorScheme.light(
-      primary: AppColor.primaryColor,
-      secondary: AppColor.secondaryColor,
-      onSurface:AppColor.transparentColor
+      primary: AppColor.primary,
+      secondary: AppColor.secondary,
+      onSurface:AppColor.transparent,
     );
   }
 
@@ -50,7 +50,7 @@ class AppTheme {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(20),
       ),
-      buttonColor: AppColor.primaryColor,
+      buttonColor: AppColor.primary,
       padding: const EdgeInsets.all(12),
     );
   }
@@ -58,7 +58,7 @@ class AppTheme {
   ElevatedButtonThemeData get _elevatedButtonTheme {
     return ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
-        backgroundColor: AppColor.primaryColor,
+        backgroundColor: AppColor.primary,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20),
         ),
@@ -95,8 +95,8 @@ class AppDarkTheme extends AppTheme {
   @override
   ColorScheme get _colorScheme {
     return const ColorScheme.dark().copyWith(
-      primary: AppColor.primaryColor,
-      background: AppColor.secondaryColor,
+      primary: AppColor.primary,
+      background: AppColor.secondary,
     );
   }
 }

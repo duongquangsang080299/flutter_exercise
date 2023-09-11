@@ -52,70 +52,6 @@ double getFontSize(double px) {
   return getSize(px);
 }
 
-///This method is used to set padding responsively
-EdgeInsets getPadding({
-  double? all,
-  double? left,
-  double? top,
-  double? right,
-  double? bottom,
-}) {
-  return getMarginOrPadding(
-    all: all,
-    left: left,
-    top: top,
-    right: right,
-    bottom: bottom,
-  );
-}
-
-///This method is used to set margin responsively
-EdgeInsets getMargin({
-  double? all,
-  double? left,
-  double? top,
-  double? right,
-  double? bottom,
-}) {
-  return getMarginOrPadding(
-    all: all,
-    left: left,
-    top: top,
-    right: right,
-    bottom: bottom,
-  );
-}
-
-///This method is used to get padding or margin responsively
-EdgeInsets getMarginOrPadding({
-  double? all,
-  double? left,
-  double? top,
-  double? right,
-  double? bottom,
-}) {
-  if (all != null) {
-    left = all;
-    top = all;
-    right = all;
-    bottom = all;
-  }
-  return EdgeInsets.only(
-    left: getHorizontalSize(
-      left ?? 0,
-    ),
-    top: getVerticalSize(
-      top ?? 0,
-    ),
-    right: getHorizontalSize(
-      right ?? 0,
-    ),
-    bottom: getVerticalSize(
-      bottom ?? 0,
-    ),
-  );
-}
-
 extension FormatExtension on double {
   /// Return a [double] value with formatted according to provided fractionDigit
   double toDoubleValue({int fractionDigits = 2}) {
@@ -125,18 +61,82 @@ extension FormatExtension on double {
 
 extension FormatWidthHeight on BuildContext {
   double getVerticalSize(double px) {
-  return (px * _height) / (FIGMA_DESIGN_HEIGHT - FIGMA_DESIGN_STATUS_BAR);
-  
-}
-double getHorizontalSize(double px) {
-  return (px * _width) / FIGMA_DESIGN_WIDTH;
+    return (px * _height) / (FIGMA_DESIGN_HEIGHT - FIGMA_DESIGN_STATUS_BAR);
+  }
+
+  double getHorizontalSize(double px) {
+    return (px * _width) / FIGMA_DESIGN_WIDTH;
+  }
 }
 
-}
 extension BuildContextSizeExtension on BuildContext {
   double getSize(double px) {
     final height = MediaQuery.of(this).size.height * (px / FIGMA_DESIGN_HEIGHT);
     final width = MediaQuery.of(this).size.width * (px / FIGMA_DESIGN_WIDTH);
     return height < width ? height : width;
+  }
+
+  ///This method is used to set padding responsively
+  EdgeInsets getPadding({
+    double? all,
+    double? left,
+    double? top,
+    double? right,
+    double? bottom,
+  }) {
+    return getMarginOrPadding(
+      all: all,
+      left: left,
+      top: top,
+      right: right,
+      bottom: bottom,
+    );
+  }
+
+  ///This method is used to set margin responsively
+  EdgeInsets getMargin({
+    double? all,
+    double? left,
+    double? top,
+    double? right,
+    double? bottom,
+  }) {
+    return getMarginOrPadding(
+      all: all,
+      left: left,
+      top: top,
+      right: right,
+      bottom: bottom,
+    );
+  }
+
+  ///This method is used to get padding or margin responsively
+  EdgeInsets getMarginOrPadding({
+    double? all,
+    double? left,
+    double? top,
+    double? right,
+    double? bottom,
+  }) {
+    if (all != null) {
+      left = all;
+      top = all;
+      right = all;
+      bottom = all;
+    }
+    return EdgeInsets.only(
+      left: getHorizontalSize(
+        left ?? 0,
+      ),
+      top: getVerticalSize(
+        top ?? 0,
+      ),
+      right: getHorizontalSize(
+        right ?? 0,
+      ),
+      bottom: getVerticalSize(
+        bottom ?? 0,
+      ),
+    );
   }
 }

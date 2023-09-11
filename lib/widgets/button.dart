@@ -12,7 +12,6 @@ class SCButton extends StatelessWidget {
     this.onPressed,
     this.textColor,
     super.key,
-    this.width,
     this.backgroundColor,
     this.height,
     this.borderRadius,
@@ -20,7 +19,6 @@ class SCButton extends StatelessWidget {
   });
   final String text;
   final Color? textColor;
-  final double? width;
   final Color? backgroundColor;
   final VoidCallback? onPressed;
   final double? height;
@@ -30,8 +28,8 @@ class SCButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: width,
-      height:context.getVerticalSize(60),
+      width: double.infinity,
+      height: context.getVerticalSize(60),
       child: ElevatedButton(
         onPressed: onPressed,
         style: ButtonStyle(
@@ -55,24 +53,16 @@ class SCButton extends StatelessWidget {
 /// Define SCButtonIcon widget with icon and text
 class SCButtonIcon extends StatelessWidget {
   const SCButtonIcon({
-    // Text displayed on the button
     required this.text,
-    // Callback function when the button is pressed
     this.onPressed,
-    // Optional key to uniquely identify the widget
     super.key,
-    // Optional icon for the button
     this.icon,
-    // Optional width of the button
-    this.width,
     this.color,
     this.borderRadius,
     this.style,
     this.height,
   });
   final String text;
-  final double? width;
-
   final VoidCallback? onPressed;
   final Widget? icon;
   final Color? color;
@@ -83,8 +73,7 @@ class SCButtonIcon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: width,
-       height:context.getVerticalSize(60),
+      height: context.getVerticalSize(60),
       child: ElevatedButton(
         onPressed: onPressed,
         style: ButtonStyle(
@@ -96,19 +85,19 @@ class SCButtonIcon extends StatelessWidget {
         ),
         // icon: Container(color: Colors.red,child: const Icon(Icons.email)),
         child: Stack(
-            children: [
-                Align(
-                    alignment: Alignment.centerLeft,
-                    child: icon,
-                ),
-                Align(
-                    child: SCText.displaySmall(
-                    context,
-                    text: text,
-                    style: style,
-                  ),
-                ),
-            ],
+          children: [
+            Align(
+              alignment: Alignment.centerLeft,
+              child: icon,
+            ),
+            Align(
+              child: SCText.displaySmall(
+                context,
+                text: text,
+                style: style,
+              ),
+            ),
+          ],
         ),
       ),
     );
@@ -120,14 +109,12 @@ class SCOutlineButton extends StatelessWidget {
     required this.text,
     this.onPressed,
     super.key,
-    this.width,
     this.height,
     this.borderRadius,
     this.style,
   });
   final String text;
   final VoidCallback? onPressed;
-  final double? width;
   final double? height;
   final int? borderRadius;
   final TextStyle? style;
@@ -135,8 +122,7 @@ class SCOutlineButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: width,
-     height:context.getVerticalSize(60),
+      height: context.getVerticalSize(60),
       child: OutlinedButton(
         onPressed: onPressed,
         style: ButtonStyle(
@@ -145,7 +131,7 @@ class SCOutlineButton extends StatelessWidget {
               borderRadius: BorderRadius.circular(40),
               // Customize the button's border
               side: const BorderSide(
-                color: AppColor.jetBlackColor,
+                color: AppColor.jetBlack,
               ),
             ),
           ),

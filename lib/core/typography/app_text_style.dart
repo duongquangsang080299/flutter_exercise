@@ -24,7 +24,7 @@ class AppTextStyles {
     fontFamily: 'Poppins',
     fontSize: getFontSize(24),
     fontWeight: AppFontWeight.semiBold,
-    color: AppColor.primaryColor,
+    color: AppColor.primary,
   );
 
   /// Text style for medium titles
@@ -32,7 +32,7 @@ class AppTextStyles {
     fontFamily: 'Poppins',
     fontSize:  getFontSize(16),
     fontWeight: AppFontWeight.medium,
-    color: AppColor.secondaryColor,
+    color: AppColor.secondary,
    
   );
 
@@ -49,7 +49,7 @@ class AppTextStyles {
   static TextStyle bodyBold = _baseTextStyle(
     fontFamily: 'Poppins',
     fontSize:  getFontSize(18),
-    fontWeight: AppFontWeight.regular,
+    fontWeight: AppFontWeight.medium,
     color: AppColor.tertiary,
   );
 
@@ -58,7 +58,7 @@ class AppTextStyles {
     fontFamily: 'Poppins',
     fontSize:  getFontSize(11),
     fontWeight: AppFontWeight.regular,
-    color: AppColor.textSecondary,
+    color: AppColor.hexGray,
   );
 
   /// Text style for captions
@@ -66,6 +66,6 @@ class AppTextStyles {
     fontFamily: 'Poppins',
     fontSize:  getFontSize(10),
     fontWeight: AppFontWeight.semiBold,
-    color: AppColor.secondaryColor,
+    color: AppColor.secondary,
   );
 }

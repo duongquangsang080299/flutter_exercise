@@ -4,6 +4,7 @@ import 'package:soccer_club_app/core/color/app_color.dart';
 import 'package:soccer_club_app/core/extention.dart';
 import 'package:soccer_club_app/core/typography/app_fontweight.dart';
 import 'package:soccer_club_app/l10n/l10n.dart';
+import 'package:soccer_club_app/routes/routes.dart';
 import 'package:soccer_club_app/utils/size_utils.dart';
 import 'package:soccer_club_app/utils/validator_util.dart';
 import 'package:soccer_club_app/widgets/button.dart';
@@ -34,15 +35,14 @@ class _SignInState extends State<SignIn> {
               SizedBox(height: context.getVerticalSize(87)),
               // Display Large Text
               SCText.displayLarge(
-                text: context.l10n.textSignIn,
+                text: context.l10n.signIn,
                 context,
               ),
               const SizedBox(height: 16),
               // Title Text
               SCText.displaySmall(
                 context,
-                style: context.textTheme.displaySmall,
-                text: context.l10n.textDescription,
+                text: context.l10n.description,
               ),
 
               SizedBox(height: context.getVerticalSize(30)),
@@ -51,9 +51,8 @@ class _SignInState extends State<SignIn> {
               Column(
                 children: [
                   SCInput.username(
-                    labelText: context.l10n.textUsername,
-                    labelStyle:
-                        const TextStyle(color: AppColor.suvaGray),
+                    labelText: context.l10n.labelUsername,
+                    labelStyle: const TextStyle(color: AppColor.suvaGray),
                     validator: (value) => value?.isValidUserName(),
                   ),
 
@@ -61,7 +60,7 @@ class _SignInState extends State<SignIn> {
 
                   // Password Text Form Field
                   SCInput.password(
-                    labelText: context.l10n.textPassword,
+                    labelText: context.l10n.lablelPassword,
                     validator: (input) => input?.isValidPassword(),
                     suffixIcon: IconButton(
                       icon: const Icon(Icons.visibility),
@@ -86,14 +85,13 @@ class _SignInState extends State<SignIn> {
                   } else {
                     debugPrint('Form is invalid');
                   }
-                  context.go('/playerPage');
+                  context.go(AppRoutes.playerPage.path);
                 },
-                text: context.l10n.loginButton,
+                text: context.l10n.btnLogin,
                 style: context.textTheme.displayMedium?.copyWith(
                   fontWeight: AppFontWeight.semiBold,
                 ),
-                backgroundColor: AppColor.primaryColor,
-                width: context.getHorizontalSize(318),
+                backgroundColor: AppColor.primary,
                 height: context.getVerticalSize(60),
                 borderRadius: 30,
               ),
@@ -105,17 +103,17 @@ class _SignInState extends State<SignIn> {
                 TextSpan(
                   children: [
                     TextSpan(
-                      text: context.l10n.textForgotPassword,
+                      text: context.l10n.forgotPassword,
                       style: context.textTheme.titleSmall?.copyWith(
                         fontWeight: AppFontWeight.medium,
                         color: AppColor.textDimGray,
                       ),
                     ),
                     TextSpan(
-                      text: context.l10n.textReset,
+                      text: context.l10n.resetHere,
                       style: context.textTheme.titleSmall?.copyWith(
                         fontWeight: AppFontWeight.medium,
-                        color: AppColor.primaryColor,
+                        color: AppColor.primary,
                       ),
                     ),
                   ],
