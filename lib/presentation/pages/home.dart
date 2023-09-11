@@ -244,7 +244,7 @@ class _HomePageState extends State<HomePage> {
                     child: SCCard.avatar(
                       shape: const RoundedRectangleBorder(
                         borderRadius: BorderRadius.all(Radius.circular(18)),
-                        side: BorderSide(color: AppColor.primaryColor),
+                       
                       ),
                       child: Image.asset(
                         'assets/images/background.png',
