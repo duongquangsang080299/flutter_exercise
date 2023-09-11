@@ -16,57 +16,63 @@ class WelcomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Column(
-          children: [
-            SizedBox(
-              height: context.getVerticalSize(115),
-            ),
-            Image.asset(
-              'assets/images/clogo.png',
-              width: context.getHorizontalSize(228),
-              height: context.getVerticalSize(212),
-            ),
-            SizedBox(height: context.getVerticalSize(71)),
-            SCText.displayLarge(
-              context,
-              style: context.textTheme.displayLarge?.copyWith(
-                color: AppColor.tertiary,
+        child: Padding(
+          padding:
+              EdgeInsets.symmetric(horizontal: context.getHorizontalSize(20)),
+          child: Column(
+            children: [
+              SizedBox(
+                height: context.getVerticalSize(115),
               ),
-              textAlign: TextAlign.center,
-              text: context.l10n.textWelcomeScreen,
-            ),
-            SizedBox(height: context.getVerticalSize(50)),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                SCButtonIcon(
-                  onPressed: () {
-                    context.go('/signIn');
-                  },
-                  text: context.l10n.loginWithEmailButton,
-                  icon: SCIcon.email(color: AppColor.secondaryColor),
-                  style: context.textTheme.displayMedium?.copyWith(
-                    fontWeight: AppFontWeight.semiBold,
-                  ),
-                  width: context.getHorizontalSize(318),
-                  height: context.getVerticalSize(60),
+              Image.asset(
+                'assets/images/clogo.png',
+                width: context.getSize(228),
+                height: context.getSize(212),
+              ),
+              SizedBox(height: context.getVerticalSize(71)),
+              SCText.displayLarge(
+                context,
+                style: context.textTheme.displayLarge?.copyWith(
+                  color: AppColor.tertiary,
                 ),
-                SizedBox(height: context.getVerticalSize(30)),
-                SCButton(
-                  onPressed: () {
-                    context.go('/signUp');
-                  },
-                  text: context.l10n.createAccountButton,
-                  style: context.textTheme.displayMedium?.copyWith(
-                    fontWeight: AppFontWeight.semiBold,
+                textAlign: TextAlign.center,
+                text: context.l10n.textWelcomeScreen,
+              ),
+              SizedBox(height: context.getVerticalSize(50)),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SizedBox(
+                    width: context.getHorizontalSize(318),
+                    child: SCButtonIcon(
+                      onPressed: () {
+                        context.go('/signIn');
+                      },
+                      icon: SCIcon.email(color: AppColor.secondaryColor),
+                      text: context.l10n.loginWithEmailButton,
+                      style: context.textTheme.displayMedium?.copyWith(
+                        fontWeight: AppFontWeight.semiBold,
+                      ),
+                    ),
                   ),
-                  width: context.getHorizontalSize(319),
-                  height: context.getVerticalSize(60),
-                  backgroundColor: AppColor.jetBlackColor,
-                ),
-              ],
-            ),
-          ],
+                  SizedBox(height: context.getVerticalSize(30)),
+                  SizedBox(
+                    width: context.getHorizontalSize(319),
+                    child: SCButton(
+                      onPressed: () {
+                        context.go('/signUp');
+                      },
+                      text: context.l10n.createAccountButton,
+                      style: context.textTheme.displayMedium?.copyWith(
+                        fontWeight: AppFontWeight.semiBold,
+                      ),
+                      backgroundColor: AppColor.jetBlackColor,
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );
