@@ -72,16 +72,17 @@ class SCAppBar extends StatelessWidget implements PreferredSize {
     return AppBar(
       /// Define leading widget
       leadingWidth: 0,
+
       titleSpacing: 20,
       elevation: elevation,
-      toolbarHeight: toolbarHeight,
+      toolbarHeight: 185,
       leading: leading ?? const SizedBox.shrink(),
       backgroundColor: backgroundColor,
       title: Column(
         children: [
           SCText.displaySmall(context, text: title),
           if (subtitle?.isNotEmpty ?? false)
-            SCText.displayLarge(context, text: subtitle ?? ''),
+            SCText.displaySmall(context, text: subtitle ?? ''),
         ],
       ),
       actions: actions,
@@ -93,5 +94,5 @@ class SCAppBar extends StatelessWidget implements PreferredSize {
   Widget get child => throw UnimplementedError();
 
   @override
-  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
+  Size get preferredSize => const Size.fromHeight(185);
 }

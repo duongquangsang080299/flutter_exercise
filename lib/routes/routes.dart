@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:soccer_club_app/presentation/auth/sign_in.dart';
-import 'package:soccer_club_app/presentation/auth/sign_up.dart';
-import 'package:soccer_club_app/presentation/pages/home.dart';
-import 'package:soccer_club_app/presentation/pages/onboarding.dart';
-import 'package:soccer_club_app/presentation/pages/player1.dart';
-import 'package:soccer_club_app/presentation/pages/welcome_screen.dart';
+import 'package:soccer_club_app/pages/auth/sign_in.dart';
+import 'package:soccer_club_app/pages/auth/sign_up.dart';
+import 'package:soccer_club_app/pages/favourite/player.dart';
+import 'package:soccer_club_app/pages/home/home.dart';
+import 'package:soccer_club_app/pages/onboarding/onboarding.dart';
+import 'package:soccer_club_app/pages/welcome/welcome.dart';
 import 'package:soccer_club_app/splash_screen.dart';
 
 final GoRouter appRouter = GoRouter(
@@ -33,19 +33,19 @@ final GoRouter appRouter = GoRouter(
       path: AppRoutes.welcomeScreen.path,
       name: AppRoutes.welcomeScreen.name,
       builder: (BuildContext context, GoRouterState state) =>
-          const WelcomeScreen(),
+          const WelcomePage(),
     ),
-     GoRoute(
+    GoRoute(
       path: AppRoutes.signIn.path,
       name: AppRoutes.signIn.name,
       builder: (BuildContext context, GoRouterState state) =>
-          const SignIn(),
+          const SignInPage(),
     ),
     GoRoute(
       path: AppRoutes.signUp.path,
       name: AppRoutes.signUp.name,
       builder: (BuildContext context, GoRouterState state) =>
-          const SignUp(),
+          const SignUpPage(),
     ),
     GoRoute(
       path: AppRoutes.playerPage.path,
@@ -56,8 +56,7 @@ final GoRouter appRouter = GoRouter(
     GoRoute(
       path: AppRoutes.homePage.path,
       name: AppRoutes.homePage.name,
-      builder: (BuildContext context, GoRouterState state) =>
-          const HomePage(),
+      builder: (BuildContext context, GoRouterState state) => const HomePage(),
     ),
   ],
 );
@@ -96,7 +95,6 @@ enum AppRoutes {
     name: 'homePage',
     path: '/homePage',
   );
-  
 
   const AppRoutes({
     required this.name,

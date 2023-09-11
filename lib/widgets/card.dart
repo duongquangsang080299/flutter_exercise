@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:soccer_club_app/core/extention.dart';
+import 'package:soccer_club_app/core/extention/extention.dart';
 
 /// Define Card Avata
 class SCCard extends StatelessWidget {
@@ -22,7 +22,7 @@ class SCCard extends StatelessWidget {
     double width = 120,
     double height = 122,
     bool? selected,
-    Color? color ,
+    Color? color,
     BorderRadiusGeometry? borderRadius,
   }) {
     return SCCard(

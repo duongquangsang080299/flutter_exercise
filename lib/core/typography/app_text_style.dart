@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:soccer_club_app/core/color/app_color.dart';
 import 'package:soccer_club_app/core/typography/app_fontweight.dart';
-import 'package:soccer_club_app/utils/size_utils.dart';
+import 'package:soccer_club_app/core/utils/size_utils.dart';
 
 class AppTextStyles {
   /// Base text style generator function with common properties
@@ -18,7 +18,7 @@ class AppTextStyles {
       color: color,
     );
   }
-  
+
   /// Text style for large titles
   static TextStyle titleLarge = _baseTextStyle(
     fontFamily: 'Poppins',
@@ -30,25 +30,23 @@ class AppTextStyles {
   /// Text style for medium titles
   static TextStyle titleMedium = _baseTextStyle(
     fontFamily: 'Poppins',
-    fontSize:  getFontSize(16),
+    fontSize: getFontSize(16),
     fontWeight: AppFontWeight.medium,
     color: AppColor.secondary,
-   
   );
 
   /// Text style for extra bold content
   static TextStyle titleSmall = _baseTextStyle(
     fontFamily: 'Poppins',
-    fontSize:  getFontSize(14),
+    fontSize: getFontSize(14),
     fontWeight: AppFontWeight.regular,
     color: AppColor.tertiary,
-    
   );
 
   /// Text style for bold content
   static TextStyle bodyBold = _baseTextStyle(
     fontFamily: 'Poppins',
-    fontSize:  getFontSize(18),
+    fontSize: getFontSize(18),
     fontWeight: AppFontWeight.medium,
     color: AppColor.tertiary,
   );
@@ -56,7 +54,7 @@ class AppTextStyles {
   /// Text style for subtitles
   static TextStyle subtitle = _baseTextStyle(
     fontFamily: 'Poppins',
-    fontSize:  getFontSize(11),
+    fontSize: getFontSize(11),
     fontWeight: AppFontWeight.regular,
     color: AppColor.hexGray,
   );
@@ -64,7 +62,7 @@ class AppTextStyles {
   /// Text style for captions
   static TextStyle bodySmall = _baseTextStyle(
     fontFamily: 'Poppins',
-    fontSize:  getFontSize(10),
+    fontSize: getFontSize(10),
     fontWeight: AppFontWeight.semiBold,
     color: AppColor.secondary,
   );

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:soccer_club_app/core/color/app_color.dart';
-import 'package:soccer_club_app/utils/size_utils.dart';
+import 'package:soccer_club_app/core/utils/size_utils.dart';
 
 // import 'package:soccer_club_app/widgets/icon.dart';
 import 'package:soccer_club_app/widgets/text.dart';
@@ -83,7 +83,6 @@ class SCButtonIcon extends StatelessWidget {
             ),
           ),
         ),
-        // icon: Container(color: Colors.red,child: const Icon(Icons.email)),
         child: Stack(
           children: [
             Align(

@@ -1,25 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:soccer_club_app/core/color/app_color.dart';
-import 'package:soccer_club_app/core/extention.dart';
+import 'package:soccer_club_app/core/extention/extention.dart';
 import 'package:soccer_club_app/core/typography/app_fontweight.dart';
+import 'package:soccer_club_app/core/utils/size_utils.dart';
+import 'package:soccer_club_app/core/utils/validator_utils.dart';
 import 'package:soccer_club_app/l10n/l10n.dart';
 import 'package:soccer_club_app/routes/routes.dart';
-import 'package:soccer_club_app/utils/size_utils.dart';
-import 'package:soccer_club_app/utils/validator_util.dart';
 import 'package:soccer_club_app/widgets/button.dart';
 import 'package:soccer_club_app/widgets/icon.dart';
 import 'package:soccer_club_app/widgets/input.dart';
 import 'package:soccer_club_app/widgets/text.dart';
 
-class SignUp extends StatefulWidget {
-  const SignUp({super.key});
+class SignUpPage extends StatefulWidget {
+  const SignUpPage({super.key});
 
   @override
-  State<SignUp> createState() => _SignUpState();
+  State<SignUpPage> createState() => _SignUpPageState();
 }
 
-class _SignUpState extends State<SignUp> {
+class _SignUpPageState extends State<SignUpPage> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   bool? showPassword;
   @override

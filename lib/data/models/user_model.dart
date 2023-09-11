@@ -13,7 +13,7 @@ class OnBoardData {
 
 final List<OnBoardData> demoData = [
   OnBoardData(
-    image: 'assets/images/clogo.png',
+    image: 'assets/images/clubLogo.svg',
     title: 'Good Afternoon',
     description: 'Lorem ipsum dolor sit amet, consectetur '
         'adipiscing elit, sed do eiusmod tempor '
@@ -21,7 +21,7 @@ final List<OnBoardData> demoData = [
     subtitle: 'Welcome Back',
   ),
   OnBoardData(
-    image: 'assets/images/clogo.png',
+    image: 'assets/images/clubLogo.svg',
     title: 'Good Afternoon',
     description: 'Lorem ipsum dolor sit amet, consectetur '
         'adipiscing elit, sed do eiusmod tempor '
@@ -29,12 +29,11 @@ final List<OnBoardData> demoData = [
     subtitle: 'Welcome Back',
   ),
   OnBoardData(
-    image: 'assets/images/clogo.png',
+    image: 'assets/images/clubLogo.svg',
     title: 'Good Afternoon',
     description: 'Lorem ipsum dolor sit amet, consectetur '
         'adipiscing elit, sed do eiusmod tempor '
         'incididunt ut labore et dolore magna aliqua',
     subtitle: 'Welcome Back',
   ),
-  
 ];

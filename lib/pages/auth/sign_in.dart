@@ -1,24 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:soccer_club_app/core/color/app_color.dart';
-import 'package:soccer_club_app/core/extention.dart';
+import 'package:soccer_club_app/core/constant/image.dart';
+import 'package:soccer_club_app/core/extention/extention.dart';
 import 'package:soccer_club_app/core/typography/app_fontweight.dart';
+import 'package:soccer_club_app/core/utils/size_utils.dart';
+import 'package:soccer_club_app/core/utils/validator_utils.dart';
 import 'package:soccer_club_app/l10n/l10n.dart';
 import 'package:soccer_club_app/routes/routes.dart';
-import 'package:soccer_club_app/utils/size_utils.dart';
-import 'package:soccer_club_app/utils/validator_util.dart';
 import 'package:soccer_club_app/widgets/button.dart';
 import 'package:soccer_club_app/widgets/input.dart';
 import 'package:soccer_club_app/widgets/text.dart';
 
-class SignIn extends StatefulWidget {
-  const SignIn({super.key});
+class SignInPage extends StatefulWidget {
+  const SignInPage({super.key});
 
   @override
-  State<SignIn> createState() => _SignInState();
+  State<SignInPage> createState() => _SignInPageState();
 }
 
-class _SignInState extends State<SignIn> {
+class _SignInPageState extends State<SignInPage> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   bool? showPassword;
 
@@ -76,9 +77,23 @@ class _SignInState extends State<SignIn> {
               ),
 
               // Sign-In Button
-
+              const SizedBox(height: 30),
+              SCButton(
+                onPressed: () {
+                  final form = _formKey.currentState ?? FormState();
+                  if (form.validate()) {
+                    debugPrint('Form is valid');
+                    context.go(AppRoutes.playerPage.path);
+                  } else {
+                    debugPrint('Form is invalid');
+                  }
+                },
+                text: context.l10n.btnLogin,
+                backgroundColor: AppColor.primary,
+                height: context.getVerticalSize(60),
+                borderRadius: 30,
+              ),
               const SizedBox(height: 16),
-
               // Body Large Text
               Text.rich(
                 TextSpan(
