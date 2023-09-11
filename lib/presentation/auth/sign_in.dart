@@ -38,14 +38,12 @@ class _SignInState extends State<SignIn> {
                 text: context.l10n.signIn,
                 context,
               ),
-              const SizedBox(height: 16),
+
               // Title Text
               SCText.displaySmall(
                 context,
                 text: context.l10n.description,
               ),
-
-              SizedBox(height: context.getVerticalSize(30)),
 
               // Text Form Fields for Username
               Column(
@@ -74,7 +72,6 @@ class _SignInState extends State<SignIn> {
                   ),
                 ],
               ),
-              SizedBox(height: context.getVerticalSize(30)),
 
               // Sign-In Button
               SCButton(
@@ -88,9 +85,6 @@ class _SignInState extends State<SignIn> {
                   context.go(AppRoutes.playerPage.path);
                 },
                 text: context.l10n.btnLogin,
-                style: context.textTheme.displayMedium?.copyWith(
-                  fontWeight: AppFontWeight.semiBold,
-                ),
                 backgroundColor: AppColor.primary,
                 height: context.getVerticalSize(60),
                 borderRadius: 30,
