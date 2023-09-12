@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:soccer_club_app/core/color/app_color.dart';
+import 'package:soccer_club_app/core/constant/image.dart';
 import 'package:soccer_club_app/core/utils/size_utils.dart';
 import 'package:soccer_club_app/l10n/l10n.dart';
 import 'package:soccer_club_app/widgets/app_bar.dart';
@@ -20,11 +21,11 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: SCAppBar.second(
-        toolbarHeight: 185,
+        toolbarHeight: 139,
         backgroundColor: AppColor.primary,
         centerTitle: false,
-        title: 'ASDASDASD',
-        subtitle: 'asdasdasdS',
+        title: 'Good Morning',
+        subtitle: 'Adrian',
         actions: const [
           Icon(Icons.abc),
           SizedBox(width: 10),
@@ -33,7 +34,7 @@ class _HomePageState extends State<HomePage> {
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(20),
+          padding: const EdgeInsets.all(28),
           child: Column(
             children: [
               Row(
@@ -46,169 +47,151 @@ class _HomePageState extends State<HomePage> {
                 ],
               ),
               const SizedBox(height: 13),
-              Stack(
-                clipBehavior: Clip.none,
-                alignment: Alignment.center,
-                children: [
-                  Positioned(
-                    child: SizedBox(
-                      height: context.getVerticalSize(66),
-                      width: context.getHorizontalSize(318),
-                      child: SCCard.match(
-                        child: Container(
-                          decoration: BoxDecoration(
-                            border: Border.all(color: AppColor.whiteSmoke),
-                            color: AppColor.whiteSmoke,
-                            borderRadius: const BorderRadius.only(
-                              topLeft: Radius.circular(10),
-                              topRight: Radius.circular(10),
-                            ),
-                            boxShadow: const [
-                              BoxShadow(
-                                color: AppColor.whiteSmoke,
-                                offset: Offset(0, 9),
-                                blurRadius: 8,
+              SCCard.match(
+                child: Container(
+                  height: 66,
+                  width: 318,
+                  decoration: const BoxDecoration(
+                    // border: Border.all(color: AppColor.whiteSmoke),
+                    color: AppColor.whiteSmoke,
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(10),
+                      topRight: Radius.circular(10),
+                    ),
+                    boxShadow: [
+                      BoxShadow(
+                        color: AppColor.whiteSmoke,
+                        offset: Offset(0, 80),
+                        blurRadius: 8,
+                      ),
+                    ],
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 18,
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Stack(
+                          clipBehavior: Clip.none,
+                          alignment: Alignment.center,
+                          children: [
+                            Container(
+                              width: 35,
+                              height: 35,
+                              decoration: const BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: AppColor.error,
                               ),
-                            ],
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 19,
                             ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Stack(
-                                  clipBehavior: Clip.none,
-                                  alignment: Alignment.center,
-                                  children: [
-                                    Container(
-                                      width: context.getHorizontalSize(35),
-                                      height: context.getVerticalSize(35),
-                                      decoration: const BoxDecoration(
-                                        shape: BoxShape.circle,
-                                        color: AppColor.error,
-                                      ),
-                                    ),
-                                    Positioned(
-                                      top: 0,
-                                      left: 30,
-                                      child: Container(
-                                        width: context.getHorizontalSize(35),
-                                        height: context.getVerticalSize(35),
-                                        decoration: const BoxDecoration(
-                                          shape: BoxShape.circle,
-                                          color: AppColor.primary,
-                                        ),
-                                      ),
-                                    ),
-                                  ],
+                            Positioned(
+                              top: 0,
+                              left: 30,
+                              child: Container(
+                                width: 35,
+                                height: 35,
+                                decoration: const BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  color: AppColor.primary,
                                 ),
-                                IconButton(
-                                  onPressed: () {},
-                                  icon: const Icon(
-                                    Icons.more_vert_outlined,
-                                  ),
-                                ),
-                              ],
+                              ),
+                            ),
+                          ],
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(right: 1),
+                          child: IconButton(
+                            onPressed: () {},
+                            icon: const Icon(
+                              Icons.more_vert_outlined,
                             ),
                           ),
                         ),
-                      ),
+                      ],
                     ),
                   ),
-                  Positioned(
-                    top: 65,
-                    child: SizedBox(
-                      width: context.getVerticalSize(318),
-                      height: context.getVerticalSize(66),
-                      child: SCCard.match(
-                        child: Container(
-                          decoration: const BoxDecoration(
-                            color: AppColor.secondary,
-                            borderRadius: BorderRadius.only(
-                              bottomLeft: Radius.circular(10),
-                              bottomRight: Radius.circular(10),
-                            ),
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 22,
-                            ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Row(
-                                  children: [
-                                    SCIcon.calendar(
-                                      color: AppColor.veryDarkBlue,
-                                      width: 17,
-                                      height: 18,
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                        vertical: 11,
-                                        horizontal: 13,
-                                      ),
-                                      child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          SCText.titleMedium(
-                                            context,
-                                            text: context.l10n.chooseNow,
-                                          ),
-                                          SCText.titleMedium(
-                                            context,
-                                            text: context.l10n.chooseNow,
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                Row(
-                                  children: [
-                                    SCIcon.email(
-                                      color: AppColor.darkBlue,
-                                      width: 18,
-                                      height: 15,
-                                    ),
-                                    const SizedBox(
-                                      width: 10,
-                                    ),
-                                    SCText.titleMedium(
-                                      context,
-                                      text: context.l10n.championLeague,
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
+                ),
               ),
-              const SizedBox(height: 60),
+              const SizedBox(height: 1),
+              SCCard.match(
+                child: Container(
+                  width: 318,
+                  height: 66,
+                  decoration: const BoxDecoration(
+                    color: AppColor.secondary,
+                    borderRadius: BorderRadius.only(
+                      bottomLeft: Radius.circular(10),
+                      bottomRight: Radius.circular(10),
+                    ),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(3),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(
+                          children: [
+                            SCIcon.calendar(
+                              color: AppColor.veryDarkBlue,
+                              width: 17,
+                              height: 18,
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.symmetric(
+                                vertical: 11,
+                                horizontal: 13,
+                              ),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  SCText.titleMedium(
+                                    context,
+                                    text: context.l10n.chooseNow,
+                                  ),
+                                  SCText.titleMedium(
+                                    context,
+                                    text: context.l10n.chooseNow,
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            SCIcon.email(
+                              color: AppColor.darkBlue,
+                              width: 18,
+                              height: 15,
+                            ),
+                            const SizedBox(
+                              width: 10,
+                            ),
+                            SCText.titleMedium(
+                              context,
+                              text: context.l10n.championLeague,
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 13),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SCText.displayLarge(
-                    text: context.l10n.signIn,
+                  SCText.bodyMedium(
+                    text: context.l10n.netxMatch,
                     context,
                   ),
                 ],
               ),
-
-              // child: SCText.displayLarge(context,
-              //     text: context.l10n.textCondition,),
-
-              const SizedBox(height: 100),
+              const SizedBox(height: 13),
               SizedBox(
-                height: context.getVerticalSize(170),
+                height: 170,
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
                   shrinkWrap: true,
@@ -226,15 +209,15 @@ class _HomePageState extends State<HomePage> {
               Stack(
                 children: [
                   SizedBox(
-                    width: context.getHorizontalSize(317),
-                    height: context.getVerticalSize(199),
+                    width: 317,
+                    height: 199,
                     child: SCCard.avatar(
                       shape: const RoundedRectangleBorder(
                         borderRadius: BorderRadius.all(Radius.circular(18)),
                         side: BorderSide(color: AppColor.primary),
                       ),
                       child: SvgPicture.asset(
-                        'assets/images/background.svg',
+                        SCAssets.stadiumtranfor,
                         fit: BoxFit.cover,
                       ),
                     ),
@@ -277,12 +260,12 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                   Positioned(
-                    top: 40,
-                    right: 150,
+                    top: 10,
+                    right: 200,
                     child: SvgPicture.asset(
-                      'assets/images/stadium.svg',
-                      width: 317,
-                      height: 71,
+                      SCAssets.stadium,
+                      width: 145,
+                      height: 125,
                     ),
                   ),
                   Positioned(
@@ -312,7 +295,11 @@ class _HomePageState extends State<HomePage> {
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
+            backgroundColor: Colors.white,
+            icon: Icon(
+              Icons.home,
+              color: Colors.red,
+            ),
             label: 'Page 1',
           ),
           BottomNavigationBarItem(
@@ -321,6 +308,7 @@ class _HomePageState extends State<HomePage> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.school),
+            backgroundColor: AppColor.primary,
             label: 'Page 3',
           ),
           BottomNavigationBarItem(
@@ -329,17 +317,23 @@ class _HomePageState extends State<HomePage> {
           ),
         ],
       ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        backgroundColor: AppColor.secondary,
+        child: SvgPicture.asset(SCAssets.logofloatingbutton),
+      ),
     );
   }
 
   final listAvatars = [
-    AvatarModel(id: '1', url: 'assets/images/favouritePlayer.svg'),
-    AvatarModel(id: '2', url: 'assets/images/favouritePlayer.svg'),
-    AvatarModel(id: '3', url: 'assets/images/favouritePlayer.svg'),
-    AvatarModel(id: '4', url: 'assets/images/favouritePlayer.svg'),
-    AvatarModel(id: '5', url: 'assets/images/favouritePlayer.svg'),
-    AvatarModel(id: '6', url: 'assets/images/favouritePlayer.svg'),
-    AvatarModel(id: '7', url: 'assets/images/favouritePlayer.svg'),
+    AvatarModel(id: '1', url: 'assets/images/stadium.svg'),
+    AvatarModel(id: '2', url: 'assets/images/stadium.svg'),
+    AvatarModel(id: '3', url: 'assets/images/stadium.svg'),
+    AvatarModel(id: '4', url: 'assets/images/stadium.svg'),
+    AvatarModel(id: '5', url: 'assets/images/stadium.svg'),
+    AvatarModel(id: '6', url: 'assets/images/stadium.svg'),
+    AvatarModel(id: '7', url: 'assets/images/stadium.svg'),
   ];
 }
 

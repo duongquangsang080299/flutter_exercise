@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:soccer_club_app/core/extention/extention.dart';
+import 'package:soccer_club_app/core/extention/builder_context_extension.dart';
 
 /// Define Card Avata
 class SCCard extends StatelessWidget {
@@ -64,6 +64,7 @@ class SCCard extends StatelessWidget {
       height: height,
       width: width,
       child: Card(
+        margin: EdgeInsets.zero,
         elevation: elevation,
         shape: RoundedRectangleBorder(
           borderRadius: borderRadius ??

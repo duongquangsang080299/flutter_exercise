@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:soccer_club_app/core/extention/extention.dart';
+import 'package:soccer_club_app/core/extention/builder_context_extension.dart';
 
 class SCText extends StatelessWidget {
   /// Constructor for SCText widget.

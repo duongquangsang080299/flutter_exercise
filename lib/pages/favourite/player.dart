@@ -17,10 +17,22 @@ class PlayerPage extends StatefulWidget {
   const PlayerPage({super.key});
 
   @override
-  State<PlayerPage> createState() => _PlayerPageState();
+  _PlayerPageState createState() => _PlayerPageState();
 }
 
 class _PlayerPageState extends State<PlayerPage> {
+  final PageController _pageController = PageController();
+  int _selectedIndex = 0;
+  List<AvatarModel> listAvatars = [
+    AvatarModel(id: '1', url: 'assets/images/stadium.svg'),
+    AvatarModel(id: '2', url: 'assets/images/avatar.svg'),
+    AvatarModel(id: '3', url: 'assets/images/clubLogo.svg'),
+    AvatarModel(id: '1', url: 'assets/images/stadium.svg'),
+    AvatarModel(id: '2', url: 'assets/images/avatar.svg'),
+    AvatarModel(id: '3', url: 'assets/images/clubLogo.svg'),
+    // Add more AvatarModel items with actual image paths...
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -52,7 +64,6 @@ class _PlayerPageState extends State<PlayerPage> {
               SizedBox(
                 height: context.getVerticalSize(41),
               ),
-              // Title Text
               SCText.displaySmall(
                 context,
                 textAlign: TextAlign.center,
@@ -65,8 +76,8 @@ class _PlayerPageState extends State<PlayerPage> {
                 children: [
                   SCCard.avatar(
                     borderRadius: const BorderRadius.all(Radius.circular(20)),
-                    width: context.getHorizontalSize(141),
-                    height: context.getVerticalSize(152),
+                    width: 141,
+                    height: 152,
                     color: AppColor.jetBlack,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.end,
@@ -86,13 +97,13 @@ class _PlayerPageState extends State<PlayerPage> {
                         const SizedBox(height: 20),
                       ],
                     ),
-                  ), // Back image
+                  ),
                   Positioned(
                     bottom: 70,
                     child: SCCard.avatar(
                       borderRadius: const BorderRadius.all(Radius.circular(20)),
                       child: SvgPicture.asset(
-                        SCAssets.player,
+                        listAvatars[_selectedIndex].url,
                       ),
                     ),
                   ),
@@ -100,21 +111,34 @@ class _PlayerPageState extends State<PlayerPage> {
               ),
               SizedBox(height: context.getVerticalSize(44)),
               SCText.displaySmall(context, text: context.l10n.swipeToSelect),
-              SizedBox(height: context.getVerticalSize(27)),
+              const SizedBox(height: 27),
               SizedBox(
-                height: context.getVerticalSize(50),
-                child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  shrinkWrap: true,
+                height: 50,
+                child: PageView.builder(
+                  controller: PageController(
+                    initialPage: 2,
+                    viewportFraction: 1 / 5,
+                  ),
                   itemCount: listAvatars.length,
+                  onPageChanged: (index) {
+                    setState(() {
+                      _selectedIndex = index;
+                    });
+                  },
                   itemBuilder: (_, i) {
                     return AvatarItem(
                       avatar: listAvatars[i],
+                      isActive: i == _selectedIndex,
+                      onTap: () {
+                        setState(() {
+                          _selectedIndex = i;
+                        });
+                      },
                     );
                   },
                 ),
               ),
-              SizedBox(height: context.getVerticalSize(57)),
+              const SizedBox(height: 57),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -123,7 +147,6 @@ class _PlayerPageState extends State<PlayerPage> {
                       onPressed: () {
                         context.go(AppRoutes.homePage.path);
                       },
-                      // Localize the 'Skip' text using context.l10n
                       text: context.l10n.btnSkip,
                       style: context.textTheme.displayMedium?.copyWith(
                         color: AppColor.neonSilver,
@@ -153,40 +176,56 @@ class _PlayerPageState extends State<PlayerPage> {
     );
   }
 
-  final listAvatars = [
-    AvatarModel(id: '1', url: SCAssets.placeholder),
-    AvatarModel(id: '2', url: SCAssets.placeholder),
-    AvatarModel(id: '3', url: SCAssets.placeholder),
-    AvatarModel(id: '4', url: SCAssets.placeholder),
-    AvatarModel(id: '5', url: SCAssets.placeholder),
-    AvatarModel(id: '6', url: SCAssets.placeholder),
-    AvatarModel(id: '7', url: SCAssets.placeholder),
-  ];
+  @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
+  }
 }
 
 class AvatarItem extends StatelessWidget {
-  const AvatarItem({super.key, this.avatar});
+  const AvatarItem({
+    required this.onTap,
+    required this.isActive,
+    super.key,
+    this.avatar,
+  });
 
   final AvatarModel? avatar;
+  final VoidCallback onTap;
+  final bool isActive;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {},
+      onTap: onTap,
       child: Container(
-        margin: const EdgeInsets.only(left: 10),
+        margin: const EdgeInsets.only(right: 10),
         padding: const EdgeInsets.all(5),
         decoration: BoxDecoration(
           border: Border.all(
-            color: Colors.transparent,
+            color: isActive ? AppColor.primary : Colors.transparent,
           ),
           borderRadius: const BorderRadius.all(
             Radius.circular(12),
           ),
         ),
-        width: context.getHorizontalSize(50),
-        height: context.getVerticalSize(50),
-        child: SvgPicture.asset(avatar?.url ?? ''),
+        width: 50,
+        height: 50,
+        child: Stack(
+          children: [
+            SvgPicture.asset(avatar?.url ?? ''),
+            if (isActive)
+              const Positioned(
+                bottom: 100,
+                right: 50,
+                child: Icon(
+                  Icons.arrow_forward,
+                  color: Colors.green,
+                ),
+              ),
+          ],
+        ),
       ),
     );
   }

@@ -12,4 +12,9 @@ class SCAssets {
   static const String stadium = 'assets/images/stadium.svg';
 
   static const String favouriteplayer = 'assets/images/favouritePlayer.svg';
+
+  static const String stadiumtranfor = 'assets/images/stadiumtranfor';
+
+  static const String logofloatingbutton =
+      'assets/images/logofloatingbutton.svg';
 }
