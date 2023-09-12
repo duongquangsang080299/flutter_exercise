@@ -3,7 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:soccer_club_app/core/color/app_color.dart';
 import 'package:soccer_club_app/core/constant/image.dart';
-import 'package:soccer_club_app/core/extention/extention.dart';
+import 'package:soccer_club_app/core/extention/builder_context_extension.dart';
 import 'package:soccer_club_app/core/typography/app_fontweight.dart';
 import 'package:soccer_club_app/core/utils/size_utils.dart';
 import 'package:soccer_club_app/l10n/l10n.dart';
@@ -137,7 +137,6 @@ class _PlayerPageState extends State<PlayerPage> {
                       onPressed: () {
                         context.go(AppRoutes.homePage.path);
                       },
-                      // Localize the 'CAMPAIGNS' text using context.l10n
                       text: context.l10n.btnConfirm,
                       style: context.textTheme.displayMedium?.copyWith(
                         fontWeight: AppFontWeight.semiBold,
