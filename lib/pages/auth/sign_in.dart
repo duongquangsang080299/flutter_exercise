@@ -34,12 +34,11 @@ class _SignInPageState extends State<SignInPage> {
             children: [
               SizedBox(height: context.getVerticalSize(87)),
               // Display Large Text
-
-              const SizedBox(height: 16),
               SCText.displayLarge(
-                text: context.l10n.signIn,
                 context,
+                text: context.l10n.signIn,
               ),
+              const SizedBox(height: 16),
 
               // Title Text
               SCText.displaySmall(

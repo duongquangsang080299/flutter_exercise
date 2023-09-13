@@ -51,6 +51,18 @@ class SCText extends StatelessWidget {
       textAlign: textAlign,
     );
   }
+  factory SCText.bodyLarge(
+    BuildContext context, {
+    required String text,
+    TextStyle? style,
+    TextAlign? textAlign,
+  }) {
+    return SCText(
+      text: text,
+      style: style ?? context.textThemeData.bodyLarge,
+      textAlign: textAlign,
+    );
+  }
 
   /// Factory constructor to create Body Medium Text
   factory SCText.bodyMedium(

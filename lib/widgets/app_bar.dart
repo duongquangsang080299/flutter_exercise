@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:soccer_club_app/core/color/app_color.dart';
+import 'package:soccer_club_app/core/extention/builder_context_extension.dart';
 import 'package:soccer_club_app/widgets/text.dart';
 
 /// Define AppBar
@@ -79,10 +81,20 @@ class SCAppBar extends StatelessWidget implements PreferredSize {
       leading: leading ?? const SizedBox.shrink(),
       backgroundColor: backgroundColor,
       title: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SCText.displaySmall(context, text: title),
+          SCText.displayMedium(
+            context,
+            text: title,
+            style: context.textTheme.displayMedium,
+          ),
           if (subtitle?.isNotEmpty ?? false)
-            SCText.displaySmall(context, text: subtitle ?? ''),
+            SCText.displayLarge(
+              context,
+              text: subtitle ?? '',
+              style: context.textTheme.displayLarge
+                  ?.copyWith(color: AppColor.secondary),
+            ),
         ],
       ),
       actions: actions,

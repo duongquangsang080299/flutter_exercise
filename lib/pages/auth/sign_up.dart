@@ -33,7 +33,7 @@ class _SignUpPageState extends State<SignUpPage> {
             context.go(AppRoutes.signIn.path);
           },
           child: SCIcon.back(
-            color: Colors.black,
+            color: AppColor.secondary,
           ),
         ),
       ),

@@ -44,15 +44,21 @@ class AppTextStyles {
   );
 
   /// Text style for bold content
-  static TextStyle bodyBold = _baseTextStyle(
+  static TextStyle bodyLarge = _baseTextStyle(
     fontFamily: 'Poppins',
     fontSize: getFontSize(18),
     fontWeight: AppFontWeight.medium,
     color: AppColor.tertiary,
   );
+  static TextStyle bodyMeidum = _baseTextStyle(
+    fontFamily: 'Poppins',
+    fontSize: getFontSize(12),
+    fontWeight: AppFontWeight.regular,
+    color: AppColor.tertiary,
+  );
 
   /// Text style for subtitles
-  static TextStyle subtitle = _baseTextStyle(
+  static TextStyle descriptionSmall = _baseTextStyle(
     fontFamily: 'Poppins',
     fontSize: getFontSize(11),
     fontWeight: AppFontWeight.regular,

@@ -9,7 +9,7 @@
     "btnCreateAnAccount": "Create an account ",
     "goodAfternoon": "Good Afternoon",
     "welcomeBack": "Welcome Back",
-    "textDescriptionOnboarding": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do   eiusmod tempor incididunt ut labore et dolore magna aliqua",
+    "textDescriptionOnboarding": "Lorem ipsum dolor sit amet, consectetur \nadipiscing elit, sed do   eiusmod tempor \nincididunt ut labore et dolore magna aliqua",
     "welcomeToVictoryGreensApp1": "Welcome to",
     "welcomeToVictoryGreensApp2": "Victory Greens App",
     "signIn": "Sign In",
@@ -31,6 +31,20 @@
     "byTappingSignUpYouAcceptOur": "By tapping “Sign Up” you accept our",
     "terms": "terms                      ",
     "and": "and ",
-    "condition": "condition"
-    
+    "condition": "condition",
+    "continuePayment": "Continue Payment",
+    "may2021AM": "1 May 2021,    10:56 AM",
+    "notifications": "Notifications",
+    "clear": "Clear",
+    "news": "News",
+    "superLiga" :"Super Liga",
+    "sun01May":"Sun 01 May",
+    "greatestGamsvVictoryGreatWinner":"Greatest Gams, v Victory \nGreat Winner!",
+    "getOFF":"Get 54% OFF",
+    "upcomingSchedule":"Upcoming Schedule",
+    "league":"League",
+    "redDevils":" Red Devils",
+    "vs":"vs",
+    "vGreen": "V. Greens"
+
 }

@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
 import 'package:soccer_club_app/core/color/app_color.dart';
 import 'package:soccer_club_app/core/constant/image.dart';
+import 'package:soccer_club_app/core/extention/builder_context_extension.dart';
 import 'package:soccer_club_app/core/utils/size_utils.dart';
 import 'package:soccer_club_app/l10n/l10n.dart';
+import 'package:soccer_club_app/routes/routes.dart';
 import 'package:soccer_club_app/widgets/app_bar.dart';
 import 'package:soccer_club_app/widgets/card.dart';
 import 'package:soccer_club_app/widgets/icon.dart';
@@ -21,26 +24,45 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: SCAppBar.second(
-        toolbarHeight: 139,
+        toolbarHeight: getVerticalSize(139),
         backgroundColor: AppColor.primary,
         centerTitle: false,
-        title: 'Good Morning',
-        subtitle: 'Adrian',
-        actions: const [
-          Icon(Icons.abc),
-          SizedBox(width: 10),
-          Icon(Icons.abc_rounded),
+        title: context.l10n.goodMorning,
+        subtitle: context.l10n.adrian,
+        actions: [
+          IconButton(
+            icon: SCIcon.notification(
+              color: AppColor.secondary,
+            ),
+            onPressed: () {
+              context.go(AppRoutes.fixturesPage.path);
+            },
+          ),
+          const SizedBox(
+            width: 10,
+          ),
+          Padding(
+            padding: const EdgeInsets.all(28),
+            child: IconButton(
+              icon: SCIcon.menu(
+                color: AppColor.secondary,
+              ),
+              onPressed: () {
+                context.go(AppRoutes.fixturesPage.path);
+              },
+            ),
+          ),
         ],
       ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(28),
+      body: Padding(
+        padding: const EdgeInsets.all(28),
+        child: SingleChildScrollView(
           child: Column(
             children: [
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SCText.bodyMedium(
+                  SCText.bodyLarge(
                     text: context.l10n.netxMatch,
                     context,
                   ),
@@ -52,7 +74,6 @@ class _HomePageState extends State<HomePage> {
                   height: 66,
                   width: 318,
                   decoration: const BoxDecoration(
-                    // border: Border.all(color: AppColor.whiteSmoke),
                     color: AppColor.whiteSmoke,
                     borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(10),
@@ -102,7 +123,9 @@ class _HomePageState extends State<HomePage> {
                         Padding(
                           padding: const EdgeInsets.only(right: 1),
                           child: IconButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              context.go(AppRoutes.nextMatchPage.path);
+                            },
                             icon: const Icon(
                               Icons.more_vert_outlined,
                             ),
@@ -128,7 +151,7 @@ class _HomePageState extends State<HomePage> {
                   child: Padding(
                     padding: const EdgeInsets.all(3),
                     child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         Row(
                           children: [
@@ -139,7 +162,7 @@ class _HomePageState extends State<HomePage> {
                             ),
                             Padding(
                               padding: const EdgeInsets.symmetric(
-                                vertical: 11,
+                                vertical: 16,
                                 horizontal: 13,
                               ),
                               child: Column(
@@ -183,8 +206,8 @@ class _HomePageState extends State<HomePage> {
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SCText.bodyMedium(
-                    text: context.l10n.netxMatch,
+                  SCText.bodyLarge(
+                    text: context.l10n.news,
                     context,
                   ),
                 ],
@@ -192,47 +215,219 @@ class _HomePageState extends State<HomePage> {
               const SizedBox(height: 13),
               SizedBox(
                 height: 170,
-                child: ListView.builder(
+                child: ListView(
                   scrollDirection: Axis.horizontal,
                   shrinkWrap: true,
-                  itemCount: listAvatars.length,
-                  itemBuilder: (_, i) {
-                    return AvatarItem(
-                      avatar: listAvatars[i],
-                    );
-                  },
+                  children: [
+                    SCCard.match(
+                      child: Container(
+                        width: 150,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(18),
+                          border: Border.all(color: AppColor.flashWhite),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.all(20),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              SCText.displayMedium(
+                                text: context.l10n.superLiga,
+                                style: context.textTheme.displayMedium
+                                    ?.copyWith(color: AppColor.hexBlack),
+                                context,
+                              ),
+                              const SizedBox(height: 5),
+                              SCText.titleMedium(
+                                text: context.l10n.sun01May,
+                                style: context.textTheme.titleMedium
+                                    ?.copyWith(color: AppColor.blueAzure),
+                                context,
+                              ),
+                              const SizedBox(height: 14),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  SvgPicture.asset(SCAssets.logofloatingbutton),
+                                  const SizedBox(width: 8),
+                                  SvgPicture.asset(SCAssets.logofloatingbutton),
+                                ],
+                              ),
+                              const SizedBox(height: 5),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  SCText.displayLarge(
+                                    context,
+                                    text: '4',
+                                    style: context.textTheme.displayLarge
+                                        ?.copyWith(color: AppColor.tertiary),
+                                  ),
+                                  const SizedBox(width: 10),
+                                  SCText.displayLarge(
+                                    context,
+                                    text: '-',
+                                    style: context.textTheme.displayLarge
+                                        ?.copyWith(color: AppColor.tertiary),
+                                  ),
+                                  const SizedBox(width: 8),
+                                  SCText.displayLarge(
+                                    context,
+                                    text: '1',
+                                    style: context.textTheme.displayLarge
+                                        ?.copyWith(color: AppColor.tertiary),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(width: 10),
+                    Stack(
+                      clipBehavior: Clip.none,
+                      alignment: Alignment.center,
+                      children: [
+                        Container(
+                          width: 150,
+                          height: 170,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(18),
+                            border: Border.all(color: AppColor.primary),
+                          ),
+                          child: SCCard.avatar(
+                            child: SvgPicture.asset(
+                              SCAssets.stadium,
+                            ),
+                          ),
+                        ),
+                        Positioned(
+                          bottom: 1,
+                          child: SizedBox(
+                            width: 149,
+                            height: 42,
+                            child: SCCard.avatar(
+                              borderRadius: const BorderRadius.only(
+                                bottomLeft: Radius.circular(15),
+                                bottomRight: Radius.circular(15),
+                              ),
+                              color: AppColor.transparent,
+                              child: const SizedBox.shrink(),
+                            ),
+                          ),
+                        ),
+                        Positioned(
+                          top: 135,
+                          left: 15,
+                          child: SCText.bodySmall(
+                            text: context.l10n.greatestGamsvVictoryGreatWinner,
+                            context,
+                          ),
+                        ),
+                        Positioned(
+                          top: 85,
+                          left: 10,
+                          child: SvgPicture.asset(
+                            'assets/images/logofloatingbutton.svg',
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    Stack(
+                      clipBehavior: Clip.none,
+                      alignment: Alignment.center,
+                      children: [
+                        Container(
+                          width: 150,
+                          height: 170,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(18),
+                            border: Border.all(color: AppColor.primary),
+                          ),
+                          child: SCCard.avatar(
+                            child: SvgPicture.asset(
+                              SCAssets.stadium,
+                            ),
+                          ),
+                        ),
+                        Positioned(
+                          bottom: 1,
+                          child: SizedBox(
+                            width: 149,
+                            height: 42,
+                            child: SCCard.avatar(
+                              borderRadius: const BorderRadius.only(
+                                bottomLeft: Radius.circular(15),
+                                bottomRight: Radius.circular(15),
+                              ),
+                              color: AppColor.transparent,
+                              child: const SizedBox.shrink(),
+                            ),
+                          ),
+                        ),
+                        Positioned(
+                          top: 135,
+                          left: 15,
+                          child: SCText.bodySmall(
+                            text: context.l10n.greatestGamsvVictoryGreatWinner,
+                            context,
+                          ),
+                        ),
+                        Positioned(
+                          top: 85,
+                          left: 10,
+                          child: SvgPicture.asset(
+                            'assets/images/logofloatingbutton.svg',
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
               ),
               const SizedBox(
                 height: 20,
               ),
               Stack(
+                clipBehavior: Clip.none,
+                alignment: Alignment.center,
                 children: [
-                  SizedBox(
+                  Container(
                     width: 317,
                     height: 199,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(18),
+                      border: Border.all(color: AppColor.primary),
+                    ),
                     child: SCCard.avatar(
-                      shape: const RoundedRectangleBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(18)),
-                        side: BorderSide(color: AppColor.primary),
-                      ),
                       child: SvgPicture.asset(
-                        SCAssets.stadiumtranfor,
-                        fit: BoxFit.cover,
+                        SCAssets.stadium,
                       ),
                     ),
                   ),
                   Positioned(
                     bottom: 1,
-                    child: SCCard.avatar(
-                      width: context.getHorizontalSize(317),
-                      height: context.getVerticalSize(71),
-                      color: Colors.transparent,
-                      child: const SizedBox.shrink(),
+                    child: SizedBox(
+                      width: 317,
+                      height: 42,
+                      child: SCCard.avatar(
+                        borderRadius: const BorderRadius.only(
+                          bottomLeft: Radius.circular(15),
+                          bottomRight: Radius.circular(15),
+                        ),
+                        color: Colors.transparent,
+                        child: const SizedBox.shrink(),
+                      ),
                     ),
                   ),
                   Positioned(
-                    top: 141,
+                    top: 170,
                     left: 15,
                     child: Container(
                       decoration: const BoxDecoration(color: AppColor.primary),
@@ -281,7 +476,9 @@ class _HomePageState extends State<HomePage> {
                       child: Center(
                         child: SCText.displaySmall(
                           context,
-                          text: context.l10n.chooseNow,
+                          text: context.l10n.getOFF,
+                          style: context.textTheme.displaySmall
+                              ?.copyWith(color: AppColor.secondary),
                         ),
                       ),
                     ),
@@ -293,28 +490,12 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            backgroundColor: Colors.white,
-            icon: Icon(
-              Icons.home,
-              color: Colors.red,
-            ),
-            label: 'Page 1',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.business),
-            label: 'Page 2',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.school),
-            backgroundColor: AppColor.primary,
-            label: 'Page 3',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.school),
-            label: 'Page 3',
-          ),
+        backgroundColor: Colors.white,
+        items: <BottomNavigationBarItem>[
+          _buildBottomNavItem(Icons.shop, 'Page 1', AppColor.primary),
+          _buildBottomNavItem(Icons.shop, 'Page 2', Colors.red),
+          _buildBottomNavItem(Icons.shop, 'Page 3', Colors.red),
+          _buildBottomNavItem(Icons.shop, 'Page 4', Colors.red),
         ],
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
@@ -326,55 +507,38 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  final listAvatars = [
-    AvatarModel(id: '1', url: 'assets/images/stadium.svg'),
-    AvatarModel(id: '2', url: 'assets/images/stadium.svg'),
-    AvatarModel(id: '3', url: 'assets/images/stadium.svg'),
-    AvatarModel(id: '4', url: 'assets/images/stadium.svg'),
-    AvatarModel(id: '5', url: 'assets/images/stadium.svg'),
-    AvatarModel(id: '6', url: 'assets/images/stadium.svg'),
-    AvatarModel(id: '7', url: 'assets/images/stadium.svg'),
-  ];
-}
-
-class AvatarItem extends StatelessWidget {
-  const AvatarItem({super.key, this.avatar});
-
-  final AvatarModel? avatar;
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {},
-      child: Container(
-        margin: const EdgeInsets.only(left: 10),
-        padding: const EdgeInsets.all(5),
-        decoration: BoxDecoration(
-          border: Border.all(
-            color: AppColor.primary,
-          ),
-          borderRadius: const BorderRadius.all(
-            Radius.circular(20),
-          ),
-        ),
-        width: 150,
-        height: 170,
-        child: SvgPicture.asset(
-          avatar?.url ?? '',
-          width: 150,
-          height: 170,
+  BottomNavigationBarItem _buildBottomNavItem(
+    IconData icon,
+    String label,
+    Color color,
+  ) {
+    return BottomNavigationBarItem(
+      icon: InkWell(
+        onTap: () {
+          // Handle item tap here
+        },
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            IconButton(
+              icon: Icon(
+                icon,
+                color: color,
+              ),
+              onPressed: () {
+                // Handle button tap here
+              },
+            ),
+            Text(
+              label,
+              style: TextStyle(
+                color: color,
+              ),
+            ),
+          ],
         ),
       ),
+      label: label,
     );
   }
-}
-
-class AvatarModel {
-  AvatarModel({
-    required this.url,
-    required this.id,
-  });
-
-  final String url;
-  final String id;
 }

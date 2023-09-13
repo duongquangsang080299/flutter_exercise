@@ -24,9 +24,9 @@ class _PlayerPageState extends State<PlayerPage> {
   final PageController _pageController = PageController();
   int _selectedIndex = 0;
   List<AvatarModel> listAvatars = [
-    AvatarModel(id: '1', url: 'assets/images/stadium.svg'),
-    AvatarModel(id: '2', url: 'assets/images/avatar.svg'),
-    AvatarModel(id: '3', url: 'assets/images/clubLogo.svg'),
+    AvatarModel(id: '1', url: 'assets/images/playerone.svg'),
+    AvatarModel(id: '2', url: 'assets/images/playerone.svg'),
+    AvatarModel(id: '3', url: 'assets/images/playerone.svg'),
     AvatarModel(id: '1', url: 'assets/images/stadium.svg'),
     AvatarModel(id: '2', url: 'assets/images/avatar.svg'),
     AvatarModel(id: '3', url: 'assets/images/clubLogo.svg'),
@@ -210,18 +210,26 @@ class AvatarItem extends StatelessWidget {
             Radius.circular(12),
           ),
         ),
-        width: 50,
-        height: 50,
+        width: 150, // Adjust the width as needed
+        height: 170, // Adjust the height as needed
         child: Stack(
+          clipBehavior: Clip.none,
           children: [
             SvgPicture.asset(avatar?.url ?? ''),
             if (isActive)
-              const Positioned(
-                bottom: 100,
+              Positioned(
+                left: 50,
+                top: 0,
+                child: SCIcon.forward(
+                  color: Colors.amber,
+                ),
+              ),
+            if (isActive)
+              Positioned(
                 right: 50,
-                child: Icon(
-                  Icons.arrow_forward,
-                  color: Colors.green,
+                top: 0,
+                child: SCIcon.back(
+                  color: Colors.amber,
                 ),
               ),
           ],

@@ -41,10 +41,12 @@ class SCCard extends StatelessWidget {
     double? width,
     double? height,
     Widget? child,
+    ShapeBorder? shape,
   }) {
     return SCCard(
       width: width,
       height: height,
+      shape: shape,
       child: child,
     );
   }
@@ -69,7 +71,7 @@ class SCCard extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: borderRadius ??
               const BorderRadius.all(
-                Radius.circular(10),
+                Radius.circular(18),
               ),
           side: BorderSide(
             color: selected ?? false

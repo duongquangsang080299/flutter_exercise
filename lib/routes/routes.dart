@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:soccer_club_app/pages/Match/next_match_details.dart';
 import 'package:soccer_club_app/pages/auth/sign_in.dart';
 import 'package:soccer_club_app/pages/auth/sign_up.dart';
 import 'package:soccer_club_app/pages/favourite/player.dart';
+import 'package:soccer_club_app/pages/fixtures/fixtures.dart';
 import 'package:soccer_club_app/pages/home/home.dart';
+import 'package:soccer_club_app/pages/notifications/notifications.dart';
 import 'package:soccer_club_app/pages/onboarding/onboarding.dart';
 import 'package:soccer_club_app/pages/welcome/welcome.dart';
 import 'package:soccer_club_app/splash_screen.dart';
@@ -58,6 +61,24 @@ final GoRouter appRouter = GoRouter(
       name: AppRoutes.homePage.name,
       builder: (BuildContext context, GoRouterState state) => const HomePage(),
     ),
+    GoRoute(
+      path: AppRoutes.nextMatchPage.path,
+      name: AppRoutes.nextMatchPage.name,
+      builder: (BuildContext context, GoRouterState state) =>
+          const NextMatchPage(),
+    ),
+    GoRoute(
+      path: AppRoutes.fixturesPage.path,
+      name: AppRoutes.fixturesPage.name,
+      builder: (BuildContext context, GoRouterState state) =>
+          const FixturesPage(),
+    ),
+    GoRoute(
+      path: AppRoutes.notificationsPage.path,
+      name: AppRoutes.notificationsPage.name,
+      builder: (BuildContext context, GoRouterState state) =>
+          const NotificationsPage(),
+    ),
   ],
 );
 
@@ -94,6 +115,18 @@ enum AppRoutes {
   homePage(
     name: 'homePage',
     path: '/homePage',
+  ),
+  nextMatchPage(
+    name: 'nextMatchPage',
+    path: '/nextMatchPage',
+  ),
+  fixturesPage(
+    name: ' fixturesPage',
+    path: '/fixturesPage',
+  ),
+  notificationsPage(
+    name: ' notificationsPage',
+    path: '/notificationsPage',
   );
 
   const AppRoutes({
