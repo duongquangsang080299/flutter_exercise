@@ -105,6 +105,18 @@ class SCText extends StatelessWidget {
       textAlign: textAlign,
     );
   }
+  factory SCText.labelLarge(
+    BuildContext context, {
+    required String text,
+    TextStyle? style,
+    TextAlign? textAlign,
+  }) {
+    return SCText(
+      text: text,
+      style: style ?? context.textThemeData.bodySmall,
+      textAlign: textAlign,
+    );
+  }
 
   final String text;
   final TextStyle? style;

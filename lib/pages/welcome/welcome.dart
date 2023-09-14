@@ -20,11 +20,11 @@ class WelcomePage extends StatelessWidget {
     return Scaffold(
       body: Center(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
+          padding: const EdgeInsets.all(28),
           child: Column(
             children: [
               SizedBox(
-                height: context.getVerticalSize(115),
+                height: context.getVerticalSize(71),
               ),
               SvgPicture.asset(
                 SCAssets.clubLogo,
@@ -48,7 +48,7 @@ class WelcomePage extends StatelessWidget {
                 textAlign: TextAlign.center,
                 text: context.l10n.welcomeToVictoryGreensApp2,
               ),
-              SizedBox(height: context.getVerticalSize(50)),
+              SizedBox(height: context.getVerticalSize(158)),
               Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -62,7 +62,7 @@ class WelcomePage extends StatelessWidget {
                       fontWeight: AppFontWeight.semiBold,
                     ),
                   ),
-                  SizedBox(height: context.getVerticalSize(30)),
+                  const SizedBox(height: 15),
                   SCButton(
                     onPressed: () {
                       context.go(AppRoutes.signUp.path);
@@ -73,7 +73,7 @@ class WelcomePage extends StatelessWidget {
                     ),
                     backgroundColor: AppColor.jetBlack,
                   ),
-                  SizedBox(height: context.getVerticalSize(30)),
+                  const SizedBox(height: 20),
                 ],
               ),
             ],

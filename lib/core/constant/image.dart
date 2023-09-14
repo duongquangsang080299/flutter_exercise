@@ -3,7 +3,7 @@ class SCAssets {
 
   static const String clubLogo = 'assets/images/clubLogo.svg';
 
-  static const String avatar = 'assets/images/avatar.svg';
+  static const String logoSplashScreen = 'assets/images/logoSplashScreen.svg';
 
   static const String player = 'assets/images/player.svg';
 

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:soccer_club_app/core/color/app_color.dart';
-import 'package:soccer_club_app/l10n/l10n.dart';
 import 'package:soccer_club_app/widgets/app_bar.dart';
 import 'package:soccer_club_app/widgets/card.dart';
 import 'package:soccer_club_app/widgets/text.dart';

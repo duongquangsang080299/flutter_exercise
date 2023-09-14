@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:soccer_club_app/core/color/app_color.dart';
+import 'package:soccer_club_app/core/extention/builder_context_extension.dart';
+import 'package:soccer_club_app/core/typography/app_fontweight.dart';
 import 'package:soccer_club_app/widgets/text.dart';
 
 class SCInput extends StatelessWidget {
   const SCInput({
-    super.key, 
+    super.key,
     this.focusNode,
     this.suffixIcon,
     this.textInputAction,
@@ -23,6 +26,7 @@ class SCInput extends StatelessWidget {
     String? labelText,
     TextInputAction? textInputAction,
     String? Function(String?)? validator,
+    TextEditingController? controller,
     bool? obscureText = false,
     TextStyle? labelStyle,
   }) {
@@ -33,6 +37,7 @@ class SCInput extends StatelessWidget {
       textInputAction: textInputAction,
       obscureText: obscureText,
       validator: validator,
+      controller: controller,
       labelStyle: labelStyle,
     );
   }
@@ -43,6 +48,7 @@ class SCInput extends StatelessWidget {
     TextInputType keyboardType = TextInputType.name,
     TextInputAction? textInputAction,
     String? labelText,
+    TextEditingController? controller,
     String? Function(String?)? validator,
     bool? obscureText = false,
     TextStyle? labelStyle,
@@ -53,6 +59,7 @@ class SCInput extends StatelessWidget {
       labelText: labelText,
       textInputAction: textInputAction,
       obscureText: obscureText,
+      controller: controller,
       validator: validator,
       labelStyle: labelStyle,
     );
@@ -63,10 +70,11 @@ class SCInput extends StatelessWidget {
     Key? key,
     FocusNode? focusNode,
     Widget? suffixIcon,
+    TextEditingController? controller,
     String? labelText,
     TextStyle? labelStyle,
     String? Function(String?)? validator,
-    bool obscureText = false, 
+    bool obscureText = false,
     TextInputType keyboardType = TextInputType.visiblePassword,
     EdgeInsetsGeometry? contentPadding,
   }) {
@@ -78,6 +86,7 @@ class SCInput extends StatelessWidget {
       suffixIcon: suffixIcon,
       keyboardType: keyboardType,
       contentPadding: contentPadding,
+      controller: controller,
       validator: validator,
       labelStyle: labelStyle,
     );
@@ -103,11 +112,19 @@ class SCInput extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         if (labelText?.isNotEmpty ?? false) ...[
-          SCText.displaySmall(context, text: labelText ?? ''),
+          SCText.displaySmall(
+            context,
+            text: labelText ?? '',
+            style: context.textTheme.displaySmall?.copyWith(
+              color: AppColor.suvaGray,
+              fontWeight: AppFontWeight.medium,
+            ),
+          ),
           const SizedBox(height: 10),
         ],
         TextFormField(
-          style: Theme.of(context).textTheme.titleLarge,
+          style: Theme.of(context).textTheme.displayMedium?.copyWith(
+              color: AppColor.tertiary, fontWeight: AppFontWeight.regular),
           decoration: InputDecoration(
             suffixIcon: suffixIcon ?? const SizedBox.shrink(),
             contentPadding: contentPadding ??

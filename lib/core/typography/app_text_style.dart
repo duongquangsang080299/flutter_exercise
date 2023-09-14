@@ -58,11 +58,11 @@ class AppTextStyles {
   );
 
   /// Text style for subtitles
-  static TextStyle descriptionSmall = _baseTextStyle(
+  static TextStyle labelLarge = _baseTextStyle(
     fontFamily: 'Poppins',
     fontSize: getFontSize(11),
     fontWeight: AppFontWeight.regular,
-    color: AppColor.hexGray,
+    color: AppColor.error,
   );
 
   /// Text style for captions

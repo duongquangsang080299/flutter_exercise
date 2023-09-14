@@ -164,6 +164,20 @@ class SCIcon extends StatelessWidget {
       onPressed: onPressed,
     );
   }
+  factory SCIcon.suffix({
+    Color? color,
+    double? width,
+    double? height,
+    VoidCallback? onPressed,
+  }) {
+    return SCIcon(
+      iconData: Icons.visibility,
+      color: color,
+      height: height,
+      width: width,
+      onPressed: onPressed,
+    );
+  }
 
   /// Factory constructor for Hidden icon
   factory SCIcon.hidden({
@@ -173,7 +187,7 @@ class SCIcon extends StatelessWidget {
     VoidCallback? onPressed,
   }) {
     return SCIcon(
-      iconData: Icons.visibility_off,
+      iconData: Icons.visibility,
       color: color,
       height: height,
       width: width,

@@ -13,7 +13,7 @@
     "welcomeToVictoryGreensApp1": "Welcome to",
     "welcomeToVictoryGreensApp2": "Victory Greens App",
     "signIn": "Sign In",
-    "description": "Amet minim mollit non deserunt ullamcoe sitaliqua dolor do amet sintelit officia.",
+    "description": "Amet minim mollit non deserunt ullamcoei sitaliqua dolor do amet sintelit officia.",
     "labelUsername": "Username",
     "lablelPassword": "Password",
     "lablelEmail": "Email",
@@ -28,7 +28,7 @@
     "chooseNow": "Choose Now",
     "netxMatch": "Next Match",
     "championLeague": "Champions League",
-    "byTappingSignUpYouAcceptOur": "By tapping “Sign Up” you accept our",
+    "byTappingSignUpYouAcceptOur": "By tapping “Sign Up” you accept our ",
     "terms": "terms                      ",
     "and": "and ",
     "condition": "condition",
@@ -45,6 +45,12 @@
     "league":"League",
     "redDevils":" Red Devils",
     "vs":"vs",
-    "vGreen": "V. Greens"
-
+    "vGreen": "V. Greens",
+    "may9":" 9 May",
+    "years":"2021",
+    "donthaveaccount":"Don't have an account?",
+    "btnAccount":"CREATE AN ACCOUNT",
+    "termsandcondition":"Terms and Conditions",
+    "termandconditionofourapp":"These are the terms and conditions of our app...",
+    "close":"Close"
 }

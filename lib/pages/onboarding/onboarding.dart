@@ -5,7 +5,7 @@ import 'package:soccer_club_app/core/color/app_color.dart';
 import 'package:soccer_club_app/core/constant/image.dart';
 import 'package:soccer_club_app/core/extention/builder_context_extension.dart';
 import 'package:soccer_club_app/core/typography/app_fontweight.dart';
-import 'package:soccer_club_app/core/utils/size_utils.dart';
+import 'package:soccer_club_app/core/utils/utils.dart';
 import 'package:soccer_club_app/data/models/user_model.dart';
 import 'package:soccer_club_app/l10n/l10n.dart';
 import 'package:soccer_club_app/routes/routes.dart';
@@ -25,9 +25,28 @@ class OnBoardingPage extends StatefulWidget {
 class _OnBoardingPageState extends State<OnBoardingPage> {
   final PageController _pageController = PageController();
   int _pageIndex = 0;
+  // Initially disable the button
+  bool _isButtonEnabled = false;
+
+  @override
+  void initState() {
+    super.initState();
+    // Add a listener to the PageController to track page changes
+    _pageController.addListener(_pageListener);
+  }
+
+  void _pageListener() {
+    setState(() {
+      _pageIndex = _pageController.page?.round() ?? 0;
+
+      // Enable the button when the last page is reached
+      _isButtonEnabled = _pageIndex == demoData.length - 1;
+    });
+  }
 
   @override
   void dispose() {
+    _pageController.removeListener(_pageListener);
     _pageController.dispose();
     super.dispose();
   }
@@ -37,9 +56,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
     return Scaffold(
       body: SafeArea(
         child: Padding(
-          padding:
-              // Apply horizontal padding using the getHorizontalSize method
-              const EdgeInsets.symmetric(horizontal: 20),
+          padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Column(
             children: [
               Expanded(
@@ -60,6 +77,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
                   ),
                 ),
               ),
+              SizedBox(height: context.getVerticalSize(30)),
               Expanded(
                 child: Column(
                   children: [
@@ -75,7 +93,6 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
                         ),
                       ),
                     ),
-                    // Add vertical spacing using the getVerticalSize method
                     SizedBox(height: context.getVerticalSize(40)),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -96,20 +113,26 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
                         const SizedBox(width: 20),
                         Expanded(
                           child: SCButton(
-                            onPressed: () {
-                              context.go(AppRoutes.welcomeScreen.path);
-                            },
-                            // Localize the 'CAMPAIGNS' text using context.l10n
+                            onPressed: _isButtonEnabled
+                                ? () {
+                                    context.go(AppRoutes.welcomeScreen.path);
+                                  }
+                                : null,
                             text: context.l10n.btnCampaigns,
-                            style: context.textTheme.displayMedium?.copyWith(
-                              color: AppColor.tertiary,
-                              fontWeight: AppFontWeight.semiBold,
-                            ),
+                            style: _isButtonEnabled
+                                ? context.textTheme.displayMedium?.copyWith(
+                                    fontWeight: AppFontWeight.semiBold,
+                                  )
+                                : context.textTheme.displayMedium?.copyWith(
+                                    fontWeight: AppFontWeight.semiBold,
+                                    color: AppColor.suvaGray,
+                                  ),
                             backgroundColor: AppColor.primary,
                           ),
                         ),
                       ],
                     ),
+                    const SizedBox(height: 20),
                   ],
                 ),
               ),
@@ -154,15 +177,14 @@ class OnBoardingBody extends StatelessWidget {
           ),
           text: title,
         ),
-        const SizedBox(height: 10),
+        const SizedBox(height: 4),
         SCText.displayMedium(
           context,
           style: context.textTheme.displayMedium?.copyWith(
-            color: AppColor.hexBlack,
-          ),
+              color: AppColor.hexGray, fontWeight: AppFontWeight.medium),
           text: subtitle,
         ),
-        const SizedBox(height: 20),
+        const SizedBox(height: 45),
         SCText.displaySmall(
           context,
           style: context.textTheme.displaySmall?.copyWith(

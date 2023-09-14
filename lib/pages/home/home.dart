@@ -4,10 +4,12 @@ import 'package:go_router/go_router.dart';
 import 'package:soccer_club_app/core/color/app_color.dart';
 import 'package:soccer_club_app/core/constant/image.dart';
 import 'package:soccer_club_app/core/extention/builder_context_extension.dart';
+import 'package:soccer_club_app/core/typography/app_fontweight.dart';
 import 'package:soccer_club_app/core/utils/size_utils.dart';
 import 'package:soccer_club_app/l10n/l10n.dart';
 import 'package:soccer_club_app/routes/routes.dart';
 import 'package:soccer_club_app/widgets/app_bar.dart';
+import 'package:soccer_club_app/widgets/bottom_navigation_bar.dart';
 import 'package:soccer_club_app/widgets/card.dart';
 import 'package:soccer_club_app/widgets/icon.dart';
 import 'package:soccer_club_app/widgets/text.dart';
@@ -20,9 +22,11 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  int _currentIndex = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // Customize the app bar with specific properties.
       appBar: SCAppBar.second(
         toolbarHeight: getVerticalSize(139),
         backgroundColor: AppColor.primary,
@@ -35,7 +39,7 @@ class _HomePageState extends State<HomePage> {
               color: AppColor.secondary,
             ),
             onPressed: () {
-              context.go(AppRoutes.fixturesPage.path);
+              context.go(AppRoutes.notificationsPage.path);
             },
           ),
           const SizedBox(
@@ -69,6 +73,8 @@ class _HomePageState extends State<HomePage> {
                 ],
               ),
               const SizedBox(height: 13),
+
+              /// Create a custom card widget named 'match'.
               SCCard.match(
                 child: Container(
                   height: 66,
@@ -168,13 +174,23 @@ class _HomePageState extends State<HomePage> {
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  SCText.titleMedium(
+                                  SCText.bodySmall(
                                     context,
-                                    text: context.l10n.chooseNow,
+                                    text: context.l10n.may9,
+                                    style:
+                                        context.textTheme.bodySmall?.copyWith(
+                                      color: AppColor.darkBlue,
+                                      fontWeight: AppFontWeight.regular,
+                                    ),
                                   ),
-                                  SCText.titleMedium(
+                                  SCText.bodySmall(
                                     context,
-                                    text: context.l10n.chooseNow,
+                                    text: context.l10n.years,
+                                    style:
+                                        context.textTheme.bodySmall?.copyWith(
+                                      color: AppColor.darkBlue,
+                                      fontWeight: AppFontWeight.regular,
+                                    ),
                                   ),
                                 ],
                               ),
@@ -238,10 +254,12 @@ class _HomePageState extends State<HomePage> {
                                 context,
                               ),
                               const SizedBox(height: 5),
-                              SCText.titleMedium(
+                              SCText.bodySmall(
                                 text: context.l10n.sun01May,
-                                style: context.textTheme.titleMedium
-                                    ?.copyWith(color: AppColor.blueAzure),
+                                style: context.textTheme.bodySmall?.copyWith(
+                                  color: AppColor.blueAzure,
+                                  fontWeight: AppFontWeight.regular,
+                                ),
                                 context,
                               ),
                               const SizedBox(height: 14),
@@ -489,14 +507,13 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Colors.white,
-        items: <BottomNavigationBarItem>[
-          _buildBottomNavItem(Icons.shop, 'Page 1', AppColor.primary),
-          _buildBottomNavItem(Icons.shop, 'Page 2', Colors.red),
-          _buildBottomNavItem(Icons.shop, 'Page 3', Colors.red),
-          _buildBottomNavItem(Icons.shop, 'Page 4', Colors.red),
-        ],
+      bottomNavigationBar: SCBottomNavigationBar(
+        currentIndex: _currentIndex,
+        onTap: (int index) {
+          setState(() {
+            _currentIndex = index;
+          });
+        },
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FloatingActionButton(
@@ -504,41 +521,6 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: AppColor.secondary,
         child: SvgPicture.asset(SCAssets.logofloatingbutton),
       ),
-    );
-  }
-
-  BottomNavigationBarItem _buildBottomNavItem(
-    IconData icon,
-    String label,
-    Color color,
-  ) {
-    return BottomNavigationBarItem(
-      icon: InkWell(
-        onTap: () {
-          // Handle item tap here
-        },
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            IconButton(
-              icon: Icon(
-                icon,
-                color: color,
-              ),
-              onPressed: () {
-                // Handle button tap here
-              },
-            ),
-            Text(
-              label,
-              style: TextStyle(
-                color: color,
-              ),
-            ),
-          ],
-        ),
-      ),
-      label: label,
     );
   }
 }

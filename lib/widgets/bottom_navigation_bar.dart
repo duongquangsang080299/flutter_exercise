@@ -1,83 +1,72 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:soccer_club_app/core/color/app_color.dart';
+import 'package:soccer_club_app/routes/routes.dart';
 
-/// Define Bottom Navigation Bar
 class SCBottomNavigationBar extends StatefulWidget {
-  const SCBottomNavigationBar({super.key});
+  const SCBottomNavigationBar({
+    required this.currentIndex,
+    required this.onTap,
+    Key? key,
+  }) : super(key: key);
+  final int currentIndex;
+  final Function(int) onTap;
 
   @override
-  State<SCBottomNavigationBar> createState() => _SCBottomNavigationBarState();
+  _SCBottomNavigationBarState createState() => _SCBottomNavigationBarState();
 }
 
 class _SCBottomNavigationBarState extends State<SCBottomNavigationBar> {
-   int currentIndex = 0;
-
-  final List<Widget> _pages = [
-    const Page1(),
-    const Page2(),
-    const Page3(),
-  ];
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Bottom Navigation Bar Example'),
-      ),
-      body: _pages[currentIndex],
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: currentIndex,
-        onTap: (int index) {
-          setState(() {
-            currentIndex = index;
-          });
-        },
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Page 1',
+    return BottomNavigationBar(
+      currentIndex: widget.currentIndex,
+      onTap: (int index) {
+        widget.onTap(index); // Call the onTap callback
+
+        // Navigate to different pages based on the selected index
+        switch (index) {
+          case 0:
+            Navigator.of(context).pushReplacementNamed(
+                '/home'); // Replace with your home page route
+            break;
+          case 1:
+            context.go(
+              AppRoutes.fixturesPage.path,
+            ); // Replace with your business page route
+            break;
+        }
+      },
+      items: const <BottomNavigationBarItem>[
+        BottomNavigationBarItem(
+          icon: Icon(
+            Icons.home,
+            color: AppColor.primary,
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.business),
-            label: 'Page 2',
+          label: 'Home',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(
+            Icons.business,
+            color: AppColor.primary,
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.school),
-            label: 'Page 3',
+          label: 'Business',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(
+            Icons.school,
+            color: AppColor.primary,
           ),
-        ],
-      ),
-    );
-  }
-}
-
-class Page1 extends StatelessWidget {
-  const Page1({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Center(
-      child: Text('Page 1'),
-    );
-  }
-}
-
-class Page2 extends StatelessWidget {
-  const Page2({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Center(
-      child: Text('Page 2'),
-    );
-  }
-}
-
-class Page3 extends StatelessWidget {
-  const Page3({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Center(
-      child: Text('Page 3'),
+          label: 'School',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(
+            Icons.settings,
+            color: AppColor.primary,
+          ),
+          label: 'Settings',
+        ),
+      ],
     );
   }
 }
