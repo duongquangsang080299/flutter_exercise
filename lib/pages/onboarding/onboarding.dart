@@ -11,6 +11,7 @@ import 'package:soccer_club_app/l10n/l10n.dart';
 import 'package:soccer_club_app/routes/routes.dart';
 import 'package:soccer_club_app/widgets/button.dart';
 import 'package:soccer_club_app/widgets/dots_indicator.dart';
+import 'package:soccer_club_app/widgets/scaffold.dart';
 import 'package:soccer_club_app/widgets/text.dart';
 
 /// Define the OnBoardingPage widget
@@ -53,11 +54,12 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return SCScaffold(
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               Expanded(
                 flex: 3,
@@ -112,27 +114,23 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
                         ),
                         const SizedBox(width: 20),
                         Expanded(
-                          child: SCButton(
-                            onPressed: _isButtonEnabled
-                                ? () {
-                                    context.go(AppRoutes.welcomeScreen.path);
-                                  }
-                                : null,
-                            text: context.l10n.btnCampaigns,
-                            style: _isButtonEnabled
-                                ? context.textTheme.displayMedium?.copyWith(
-                                    fontWeight: AppFontWeight.semiBold,
-                                  )
-                                : context.textTheme.displayMedium?.copyWith(
-                                    fontWeight: AppFontWeight.semiBold,
-                                    color: AppColor.suvaGray,
-                                  ),
-                            backgroundColor: AppColor.primary,
+                            child: SCButton(
+                          onPressed: _isButtonEnabled
+                              ? () {
+                                  context.go(AppRoutes.welcomeScreen.path);
+                                }
+                              : null,
+                          text: context.l10n.btnCampaigns,
+                          style: context.textTheme.displayMedium?.copyWith(
+                            fontWeight: AppFontWeight.semiBold,
                           ),
-                        ),
+                          backgroundColor: _isButtonEnabled
+                              ? AppColor.primary
+                              : AppColor.flashWhite,
+                          borderRadius: 30,
+                        )),
                       ],
                     ),
-                    const SizedBox(height: 20),
                   ],
                 ),
               ),
@@ -181,16 +179,13 @@ class OnBoardingBody extends StatelessWidget {
         SCText.displayMedium(
           context,
           style: context.textTheme.displayMedium?.copyWith(
-              color: AppColor.hexGray, fontWeight: AppFontWeight.medium),
+            color: AppColor.hexGray,
+          ),
           text: subtitle,
         ),
         const SizedBox(height: 45),
         SCText.displaySmall(
           context,
-          style: context.textTheme.displaySmall?.copyWith(
-            color: AppColor.tertiary,
-            fontWeight: AppFontWeight.regular,
-          ),
           textAlign: TextAlign.center,
           text: description,
         ),

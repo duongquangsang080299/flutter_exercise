@@ -23,13 +23,12 @@ class _PlayerPageState extends State<PlayerPage> {
   final PageController _pageController = PageController();
   int _selectedIndex = 0;
   List<AvatarModel> listAvatars = [
-    AvatarModel(id: '1', url: 'assets/images/playerone.svg'),
+    AvatarModel(id: '1', url: 'assets/images/player3.svg'),
     AvatarModel(id: '2', url: 'assets/images/playerone.svg'),
     AvatarModel(id: '3', url: 'assets/images/playerone.svg'),
     AvatarModel(id: '1', url: 'assets/images/stadium.svg'),
     AvatarModel(id: '2', url: 'assets/images/avatar.svg'),
     AvatarModel(id: '3', url: 'assets/images/clubLogo.svg'),
-    // Add more AvatarModel items with actual image paths...
   ];
 
   @override

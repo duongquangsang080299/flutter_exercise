@@ -47,7 +47,7 @@ class SCText extends StatelessWidget {
   }) {
     return SCText(
       text: text,
-      style: style ?? context.textThemeData.bodyLarge,
+      style: style ?? context.textThemeData.displaySmall,
       textAlign: textAlign,
     );
   }
@@ -113,7 +113,7 @@ class SCText extends StatelessWidget {
   }) {
     return SCText(
       text: text,
-      style: style ?? context.textThemeData.bodySmall,
+      style: style ?? context.textThemeData.labelLarge,
       textAlign: textAlign,
     );
   }

@@ -78,7 +78,7 @@ class _SignUpPageState extends State<SignUpPage> {
       body: Form(
         key: _formKey,
         child: Padding(
-          padding: context.getPadding(all: 28),
+          padding: const EdgeInsets.all(28),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [

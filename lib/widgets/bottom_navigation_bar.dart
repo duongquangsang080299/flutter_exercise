@@ -7,8 +7,8 @@ class SCBottomNavigationBar extends StatefulWidget {
   const SCBottomNavigationBar({
     required this.currentIndex,
     required this.onTap,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
   final int currentIndex;
   final Function(int) onTap;
 
@@ -29,12 +29,10 @@ class _SCBottomNavigationBarState extends State<SCBottomNavigationBar> {
           case 0:
             Navigator.of(context).pushReplacementNamed(
                 '/home'); // Replace with your home page route
-            break;
           case 1:
             context.go(
               AppRoutes.fixturesPage.path,
             ); // Replace with your business page route
-            break;
         }
       },
       items: const <BottomNavigationBarItem>[

@@ -11,6 +11,7 @@ import 'package:soccer_club_app/routes/routes.dart';
 import 'package:soccer_club_app/widgets/button.dart';
 import 'package:soccer_club_app/widgets/icon.dart';
 import 'package:soccer_club_app/widgets/input.dart';
+import 'package:soccer_club_app/widgets/scaffold.dart';
 import 'package:soccer_club_app/widgets/text.dart';
 
 class SignInPage extends StatefulWidget {
@@ -24,7 +25,8 @@ class _SignInPageState extends State<SignInPage> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-  bool? showPassword;
+
+  bool showPassword = false;
   @override
   void dispose() {
     _usernameController.dispose();
@@ -34,127 +36,126 @@ class _SignInPageState extends State<SignInPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Form(
-        key: _formKey,
-        child: Padding(
-          padding: context.getPadding(all: 28),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(height: context.getVerticalSize(87)),
-              // Display Large Text
-              SCText.displayLarge(
-                context,
-                text: context.l10n.signIn,
-              ),
-              const SizedBox(height: 16),
-              // Title Text
-              SCText.displaySmall(
-                context,
-                style: context.textTheme.displaySmall
-                    ?.copyWith(fontWeight: AppFontWeight.regular),
-                text: context.l10n.description,
-              ),
-              SizedBox(height: getVerticalSize(30)),
-              // Text Form Fields for Username
-              Column(
-                children: [
-                  SCInput.username(
-                    controller: _usernameController,
-                    labelText: context.l10n.labelUsername,
-                    validator: (value) => value?.isValidUserName(),
-                  ),
-
-                  const SizedBox(height: 20),
-
-                  // Password Text Form Field
-                  SCInput.password(
-                    controller: _passwordController,
-                    labelText: context.l10n.lablelPassword,
-                    validator: (input) => input?.isValidPassword(),
-                    suffixIcon: IconButton(
-                      icon: SCIcon.hidden(
-                        color: AppColor.primary,
-                      ),
-                      onPressed: () {
-                        setState(() {
-                          showPassword = !(showPassword ?? false);
-                        });
-                      },
-                    ),
-                    obscureText: showPassword ?? true,
-                  ),
-                ],
-              ),
-
-              // Sign-In Button
-              SizedBox(height: context.getVerticalSize(30)),
-
-              SCButton(
-                onPressed: () {
-                  final form = _formKey.currentState ?? FormState();
-                  if (form.validate()) {
-                    debugPrint('Form is valid');
-                    context.go(AppRoutes.playerPage.path);
-                  } else {
-                    debugPrint('Form is invalid');
-                  }
-                },
-                text: context.l10n.btnLogin,
-                backgroundColor: AppColor.primary,
-                height: context.getVerticalSize(60),
-                borderRadius: 30,
-              ),
-              const SizedBox(height: 16),
-              Text.rich(
-                TextSpan(
-                  children: [
-                    TextSpan(
-                      text: context.l10n.forgotPassword,
-                      style: context.textTheme.displaySmall?.copyWith(
-                        fontWeight: AppFontWeight.regular,
-                        color: AppColor.textDimGray,
-                      ),
-                    ),
-                    TextSpan(
-                      text: context.l10n.resetHere,
-                      style: context.textTheme.displaySmall?.copyWith(
-                        fontWeight: AppFontWeight.medium,
-                        color: AppColor.primary,
-                      ),
-                      // Clear text fields when the link is pressed
-                      recognizer: TapGestureRecognizer()
-                        ..onTap = () {
-                          _usernameController.clear();
-                          _passwordController.clear();
-                        },
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(height: getVerticalSize(30)),
-              Align(
-                alignment: Alignment.center,
-                child: SCText.displaySmall(
+    return GestureDetector(
+      onTap: () {
+        FocusManager.instance.primaryFocus?.unfocus();
+      },
+      child: SCScaffold(
+        body: Form(
+          key: _formKey,
+          autovalidateMode: AutovalidateMode.onUserInteraction,
+          child: Padding(
+            padding: const EdgeInsets.all(28),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(height: context.getVerticalSize(87)),
+                // Display Large Text
+                SCText.displayLarge(
                   context,
-                  text: context.l10n.donthaveaccount,
-                  style: context.textTheme.displaySmall
-                      ?.copyWith(color: AppColor.suvaGray),
+                  text: context.l10n.signIn,
                 ),
-              ),
-              const SizedBox(height: 19),
-              SCButton(
-                onPressed: () {
-                  context.go(AppRoutes.signUp.path);
-                },
-                text: context.l10n.btnAccount,
-                style: context.textTheme.displayMedium?.copyWith(
-                  fontWeight: AppFontWeight.semiBold,
+                const SizedBox(height: 16),
+                // Title Text
+                SCText.displaySmall(
+                  context,
+                  text: context.l10n.description,
                 ),
-                backgroundColor: AppColor.jetBlack,
-              ),
-            ],
+                SizedBox(height: getVerticalSize(30)),
+                // Text Form Fields for Username
+                SCInput.username(
+                  controller: _usernameController,
+                  labelText: context.l10n.labelUsername,
+                  validator: (value) => value?.isValidUserName(),
+                ),
+
+                const SizedBox(height: 20),
+
+                // Password Text Form Field
+                SCInput.password(
+                  controller: _passwordController,
+                  labelText: context.l10n.lablelPassword,
+                  validator: (input) => input?.isValidPassword()?.trimRight(),
+                  suffixIcon: IconButton(
+                    icon: showPassword
+                        ? SCIcon.hidden(
+                            color: AppColor.primary,
+                          )
+                        : SCIcon.suffix(),
+                    onPressed: () {
+                      setState(() {
+                        showPassword = !showPassword;
+                      });
+                    },
+                  ),
+                  obscureText: !showPassword,
+                ),
+
+                // Sign-In Button
+                SizedBox(height: context.getVerticalSize(40)),
+
+                SCButton(
+                  onPressed: () {
+                    final form = _formKey.currentState ?? FormState();
+                    if (form.validate()) {
+                      debugPrint('Form is valid');
+                      context.go(AppRoutes.playerPage.path);
+                    } else {
+                      debugPrint('Form is invalid');
+                    }
+                  },
+                  text: context.l10n.btnLogin,
+                  backgroundColor: AppColor.primary,
+                  height: context.getVerticalSize(60),
+                  borderRadius: 30,
+                ),
+                const SizedBox(height: 16),
+                Text.rich(
+                  TextSpan(
+                    children: [
+                      TextSpan(
+                        text: context.l10n.forgotPassword,
+                        style: context.textTheme.displaySmall?.copyWith(
+                          color: AppColor.textDimGray,
+                        ),
+                      ),
+                      TextSpan(
+                        text: context.l10n.resetHere,
+                        style: context.textTheme.displaySmall?.copyWith(
+                          fontWeight: AppFontWeight.medium,
+                          color: AppColor.primary,
+                        ),
+                        recognizer: TapGestureRecognizer()
+                          ..onTap = () {
+                            _usernameController.clear();
+                            _passwordController.clear();
+                          },
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(height: getVerticalSize(30)),
+                Align(
+                  child: SCText.displaySmall(
+                    context,
+                    text: context.l10n.donthaveaccount,
+                    style: context.textTheme.displaySmall
+                        ?.copyWith(color: AppColor.suvaGray),
+                  ),
+                ),
+                const SizedBox(height: 19),
+                SCButton(
+                  onPressed: () {
+                    context.go(AppRoutes.signUp.path);
+                  },
+                  text: context.l10n.btnAccount,
+                  style: context.textTheme.displayMedium?.copyWith(
+                    fontWeight: AppFontWeight.semiBold,
+                  ),
+                  backgroundColor: AppColor.jetBlack,
+                ),
+              ],
+            ),
           ),
         ),
       ),

@@ -17,6 +17,7 @@ class SCInput extends StatelessWidget {
     this.validator,
     this.contentPadding,
     this.labelStyle,
+    this.obscuringCharacter,
   });
 
   /// Factory constructor for email input
@@ -26,6 +27,7 @@ class SCInput extends StatelessWidget {
     String? labelText,
     TextInputAction? textInputAction,
     String? Function(String?)? validator,
+    EdgeInsetsGeometry? contentPadding,
     TextEditingController? controller,
     bool? obscureText = false,
     TextStyle? labelStyle,
@@ -37,6 +39,7 @@ class SCInput extends StatelessWidget {
       textInputAction: textInputAction,
       obscureText: obscureText,
       validator: validator,
+      contentPadding: contentPadding,
       controller: controller,
       labelStyle: labelStyle,
     );
@@ -52,6 +55,7 @@ class SCInput extends StatelessWidget {
     String? Function(String?)? validator,
     bool? obscureText = false,
     TextStyle? labelStyle,
+    EdgeInsetsGeometry? contentPadding,
   }) {
     return SCInput(
       focusNode: focusNode,
@@ -61,6 +65,7 @@ class SCInput extends StatelessWidget {
       obscureText: obscureText,
       controller: controller,
       validator: validator,
+      contentPadding: contentPadding,
       labelStyle: labelStyle,
     );
   }
@@ -72,6 +77,7 @@ class SCInput extends StatelessWidget {
     Widget? suffixIcon,
     TextEditingController? controller,
     String? labelText,
+    String? obscuringCharacter,
     TextStyle? labelStyle,
     String? Function(String?)? validator,
     bool obscureText = false,
@@ -86,6 +92,7 @@ class SCInput extends StatelessWidget {
       suffixIcon: suffixIcon,
       keyboardType: keyboardType,
       contentPadding: contentPadding,
+      obscuringCharacter: obscuringCharacter,
       controller: controller,
       validator: validator,
       labelStyle: labelStyle,
@@ -104,7 +111,7 @@ class SCInput extends StatelessWidget {
   final String? labelText;
   final TextStyle? labelStyle;
   final EdgeInsetsGeometry? contentPadding;
-
+  final String? obscuringCharacter;
   @override
   Widget build(BuildContext context) {
     /// Build the TextFormField with provided properties
@@ -130,7 +137,7 @@ class SCInput extends StatelessWidget {
             contentPadding: contentPadding ??
                 const EdgeInsets.symmetric(
                   vertical: 15,
-                  horizontal: 15,
+                  horizontal: 1,
                 ),
           ),
           keyboardType: keyboardType,
@@ -139,6 +146,7 @@ class SCInput extends StatelessWidget {
           validator: validator,
           controller: controller,
           obscureText: obscureText ?? false,
+          obscuringCharacter: '●',
         ),
       ],
     );

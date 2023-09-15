@@ -23,7 +23,7 @@ class SCScaffold extends StatelessWidget {
   Widget build(BuildContext context) {
     // Return a Scaffold widget with the specified fields
     return Scaffold(
-      resizeToAvoidBottomInset: resizeToAvoidBottomInset,
+      resizeToAvoidBottomInset: false,
       backgroundColor: backgroundColor,
       appBar: appBar,
       body: body,

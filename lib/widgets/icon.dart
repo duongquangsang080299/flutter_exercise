@@ -187,7 +187,7 @@ class SCIcon extends StatelessWidget {
     VoidCallback? onPressed,
   }) {
     return SCIcon(
-      iconData: Icons.visibility,
+      iconData: Icons.visibility_off,
       color: color,
       height: height,
       width: width,

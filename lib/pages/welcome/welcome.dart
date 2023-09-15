@@ -18,66 +18,53 @@ class WelcomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(28),
-          child: Column(
-            children: [
-              SizedBox(
-                height: context.getVerticalSize(71),
+      body: Padding(
+        padding: const EdgeInsets.all(20),
+        child: Column(
+          children: [
+            SizedBox(
+              height: context.getVerticalSize(71),
+            ),
+            SvgPicture.asset(
+              SCAssets.clubLogo,
+              width: context.getSize(228),
+              height: context.getSize(212),
+            ),
+            SizedBox(height: context.getVerticalSize(71)),
+            SCText.displayLarge(
+              context,
+              style: context.textTheme.displayLarge?.copyWith(
+                color: AppColor.tertiary,
               ),
-              SvgPicture.asset(
-                SCAssets.clubLogo,
-                width: context.getSize(228),
-                height: context.getSize(212),
+              textAlign: TextAlign.center,
+              text: context.l10n.welcomeToVictoryGreensApp,
+            ),
+            SizedBox(height: context.getVerticalSize(158)),
+            SCButtonIcon(
+              onPressed: () {
+                context.go(AppRoutes.signIn.path);
+              },
+              icon: SCIcon.email(color: AppColor.secondary),
+              text: context.l10n.btnLoginWithEmail,
+              style: context.textTheme.displayMedium?.copyWith(
+                fontWeight: AppFontWeight.semiBold,
               ),
-              SizedBox(height: context.getVerticalSize(71)),
-              SCText.displayLarge(
-                context,
-                style: context.textTheme.displayLarge?.copyWith(
-                  color: AppColor.tertiary,
-                ),
-                textAlign: TextAlign.center,
-                text: context.l10n.welcomeToVictoryGreensApp1,
+            ),
+            const SizedBox(
+              height: 15,
+            ),
+            SCButton(
+              onPressed: () {
+                context.go(AppRoutes.signUp.path);
+              },
+              text: context.l10n.btnCreateAnAccount,
+              style: context.textTheme.displayMedium?.copyWith(
+                fontWeight: AppFontWeight.semiBold,
               ),
-              SCText.displayLarge(
-                context,
-                style: context.textTheme.displayLarge?.copyWith(
-                  color: AppColor.tertiary,
-                ),
-                textAlign: TextAlign.center,
-                text: context.l10n.welcomeToVictoryGreensApp2,
-              ),
-              SizedBox(height: context.getVerticalSize(158)),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  SCButtonIcon(
-                    onPressed: () {
-                      context.go(AppRoutes.signIn.path);
-                    },
-                    icon: SCIcon.email(color: AppColor.secondary),
-                    text: context.l10n.btnLoginWithEmail,
-                    style: context.textTheme.displayMedium?.copyWith(
-                      fontWeight: AppFontWeight.semiBold,
-                    ),
-                  ),
-                  const SizedBox(height: 15),
-                  SCButton(
-                    onPressed: () {
-                      context.go(AppRoutes.signUp.path);
-                    },
-                    text: context.l10n.btnCreateAnAccount,
-                    style: context.textTheme.displayMedium?.copyWith(
-                      fontWeight: AppFontWeight.semiBold,
-                    ),
-                    backgroundColor: AppColor.jetBlack,
-                  ),
-                  const SizedBox(height: 20),
-                ],
-              ),
-            ],
-          ),
+              backgroundColor: AppColor.jetBlack,
+            ),
+            const SizedBox(height: 20),
+          ],
         ),
       ),
     );
