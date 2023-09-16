@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:soccer_club_app/pages/Match/next_match_details.dart';
+import 'package:soccer_club_app/pages/auth/reset_password.dart';
 import 'package:soccer_club_app/pages/auth/sign_in.dart';
 import 'package:soccer_club_app/pages/auth/sign_up.dart';
 import 'package:soccer_club_app/pages/favourite/player.dart';
 import 'package:soccer_club_app/pages/fixtures/fixtures.dart';
 import 'package:soccer_club_app/pages/home/home.dart';
+import 'package:soccer_club_app/pages/match/next_match_details.dart';
 import 'package:soccer_club_app/pages/notifications/notifications.dart';
 import 'package:soccer_club_app/pages/onboarding/onboarding.dart';
 import 'package:soccer_club_app/pages/welcome/welcome.dart';
@@ -79,6 +80,12 @@ final GoRouter appRouter = GoRouter(
       builder: (BuildContext context, GoRouterState state) =>
           const NotificationsPage(),
     ),
+    GoRoute(
+      path: AppRoutes.forgotPasswordPage.path,
+      name: AppRoutes.forgotPasswordPage.name,
+      builder: (BuildContext context, GoRouterState state) =>
+          const ForgotPasswordPage(),
+    ),
   ],
 );
 
@@ -127,6 +134,10 @@ enum AppRoutes {
   notificationsPage(
     name: ' notificationsPage',
     path: '/notificationsPage',
+  ),
+  forgotPasswordPage(
+    name: ' forgotPasswordPage',
+    path: '/forgotPasswordPage',
   );
 
   const AppRoutes({

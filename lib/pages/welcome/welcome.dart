@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:soccer_club_app/core/color/app_color.dart';
 import 'package:soccer_club_app/core/constant/image.dart';
@@ -25,7 +24,7 @@ class WelcomePage extends StatelessWidget {
             SizedBox(
               height: context.getVerticalSize(71),
             ),
-            SvgPicture.asset(
+            Image.asset(
               SCAssets.clubLogo,
               width: context.getSize(228),
               height: context.getSize(212),
@@ -61,7 +60,7 @@ class WelcomePage extends StatelessWidget {
               style: context.textTheme.displayMedium?.copyWith(
                 fontWeight: AppFontWeight.semiBold,
               ),
-              backgroundColor: AppColor.jetBlack,
+              backgroundColor: AppColor.blackHex,
             ),
             const SizedBox(height: 20),
           ],

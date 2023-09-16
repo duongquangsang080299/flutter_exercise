@@ -1,16 +1,5 @@
 <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-<rect width="25" height="24" fill="#F2F2F2"/>
-<g id="08_Home" clip-path="url(#clip0_0_1)">
-<rect width="375" height="1090" transform="translate(-256 -106)" fill="black" fill-opacity="0.01"/>
-<path id="Background" fill-rule="evenodd" clip-rule="evenodd" d="M-256 -106H119V984H-256V-106Z" fill="white"/>
-<g id="BACKGROUND" clip-path="url(#clip1_0_1)">
-<path id="pageBackground" fill-rule="evenodd" clip-rule="evenodd" d="M-256 -106H119V1023H-256V-106Z" fill="white"/>
-</g>
-<path id="background" fill-rule="evenodd" clip-rule="evenodd" d="M-256 -106H119V49C119 65.569 105.569 79 89 79H-226C-242.569 79 -256 65.569 -256 49V-106Z" fill="#04764E"/>
-<g id="header" clip-path="url(#clip2_0_1)">
-<g id="HEADER" clip-path="url(#clip3_0_1)">
-</g>
-<g id="btnNotifications" clip-path="url(#clip4_0_1)">
+<g id="btnNotifications" clip-path="url(#clip0_0_937)">
 <g id="bell">
 <path id="shape01" fill-rule="evenodd" clip-rule="evenodd" d="M10.9788 2.99652C10.4826 2.99652 10.08 2.59385 10.08 2.0977V1.19887C10.08 0.702719 10.4826 0.300049 10.9788 0.300049C11.4749 0.300049 11.8776 0.702719 11.8776 1.19887V2.0977C11.8776 2.59385 11.4749 2.99652 10.9788 2.99652Z" fill="white"/>
 <path id="shape02" fill-rule="evenodd" clip-rule="evenodd" d="M18.8173 10.8417C18.3212 10.8417 17.9185 10.439 17.9185 9.94287C17.9185 6.29006 14.9524 3.17743 11.3068 3.00486C7.65663 2.83633 4.40244 5.6474 4.05864 9.27909C4.03796 9.49616 4.02763 9.71907 4.02763 9.94287C4.02763 10.439 3.62495 10.8417 3.1288 10.8417C2.63265 10.8417 2.22998 10.439 2.22998 9.94287C2.22998 9.66244 2.24301 9.38201 2.26908 9.10966C2.70186 4.53645 6.79915 0.993293 11.3917 1.20946C15.982 1.42653 19.7162 5.34449 19.7162 9.94287C19.7162 10.4395 19.3135 10.8417 18.8173 10.8417Z" fill="white"/>
@@ -24,31 +13,17 @@
 <path id="shape10" fill-rule="evenodd" clip-rule="evenodd" d="M19.2666 20.0777H2.67885C2.1827 20.0777 1.78003 19.675 1.78003 19.1788C1.78003 18.6827 2.1827 18.28 2.67885 18.28H19.2662C19.7623 18.28 20.165 18.6827 20.165 19.1788C20.165 19.675 19.7628 20.0777 19.2666 20.0777Z" fill="white"/>
 </g>
 <g id="dot">
-<mask id="mask0_0_1" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="13" y="0" width="12" height="11">
+<mask id="mask0_0_937" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="13" y="0" width="12" height="11">
 <path id="Mask" fill-rule="evenodd" clip-rule="evenodd" d="M24.1559 5.39294C24.1559 8.37138 21.7414 10.7859 18.7629 10.7859C15.7845 10.7859 13.37 8.37138 13.37 5.39294C13.37 2.4145 15.7845 0 18.7629 0C21.7414 0 24.1559 2.4145 24.1559 5.39294Z" fill="white"/>
 </mask>
-<g mask="url(#mask0_0_1)">
+<g mask="url(#mask0_0_937)">
 <path id="dot_2" fill-rule="evenodd" clip-rule="evenodd" d="M24.1559 5.39294C24.1559 8.37138 21.7414 10.7859 18.7629 10.7859C15.7845 10.7859 13.37 8.37138 13.37 5.39294C13.37 2.4145 15.7845 0 18.7629 0C21.7414 0 24.1559 2.4145 24.1559 5.39294Z" fill="#E45D32"/>
 <path id="dot-border" fill-rule="evenodd" clip-rule="evenodd" d="M18.7629 1C16.3368 1 14.37 2.96679 14.37 5.39294C14.37 7.81909 16.3368 9.78588 18.7629 9.78588C21.1891 9.78588 23.1559 7.81909 23.1559 5.39294C23.1559 2.96679 21.1891 1 18.7629 1ZM18.7629 11.7859C15.2322 11.7859 12.37 8.92366 12.37 5.39294C12.37 1.86222 15.2322 -1 18.7629 -1C22.2937 -1 25.1559 1.86222 25.1559 5.39294C25.1559 8.92366 22.2937 11.7859 18.7629 11.7859Z" fill="white"/>
 </g>
 </g>
 </g>
-</g>
-</g>
 <defs>
-<clipPath id="clip0_0_1">
-<rect width="375" height="1090" fill="white" transform="translate(-256 -106)"/>
-</clipPath>
-<clipPath id="clip1_0_1">
-<rect width="375" height="1129" fill="white" transform="translate(-256 -106)"/>
-</clipPath>
-<clipPath id="clip2_0_1">
-<rect width="375" height="143" fill="white" transform="translate(-256 -104)"/>
-</clipPath>
-<clipPath id="clip3_0_1">
-<rect width="375" height="143" fill="white" transform="translate(-256 -104)"/>
-</clipPath>
-<clipPath id="clip4_0_1">
+<clipPath id="clip0_0_937">
 <rect width="24.16" height="23.67" fill="white"/>
 </clipPath>
 </defs>

@@ -53,7 +53,7 @@ class NotificationsPage extends StatelessWidget {
                 (BuildContext context, int index) {
                   final isCard = index < 2;
                   final borderColor =
-                      isCard ? AppColor.jetBlack : AppColor.primary;
+                      isCard ? AppColor.blackJet : AppColor.primary;
                   final backgroundColor =
                       isCard ? AppColor.secondary : AppColor.blueAlice;
                   final textColor =
@@ -63,8 +63,6 @@ class NotificationsPage extends StatelessWidget {
                     padding: const EdgeInsets.only(bottom: 19),
                     child: SCCard.match(
                       child: Container(
-                        width: 319,
-                        height: 148,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(18),
                           border: Border.all(color: borderColor),
@@ -88,7 +86,7 @@ class NotificationsPage extends StatelessWidget {
                                 text: context.l10n.textDescriptionOnboarding,
                                 context,
                               ),
-                              const SizedBox(height: 5),
+                              const SizedBox(height: 50),
                               SCText.titleMedium(
                                 text: context.l10n.may2021AM,
                                 style: context.textTheme.titleMedium,

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:soccer_club_app/core/color/app_color.dart';
 import 'package:soccer_club_app/core/constant/image.dart';
@@ -76,8 +75,8 @@ class FixturesPage extends StatelessWidget {
                             children: [
                               Row(
                                 children: [
-                                  SvgPicture.asset(
-                                    SCAssets.logofloatingbutton,
+                                  Image.asset(
+                                    SCAssets.logoFirstMatch,
                                     width: 40,
                                     height: 40,
                                   ),
@@ -107,8 +106,8 @@ class FixturesPage extends StatelessWidget {
                                     ),
                                   ),
                                   const SizedBox(width: 15),
-                                  SvgPicture.asset(
-                                    SCAssets.logofloatingbutton,
+                                  Image.asset(
+                                    SCAssets.logoSecondMatch,
                                     width: 40,
                                     height: 40,
                                   ),

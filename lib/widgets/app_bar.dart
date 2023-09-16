@@ -74,8 +74,7 @@ class SCAppBar extends StatelessWidget implements PreferredSize {
     return AppBar(
       /// Define leading widget
       leadingWidth: 0,
-
-      titleSpacing: 20,
+      titleSpacing: 30,
       elevation: elevation,
       toolbarHeight: 185,
       leading: leading ?? const SizedBox.shrink(),
@@ -83,10 +82,11 @@ class SCAppBar extends StatelessWidget implements PreferredSize {
       title: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SCText.displayMedium(
+          SCText.displaySmall(
             context,
             text: title,
-            style: context.textTheme.displayMedium,
+            style: context.textTheme.displaySmall
+                ?.copyWith(color: AppColor.secondary),
           ),
           if (subtitle?.isNotEmpty ?? false)
             SCText.displayLarge(

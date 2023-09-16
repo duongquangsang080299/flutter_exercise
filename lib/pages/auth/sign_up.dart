@@ -11,6 +11,7 @@ import 'package:soccer_club_app/routes/routes.dart';
 import 'package:soccer_club_app/widgets/button.dart';
 import 'package:soccer_club_app/widgets/icon.dart';
 import 'package:soccer_club_app/widgets/input.dart';
+import 'package:soccer_club_app/widgets/scaffold.dart';
 import 'package:soccer_club_app/widgets/text.dart';
 
 class SignUpPage extends StatefulWidget {
@@ -22,7 +23,7 @@ class SignUpPage extends StatefulWidget {
 
 class _SignUpPageState extends State<SignUpPage> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  bool? showPassword;
+  bool showPassword = false;
   void _showTermsAndConditionsDialog(BuildContext context) {
     showDialog(
       context: context,
@@ -40,7 +41,7 @@ class _SignUpPageState extends State<SignUpPage> {
               text: context.l10n.termandconditionofourapp,
             ),
           ),
-          actions: <Widget>[
+          actions: [
             TextButton(
               onPressed: () {
                 Navigator.of(context).pop();
@@ -60,29 +61,21 @@ class _SignUpPageState extends State<SignUpPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: AppColor.secondary,
-        elevation: 0,
-        leading: GestureDetector(
-          onTap: () {
-            context.go(AppRoutes.signIn.path);
-          },
-          child: SCIcon.back(
-            color: AppColor.jetBlack,
-            width: 24,
-            height: 24,
-          ),
-        ),
-      ),
+    return SCScaffold(
       body: Form(
         key: _formKey,
+        autovalidateMode: AutovalidateMode.onUserInteraction,
         child: Padding(
           padding: const EdgeInsets.all(28),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(height: context.getVerticalSize(44)),
+              SCIcon.back(
+                width: 24,
+                height: 14,
+                color: AppColor.tertiary,
+              ),
+              SizedBox(height: context.getVerticalSize(50)),
               SCText.displayLarge(
                 context,
                 text: context.l10n.createanAccount,
@@ -91,69 +84,62 @@ class _SignUpPageState extends State<SignUpPage> {
               // Title Text
               SCText.displaySmall(
                 context,
-                style: context.textTheme.displaySmall
-                    ?.copyWith(fontWeight: AppFontWeight.regular),
                 text: context.l10n.description,
               ),
               SizedBox(
                 height: getVerticalSize(
                   30,
                 ),
-              ), // Text Form Fields for Username and Password
-              Column(
-                children: [
-                  SCInput.username(
-                    labelText: context.l10n.labelUsername,
-                    validator: (value) => value?.isValidUserName(),
-                  ),
+              ),
 
-                  const SizedBox(height: 20),
-                  SCInput.email(
-                    labelText: context.l10n.lablelEmail,
-                    validator: (value) => value?.isValidEmail(),
-                  ),
-                  const SizedBox(height: 20),
-                  // Password Text Form Field
-                  SCInput.password(
-                    labelText: context.l10n.lablelPassword,
-                    validator: (input) => input?.isValidPassword(),
-                    suffixIcon: IconButton(
-                      icon: SCIcon.hidden(),
-                      onPressed: () {
-                        setState(() {
-                          showPassword = !(showPassword ?? false);
-                        });
-                      },
-                    ),
-                    obscureText: showPassword ?? true,
-                  ),
-                ],
+              /// Text Form Fields for Username,Email and Password
+              SCInput.username(
+                labelText: context.l10n.labelUsername,
+                validator: (value) => value?.isValidUserName(),
+              ),
+
+              const SizedBox(height: 20),
+              // Email Text Form Field
+              SCInput.email(
+                labelText: context.l10n.lablelEmail,
+                validator: (value) => value?.isValidEmail(),
+              ),
+              const SizedBox(height: 20),
+              // Password Text Form Field
+              SCInput.password(
+                labelText: context.l10n.lablelPassword,
+                validator: (input) => input?.isValidPassword()?.trimRight(),
+                suffixIcon: IconButton(
+                  icon: showPassword
+                      ? SCIcon.hidden(
+                          color: AppColor.primary,
+                        )
+                      : SCIcon.suffix(),
+                  onPressed: () {
+                    setState(() {
+                      showPassword = !showPassword;
+                    });
+                  },
+                ),
+                obscureText: !showPassword,
               ),
               SizedBox(height: context.getVerticalSize(30)),
 
               // Sign-Up Button
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  SCButton(
-                    onPressed: () {
-                      context.go(AppRoutes.signIn.path);
-                      final form = _formKey.currentState ?? FormState();
-                      if (form.validate()) {
-                        debugPrint('Form is valid');
-                        context.go(AppRoutes.signIn.path);
-                      } else {
-                        debugPrint('Form is invalid');
-                      }
-                    },
-                    text: context.l10n.btnSignUp,
-                    style: Theme.of(context).textTheme.displayMedium?.copyWith(
-                          fontWeight: AppFontWeight.semiBold,
-                        ),
-                    backgroundColor: AppColor.jetBlack,
-                    borderRadius: 30,
-                  ),
-                ],
+              SCButton(
+                onPressed: () {
+                  final form = _formKey.currentState ?? FormState();
+                  if (form.validate()) {
+                    debugPrint('Form is valid');
+                    context.go(AppRoutes.signIn.path);
+                  } else {
+                    debugPrint('Form is invalid');
+                  }
+                },
+                text: context.l10n.btnLogin,
+                backgroundColor: AppColor.blackJet,
+                height: context.getVerticalSize(60),
+                borderRadius: 30,
               ),
               SizedBox(height: context.getVerticalSize(30)),
               Text.rich(
@@ -162,8 +148,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     TextSpan(
                       text: context.l10n.byTappingSignUpYouAcceptOur,
                       style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                            fontWeight: AppFontWeight.regular,
-                            color: AppColor.textDimGray,
+                            color: AppColor.dimGray,
                           ),
                     ),
                     TextSpan(
@@ -177,8 +162,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     TextSpan(
                       text: context.l10n.and,
                       style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                            fontWeight: AppFontWeight.regular,
-                            color: AppColor.textDimGray,
+                            color: AppColor.dimGray,
                           ),
                     ),
                     TextSpan(

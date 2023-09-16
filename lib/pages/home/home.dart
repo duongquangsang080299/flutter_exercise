@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:soccer_club_app/core/color/app_color.dart';
+import 'package:soccer_club_app/core/constant/icon.dart';
 import 'package:soccer_club_app/core/constant/image.dart';
 import 'package:soccer_club_app/core/extention/builder_context_extension.dart';
 import 'package:soccer_club_app/core/typography/app_fontweight.dart';
@@ -12,6 +13,7 @@ import 'package:soccer_club_app/widgets/app_bar.dart';
 import 'package:soccer_club_app/widgets/bottom_navigation_bar.dart';
 import 'package:soccer_club_app/widgets/card.dart';
 import 'package:soccer_club_app/widgets/icon.dart';
+import 'package:soccer_club_app/widgets/scaffold.dart';
 import 'package:soccer_club_app/widgets/text.dart';
 
 class HomePage extends StatefulWidget {
@@ -25,7 +27,7 @@ class _HomePageState extends State<HomePage> {
   int _currentIndex = 0;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return SCScaffold(
       // Customize the app bar with specific properties.
       appBar: SCAppBar.second(
         toolbarHeight: getVerticalSize(139),
@@ -35,7 +37,9 @@ class _HomePageState extends State<HomePage> {
         subtitle: context.l10n.adrian,
         actions: [
           IconButton(
-            icon: SCIcon.notification(
+            icon: const ImageIcon(
+              AssetImage(SCIcons.notification),
+              size: 24,
               color: AppColor.secondary,
             ),
             onPressed: () {
@@ -48,7 +52,9 @@ class _HomePageState extends State<HomePage> {
           Padding(
             padding: const EdgeInsets.all(28),
             child: IconButton(
-              icon: SCIcon.menu(
+              icon: const ImageIcon(
+                AssetImage(SCIcons.menu),
+                size: 24,
                 color: AppColor.secondary,
               ),
               onPressed: () {
@@ -168,7 +174,7 @@ class _HomePageState extends State<HomePage> {
                             ),
                             Padding(
                               padding: const EdgeInsets.symmetric(
-                                vertical: 16,
+                                vertical: 12,
                                 horizontal: 13,
                               ),
                               child: Column(
@@ -237,20 +243,19 @@ class _HomePageState extends State<HomePage> {
                   children: [
                     SCCard.match(
                       child: Container(
-                        width: 150,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(18),
-                          border: Border.all(color: AppColor.flashWhite),
+                          border: Border.all(color: AppColor.whiteFlash),
                         ),
                         child: Padding(
-                          padding: const EdgeInsets.all(20),
+                          padding: const EdgeInsets.fromLTRB(18, 11, 20, 11),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               SCText.displayMedium(
                                 text: context.l10n.superLiga,
                                 style: context.textTheme.displayMedium
-                                    ?.copyWith(color: AppColor.hexBlack),
+                                    ?.copyWith(color: AppColor.blackHex),
                                 context,
                               ),
                               const SizedBox(height: 5),
@@ -265,32 +270,46 @@ class _HomePageState extends State<HomePage> {
                               const SizedBox(height: 14),
                               Row(
                                 mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  SvgPicture.asset(SCAssets.logofloatingbutton),
-                                  const SizedBox(width: 8),
-                                  SvgPicture.asset(SCAssets.logofloatingbutton),
-                                ],
-                              ),
-                              const SizedBox(height: 5),
-                              Row(
-                                mainAxisAlignment:
                                     MainAxisAlignment.spaceEvenly,
                                 children: [
-                                  SCText.displayLarge(
-                                    context,
-                                    text: '4',
-                                    style: context.textTheme.displayLarge
-                                        ?.copyWith(color: AppColor.tertiary),
+                                  Image.asset(SCAssets.logoFirstMatch),
+                                  SizedBox(
+                                    width: context.getHorizontalSize(45),
                                   ),
-                                  const SizedBox(width: 10),
+                                  Image.asset(SCAssets.logoSecondMatch),
+                                ],
+                              ),
+                              const SizedBox(
+                                height: 1,
+                              ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                      vertical: 1,
+                                      horizontal: 5,
+                                    ),
+                                    child: SCText.displayLarge(
+                                      context,
+                                      text: '4',
+                                      style: context.textTheme.displayLarge
+                                          ?.copyWith(color: AppColor.tertiary),
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    width: context.getHorizontalSize(29),
+                                  ),
                                   SCText.displayLarge(
                                     context,
                                     text: '-',
                                     style: context.textTheme.displayLarge
                                         ?.copyWith(color: AppColor.tertiary),
                                   ),
-                                  const SizedBox(width: 8),
+                                  SizedBox(
+                                    width: context.getHorizontalSize(20),
+                                  ),
                                   SCText.displayLarge(
                                     context,
                                     text: '1',
@@ -317,8 +336,9 @@ class _HomePageState extends State<HomePage> {
                             border: Border.all(color: AppColor.primary),
                           ),
                           child: SCCard.avatar(
-                            child: SvgPicture.asset(
-                              SCAssets.stadium,
+                            child: Image.asset(
+                              SCAssets.playerMatch,
+                              fit: BoxFit.cover,
                             ),
                           ),
                         ),
@@ -338,8 +358,8 @@ class _HomePageState extends State<HomePage> {
                           ),
                         ),
                         Positioned(
-                          top: 135,
-                          left: 15,
+                          top: 132,
+                          left: 7,
                           child: SCText.bodySmall(
                             text: context.l10n.greatestGamsvVictoryGreatWinner,
                             context,
@@ -348,8 +368,8 @@ class _HomePageState extends State<HomePage> {
                         Positioned(
                           top: 85,
                           left: 10,
-                          child: SvgPicture.asset(
-                            'assets/images/logofloatingbutton.svg',
+                          child: Image.asset(
+                            SCAssets.youtube,
                           ),
                         ),
                       ],
@@ -369,8 +389,9 @@ class _HomePageState extends State<HomePage> {
                             border: Border.all(color: AppColor.primary),
                           ),
                           child: SCCard.avatar(
-                            child: SvgPicture.asset(
-                              SCAssets.stadium,
+                            child: Image.asset(
+                              SCAssets.playerMatch,
+                              fit: BoxFit.cover,
                             ),
                           ),
                         ),
@@ -390,8 +411,8 @@ class _HomePageState extends State<HomePage> {
                           ),
                         ),
                         Positioned(
-                          top: 135,
-                          left: 15,
+                          top: 132,
+                          left: 7,
                           child: SCText.bodySmall(
                             text: context.l10n.greatestGamsvVictoryGreatWinner,
                             context,
@@ -400,8 +421,8 @@ class _HomePageState extends State<HomePage> {
                         Positioned(
                           top: 85,
                           left: 10,
-                          child: SvgPicture.asset(
-                            'assets/images/logofloatingbutton.svg',
+                          child: Image.asset(
+                            SCAssets.youtube,
                           ),
                         ),
                       ],
@@ -412,6 +433,7 @@ class _HomePageState extends State<HomePage> {
               const SizedBox(
                 height: 20,
               ),
+
               Stack(
                 clipBehavior: Clip.none,
                 alignment: Alignment.center,
@@ -424,8 +446,9 @@ class _HomePageState extends State<HomePage> {
                       border: Border.all(color: AppColor.primary),
                     ),
                     child: SCCard.avatar(
-                      child: SvgPicture.asset(
-                        SCAssets.stadium,
+                      child: Image.asset(
+                        SCAssets.soccerStadium,
+                        fit: BoxFit.cover,
                       ),
                     ),
                   ),
@@ -475,7 +498,7 @@ class _HomePageState extends State<HomePage> {
                   Positioned(
                     top: 10,
                     right: 200,
-                    child: SvgPicture.asset(
+                    child: Image.asset(
                       SCAssets.stadium,
                       width: 145,
                       height: 125,
@@ -519,7 +542,7 @@ class _HomePageState extends State<HomePage> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {},
         backgroundColor: AppColor.secondary,
-        child: SvgPicture.asset(SCAssets.logofloatingbutton),
+        child: SvgPicture.asset(SCAssets.logoFirstMatch),
       ),
     );
   }

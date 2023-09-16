@@ -10,12 +10,15 @@ class SCScaffold extends StatelessWidget {
     this.backgroundColor,
     this.bottomNavigationBar,
     this.resizeToAvoidBottomInset,
+    this.floatingActionButton,
+    this.floatingActionButtonLocation,
   });
   final PreferredSizeWidget? appBar;
   final Widget body;
   final Color? backgroundColor;
   final Widget? bottomNavigationBar;
-
+  final Widget? floatingActionButton;
+  final FloatingActionButtonLocation? floatingActionButtonLocation;
   final bool? resizeToAvoidBottomInset;
 
   // Method for building the widget
@@ -28,6 +31,8 @@ class SCScaffold extends StatelessWidget {
       appBar: appBar,
       body: body,
       bottomNavigationBar: bottomNavigationBar,
+      floatingActionButton: floatingActionButton,
+      floatingActionButtonLocation: floatingActionButtonLocation,
     );
   }
 }

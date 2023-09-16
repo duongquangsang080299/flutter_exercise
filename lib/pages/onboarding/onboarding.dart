@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:soccer_club_app/core/color/app_color.dart';
 import 'package:soccer_club_app/core/constant/image.dart';
@@ -47,8 +46,9 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
 
   @override
   void dispose() {
-    _pageController.removeListener(_pageListener);
-    _pageController.dispose();
+    _pageController
+      ..removeListener(_pageListener)
+      ..dispose();
     super.dispose();
   }
 
@@ -107,28 +107,29 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
                             // Localize the 'Skip' text using context.l10n
                             text: context.l10n.btnSkip,
                             style: context.textTheme.displayMedium?.copyWith(
-                              color: AppColor.jetBlack,
+                              color: AppColor.neonSilver,
                               fontWeight: AppFontWeight.semiBold,
                             ),
                           ),
                         ),
                         const SizedBox(width: 20),
                         Expanded(
-                            child: SCButton(
-                          onPressed: _isButtonEnabled
-                              ? () {
-                                  context.go(AppRoutes.welcomeScreen.path);
-                                }
-                              : null,
-                          text: context.l10n.btnCampaigns,
-                          style: context.textTheme.displayMedium?.copyWith(
-                            fontWeight: AppFontWeight.semiBold,
+                          child: SCButton(
+                            onPressed: _isButtonEnabled
+                                ? () {
+                                    context.go(AppRoutes.welcomeScreen.path);
+                                  }
+                                : null,
+                            text: context.l10n.btnCampaigns,
+                            style: context.textTheme.displayMedium?.copyWith(
+                              fontWeight: AppFontWeight.semiBold,
+                            ),
+                            backgroundColor: _isButtonEnabled
+                                ? AppColor.primary
+                                : AppColor.whiteFlash,
+                            borderRadius: 30,
                           ),
-                          backgroundColor: _isButtonEnabled
-                              ? AppColor.primary
-                              : AppColor.flashWhite,
-                          borderRadius: 30,
-                        )),
+                        ),
                       ],
                     ),
                   ],
@@ -161,7 +162,7 @@ class OnBoardingBody extends StatelessWidget {
       children: [
         // Add vertical spacing using the getVerticalSize method
         SizedBox(height: context.getVerticalSize(90)),
-        SvgPicture.asset(
+        Image.asset(
           SCAssets.clubLogo,
           width: context.getSize(228),
           height: context.getSize(212),
@@ -179,7 +180,7 @@ class OnBoardingBody extends StatelessWidget {
         SCText.displayMedium(
           context,
           style: context.textTheme.displayMedium?.copyWith(
-            color: AppColor.hexGray,
+            color: AppColor.grayHex,
           ),
           text: subtitle,
         ),

@@ -12,9 +12,9 @@ abstract class AppColor {
 
   static const error = Colors.red;
 
-  static const hexGray = Color(0xFF595959);
+  static const grayHex = Color(0xFF595959);
 
-  static const suvaGray = Color(0xFF8A8A8A);
+  static const graysuva = Color(0xFF8A8A8A);
 
   static const mainlyGreen = Color(0xFF6CAE97);
 
@@ -22,13 +22,13 @@ abstract class AppColor {
 
   static const outLine = Color(0xFF00AD70);
 
-  static const jetBlack = Color(0xFF373737);
+  static const blackJet = Color(0xFF373737);
 
   static const whiteSmoke = Color(0xFFF3F3F3);
 
-  static const flashWhite = Color(0xFFEFEFEF);
+  static const whiteFlash = Color(0xFFEFEFEF);
 
-  static const hexBlack = Color(0xFF070000);
+  static const blackHex = Color(0xFF070000);
 
   static const transparent = Colors.transparent;
 
@@ -38,9 +38,7 @@ abstract class AppColor {
 
   static const blueAlice = Color(0xFFF6FBFF);
 
-  static const textTypography = Color.fromRGBO(0, 0, 0, 0.50);
-
-  static const textDimGray = Color(0xFF656565);
+  static const dimGray = Color(0xFF656565);
 
   static const darkBlue = Color(0XFF5B6897);
 

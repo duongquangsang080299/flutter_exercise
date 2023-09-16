@@ -1,10 +1,9 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:soccer_club_app/core/color/app_color.dart';
 import 'package:soccer_club_app/core/constant/image.dart';
+import 'package:soccer_club_app/widgets/scaffold.dart';
 
 /// Define Splash Screen
 class SplashScreen extends StatelessWidget {
@@ -18,13 +17,13 @@ class SplashScreen extends StatelessWidget {
       GoRouter.of(context).go('/onBoarding');
     });
 
-    return Scaffold(
+    return SCScaffold(
       backgroundColor: AppColor.primary,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            SvgPicture.asset(
+            Image.asset(
               SCAssets.logoSplashScreen,
               width: 124,
               height: 146,

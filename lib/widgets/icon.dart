@@ -122,14 +122,14 @@ class SCIcon extends StatelessWidget {
       onPressed: onPressed,
     );
   }
-  factory SCIcon.backIos({
+  factory SCIcon.backward({
     Color? color,
     double? width,
     double? height,
     VoidCallback? onPressed,
   }) {
     return SCIcon(
-      iconData: Icons.arrow_back_ios,
+      iconData: Icons.arrow_right,
       color: color,
       height: height,
       width: width,
@@ -143,7 +143,7 @@ class SCIcon extends StatelessWidget {
     VoidCallback? onPressed,
   }) {
     return SCIcon(
-      iconData: Icons.arrow_forward_ios,
+      iconData: Icons.arrow_left,
       color: color,
       height: height,
       width: width,

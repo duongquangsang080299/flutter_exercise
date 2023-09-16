@@ -3,7 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:soccer_club_app/core/color/app_color.dart';
 import 'package:soccer_club_app/routes/routes.dart';
 
-class SCBottomNavigationBar extends StatefulWidget {
+class SCBottomNavigationBar extends StatelessWidget {
   const SCBottomNavigationBar({
     required this.currentIndex,
     required this.onTap,
@@ -13,58 +13,66 @@ class SCBottomNavigationBar extends StatefulWidget {
   final Function(int) onTap;
 
   @override
-  _SCBottomNavigationBarState createState() => _SCBottomNavigationBarState();
-}
-
-class _SCBottomNavigationBarState extends State<SCBottomNavigationBar> {
-  @override
   Widget build(BuildContext context) {
-    return BottomNavigationBar(
-      currentIndex: widget.currentIndex,
-      onTap: (int index) {
-        widget.onTap(index); // Call the onTap callback
+    return Container(
+      height: 72,
+      decoration: BoxDecoration(
+        color: Colors.white, // Background color
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.5),
+            spreadRadius: 1,
+            blurRadius: 3,
+            offset: const Offset(0, 2),
+          ),
+        ],
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          buildNavItem(context, Icons.home, 'Home', 0),
+          buildNavItem(context, Icons.calendar_month, 'Fixtures', 1),
+          buildNavItem(context, Icons.shop_2, 'Shop', 2),
+          buildNavItem(context, Icons.airplane_ticket, 'Tickets', 3),
+        ],
+      ),
+    );
+  }
 
+  Widget buildNavItem(
+    BuildContext context,
+    IconData icon,
+    String label,
+    int index,
+  ) {
+    final isSelected = currentIndex == index;
+
+    return GestureDetector(
+      onTap: () {
+        onTap(index);
         // Navigate to different pages based on the selected index
         switch (index) {
           case 0:
-            Navigator.of(context).pushReplacementNamed(
-                '/home'); // Replace with your home page route
+            Navigator.of(context).pushReplacementNamed('/home');
           case 1:
-            context.go(
-              AppRoutes.fixturesPage.path,
-            ); // Replace with your business page route
+            context.go(AppRoutes.fixturesPage.path);
         }
       },
-      items: const <BottomNavigationBarItem>[
-        BottomNavigationBarItem(
-          icon: Icon(
-            Icons.home,
-            color: AppColor.primary,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(
+            icon,
+            color: isSelected ? AppColor.primary : Colors.grey,
           ),
-          label: 'Home',
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(
-            Icons.business,
-            color: AppColor.primary,
+          Text(
+            label,
+            style: TextStyle(
+              color: isSelected ? AppColor.primary : Colors.grey,
+            ),
           ),
-          label: 'Business',
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(
-            Icons.school,
-            color: AppColor.primary,
-          ),
-          label: 'School',
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(
-            Icons.settings,
-            color: AppColor.primary,
-          ),
-          label: 'Settings',
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

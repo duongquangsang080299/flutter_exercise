@@ -2,6 +2,7 @@
     "@@locale": "en",
     "btnSignUp": "SIGN UP",
     "btnLogin": "LOGIN",
+    "btnResetPassword":"Reset PassWord",
     "btnLoginWithEmail": "Login with email",
     "btnSkip": "SKIP",
     "btnCampaigns": "CAMPAIGNS",
@@ -45,11 +46,14 @@
     "redDevils": " Red Devils",
     "vs": "vs",
     "vGreen": "V. Greens",
-    "may9": " 9 May",
+    "may9": "9 May",
     "years": "2021",
     "donthaveaccount": "Don't have an account?",
     "btnAccount": "CREATE AN ACCOUNT",
     "termsandcondition": "Terms and Conditions",
     "termandconditionofourapp": "These are the terms and conditions of our app...",
-    "close": "Close"
+    "close": "Close",
+    "enteryouremaihere": "Enter your email address below to reset your password.",
+    "rememberyourpassword": "Remember your password? ",
+    "loginhere": "Login Here"
 }

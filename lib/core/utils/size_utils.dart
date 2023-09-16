@@ -3,7 +3,7 @@
 import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 
-// This functions are responsible to make UI responsive across all the mobile devices.
+// This functions are responsible to make UI responsive across mobile devices.
 
 MediaQueryData mediaQueryData = MediaQueryData.fromView(ui.window);
 

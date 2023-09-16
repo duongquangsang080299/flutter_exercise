@@ -23,16 +23,8 @@ class SignInPage extends StatefulWidget {
 
 class _SignInPageState extends State<SignInPage> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  final TextEditingController _usernameController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
 
   bool showPassword = false;
-  @override
-  void dispose() {
-    _usernameController.dispose();
-    _passwordController.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -64,7 +56,6 @@ class _SignInPageState extends State<SignInPage> {
                 SizedBox(height: getVerticalSize(30)),
                 // Text Form Fields for Username
                 SCInput.username(
-                  controller: _usernameController,
                   labelText: context.l10n.labelUsername,
                   validator: (value) => value?.isValidUserName(),
                 ),
@@ -73,7 +64,6 @@ class _SignInPageState extends State<SignInPage> {
 
                 // Password Text Form Field
                 SCInput.password(
-                  controller: _passwordController,
                   labelText: context.l10n.lablelPassword,
                   validator: (input) => input?.isValidPassword()?.trimRight(),
                   suffixIcon: IconButton(
@@ -116,7 +106,7 @@ class _SignInPageState extends State<SignInPage> {
                       TextSpan(
                         text: context.l10n.forgotPassword,
                         style: context.textTheme.displaySmall?.copyWith(
-                          color: AppColor.textDimGray,
+                          color: AppColor.dimGray,
                         ),
                       ),
                       TextSpan(
@@ -127,8 +117,7 @@ class _SignInPageState extends State<SignInPage> {
                         ),
                         recognizer: TapGestureRecognizer()
                           ..onTap = () {
-                            _usernameController.clear();
-                            _passwordController.clear();
+                            context.go(AppRoutes.forgotPasswordPage.path);
                           },
                       ),
                     ],
@@ -140,7 +129,7 @@ class _SignInPageState extends State<SignInPage> {
                     context,
                     text: context.l10n.donthaveaccount,
                     style: context.textTheme.displaySmall
-                        ?.copyWith(color: AppColor.suvaGray),
+                        ?.copyWith(color: AppColor.graysuva),
                   ),
                 ),
                 const SizedBox(height: 19),
@@ -152,7 +141,7 @@ class _SignInPageState extends State<SignInPage> {
                   style: context.textTheme.displayMedium?.copyWith(
                     fontWeight: AppFontWeight.semiBold,
                   ),
-                  backgroundColor: AppColor.jetBlack,
+                  backgroundColor: AppColor.blackJet,
                 ),
               ],
             ),
