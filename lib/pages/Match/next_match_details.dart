@@ -25,7 +25,7 @@ class _NextMatchPageState extends State<NextMatchPage> {
   Widget build(BuildContext context) {
     return SCScaffold(
       body: CustomScrollView(
-        slivers: <Widget>[
+        slivers: [
           SliverAppBar(
             expandedHeight: 185,
             pinned: true,
