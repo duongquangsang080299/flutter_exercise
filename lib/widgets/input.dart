@@ -123,7 +123,7 @@ class SCInput extends StatelessWidget {
             context,
             text: labelText ?? '',
             style: context.textTheme.displaySmall?.copyWith(
-              color: AppColor.suvaGray,
+              color: AppColor.graysuva,
               fontWeight: AppFontWeight.medium,
             ),
           ),
@@ -131,7 +131,9 @@ class SCInput extends StatelessWidget {
         ],
         TextFormField(
           style: Theme.of(context).textTheme.displayMedium?.copyWith(
-              color: AppColor.tertiary, fontWeight: AppFontWeight.regular),
+                color: AppColor.tertiary,
+                fontWeight: AppFontWeight.regular,
+              ),
           decoration: InputDecoration(
             suffixIcon: suffixIcon ?? const SizedBox.shrink(),
             contentPadding: contentPadding ??

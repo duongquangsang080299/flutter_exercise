@@ -16,33 +16,36 @@ class NotificationsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: SCAppBar.main(
-        title: context.l10n.notifications,
-        backgroundColor: AppColor.primary,
-        centerTitle: true,
-        leading: GestureDetector(
-          onTap: () {
-            context.go(AppRoutes.homePage.path);
-          },
-          child: SCIcon.back(
-            color: AppColor.secondary,
+      appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(100),
+        child: SCAppBar.main(
+          title: context.l10n.notifications,
+          backgroundColor: AppColor.primary,
+          centerTitle: true,
+          leading: GestureDetector(
+            onTap: () {
+              context.go(AppRoutes.homePage.path);
+            },
+            child: SCIcon.back(
+              color: AppColor.secondary,
+            ),
           ),
-        ),
-        actions: [
-          Opacity(
-            opacity: 0.5,
-            child: TextButton(
-              onPressed: () {},
-              child: SCText.bodyMedium(
-                context,
-                text: context.l10n.clear,
-                style: context.textTheme.bodyMedium?.copyWith(
-                  color: AppColor.secondary,
+          actions: [
+            Opacity(
+              opacity: 0.5,
+              child: TextButton(
+                onPressed: () {},
+                child: SCText.bodyMedium(
+                  context,
+                  text: context.l10n.clear,
+                  style: context.textTheme.bodyMedium?.copyWith(
+                    color: AppColor.secondary,
+                  ),
                 ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(28),
@@ -76,20 +79,23 @@ class NotificationsPage extends StatelessWidget {
                               SCText.displaySmall(
                                 text: context.l10n.continuePayment,
                                 style: context.textTheme.displaySmall?.copyWith(
-                                  color: textColor,
                                   fontWeight: AppFontWeight.bold,
+                                  color: textColor,
                                 ),
                                 context,
                               ),
                               const SizedBox(height: 5),
                               SCText.bodyMedium(
                                 text: context.l10n.textDescriptionOnboarding,
+                                style: context.textTheme.bodyMedium
+                                    ?.copyWith(color: AppColor.grayHex),
                                 context,
                               ),
-                              const SizedBox(height: 50),
-                              SCText.titleMedium(
+                              const SizedBox(height: 14),
+                              SCText.labelLarge(
                                 text: context.l10n.may2021AM,
-                                style: context.textTheme.titleMedium,
+                                style: context.textTheme.labelLarge
+                                    ?.copyWith(color: AppColor.grayHex),
                                 context,
                               ),
                             ],
@@ -99,7 +105,7 @@ class NotificationsPage extends StatelessWidget {
                     ),
                   );
                 },
-                childCount: 8, // Number of cards
+                childCount: 5, // Number of cards
               ),
             ),
           ],

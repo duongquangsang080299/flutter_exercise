@@ -17,16 +17,19 @@ class FixturesPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: SCAppBar.main(
-        title: context.l10n.upcomingSchedule,
-        backgroundColor: AppColor.primary,
-        centerTitle: true,
-        leading: GestureDetector(
-          onTap: () {
-            context.go(AppRoutes.homePage.path);
-          },
-          child: SCIcon.back(
-            color: AppColor.secondary,
+      appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(100),
+        child: SCAppBar.main(
+          title: context.l10n.upcomingSchedule,
+          backgroundColor: AppColor.primary,
+          centerTitle: true,
+          leading: GestureDetector(
+            onTap: () {
+              context.go(AppRoutes.homePage.path);
+            },
+            child: SCIcon.back(
+              color: AppColor.secondary,
+            ),
           ),
         ),
       ),
@@ -38,7 +41,7 @@ class FixturesPage extends StatelessWidget {
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SCText.bodyLarge(
+                  SCText.displayLarge(
                     text: context.l10n.league,
                     context,
                   ),
@@ -160,7 +163,6 @@ class FixturesPage extends StatelessWidget {
                         ),
                       ),
                     ),
-                    // Add more content here
                   ],
                 );
               }),

@@ -30,7 +30,7 @@ class AppTheme {
         style: _outlinedButtonStyle,
       ),
       iconTheme: const IconThemeData(
-        color: AppColor.jetBlack,
+        color: AppColor.blackJet,
         size: 24,
       ),
       textTheme: _textTheme,

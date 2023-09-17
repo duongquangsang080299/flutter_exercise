@@ -46,6 +46,8 @@ abstract class AppColor {
 
   static const hexadecimal = Color(0xFF000080);
 
+  static const blueMainly = Color(0xFF8C95B6);
+
   static const linearGradient = [
     Color(0xFF29B986),
     Color(0xFF319471),
