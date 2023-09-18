@@ -48,6 +48,13 @@ abstract class AppColor {
 
   static const blueMainly = Color(0xFF8C95B6);
 
+  static const blueBlur = Color(0xFF173477);
+
+  static const linearShadow = [
+    Color(0xFFEFEFEF),
+    Color(0xFFFFFFFF),
+  ];
+
   static const linearGradient = [
     Color(0xFF29B986),
     Color(0xFF319471),

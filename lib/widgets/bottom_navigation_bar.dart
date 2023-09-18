@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:soccer_club_app/core/color/app_color.dart';
+import 'package:soccer_club_app/core/constant/icons.dart';
 import 'package:soccer_club_app/routes/routes.dart';
 
 class SCBottomNavigationBar extends StatelessWidget {
@@ -9,6 +11,7 @@ class SCBottomNavigationBar extends StatelessWidget {
     required this.onTap,
     super.key,
   });
+
   final int currentIndex;
   final Function(int) onTap;
 
@@ -30,21 +33,53 @@ class SCBottomNavigationBar extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          buildNavItem(context, Icons.home, 'Home', 0),
-          buildNavItem(context, Icons.calendar_month, 'Fixtures', 1),
-          buildNavItem(context, Icons.shop_2, 'Shop', 2),
-          buildNavItem(context, Icons.airplane_ticket, 'Tickets', 3),
+          buildNavItem(
+            context,
+            icon: SvgPicture.asset(
+              SCIcons.calender,
+              color: currentIndex == 0 ? AppColor.primary : AppColor.tertiary,
+            ),
+            label: 'News',
+            index: 0,
+          ),
+          buildNavItem(
+            context,
+            icon: SvgPicture.asset(
+              SCIcons.fixtures,
+              color: currentIndex == 1 ? AppColor.primary : AppColor.tertiary,
+            ),
+            label: 'Fixtures',
+            index: 1,
+          ),
+          buildNavItem(
+            context,
+            icon: SvgPicture.asset(
+              SCIcons.shop,
+              color: currentIndex == 2 ? AppColor.primary : AppColor.tertiary,
+            ),
+            label: 'Shop',
+            index: 2,
+          ),
+          buildNavItem(
+            context,
+            icon: SvgPicture.asset(
+              SCIcons.tickets,
+              color: currentIndex == 3 ? AppColor.primary : AppColor.tertiary,
+            ),
+            label: 'Tickets',
+            index: 3,
+          ),
         ],
       ),
     );
   }
 
   Widget buildNavItem(
-    BuildContext context,
-    IconData icon,
-    String label,
-    int index,
-  ) {
+    BuildContext context, {
+    required Widget icon,
+    required String label,
+    required int index,
+  }) {
     final isSelected = currentIndex == index;
 
     return GestureDetector(
@@ -56,19 +91,20 @@ class SCBottomNavigationBar extends StatelessWidget {
             Navigator.of(context).pushReplacementNamed('/home');
           case 1:
             context.go(AppRoutes.fixturesPage.path);
+          // Add cases for other indices as needed
         }
       },
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Icon(
-            icon,
-            color: isSelected ? AppColor.primary : Colors.grey,
+          icon,
+          const SizedBox(
+            height: 8,
           ),
           Text(
             label,
             style: TextStyle(
-              color: isSelected ? AppColor.primary : Colors.grey,
+              color: isSelected ? AppColor.primary : AppColor.tertiary,
             ),
           ),
         ],

@@ -79,7 +79,7 @@ class FixturesPage extends StatelessWidget {
                               Row(
                                 children: [
                                   Image.asset(
-                                    SCAssets.logoFirstMatch,
+                                    SCAssets.logoMatch,
                                     width: 40,
                                     height: 40,
                                   ),
@@ -127,11 +127,12 @@ class FixturesPage extends StatelessWidget {
                         width: 318,
                         height: 66,
                         decoration: const BoxDecoration(
-                          color: AppColor.secondary,
                           borderRadius: BorderRadius.only(
                             bottomLeft: Radius.circular(10),
                             bottomRight: Radius.circular(10),
                           ),
+                          gradient:
+                              LinearGradient(colors: AppColor.linearShadow),
                         ),
                         child: Padding(
                           padding: const EdgeInsets.symmetric(

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:soccer_club_app/core/color/app_color.dart';
-import 'package:soccer_club_app/core/constant/icon.dart';
+import 'package:soccer_club_app/core/constant/icons.dart';
 import 'package:soccer_club_app/core/constant/image.dart';
 import 'package:soccer_club_app/core/extention/builder_context_extension.dart';
 import 'package:soccer_club_app/core/typography/app_fontweight.dart';
@@ -12,7 +12,6 @@ import 'package:soccer_club_app/routes/routes.dart';
 import 'package:soccer_club_app/widgets/app_bar.dart';
 import 'package:soccer_club_app/widgets/bottom_navigation_bar.dart';
 import 'package:soccer_club_app/widgets/card.dart';
-import 'package:soccer_club_app/widgets/icon.dart';
 import 'package:soccer_club_app/widgets/scaffold.dart';
 import 'package:soccer_club_app/widgets/text.dart';
 
@@ -37,10 +36,8 @@ class _HomePageState extends State<HomePage> {
         subtitle: context.l10n.adrian,
         actions: [
           IconButton(
-            icon: const ImageIcon(
-              AssetImage(SCIcons.notification),
-              size: 24,
-              color: AppColor.secondary,
+            icon: SvgPicture.asset(
+              SCIcons.notifications,
             ),
             onPressed: () {
               context.go(AppRoutes.notificationsPage.path);
@@ -52,10 +49,8 @@ class _HomePageState extends State<HomePage> {
           Padding(
             padding: const EdgeInsets.all(28),
             child: IconButton(
-              icon: const ImageIcon(
-                AssetImage(SCIcons.menu),
-                size: 24,
-                color: AppColor.secondary,
+              icon: SvgPicture.asset(
+                SCIcons.menu,
               ),
               onPressed: () {
                 context.go(AppRoutes.fixturesPage.path);
@@ -84,7 +79,6 @@ class _HomePageState extends State<HomePage> {
               SCCard.match(
                 child: Container(
                   height: 66,
-                  width: 318,
                   decoration: const BoxDecoration(
                     color: AppColor.whiteSmoke,
                     borderRadius: BorderRadius.only(
@@ -151,7 +145,6 @@ class _HomePageState extends State<HomePage> {
               const SizedBox(height: 1),
               SCCard.match(
                 child: Container(
-                  width: 318,
                   height: 66,
                   decoration: const BoxDecoration(
                     color: AppColor.secondary,
@@ -167,15 +160,18 @@ class _HomePageState extends State<HomePage> {
                       children: [
                         Row(
                           children: [
-                            SCIcon.calendar(
-                              color: AppColor.veryDarkBlue,
-                              width: 17,
-                              height: 18,
+                            IconButton(
+                              icon: SvgPicture.asset(
+                                SCIcons.calender,
+                              ),
+                              onPressed: () {
+                                context.go(AppRoutes.fixturesPage.path);
+                              },
                             ),
                             Padding(
                               padding: const EdgeInsets.symmetric(
-                                vertical: 12,
-                                horizontal: 13,
+                                vertical: 16,
+                                horizontal: 5,
                               ),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -205,17 +201,20 @@ class _HomePageState extends State<HomePage> {
                         ),
                         Row(
                           children: [
-                            SCIcon.email(
-                              color: AppColor.darkBlue,
-                              width: 18,
-                              height: 15,
+                            IconButton(
+                              icon: SvgPicture.asset(
+                                SCIcons.cup,
+                                // color: AppColor.darkBlue,
+                              ),
+                              onPressed: () {
+                                context.go(AppRoutes.fixturesPage.path);
+                              },
                             ),
-                            const SizedBox(
-                              width: 10,
-                            ),
-                            SCText.titleMedium(
+                            SCText.labelLarge(
                               context,
                               text: context.l10n.championLeague,
+                              style: context.textTheme.labelLarge
+                                  ?.copyWith(color: AppColor.blueBlur),
                             ),
                           ],
                         ),
@@ -272,7 +271,7 @@ class _HomePageState extends State<HomePage> {
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceEvenly,
                                 children: [
-                                  Image.asset(SCAssets.logoFirstMatch),
+                                  Image.asset(SCAssets.logoMatch),
                                   SizedBox(
                                     width: context.getHorizontalSize(45),
                                   ),
@@ -542,7 +541,7 @@ class _HomePageState extends State<HomePage> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {},
         backgroundColor: AppColor.secondary,
-        child: SvgPicture.asset(SCAssets.logoFirstMatch),
+        child: Image.asset(SCAssets.logoMatch),
       ),
     );
   }

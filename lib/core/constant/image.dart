@@ -1,7 +1,7 @@
 class SCAssets {
-  static const String logoSplashScreen = 'assets/images/avatar.png';
+  static const String logoSplashScreen = 'assets/images/logo_splash_screen.png';
 
-  static const String clubLogo = 'assets/images/soccer_logo.png';
+  static const String clubLogo = 'assets/images/logo_sport.png';
 
   static const String favouritePlayer = 'assets/images/image_user.png';
 
@@ -23,11 +23,11 @@ class SCAssets {
 
   static const String logoMatchDetail = 'assets/images/logo_match_detail.png';
 
-  static const String logoFirstMatch = 'assets/images/logo_first_match.png';
+  static const String logoMatch = 'assets/images/logo_match.png';
 
   static const String logoSecondMatch = 'assets/images/logo_second_match.png';
 
   static const String youtube = 'assets/images/youtube.png';
 
-  static const String victory = 'assets/images/logo_victory.png';
+  static const String arena = 'assets/images/arena.png';
 }

@@ -6,7 +6,7 @@ import 'package:soccer_club_app/routes/routes.dart';
 
 void main() => runApp(
       DevicePreview(
-        builder: (context) => const MyApp(), // Wrap your app
+        builder: (context) => const MyApp(),
       ),
     );
 
