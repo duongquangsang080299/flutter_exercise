@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
 import 'package:soccer_club_app/core/color/app_color.dart';
+import 'package:soccer_club_app/core/constant/icons.dart';
 import 'package:soccer_club_app/core/constant/image.dart';
 import 'package:soccer_club_app/core/extention/builder_context_extension.dart';
 import 'package:soccer_club_app/core/typography/app_fontweight.dart';
 import 'package:soccer_club_app/core/utils/size_utils.dart';
 import 'package:soccer_club_app/l10n/l10n.dart';
+import 'package:soccer_club_app/routes/routes.dart';
 import 'package:soccer_club_app/widgets/app_bar.dart';
 import 'package:soccer_club_app/widgets/bottom_navigation_bar.dart';
 import 'package:soccer_club_app/widgets/card.dart';
@@ -30,7 +33,7 @@ class CustomSliverDelegate extends SliverPersistentHeaderDelegate {
     final appBarSize = expandedHeight - shrinkOffset;
     final cardTopPosition = expandedHeight / 2 - shrinkOffset;
     final proportion = 2 - (expandedHeight / appBarSize);
-    final percent = proportion < 0 || proportion > 1 ? 0.0 : proportion;
+    final percent = (proportion < 0 || proportion > 1) ? 0.0 : proportion;
     return SizedBox(
       height: expandedHeight + expandedHeight / 2,
       child: Stack(
@@ -41,9 +44,12 @@ class CustomSliverDelegate extends SliverPersistentHeaderDelegate {
               backgroundColor: AppColor.tertiary,
               leading: SCIcon.back(
                 color: AppColor.secondary,
-                onPressed: () {},
+                onPressed: () {
+                  context.go(AppRoutes.homePage.path);
+                },
               ),
               elevation: 0,
+              fontSize: 20,
               title: context.l10n.matchDetails,
             ),
           ),
@@ -55,15 +61,15 @@ class CustomSliverDelegate extends SliverPersistentHeaderDelegate {
             child: Opacity(
               opacity: percent,
               child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 30 * percent),
+                padding: EdgeInsets.symmetric(horizontal: 28 * percent),
                 child: SizedBox(
-                  height: context.getVerticalSize(319),
+                  height: context.getVerticalSize(440),
                   child: SCCard.match(
                     child: Column(
                       children: [
                         Center(
                           child: SvgPicture.asset(
-                            SCAssets.arena,
+                            SCIcons.arena,
                             height: 25,
                             fit: BoxFit.cover,
                           ),
@@ -81,7 +87,7 @@ class CustomSliverDelegate extends SliverPersistentHeaderDelegate {
                         SCText.labelLarge(
                           context,
                           text: context.l10n.may92021,
-                          style: context.textTheme.displaySmall?.copyWith(
+                          style: context.textTheme.labelLarge?.copyWith(
                             fontWeight: AppFontWeight.medium,
                             color: AppColor.grayHex,
                           ),
@@ -100,8 +106,7 @@ class CustomSliverDelegate extends SliverPersistentHeaderDelegate {
                                 SCText.labelLarge(
                                   context,
                                   text: context.l10n.kickoff,
-                                  style:
-                                      context.textTheme.displaySmall?.copyWith(
+                                  style: context.textTheme.labelLarge?.copyWith(
                                     fontWeight: AppFontWeight.medium,
                                     color: AppColor.blueMainly,
                                   ),
@@ -109,8 +114,7 @@ class CustomSliverDelegate extends SliverPersistentHeaderDelegate {
                                 SCText.labelLarge(
                                   context,
                                   text: context.l10n.time,
-                                  style:
-                                      context.textTheme.displaySmall?.copyWith(
+                                  style: context.textTheme.labelLarge?.copyWith(
                                     fontWeight: AppFontWeight.medium,
                                     color: AppColor.blueMainly,
                                   ),
@@ -125,36 +129,35 @@ class CustomSliverDelegate extends SliverPersistentHeaderDelegate {
                             const SizedBox(width: 8),
                           ],
                         ),
+                        const SizedBox(
+                          height: 15,
+                        ),
                         Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             SCText.displayMedium(
                               context,
                               text: context.l10n.redD,
-                              style: context.textTheme.displaySmall?.copyWith(
-                                color: AppColor.tertiary,
-                              ),
+                              style: context.textTheme.displayMedium
+                                  ?.copyWith(color: AppColor.tertiary),
+                            ),
+                            const SizedBox(
+                              width: 143,
                             ),
                             SCText.displayMedium(
                               context,
                               text: context.l10n.victoryG,
-                              style: context.textTheme.displaySmall?.copyWith(
-                                color: AppColor.tertiary,
-                              ),
+                              style: context.textTheme.displayMedium
+                                  ?.copyWith(color: AppColor.tertiary),
                             ),
                           ],
                         ),
                         const SizedBox(height: 28),
-                        Padding(
-                          padding: const EdgeInsets.all(20),
+                        SizedBox(
+                          width: 280,
+                          height: 127,
                           child: SCCard.avatar(
-                            width: context.getHorizontalSize(280),
-                            height: context.getVerticalSize(127),
                             child: Container(
-                              padding: const EdgeInsets.symmetric(
-                                vertical: 17,
-                                horizontal: 7,
-                              ),
                               decoration: const BoxDecoration(
                                 borderRadius: BorderRadius.all(
                                   Radius.circular(18),
@@ -171,8 +174,8 @@ class CustomSliverDelegate extends SliverPersistentHeaderDelegate {
                                     context,
                                     text: context.l10n.matchcountdown,
                                   ),
-                                  SizedBox(
-                                    height: context.getVerticalSize(25),
+                                  const SizedBox(
+                                    height: 25,
                                   ),
                                   Row(
                                     mainAxisAlignment:
@@ -313,8 +316,8 @@ class _NextMatchPageState extends State<NextMatchPage> {
                         children: [
                           SCCard.match(
                             child: Container(
-                              height: context.getVerticalSize(50),
-                              width: context.getHorizontalSize(318),
+                              height: 50,
+                              width: 318,
                               decoration: const BoxDecoration(
                                 color: AppColor.whiteSmoke,
                                 borderRadius: BorderRadius.only(
@@ -339,10 +342,22 @@ class _NextMatchPageState extends State<NextMatchPage> {
                                   children: [
                                     Row(
                                       children: [
-                                        Image.asset(
-                                          SCAssets.logoMatch,
-                                          width: 40,
-                                          height: 40,
+                                        Stack(
+                                          children: [
+                                            Container(
+                                              width: 35,
+                                              height: 35,
+                                              decoration: const BoxDecoration(
+                                                shape: BoxShape.circle,
+                                                color: AppColor.error,
+                                              ),
+                                            ),
+                                            const Positioned(
+                                              top: 0,
+                                              left: 30,
+                                              child: Text('1'),
+                                            ),
+                                          ],
                                         ),
                                         const SizedBox(width: 15),
                                         SCText.displayMedium(
@@ -370,10 +385,22 @@ class _NextMatchPageState extends State<NextMatchPage> {
                                           ),
                                         ),
                                         const SizedBox(width: 15),
-                                        Image.asset(
-                                          SCAssets.logoSecondMatch,
-                                          width: 40,
-                                          height: 40,
+                                        Stack(
+                                          children: [
+                                            Container(
+                                              width: 35,
+                                              height: 35,
+                                              decoration: const BoxDecoration(
+                                                shape: BoxShape.circle,
+                                                color: AppColor.error,
+                                              ),
+                                            ),
+                                            const Positioned(
+                                              top: 0,
+                                              left: 30,
+                                              child: Text('1'),
+                                            ),
+                                          ],
                                         ),
                                       ],
                                     ),
@@ -385,15 +412,16 @@ class _NextMatchPageState extends State<NextMatchPage> {
                           const SizedBox(height: 1),
                           SCCard.match(
                             child: Container(
-                              height: context.getVerticalSize(50),
-                              width: context.getHorizontalSize(318),
+                              height: 50,
+                              width: 318,
                               decoration: const BoxDecoration(
                                 borderRadius: BorderRadius.only(
                                   bottomLeft: Radius.circular(10),
                                   bottomRight: Radius.circular(10),
                                 ),
                                 gradient: LinearGradient(
-                                    colors: AppColor.linearShadow),
+                                  colors: AppColor.linearShadow,
+                                ),
                               ),
                               child: Padding(
                                 padding: const EdgeInsets.symmetric(
@@ -417,9 +445,6 @@ class _NextMatchPageState extends State<NextMatchPage> {
                                           context.textTheme.bodySmall?.copyWith(
                                         color: AppColor.darkBlue,
                                       ),
-                                    ),
-                                    const SizedBox(
-                                      width: 10,
                                     ),
                                   ],
                                 ),

@@ -28,8 +28,8 @@ class _PlayerPageState extends State<PlayerPage> {
   Widget build(BuildContext context) {
     return SCScaffold(
       appBar: AppBar(
-        toolbarHeight: 146,
-        backgroundColor: Colors.white,
+        toolbarHeight: 130,
+        backgroundColor: AppColor.secondary,
         elevation: 0,
         leading: GestureDetector(
           onTap: () {
@@ -111,6 +111,7 @@ class _PlayerPageState extends State<PlayerPage> {
             SizedBox(
               height: 40,
               child: PageView.builder(
+                padEnds: false,
                 controller: PageController(
                   initialPage: 1,
                   viewportFraction: 1 / 6,

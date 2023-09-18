@@ -28,6 +28,4 @@ class SCAssets {
   static const String logoSecondMatch = 'assets/images/logo_second_match.png';
 
   static const String youtube = 'assets/images/youtube.png';
-
-  static const String arena = 'assets/images/arena.png';
 }

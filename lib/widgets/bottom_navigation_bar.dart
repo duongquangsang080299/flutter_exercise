@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:soccer_club_app/core/color/app_color.dart';
 import 'package:soccer_club_app/core/constant/icons.dart';
+import 'package:soccer_club_app/core/typography/typography.dart';
+import 'package:soccer_club_app/l10n/l10n.dart';
 import 'package:soccer_club_app/routes/routes.dart';
 
 class SCBottomNavigationBar extends StatelessWidget {
@@ -36,37 +38,45 @@ class SCBottomNavigationBar extends StatelessWidget {
           buildNavItem(
             context,
             icon: SvgPicture.asset(
-              SCIcons.calender,
+              SCIcons.home,
+              width: 18,
+              height: 20,
               color: currentIndex == 0 ? AppColor.primary : AppColor.tertiary,
             ),
-            label: 'News',
+            label: context.l10n.home,
             index: 0,
           ),
           buildNavItem(
             context,
             icon: SvgPicture.asset(
               SCIcons.fixtures,
+              width: 23,
+              height: 23,
               color: currentIndex == 1 ? AppColor.primary : AppColor.tertiary,
             ),
-            label: 'Fixtures',
+            label: context.l10n.fixtures,
             index: 1,
           ),
           buildNavItem(
             context,
             icon: SvgPicture.asset(
               SCIcons.shop,
+              width: 23,
+              height: 23,
               color: currentIndex == 2 ? AppColor.primary : AppColor.tertiary,
             ),
-            label: 'Shop',
+            label: context.l10n.shop,
             index: 2,
           ),
           buildNavItem(
             context,
             icon: SvgPicture.asset(
               SCIcons.tickets,
+              width: 37,
+              height: 37,
               color: currentIndex == 3 ? AppColor.primary : AppColor.tertiary,
             ),
-            label: 'Tickets',
+            label: context.l10n.tickets,
             index: 3,
           ),
         ],
@@ -85,13 +95,11 @@ class SCBottomNavigationBar extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         onTap(index);
-        // Navigate to different pages based on the selected index
         switch (index) {
           case 0:
             Navigator.of(context).pushReplacementNamed('/home');
           case 1:
             context.go(AppRoutes.fixturesPage.path);
-          // Add cases for other indices as needed
         }
       },
       child: Column(
@@ -105,6 +113,9 @@ class SCBottomNavigationBar extends StatelessWidget {
             label,
             style: TextStyle(
               color: isSelected ? AppColor.primary : AppColor.tertiary,
+              fontSize: 9, // Set the font size of the Text
+              fontWeight:
+                  AppFontWeight.regular, // Set the font weight of the Text
             ),
           ),
         ],

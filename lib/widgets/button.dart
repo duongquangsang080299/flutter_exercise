@@ -28,7 +28,7 @@ class SCButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: double.infinity,
-      height: context.getVerticalSize(height),
+      height: height,
       child: ElevatedButton(
         onPressed: onPressed,
         style: ButtonStyle(
@@ -72,7 +72,7 @@ class SCButtonIcon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: context.getVerticalSize(60),
+      height: 60,
       child: ElevatedButton(
         onPressed: onPressed,
         style: ButtonStyle(
@@ -82,19 +82,19 @@ class SCButtonIcon extends StatelessWidget {
             ),
           ),
         ),
-        child: Stack(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Align(
-              alignment: Alignment.centerLeft,
+            icon!,
+            SCText.displaySmall(
+              context,
+              text: text,
+              style: style,
+            ),
+            Opacity(
+              opacity: 0,
               child: icon,
-            ),
-            Align(
-              child: SCText.displaySmall(
-                context,
-                text: text,
-                style: style,
-              ),
-            ),
+            )
           ],
         ),
       ),
@@ -123,7 +123,7 @@ class SCOutlineButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: width,
-      height: context.getVerticalSize(height),
+      height: height,
       child: OutlinedButton(
         onPressed: onPressed,
         style: ButtonStyle(

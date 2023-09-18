@@ -68,6 +68,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
                   controller: _pageController,
                   onPageChanged: (index) {
                     setState(() {
+                      // Update the current page index when the user swipes
                       _pageIndex = index;
                     });
                   },
@@ -89,6 +90,8 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
                         demoData.length,
                         (index) => Padding(
                           padding: const EdgeInsets.all(8),
+
+                          /// Apply SCDotsIndicator Widget
                           child: SCDotsIndicator(
                             isActive: index == _pageIndex,
                           ),
@@ -102,6 +105,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
                         Expanded(
                           child: SCOutlineButton(
                             onPressed: () {
+                              // Navigate to screen when button is pressed
                               context.go(AppRoutes.welcomeScreen.path);
                             },
                             // Localize the 'Skip' text using context.l10n
@@ -143,6 +147,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
   }
 }
 
+/// Define OnBoardingBody class
 class OnBoardingBody extends StatelessWidget {
   const OnBoardingBody({
     required this.image,
@@ -168,7 +173,7 @@ class OnBoardingBody extends StatelessWidget {
           height: context.getSize(212),
         ),
         const Spacer(),
-        // Add vertical spacing using the getVerticalSize method
+
         SCText.displayLarge(
           context,
           style: context.textTheme.displayLarge?.copyWith(

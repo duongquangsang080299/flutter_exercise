@@ -72,5 +72,9 @@
     "secs": "Secs",
     "redD": "Red D.",
     "victoryG": "Victory G.",
-    "matchs": "Matchs"
+    "matchs": "Matchs",
+    "home":"Home",
+    "fixtures":"Fixtures",
+    "shop":"Shop",
+    "tickets":"Tickets"
 }

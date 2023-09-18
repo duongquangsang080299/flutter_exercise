@@ -5,7 +5,7 @@ import 'package:soccer_club_app/core/color/app_color.dart';
 import 'package:soccer_club_app/core/constant/image.dart';
 import 'package:soccer_club_app/widgets/scaffold.dart';
 
-/// Define Splash Screen
+/// Define Splash Screen Class
 class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});
 

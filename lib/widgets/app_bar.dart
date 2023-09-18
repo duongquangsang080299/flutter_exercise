@@ -17,6 +17,7 @@ class SCAppBar extends StatelessWidget implements PreferredSize {
     this.toolbarHeight,
     this.elevation,
     this.flexibleSpace,
+    this.fontSize,
   });
 
   /// Factory constructor for creating a home app bar
@@ -25,6 +26,7 @@ class SCAppBar extends StatelessWidget implements PreferredSize {
     Color? backgroundColor,
     bool? centerTitle,
     double? elevation,
+    double? fontSize,
     Widget? leading,
     List<Widget>? actions,
     double? toolbarHeight,
@@ -34,6 +36,7 @@ class SCAppBar extends StatelessWidget implements PreferredSize {
       backgroundColor: backgroundColor,
       title: title,
       leading: leading,
+      fontSize: fontSize,
       elevation: elevation,
       centerTitle: centerTitle,
       actions: actions ?? [],
@@ -68,7 +71,7 @@ class SCAppBar extends StatelessWidget implements PreferredSize {
   final Widget? leading;
   final List<Widget> actions;
   final Color? backgroundColor;
-
+  final double? fontSize;
   final bool? centerTitle;
   final double? toolbarHeight;
   final double? elevation;
@@ -91,7 +94,7 @@ class SCAppBar extends StatelessWidget implements PreferredSize {
             context,
             text: title,
             style: context.textTheme.displaySmall
-                ?.copyWith(color: AppColor.secondary),
+                ?.copyWith(color: AppColor.secondary, fontSize: fontSize),
           ),
           if (subtitle?.isNotEmpty ?? false)
             SCText.displayLarge(

@@ -74,6 +74,9 @@ class _SignUpPageState extends State<SignUpPage> {
                 width: 24,
                 height: 14,
                 color: AppColor.tertiary,
+                onPressed: () {
+                  context.go(AppRoutes.signIn.path);
+                },
               ),
               SizedBox(height: context.getVerticalSize(50)),
               SCText.displayLarge(
@@ -136,7 +139,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     debugPrint('Form is invalid');
                   }
                 },
-                text: context.l10n.btnLogin,
+                text: context.l10n.btnSignUp,
                 backgroundColor: AppColor.blackJet,
                 height: context.getVerticalSize(60),
                 borderRadius: 30,

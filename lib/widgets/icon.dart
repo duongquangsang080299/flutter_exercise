@@ -214,6 +214,7 @@ class SCIcon extends StatelessWidget {
     // Wrap the Icon widget with a GestureDetector
     return IconButton(
       // Assign the onPressed callback to onTap
+      padding: EdgeInsets.zero,
       onPressed: onPressed,
       icon: Icon(
         iconData,

@@ -12,4 +12,12 @@ class SCIcons {
   static const String calender = 'assets/images/icon_calender.svg';
 
   static const String fixtures = 'assets/images/icon_fixtures.svg';
+
+  static const String back = 'assets/images/icon_back.svg';
+
+  static const String youtube = 'assets/images/icon_youtube.svg';
+
+  static const String home = 'assets/images/icon_home.svg';
+
+  static const String arena = 'assets/images/arena.png';
 }

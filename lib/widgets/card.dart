@@ -73,11 +73,11 @@ class SCCard extends StatelessWidget {
               const BorderRadius.all(
                 Radius.circular(18),
               ),
-          side: BorderSide(
-            color: selected ?? false
-                ? context.colorScheme.primary
-                : context.colorScheme.onSurface,
-          ),
+          // side: BorderSide(
+          //   color: selected ?? false
+          //       ? context.colorScheme.primary
+          //       : context.colorScheme.onSurface,
+          // ),
         ),
         color: color,
         child: child ?? Image.asset(''),
