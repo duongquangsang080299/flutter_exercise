@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:soccer_club_app/core/color/app_color.dart';
 import 'package:soccer_club_app/core/utils/size_utils.dart';
 
 // import 'package:soccer_club_app/widgets/icon.dart';
@@ -132,9 +131,6 @@ class SCOutlineButton extends StatelessWidget {
             RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(40),
               // Customize the button's border
-              side: const BorderSide(
-                color: AppColor.jetBlack,
-              ),
             ),
           ),
         ),

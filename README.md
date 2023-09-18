@@ -41,18 +41,20 @@ Before you continue, ensure you meet the following requirements:
 - [X] Epic 1: Requirement analysis
 - [X] Epic 2: Setup environment
 - [X] Epic 3: Create skeleton structure practice
-- [] Epic 4: Setup themes, routes
-- [] Epic 5: Implement the UI
+- [X] Epic 4: Setup themes, routes
+- [X] Epic 5: Implement the UI
 - [] Epic 6: Test the application and prepare for the review
 
 ## UI
-- [] UI Splash Screen
-- [] UI OnBroarding Screen
-- [] UI Sign In Screen
-- [] UI Create Account Screen
-- [] UI Player Favorite Screen
-- [] UI Home Screen
-- [] UI Notifications Screen
+- [X] UI Splash Screen
+- [X] UI OnBroarding Screen
+- [X] UI Sign In Screen
+- [X] UI Create Account Screen
+- [X] UI Player Favorite Screen
+- [X] UI Home Screen
+- [X] UI Next Match Details Screen
+- [X] UI Fixture Screen
+- [X] UI Notifications Screen
 ## Installation
 1. Clone the repository:
 ​

@@ -30,7 +30,7 @@ class AppTheme {
         style: _outlinedButtonStyle,
       ),
       iconTheme: const IconThemeData(
-        color: AppColor.jetBlack,
+        color: AppColor.blackJet,
         size: 24,
       ),
       textTheme: _textTheme,
@@ -41,7 +41,7 @@ class AppTheme {
     return const ColorScheme.light(
       primary: AppColor.primary,
       secondary: AppColor.secondary,
-      onSurface:AppColor.transparent,
+      onSurface: AppColor.transparent,
     );
   }
 
@@ -83,9 +83,11 @@ class AppTheme {
     displayLarge: AppTextStyles.titleLarge,
     displayMedium: AppTextStyles.titleMedium,
     displaySmall: AppTextStyles.titleSmall,
-    bodyMedium: AppTextStyles.bodyBold,
-    titleMedium: AppTextStyles.subtitle,
+    bodyLarge: AppTextStyles.bodyLarge,
+    bodyMedium: AppTextStyles.bodyMeidum,
     bodySmall: AppTextStyles.bodySmall,
+    labelLarge: AppTextStyles.labelLarge,
+    // huge
   );
 }
 

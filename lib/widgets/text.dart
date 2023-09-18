@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:soccer_club_app/core/extention/extention.dart';
+import 'package:soccer_club_app/core/extention/builder_context_extension.dart';
 
 class SCText extends StatelessWidget {
   /// Constructor for SCText widget.
@@ -40,6 +40,18 @@ class SCText extends StatelessWidget {
 
   /// Factory constructor to create Body Large .
   factory SCText.displaySmall(
+    BuildContext context, {
+    required String text,
+    TextStyle? style,
+    TextAlign? textAlign,
+  }) {
+    return SCText(
+      text: text,
+      style: style ?? context.textThemeData.displaySmall,
+      textAlign: textAlign,
+    );
+  }
+  factory SCText.bodyLarge(
     BuildContext context, {
     required String text,
     TextStyle? style,
@@ -90,6 +102,18 @@ class SCText extends StatelessWidget {
     return SCText(
       text: text,
       style: style ?? context.textThemeData.bodySmall,
+      textAlign: textAlign,
+    );
+  }
+  factory SCText.labelLarge(
+    BuildContext context, {
+    required String text,
+    TextStyle? style,
+    TextAlign? textAlign,
+  }) {
+    return SCText(
+      text: text,
+      style: style ?? context.textThemeData.labelLarge,
       textAlign: textAlign,
     );
   }

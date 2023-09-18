@@ -1,83 +1,114 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
+import 'package:soccer_club_app/core/color/app_color.dart';
+import 'package:soccer_club_app/core/constant/icons.dart';
+import 'package:soccer_club_app/routes/routes.dart';
 
-/// Define Bottom Navigation Bar
-class SCBottomNavigationBar extends StatefulWidget {
-  const SCBottomNavigationBar({super.key});
+class SCBottomNavigationBar extends StatelessWidget {
+  const SCBottomNavigationBar({
+    required this.currentIndex,
+    required this.onTap,
+    super.key,
+  });
 
-  @override
-  State<SCBottomNavigationBar> createState() => _SCBottomNavigationBarState();
-}
+  final int currentIndex;
+  final Function(int) onTap;
 
-class _SCBottomNavigationBarState extends State<SCBottomNavigationBar> {
-   int currentIndex = 0;
-
-  final List<Widget> _pages = [
-    const Page1(),
-    const Page2(),
-    const Page3(),
-  ];
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Bottom Navigation Bar Example'),
+    return Container(
+      height: 72,
+      decoration: BoxDecoration(
+        color: Colors.white, // Background color
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.5),
+            spreadRadius: 1,
+            blurRadius: 3,
+            offset: const Offset(0, 2),
+          ),
+        ],
       ),
-      body: _pages[currentIndex],
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: currentIndex,
-        onTap: (int index) {
-          setState(() {
-            currentIndex = index;
-          });
-        },
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Page 1',
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          buildNavItem(
+            context,
+            icon: SvgPicture.asset(
+              SCIcons.calender,
+              color: currentIndex == 0 ? AppColor.primary : AppColor.tertiary,
+            ),
+            label: 'News',
+            index: 0,
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.business),
-            label: 'Page 2',
+          buildNavItem(
+            context,
+            icon: SvgPicture.asset(
+              SCIcons.fixtures,
+              color: currentIndex == 1 ? AppColor.primary : AppColor.tertiary,
+            ),
+            label: 'Fixtures',
+            index: 1,
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.school),
-            label: 'Page 3',
+          buildNavItem(
+            context,
+            icon: SvgPicture.asset(
+              SCIcons.shop,
+              color: currentIndex == 2 ? AppColor.primary : AppColor.tertiary,
+            ),
+            label: 'Shop',
+            index: 2,
+          ),
+          buildNavItem(
+            context,
+            icon: SvgPicture.asset(
+              SCIcons.tickets,
+              color: currentIndex == 3 ? AppColor.primary : AppColor.tertiary,
+            ),
+            label: 'Tickets',
+            index: 3,
           ),
         ],
       ),
     );
   }
-}
 
-class Page1 extends StatelessWidget {
-  const Page1({super.key});
+  Widget buildNavItem(
+    BuildContext context, {
+    required Widget icon,
+    required String label,
+    required int index,
+  }) {
+    final isSelected = currentIndex == index;
 
-  @override
-  Widget build(BuildContext context) {
-    return const Center(
-      child: Text('Page 1'),
-    );
-  }
-}
-
-class Page2 extends StatelessWidget {
-  const Page2({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Center(
-      child: Text('Page 2'),
-    );
-  }
-}
-
-class Page3 extends StatelessWidget {
-  const Page3({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Center(
-      child: Text('Page 3'),
+    return GestureDetector(
+      onTap: () {
+        onTap(index);
+        // Navigate to different pages based on the selected index
+        switch (index) {
+          case 0:
+            Navigator.of(context).pushReplacementNamed('/home');
+          case 1:
+            context.go(AppRoutes.fixturesPage.path);
+          // Add cases for other indices as needed
+        }
+      },
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          icon,
+          const SizedBox(
+            height: 8,
+          ),
+          Text(
+            label,
+            style: TextStyle(
+              color: isSelected ? AppColor.primary : AppColor.tertiary,
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

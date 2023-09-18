@@ -44,7 +44,7 @@ class SCIcon extends StatelessWidget {
   }
 
   /// Factory constructor for Drawer icon
-  factory SCIcon.drawer({
+  factory SCIcon.menu({
     Color? color,
     double? width,
     double? height,
@@ -83,7 +83,7 @@ class SCIcon extends StatelessWidget {
     VoidCallback? onPressed,
   }) {
     return SCIcon(
-      iconData: Icons.calendar_today,
+      iconData: Icons.calendar_today_outlined,
       color: color,
       height: height,
       width: width,
@@ -122,6 +122,34 @@ class SCIcon extends StatelessWidget {
       onPressed: onPressed,
     );
   }
+  factory SCIcon.backward({
+    Color? color,
+    double? width,
+    double? height,
+    VoidCallback? onPressed,
+  }) {
+    return SCIcon(
+      iconData: Icons.arrow_right,
+      color: color,
+      height: height,
+      width: width,
+      onPressed: onPressed,
+    );
+  }
+  factory SCIcon.forward({
+    Color? color,
+    double? width,
+    double? height,
+    VoidCallback? onPressed,
+  }) {
+    return SCIcon(
+      iconData: Icons.arrow_left,
+      color: color,
+      height: height,
+      width: width,
+      onPressed: onPressed,
+    );
+  }
   factory SCIcon.back({
     Color? color,
     double? width,
@@ -130,6 +158,20 @@ class SCIcon extends StatelessWidget {
   }) {
     return SCIcon(
       iconData: Icons.arrow_back,
+      color: color,
+      height: height,
+      width: width,
+      onPressed: onPressed,
+    );
+  }
+  factory SCIcon.suffix({
+    Color? color,
+    double? width,
+    double? height,
+    VoidCallback? onPressed,
+  }) {
+    return SCIcon(
+      iconData: Icons.visibility,
       color: color,
       height: height,
       width: width,
