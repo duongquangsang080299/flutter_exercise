@@ -31,47 +31,50 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return SCScaffold(
       // Customize the app bar with specific properties.
-      appBar: SCAppBar.second(
-        toolbarHeight: getVerticalSize(139),
-        backgroundColor: AppColor.primary,
-        centerTitle: false,
-        title: context.l10n.goodMorning,
-        subtitle: context.l10n.adrian,
-        actions: [
-          // Define a list of action widgets to be displayed on the app bar.
-          IconButton(
-            // Create an icon button with an SVG icon.
-            icon: SvgPicture.asset(
-              SCIcons.notifications,
-            ),
-            onPressed: () {
-              // Define onPressed callback to navigate to the notifications page
-              context.go(AppRoutes.notificationsPage.path);
-            },
-          ),
-          const SizedBox(
-            width: 10,
-          ),
-          Padding(
-            // Apply padding to an icon button.
-            padding: const EdgeInsets.all(28),
-            child: IconButton(
+      appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(150),
+        child: SCAppBar.second(
+          toolbarHeight: getVerticalSize(139),
+          backgroundColor: AppColor.primary,
+          centerTitle: false,
+          leadingWidth: 0,
+          title: context.l10n.goodMorning,
+          subtitle: context.l10n.adrian,
+          actions: [
+            // Define a list of action widgets to be displayed on the app bar.
+            IconButton(
+              // Create an icon button with an SVG icon.
               icon: SvgPicture.asset(
-                SCIcons.menu,
+                SCIcons.notifications,
               ),
               onPressed: () {
-                context.go(AppRoutes.fixturesPage.path);
+                // Define onPressed callback to navigate to the notifications page
+                context.go(AppRoutes.notificationsPage.path);
               },
             ),
-          ),
-        ],
+            const SizedBox(
+              width: 10,
+            ),
+            Padding(
+              // Apply padding to an icon button.
+              padding: const EdgeInsets.all(20),
+              child: IconButton(
+                icon: SvgPicture.asset(
+                  SCIcons.menu,
+                ),
+                onPressed: () {
+                  context.go(AppRoutes.fixturesPage.path);
+                },
+              ),
+            ),
+          ],
+        ),
       ),
       body: SingleChildScrollView(
         child: Column(
-          // crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 29),
+              padding: const EdgeInsets.symmetric(horizontal: 29, vertical: 10),
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -87,7 +90,7 @@ class _HomePageState extends State<HomePage> {
             /// Create a custom card widget named 'match'.
             // Use the SCCard.match constructor to create a card.
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
+              padding: const EdgeInsets.symmetric(horizontal: 29),
               child: SCCard.match(
                 child: Container(
                   height: 66,
@@ -123,7 +126,7 @@ class _HomePageState extends State<HomePage> {
                               height: 35,
                               decoration: const BoxDecoration(
                                 shape: BoxShape.circle,
-                                color: AppColor.error,
+                                color: AppColor.redBlur,
                               ),
                             ),
                             Positioned(
@@ -161,13 +164,14 @@ class _HomePageState extends State<HomePage> {
 
             /// Create a custom card widget named 'match'.
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 23),
+              padding: const EdgeInsets.symmetric(horizontal: 29),
               child: SCCard.match(
                 child: Container(
-                  padding: const EdgeInsets.symmetric(vertical: 5),
-                  decoration: const BoxDecoration(
-                    color: AppColor.secondary,
-                    borderRadius: BorderRadius.only(
+                  height: 66,
+                  padding: const EdgeInsets.symmetric(vertical: 18),
+                  decoration: BoxDecoration(
+                    color: AppColor.secondary.withOpacity(0.9),
+                    borderRadius: const BorderRadius.only(
                       bottomLeft: Radius.circular(10),
                       bottomRight: Radius.circular(10),
                     ),
@@ -245,7 +249,7 @@ class _HomePageState extends State<HomePage> {
             ),
             const SizedBox(height: 13),
             Container(
-              padding: const EdgeInsets.only(left: 20),
+              padding: const EdgeInsets.only(left: 29),
               height: 170,
               child: ListView(
                 scrollDirection: Axis.horizontal,
@@ -292,7 +296,7 @@ class _HomePageState extends State<HomePage> {
                               ],
                             ),
                             const SizedBox(
-                              height: 1,
+                              height: 11,
                             ),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -300,7 +304,7 @@ class _HomePageState extends State<HomePage> {
                                 Padding(
                                   padding: const EdgeInsets.symmetric(
                                     vertical: 1,
-                                    horizontal: 5,
+                                    horizontal: 6,
                                   ),
                                   child: SCText.displayLarge(
                                     context,
@@ -310,7 +314,7 @@ class _HomePageState extends State<HomePage> {
                                   ),
                                 ),
                                 const SizedBox(
-                                  width: 29,
+                                  width: 27,
                                 ),
                                 SCText.displayLarge(
                                   context,
@@ -319,7 +323,7 @@ class _HomePageState extends State<HomePage> {
                                       ?.copyWith(color: AppColor.tertiary),
                                 ),
                                 const SizedBox(
-                                  width: 20,
+                                  width: 24,
                                 ),
                                 SCText.displayLarge(
                                   context,
@@ -565,6 +569,7 @@ class _HomePageState extends State<HomePage> {
 
       /// Define the floating action button.
       floatingActionButton: FloatingActionButton(
+        elevation: 0,
         onPressed: () {},
         backgroundColor: AppColor.secondary,
         child: Image.asset(SCAssets.logoMatch),

@@ -19,5 +19,5 @@ class SCIcons {
 
   static const String home = 'assets/images/icon_home.svg';
 
-  static const String arena = 'assets/images/arena.png';
+  static const String arena = 'assets/images/arena.svg';
 }

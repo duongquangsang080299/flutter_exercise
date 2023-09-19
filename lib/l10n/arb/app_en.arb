@@ -7,7 +7,7 @@
     "btnSkip": "SKIP",
     "btnCampaigns": "CAMPAIGNS",
     "btnConfirm": "CONFIRM",
-    "btnCreateAnAccount": "Create an account ",
+    "btnCreateAnAccount": "Create an account ", 
     "goodAfternoon": "Good Afternoon",
     "welcomeBack": "Welcome Back",
     "textDescriptionOnboarding": "Lorem ipsum dolor sit amet, consectetur \nadipiscing elit, sed do   eiusmod tempor \nincididunt ut labore et dolore magna aliqua",
@@ -76,5 +76,9 @@
     "home":"Home",
     "fixtures":"Fixtures",
     "shop":"Shop",
-    "tickets":"Tickets"
+    "tickets":"Tickets",
+    "numberone":"1",
+    "numbertwo":"2",
+    "numbertheree":"3"
+    
 }

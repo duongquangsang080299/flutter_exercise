@@ -18,6 +18,7 @@ class SCAppBar extends StatelessWidget implements PreferredSize {
     this.elevation,
     this.flexibleSpace,
     this.fontSize,
+    this.leadingWidth,
   });
 
   /// Factory constructor for creating a home app bar
@@ -28,6 +29,7 @@ class SCAppBar extends StatelessWidget implements PreferredSize {
     double? elevation,
     double? fontSize,
     Widget? leading,
+    double? leadingWidth,
     List<Widget>? actions,
     double? toolbarHeight,
     Widget? flexibleSpace,
@@ -39,6 +41,7 @@ class SCAppBar extends StatelessWidget implements PreferredSize {
       fontSize: fontSize,
       elevation: elevation,
       centerTitle: centerTitle,
+      leadingWidth: leadingWidth,
       actions: actions ?? [],
       toolbarHeight: toolbarHeight,
       flexibleSpace: flexibleSpace,
@@ -52,6 +55,8 @@ class SCAppBar extends StatelessWidget implements PreferredSize {
     Color? backgroundColor,
     double? elevation,
     bool? centerTitle,
+    double? leadingWidth,
+    Widget? flexibleSpace,
     double? toolbarHeight,
     List<Widget>? actions,
   }) {
@@ -60,7 +65,9 @@ class SCAppBar extends StatelessWidget implements PreferredSize {
       subtitle: subtitle,
       backgroundColor: backgroundColor,
       actions: actions ?? [],
+      leadingWidth: leadingWidth,
       elevation: elevation,
+      flexibleSpace: flexibleSpace,
       toolbarHeight: toolbarHeight,
       centerTitle: centerTitle,
     );
@@ -75,12 +82,13 @@ class SCAppBar extends StatelessWidget implements PreferredSize {
   final bool? centerTitle;
   final double? toolbarHeight;
   final double? elevation;
+  final double? leadingWidth;
   final Widget? flexibleSpace;
   @override
   Widget build(BuildContext context) {
     return AppBar(
       /// Define leading widget
-      leadingWidth: 0,
+      leadingWidth: leadingWidth,
       titleSpacing: 30,
       elevation: elevation,
       flexibleSpace: flexibleSpace,

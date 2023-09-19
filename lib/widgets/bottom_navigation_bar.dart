@@ -32,54 +32,62 @@ class SCBottomNavigationBar extends StatelessWidget {
           ),
         ],
       ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
-          buildNavItem(
-            context,
-            icon: SvgPicture.asset(
-              SCIcons.home,
-              width: 18,
-              height: 20,
-              color: currentIndex == 0 ? AppColor.primary : AppColor.tertiary,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            buildNavItem(
+              context,
+              icon: SvgPicture.asset(
+                SCIcons.home,
+                height: 20,
+                color: currentIndex == 0 ? AppColor.primary : AppColor.tertiary,
+              ),
+              label: context.l10n.news,
+              index: 0,
             ),
-            label: context.l10n.home,
-            index: 0,
-          ),
-          buildNavItem(
-            context,
-            icon: SvgPicture.asset(
-              SCIcons.fixtures,
-              width: 23,
-              height: 23,
-              color: currentIndex == 1 ? AppColor.primary : AppColor.tertiary,
+            const SizedBox(
+              width: 64,
             ),
-            label: context.l10n.fixtures,
-            index: 1,
-          ),
-          buildNavItem(
-            context,
-            icon: SvgPicture.asset(
-              SCIcons.shop,
-              width: 23,
-              height: 23,
-              color: currentIndex == 2 ? AppColor.primary : AppColor.tertiary,
+            buildNavItem(
+              context,
+              icon: SvgPicture.asset(
+                SCIcons.fixtures,
+                height: 23,
+                color: currentIndex == 1 ? AppColor.primary : AppColor.tertiary,
+              ),
+              label: context.l10n.fixtures,
+              index: 1,
             ),
-            label: context.l10n.shop,
-            index: 2,
-          ),
-          buildNavItem(
-            context,
-            icon: SvgPicture.asset(
-              SCIcons.tickets,
-              width: 37,
-              height: 37,
-              color: currentIndex == 3 ? AppColor.primary : AppColor.tertiary,
+            const SizedBox(
+              width: 94,
             ),
-            label: context.l10n.tickets,
-            index: 3,
-          ),
-        ],
+            buildNavItem(
+              context,
+              icon: SvgPicture.asset(
+                SCIcons.shop,
+                height: 23,
+                color: currentIndex == 2 ? AppColor.primary : AppColor.tertiary,
+              ),
+              label: context.l10n.shop,
+              index: 2,
+            ),
+            const SizedBox(
+              width: 50,
+            ),
+            buildNavItem(
+              context,
+              icon: SvgPicture.asset(
+                height: 37,
+                SCIcons.tickets,
+                color: currentIndex == 3 ? AppColor.primary : AppColor.tertiary,
+              ),
+              label: context.l10n.tickets,
+              index: 3,
+            ),
+          ],
+        ),
       ),
     );
   }

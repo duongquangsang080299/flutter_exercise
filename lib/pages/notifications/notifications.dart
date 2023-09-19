@@ -21,6 +21,7 @@ class NotificationsPage extends StatelessWidget {
         child: SCAppBar.main(
           title: context.l10n.notifications,
           fontSize: 20,
+          leadingWidth: 50,
           backgroundColor: AppColor.primary,
           centerTitle: true,
           leading: GestureDetector(

@@ -111,9 +111,7 @@ class _PlayerPageState extends State<PlayerPage> {
             SizedBox(
               height: 40,
               child: PageView.builder(
-                padEnds: false,
                 controller: PageController(
-                  initialPage: 1,
                   viewportFraction: 1 / 6,
                 ),
                 itemCount: listAvatars.length,

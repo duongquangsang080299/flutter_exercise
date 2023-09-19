@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:soccer_club_app/core/utils/size_utils.dart';
-
-// import 'package:soccer_club_app/widgets/icon.dart';
 import 'package:soccer_club_app/widgets/text.dart';
 
 /// Define SCButton widget with text

@@ -24,6 +24,7 @@ class FixturesPage extends StatelessWidget {
           fontSize: 20,
           backgroundColor: AppColor.primary,
           centerTitle: true,
+          leadingWidth: 50,
           leading: GestureDetector(
             onTap: () {
               context.go(AppRoutes.homePage.path);
@@ -45,6 +46,8 @@ class FixturesPage extends StatelessWidget {
                   SCText.displayLarge(
                     text: context.l10n.league,
                     context,
+                    style: context.textTheme.displayLarge
+                        ?.copyWith(color: AppColor.tertiary),
                   ),
                 ],
               ),
@@ -127,13 +130,12 @@ class FixturesPage extends StatelessWidget {
                       child: Container(
                         width: 318,
                         height: 66,
-                        decoration: const BoxDecoration(
-                          borderRadius: BorderRadius.only(
+                        decoration: BoxDecoration(
+                          color: AppColor.secondary.withOpacity(0.9),
+                          borderRadius: const BorderRadius.only(
                             bottomLeft: Radius.circular(10),
                             bottomRight: Radius.circular(10),
                           ),
-                          gradient:
-                              LinearGradient(colors: AppColor.linearShadow),
                         ),
                         child: Padding(
                           padding: const EdgeInsets.symmetric(

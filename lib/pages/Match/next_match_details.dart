@@ -42,6 +42,7 @@ class CustomSliverDelegate extends SliverPersistentHeaderDelegate {
             height: 185,
             child: SCAppBar.main(
               backgroundColor: AppColor.tertiary,
+              leadingWidth: 80,
               leading: SCIcon.back(
                 color: AppColor.secondary,
                 onPressed: () {
@@ -63,18 +64,16 @@ class CustomSliverDelegate extends SliverPersistentHeaderDelegate {
               child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: 28 * percent),
                 child: SizedBox(
-                  height: context.getVerticalSize(440),
+                  height: context.getVerticalSize(700),
                   child: SCCard.match(
                     child: Column(
                       children: [
                         Center(
                           child: SvgPicture.asset(
                             SCIcons.arena,
-                            height: 25,
-                            fit: BoxFit.cover,
+                            height: 100,
                           ),
                         ),
-                        const SizedBox(height: 8),
                         SCText.displaySmall(
                           context,
                           text: context.l10n.devilsArenaStadium,
@@ -317,7 +316,6 @@ class _NextMatchPageState extends State<NextMatchPage> {
                           SCCard.match(
                             child: Container(
                               height: 50,
-                              width: 318,
                               decoration: const BoxDecoration(
                                 color: AppColor.whiteSmoke,
                                 borderRadius: BorderRadius.only(
@@ -352,10 +350,18 @@ class _NextMatchPageState extends State<NextMatchPage> {
                                                 color: AppColor.error,
                                               ),
                                             ),
-                                            const Positioned(
+                                            Positioned(
                                               top: 0,
-                                              left: 30,
-                                              child: Text('1'),
+                                              left: 12,
+                                              child: SCText.displayLarge(
+                                                context,
+                                                text: context.l10n.numbertwo,
+                                                style: context
+                                                    .textTheme.displayLarge
+                                                    ?.copyWith(
+                                                  color: AppColor.secondary,
+                                                ),
+                                              ),
                                             ),
                                           ],
                                         ),
@@ -365,7 +371,7 @@ class _NextMatchPageState extends State<NextMatchPage> {
                                           text: context.l10n.redDevils,
                                           style: context.textTheme.displaySmall
                                               ?.copyWith(
-                                            color: AppColor.error,
+                                            color: AppColor.redBlur,
                                             fontWeight: AppFontWeight.bold,
                                           ),
                                         ),
@@ -392,13 +398,21 @@ class _NextMatchPageState extends State<NextMatchPage> {
                                               height: 35,
                                               decoration: const BoxDecoration(
                                                 shape: BoxShape.circle,
-                                                color: AppColor.error,
+                                                color: AppColor.primary,
                                               ),
                                             ),
-                                            const Positioned(
+                                            Positioned(
                                               top: 0,
-                                              left: 30,
-                                              child: Text('1'),
+                                              left: 12,
+                                              child: SCText.displayLarge(
+                                                context,
+                                                text: context.l10n.numberone,
+                                                style: context
+                                                    .textTheme.displayLarge
+                                                    ?.copyWith(
+                                                  color: AppColor.secondary,
+                                                ),
+                                              ),
                                             ),
                                           ],
                                         ),
@@ -413,7 +427,6 @@ class _NextMatchPageState extends State<NextMatchPage> {
                           SCCard.match(
                             child: Container(
                               height: 50,
-                              width: 318,
                               decoration: const BoxDecoration(
                                 borderRadius: BorderRadius.only(
                                   bottomLeft: Radius.circular(10),
@@ -432,7 +445,6 @@ class _NextMatchPageState extends State<NextMatchPage> {
                                   children: [
                                     SCIcon.calendar(
                                       color: AppColor.darkBlue,
-                                      width: 12,
                                       height: 12,
                                     ),
                                     const SizedBox(
@@ -471,6 +483,7 @@ class _NextMatchPageState extends State<NextMatchPage> {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FloatingActionButton(
+        elevation: 0,
         onPressed: () {},
         backgroundColor: AppColor.secondary,
         child: Image.asset(SCAssets.logoMatch),

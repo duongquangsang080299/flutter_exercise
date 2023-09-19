@@ -59,7 +59,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.end,
+            // crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               Expanded(
                 flex: 3,
@@ -81,63 +81,57 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
                 ),
               ),
               SizedBox(height: context.getVerticalSize(30)),
-              Expanded(
-                child: Column(
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: List.generate(
-                        demoData.length,
-                        (index) => Padding(
-                          padding: const EdgeInsets.all(8),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: List.generate(
+                  demoData.length,
+                  (index) => Padding(
+                    padding: const EdgeInsets.all(8),
 
-                          /// Apply SCDotsIndicator Widget
-                          child: SCDotsIndicator(
-                            isActive: index == _pageIndex,
-                          ),
-                        ),
+                    /// Apply SCDotsIndicator Widget
+                    child: SCDotsIndicator(
+                      isActive: index == _pageIndex,
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(height: context.getVerticalSize(45)),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Expanded(
+                    child: SCOutlineButton(
+                      onPressed: () {
+                        // Navigate to screen when button is pressed
+                        context.go(AppRoutes.welcomeScreen.path);
+                      },
+                      // Localize the 'Skip' text using context.l10n
+                      text: context.l10n.btnSkip,
+                      style: context.textTheme.displayMedium?.copyWith(
+                        color: AppColor.neonSilver,
+                        fontWeight: AppFontWeight.semiBold,
                       ),
                     ),
-                    SizedBox(height: context.getVerticalSize(40)),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Expanded(
-                          child: SCOutlineButton(
-                            onPressed: () {
-                              // Navigate to screen when button is pressed
+                  ),
+                  const SizedBox(width: 20),
+                  Expanded(
+                    child: SCButton(
+                      onPressed: _isButtonEnabled
+                          ? () {
                               context.go(AppRoutes.welcomeScreen.path);
-                            },
-                            // Localize the 'Skip' text using context.l10n
-                            text: context.l10n.btnSkip,
-                            style: context.textTheme.displayMedium?.copyWith(
-                              color: AppColor.neonSilver,
-                              fontWeight: AppFontWeight.semiBold,
-                            ),
-                          ),
-                        ),
-                        const SizedBox(width: 20),
-                        Expanded(
-                          child: SCButton(
-                            onPressed: _isButtonEnabled
-                                ? () {
-                                    context.go(AppRoutes.welcomeScreen.path);
-                                  }
-                                : null,
-                            text: context.l10n.btnCampaigns,
-                            style: context.textTheme.displayMedium?.copyWith(
-                              fontWeight: AppFontWeight.semiBold,
-                            ),
-                            backgroundColor: _isButtonEnabled
-                                ? AppColor.primary
-                                : AppColor.whiteFlash,
-                            borderRadius: 30,
-                          ),
-                        ),
-                      ],
+                            }
+                          : null,
+                      text: context.l10n.btnCampaigns,
+                      style: context.textTheme.displayMedium?.copyWith(
+                        fontWeight: AppFontWeight.semiBold,
+                      ),
+                      backgroundColor: _isButtonEnabled
+                          ? AppColor.primary
+                          : AppColor.whiteFlash,
+                      borderRadius: 30,
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ],
           ),
@@ -195,6 +189,7 @@ class OnBoardingBody extends StatelessWidget {
           textAlign: TextAlign.center,
           text: description,
         ),
+        const SizedBox(height: 45),
       ],
     );
   }

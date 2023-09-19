@@ -50,6 +50,8 @@ abstract class AppColor {
 
   static const blueBlur = Color(0xFF173477);
 
+  static const redBlur = Color(0xFFF02626);
+
   static const linearShadow = [
     Color(0xFFEFEFEF),
     Color(0xFFFFFFFF),
