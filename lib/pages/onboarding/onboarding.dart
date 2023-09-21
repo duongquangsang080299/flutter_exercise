@@ -162,8 +162,8 @@ class OnBoardingBody extends StatelessWidget {
         SizedBox(height: context.getVerticalSize(45)),
         Image.asset(
           SCAssets.clubLogo,
-          width: 228,
-          height: 212,
+          width: getSize(228),
+          height: getSize(212),
         ),
         const Spacer(),
 
