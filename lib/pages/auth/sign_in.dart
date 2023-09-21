@@ -131,8 +131,7 @@ class _SignInPageState extends State<SignInPage> {
                 const Spacer(),
                 SCButton(
                   onPressed: () {
-                    final form = _formKey.currentState ?? FormState();
-                    if (form.validate()) {
+                    if (_formKey.currentState?.validate() ?? false) {
                       debugPrint('Form is valid');
                       context.go(AppRoutes.playerPage.path);
                     } else {
@@ -144,23 +143,7 @@ class _SignInPageState extends State<SignInPage> {
                   height: context.getVerticalSize(60),
                   borderRadius: 30,
                 ),
-                // SCButton(
-                //   onPressed: _isButtonActive()
-                //       ? () {
-                //           debugPrint('Form is valid');
-                //           context.go(AppRoutes.playerPage.path);
-                //         }
-                //       : null,
-                //   text: _isButtonActive()
-                //       ? context.l10n.btnLogin
-                //       : '', // Change text when the button is active
-                //   backgroundColor: _isButtonActive()
-                //       ? AppColor.primary // Color when the button is active
-                //       : AppColor
-                //           .whiteFlash, // Color when the button is inactive
-                //   height: context.getVerticalSize(60),
-                //   borderRadius: 30,
-                // ),
+
                 const SizedBox(height: 16),
                 Text.rich(
                   TextSpan(
