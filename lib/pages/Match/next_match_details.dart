@@ -9,7 +9,6 @@ import 'package:soccer_club_app/core/typography/app_fontweight.dart';
 import 'package:soccer_club_app/l10n/l10n.dart';
 import 'package:soccer_club_app/routes/routes.dart';
 import 'package:soccer_club_app/widgets/app_bar.dart';
-import 'package:soccer_club_app/widgets/bottom_navigation_bar.dart';
 import 'package:soccer_club_app/widgets/card.dart';
 import 'package:soccer_club_app/widgets/icon.dart';
 import 'package:soccer_club_app/widgets/scaffold.dart';
@@ -215,6 +214,21 @@ class NextMatchPage extends StatelessWidget {
           ],
         ),
       ),
+      //    bottomNavigationBar: SCBottomNavigationBar(
+      //   currentIndex: _currentIndex,
+      //   onTap: (int index) {
+      //     setState(() {
+      //       _currentIndex = index;
+      //     });
+      //   },
+      // ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: FloatingActionButton(
+        elevation: 0,
+        onPressed: () {},
+        backgroundColor: AppColor.secondary,
+        child: Image.asset(SCAssets.logoMatch),
+      ),
     );
   }
 
@@ -233,15 +247,6 @@ class NextMatchPage extends StatelessWidget {
                   text1,
                   style: const TextStyle(fontSize: 18),
                 )),
-            // Flexible(
-            //   flex: 2,
-            //   fit: FlexFit.tight,
-            //   child: Text(
-            //     text2,
-            //     style: const TextStyle(
-            //         fontSize: 20.0, fontWeight: FontWeight.bold),
-            //   ),
-            // ),
           ],
         ),
       ),
