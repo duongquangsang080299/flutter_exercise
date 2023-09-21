@@ -84,6 +84,7 @@ class SCAppBar extends StatelessWidget implements PreferredSize {
   final double? elevation;
   final double? leadingWidth;
   final Widget? flexibleSpace;
+
   @override
   Widget build(BuildContext context) {
     return AppBar(
@@ -111,6 +112,14 @@ class SCAppBar extends StatelessWidget implements PreferredSize {
               style: context.textTheme.displayLarge
                   ?.copyWith(color: AppColor.secondary),
             ),
+          Container(
+            decoration: const BoxDecoration(
+              borderRadius: BorderRadius.only(
+                bottomRight: Radius.circular(30),
+                bottomLeft: Radius.circular(30),
+              ),
+            ),
+          ),
         ],
       ),
       actions: actions,

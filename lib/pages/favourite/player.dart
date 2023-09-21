@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:soccer_club_app/core/color/app_color.dart';
+import 'package:soccer_club_app/core/constant/icons.dart';
 import 'package:soccer_club_app/core/extention/builder_context_extension.dart';
 import 'package:soccer_club_app/core/typography/app_fontweight.dart';
 import 'package:soccer_club_app/core/utils/size_utils.dart';
@@ -27,23 +29,27 @@ class _PlayerPageState extends State<PlayerPage> {
   @override
   Widget build(BuildContext context) {
     return SCScaffold(
-      appBar: AppBar(
-        toolbarHeight: 130,
-        backgroundColor: AppColor.secondary,
-        elevation: 0,
-        leading: GestureDetector(
-          onTap: () {
-            context.go(AppRoutes.signIn.path);
-          },
-          child: SCIcon.back(
-            color: Colors.black,
-          ),
-        ),
-      ),
       body: Padding(
-        padding: const EdgeInsets.all(11),
+        padding: const EdgeInsets.all(28),
         child: Column(
           children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  IconButton(
+                    onPressed: () {
+                      context.go(AppRoutes.notificationsPage.path);
+                    },
+                    icon: SvgPicture.asset(SCIcons.back),
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(
+              height: context.getVerticalSize(44),
+            ),
             SCText.displayLarge(
               context,
               text: context.l10n.whoIsYourFavouriteVictoryPlayers,
@@ -107,9 +113,9 @@ class _PlayerPageState extends State<PlayerPage> {
             ),
             SizedBox(height: context.getVerticalSize(44)),
             SCText.displaySmall(context, text: context.l10n.swipeToSelect),
-            const SizedBox(height: 27),
+            SizedBox(height: context.getVerticalSize(30)),
             SizedBox(
-              height: 40,
+              height: 35,
               child: PageView.builder(
                 controller: PageController(
                   viewportFraction: 1 / 6,
@@ -133,7 +139,7 @@ class _PlayerPageState extends State<PlayerPage> {
                 },
               ),
             ),
-            SizedBox(height: context.getVerticalSize(57)),
+            const Spacer(),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -201,17 +207,17 @@ class AvatarItem extends StatelessWidget {
             color: isActive ? AppColor.primary : Colors.transparent,
           ),
           borderRadius: const BorderRadius.all(
-            Radius.circular(12),
+            Radius.circular(8),
           ),
         ),
         child: Stack(
           clipBehavior: Clip.none,
           children: [
             SizedBox(
-              width: 45,
-              height: 45,
+              width: 70,
+              height: 70,
               child: ClipRRect(
-                borderRadius: BorderRadius.circular(12),
+                borderRadius: BorderRadius.circular(8),
                 child: Image.asset(
                   avatar?.url ?? '',
                 ),
@@ -219,7 +225,7 @@ class AvatarItem extends StatelessWidget {
             ),
             if (isActive)
               Positioned(
-                left: 25,
+                left: 20,
                 child: SCIcon.backward(
                   width: 7,
                   height: 7,
@@ -228,7 +234,7 @@ class AvatarItem extends StatelessWidget {
               ),
             if (isActive)
               Positioned(
-                right: 25,
+                right: 20,
                 child: SCIcon.forward(
                   width: 7,
                   height: 7,

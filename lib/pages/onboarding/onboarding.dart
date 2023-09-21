@@ -57,9 +57,8 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
     return SCScaffold(
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
+          padding: const EdgeInsets.all(20),
           child: Column(
-            // crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               Expanded(
                 flex: 3,
@@ -95,7 +94,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
                   ),
                 ),
               ),
-              SizedBox(height: context.getVerticalSize(45)),
+              SizedBox(height: context.getVerticalSize(40)),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -160,11 +159,11 @@ class OnBoardingBody extends StatelessWidget {
     return Column(
       children: [
         // Add vertical spacing using the getVerticalSize method
-        SizedBox(height: context.getVerticalSize(90)),
+        SizedBox(height: context.getVerticalSize(45)),
         Image.asset(
           SCAssets.clubLogo,
-          width: context.getSize(228),
-          height: context.getSize(212),
+          width: 228,
+          height: 212,
         ),
         const Spacer(),
 
@@ -183,13 +182,12 @@ class OnBoardingBody extends StatelessWidget {
           ),
           text: subtitle,
         ),
-        const SizedBox(height: 45),
+        SizedBox(height: context.getVerticalSize(45)),
         SCText.displaySmall(
           context,
           textAlign: TextAlign.center,
           text: description,
         ),
-        const SizedBox(height: 45),
       ],
     );
   }

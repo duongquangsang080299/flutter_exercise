@@ -87,7 +87,8 @@ class AppTheme {
     bodyMedium: AppTextStyles.bodyMeidum,
     bodySmall: AppTextStyles.bodySmall,
     labelLarge: AppTextStyles.labelLarge,
-    // huge
+    labelMedium: AppTextStyles.heading,
+    labelSmall: AppTextStyles.subheading,
   );
 }
 

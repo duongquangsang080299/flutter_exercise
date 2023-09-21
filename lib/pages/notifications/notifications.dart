@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:soccer_club_app/core/color/app_color.dart';
+import 'package:soccer_club_app/core/constant/icons.dart';
 import 'package:soccer_club_app/core/extention/builder_context_extension.dart';
 import 'package:soccer_club_app/core/typography/app_fontweight.dart';
 import 'package:soccer_club_app/l10n/l10n.dart';
 import 'package:soccer_club_app/routes/routes.dart';
 import 'package:soccer_club_app/widgets/app_bar.dart';
 import 'package:soccer_club_app/widgets/card.dart';
-import 'package:soccer_club_app/widgets/icon.dart';
 import 'package:soccer_club_app/widgets/text.dart';
 
 class NotificationsPage extends StatelessWidget {
@@ -17,20 +18,18 @@ class NotificationsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(100),
+        preferredSize: const Size.fromHeight(146),
         child: SCAppBar.main(
           title: context.l10n.notifications,
           fontSize: 20,
-          leadingWidth: 50,
+          leadingWidth: 100,
           backgroundColor: AppColor.primary,
           centerTitle: true,
-          leading: GestureDetector(
-            onTap: () {
+          leading: IconButton(
+            onPressed: () {
               context.go(AppRoutes.homePage.path);
             },
-            child: SCIcon.back(
-              color: AppColor.secondary,
-            ),
+            icon: SvgPicture.asset(SCIcons.rightArrow),
           ),
           actions: [
             Opacity(
@@ -65,7 +64,7 @@ class NotificationsPage extends StatelessWidget {
                       isCard ? AppColor.tertiary : AppColor.primary;
 
                   return Padding(
-                    padding: const EdgeInsets.only(bottom: 19),
+                    padding: const EdgeInsets.only(bottom: 15),
                     child: SCCard.match(
                       child: Container(
                         decoration: BoxDecoration(
@@ -74,7 +73,8 @@ class NotificationsPage extends StatelessWidget {
                           color: backgroundColor,
                         ),
                         child: Padding(
-                          padding: const EdgeInsets.all(28),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 20, vertical: 13),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -86,7 +86,7 @@ class NotificationsPage extends StatelessWidget {
                                 ),
                                 context,
                               ),
-                              const SizedBox(height: 5),
+                              const SizedBox(height: 14),
                               SCText.bodyMedium(
                                 text: context.l10n.textDescriptionOnboarding,
                                 style: context.textTheme.bodyMedium

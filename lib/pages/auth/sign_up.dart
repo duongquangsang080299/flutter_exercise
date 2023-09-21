@@ -1,8 +1,9 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:soccer_club_app/core/color/app_color.dart';
-import 'package:soccer_club_app/core/extention/builder_context_extension.dart';
+import 'package:soccer_club_app/core/constant/icons.dart';
 import 'package:soccer_club_app/core/typography/app_fontweight.dart';
 import 'package:soccer_club_app/core/utils/size_utils.dart';
 import 'package:soccer_club_app/core/utils/validator_utils.dart';
@@ -24,6 +25,44 @@ class SignUpPage extends StatefulWidget {
 class _SignUpPageState extends State<SignUpPage> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   bool showPassword = false;
+  final _usernameFocusNode = FocusNode();
+  final _passwordFocusNode = FocusNode();
+  final _emailFocusNode = FocusNode();
+  bool showUsernameValidation = false;
+  bool showPasswordValidation = false;
+  bool showEmailValidation = false;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _usernameFocusNode.addListener(() {
+      setState(() {
+        showUsernameValidation = _usernameFocusNode.hasFocus;
+      });
+    });
+
+    _emailFocusNode.addListener(() {
+      setState(() {
+        showEmailValidation = _emailFocusNode.hasFocus;
+      });
+    });
+
+    _passwordFocusNode.addListener(() {
+      setState(() {
+        showPasswordValidation = _passwordFocusNode.hasFocus;
+      });
+    });
+  }
+
+  @override
+  void dispose() {
+    _usernameFocusNode.dispose();
+    _passwordFocusNode.dispose();
+    _emailFocusNode.dispose();
+    super.dispose();
+  }
+
   void _showTermsAndConditionsDialog(BuildContext context) {
     showDialog(
       context: context,
@@ -32,13 +71,17 @@ class _SignUpPageState extends State<SignUpPage> {
           title: SCText.displayMedium(
             context,
             text: context.l10n.termsandcondition,
-            style: context.textTheme.displayMedium
-                ?.copyWith(color: AppColor.primary),
+            style: Theme.of(context).textTheme.displayMedium?.copyWith(
+                  color: AppColor.primary,
+                ), // Define the appropriate text style
           ),
           content: SingleChildScrollView(
             child: SCText.bodyMedium(
               context,
               text: context.l10n.termandconditionofourapp,
+              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                  // Define the appropriate text style
+                  ),
             ),
           ),
           actions: [
@@ -49,8 +92,9 @@ class _SignUpPageState extends State<SignUpPage> {
               child: SCText.displaySmall(
                 context,
                 text: context.l10n.close,
-                style: context.textTheme.displayMedium
-                    ?.copyWith(color: AppColor.primary),
+                style: Theme.of(context).textTheme.displayMedium?.copyWith(
+                      color: AppColor.primary,
+                    ), // Define the appropriate text style
               ),
             ),
           ],
@@ -70,14 +114,20 @@ class _SignUpPageState extends State<SignUpPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SCIcon.back(
-                width: 24,
-                height: 14,
-                color: AppColor.tertiary,
+              IconButton(
                 onPressed: () {
-                  context.go(AppRoutes.signIn.path);
+                  context.go(AppRoutes.notificationsPage.path);
                 },
+                icon: SvgPicture.asset(SCIcons.back),
               ),
+              // SCIcon.back(
+              //   width: 24,
+              //   height: 14,
+              //   color: AppColor.tertiary,
+              //   onPressed: () {
+              //     context.go(AppRoutes.signIn.path);
+              //   },
+              // ),
               SizedBox(height: context.getVerticalSize(50)),
               SCText.displayLarge(
                 context,
@@ -95,23 +145,40 @@ class _SignUpPageState extends State<SignUpPage> {
                 ),
               ),
 
-              /// Text Form Fields for Username,Email and Password
+              /// Text Form Fields for Username, Email, and Password
               SCInput.username(
+                focusNode: _usernameFocusNode,
                 labelText: context.l10n.labelUsername,
-                validator: (value) => value?.isValidUserName(),
+                validator: (value) {
+                  if (showUsernameValidation) {
+                    return value?.isValidUserName();
+                  }
+                  return null;
+                },
               ),
-
               const SizedBox(height: 20),
               // Email Text Form Field
               SCInput.email(
+                focusNode: _emailFocusNode,
                 labelText: context.l10n.lablelEmail,
-                validator: (value) => value?.isValidEmail(),
+                validator: (value) {
+                  if (showEmailValidation) {
+                    return value?.isValidEmail();
+                  }
+                  return null;
+                },
               ),
               const SizedBox(height: 20),
               // Password Text Form Field
               SCInput.password(
+                focusNode: _passwordFocusNode,
                 labelText: context.l10n.lablelPassword,
-                validator: (input) => input?.isValidPassword()?.trimRight(),
+                validator: (input) {
+                  if (showPasswordValidation) {
+                    return input?.isValidPassword()?.trimRight();
+                  }
+                  return null;
+                },
                 suffixIcon: IconButton(
                   icon: showPassword
                       ? SCIcon.hidden(
@@ -126,8 +193,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 ),
                 obscureText: !showPassword,
               ),
-              SizedBox(height: context.getVerticalSize(30)),
-
+              const Spacer(),
               // Sign-Up Button
               SCButton(
                 onPressed: () {

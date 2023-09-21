@@ -9,6 +9,7 @@ import 'package:soccer_club_app/l10n/l10n.dart';
 import 'package:soccer_club_app/routes/routes.dart';
 import 'package:soccer_club_app/widgets/button.dart';
 import 'package:soccer_club_app/widgets/icon.dart';
+import 'package:soccer_club_app/widgets/scaffold.dart';
 import 'package:soccer_club_app/widgets/text.dart';
 
 class WelcomePage extends StatelessWidget {
@@ -16,9 +17,9 @@ class WelcomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return SCScaffold(
       body: Padding(
-        padding: const EdgeInsets.all(20),
+        padding: const EdgeInsets.symmetric(horizontal: 28),
         child: Column(
           children: [
             SizedBox(
@@ -38,7 +39,7 @@ class WelcomePage extends StatelessWidget {
               textAlign: TextAlign.center,
               text: context.l10n.welcomeToVictoryGreensApp,
             ),
-            SizedBox(height: context.getVerticalSize(158)),
+            const Spacer(),
             SCButtonIcon(
               onPressed: () {
                 context.go(AppRoutes.signIn.path);
@@ -62,7 +63,9 @@ class WelcomePage extends StatelessWidget {
               ),
               backgroundColor: AppColor.blackHex,
             ),
-            const SizedBox(height: 20),
+            const SizedBox(
+              height: 20,
+            ),
           ],
         ),
       ),

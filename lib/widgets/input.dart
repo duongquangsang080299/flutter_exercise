@@ -130,10 +130,10 @@ class SCInput extends StatelessWidget {
           const SizedBox(height: 10),
         ],
         TextFormField(
-          style: Theme.of(context).textTheme.displayMedium?.copyWith(
-                color: AppColor.tertiary,
-                fontWeight: AppFontWeight.regular,
-              ),
+          style: context.textTheme.displayMedium?.copyWith(
+            color: AppColor.tertiary,
+            fontWeight: AppFontWeight.regular,
+          ),
           decoration: InputDecoration(
             suffixIcon: suffixIcon ?? const SizedBox.shrink(),
             contentPadding: contentPadding ??

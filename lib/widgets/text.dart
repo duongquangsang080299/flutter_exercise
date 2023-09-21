@@ -118,6 +118,32 @@ class SCText extends StatelessWidget {
     );
   }
 
+  factory SCText.heading(
+    BuildContext context, {
+    required String text,
+    TextStyle? style,
+    TextAlign? textAlign,
+  }) {
+    return SCText(
+      text: text,
+      style: style ?? context.textThemeData.labelLarge,
+      textAlign: textAlign,
+    );
+  }
+
+  factory SCText.subheading(
+    BuildContext context, {
+    required String text,
+    TextStyle? style,
+    TextAlign? textAlign,
+  }) {
+    return SCText(
+      text: text,
+      style: style ?? context.textThemeData.labelLarge,
+      textAlign: textAlign,
+    );
+  }
+
   final String text;
   final TextStyle? style;
   final TextAlign? textAlign;

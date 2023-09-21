@@ -25,6 +25,40 @@ class _SignInPageState extends State<SignInPage> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   bool showPassword = false;
+  final _usernameFocusNode = FocusNode();
+  final _passwordFocusNode = FocusNode();
+  bool showUsernameValidation = false;
+  bool showPasswordValidation = false;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _usernameFocusNode.addListener(() {
+      setState(() {
+        showUsernameValidation = _usernameFocusNode.hasFocus;
+      });
+    });
+
+    _passwordFocusNode.addListener(() {
+      setState(() {
+        showPasswordValidation = _passwordFocusNode.hasFocus;
+      });
+    });
+  }
+
+  bool _isButtonActive() {
+    return showUsernameValidation &&
+        showPasswordValidation &&
+        _formKey.currentState?.validate() == true;
+  }
+
+  @override
+  void dispose() {
+    _usernameFocusNode.dispose();
+    _passwordFocusNode.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -56,16 +90,28 @@ class _SignInPageState extends State<SignInPage> {
                 SizedBox(height: getVerticalSize(30)),
                 // Text Form Fields for Username
                 SCInput.username(
+                  focusNode: _usernameFocusNode,
                   labelText: context.l10n.labelUsername,
-                  validator: (value) => value?.isValidUserName(),
+                  validator: (value) {
+                    if (showUsernameValidation) {
+                      return value?.isValidUserName();
+                    }
+                    return null;
+                  },
                 ),
 
                 const SizedBox(height: 20),
 
                 // Password Text Form Field
                 SCInput.password(
+                  focusNode: _passwordFocusNode,
                   labelText: context.l10n.lablelPassword,
-                  validator: (input) => input?.isValidPassword()?.trimRight(),
+                  validator: (input) {
+                    if (showPasswordValidation) {
+                      return input?.isValidPassword()?.trimRight();
+                    }
+                    return null;
+                  },
                   suffixIcon: IconButton(
                     icon: showPassword
                         ? SCIcon.hidden(
@@ -82,8 +128,7 @@ class _SignInPageState extends State<SignInPage> {
                 ),
 
                 // Sign-In Button
-                SizedBox(height: context.getVerticalSize(40)),
-
+                const Spacer(),
                 SCButton(
                   onPressed: () {
                     final form = _formKey.currentState ?? FormState();
@@ -99,6 +144,23 @@ class _SignInPageState extends State<SignInPage> {
                   height: context.getVerticalSize(60),
                   borderRadius: 30,
                 ),
+                // SCButton(
+                //   onPressed: _isButtonActive()
+                //       ? () {
+                //           debugPrint('Form is valid');
+                //           context.go(AppRoutes.playerPage.path);
+                //         }
+                //       : null,
+                //   text: _isButtonActive()
+                //       ? context.l10n.btnLogin
+                //       : '', // Change text when the button is active
+                //   backgroundColor: _isButtonActive()
+                //       ? AppColor.primary // Color when the button is active
+                //       : AppColor
+                //           .whiteFlash, // Color when the button is inactive
+                //   height: context.getVerticalSize(60),
+                //   borderRadius: 30,
+                // ),
                 const SizedBox(height: 16),
                 Text.rich(
                   TextSpan(

@@ -20,4 +20,6 @@ class SCIcons {
   static const String home = 'assets/images/icon_home.svg';
 
   static const String arena = 'assets/images/arena.svg';
+
+  static const String rightArrow = 'assets/images/icon_right_arrow.svg';
 }

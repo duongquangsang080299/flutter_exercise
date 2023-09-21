@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:soccer_club_app/core/color/app_color.dart';
+import 'package:soccer_club_app/core/constant/icons.dart';
 import 'package:soccer_club_app/core/constant/image.dart';
 import 'package:soccer_club_app/core/extention/builder_context_extension.dart';
 import 'package:soccer_club_app/core/typography/app_fontweight.dart';
@@ -18,20 +20,18 @@ class FixturesPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(100),
+        preferredSize: const Size.fromHeight(146),
         child: SCAppBar.main(
           title: context.l10n.upcomingSchedule,
           fontSize: 20,
           backgroundColor: AppColor.primary,
           centerTitle: true,
-          leadingWidth: 50,
-          leading: GestureDetector(
-            onTap: () {
+          leadingWidth: 70,
+          leading: IconButton(
+            onPressed: () {
               context.go(AppRoutes.homePage.path);
             },
-            child: SCIcon.back(
-              color: AppColor.secondary,
-            ),
+            icon: SvgPicture.asset(SCIcons.rightArrow),
           ),
         ),
       ),

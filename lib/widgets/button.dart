@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:soccer_club_app/core/utils/utils.dart';
 import 'package:soccer_club_app/widgets/text.dart';
 
 /// Define SCButton widget with text
@@ -25,7 +26,7 @@ class SCButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: double.infinity,
-      height: height,
+      height: context.getVerticalSize(height),
       child: ElevatedButton(
         onPressed: onPressed,
         style: ButtonStyle(
@@ -56,7 +57,7 @@ class SCButtonIcon extends StatelessWidget {
     this.color,
     this.borderRadius,
     this.style,
-    this.height,
+    this.height = 60,
   });
   final String text;
   final VoidCallback? onPressed;
@@ -64,12 +65,12 @@ class SCButtonIcon extends StatelessWidget {
   final Color? color;
   final int? borderRadius;
   final TextStyle? style;
-  final double? height;
+  final double height;
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 60,
+      height: context.getVerticalSize(height),
       child: ElevatedButton(
         onPressed: onPressed,
         style: ButtonStyle(
@@ -120,7 +121,7 @@ class SCOutlineButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: width,
-      height: height,
+      height: context.getVerticalSize(height),
       child: OutlinedButton(
         onPressed: onPressed,
         style: ButtonStyle(
