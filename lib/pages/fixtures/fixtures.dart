@@ -19,20 +19,16 @@ class FixturesPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(146),
-        child: SCAppBar.main(
-          title: context.l10n.upcomingSchedule,
-          fontSize: 20,
-          backgroundColor: AppColor.primary,
-          centerTitle: true,
-          leadingWidth: 70,
-          leading: IconButton(
-            onPressed: () {
-              context.go(AppRoutes.homePage.path);
-            },
-            icon: SvgPicture.asset(SCIcons.rightArrow),
-          ),
+      appBar: SCAppBar.main(
+        title: context.l10n.upcomingSchedule,
+        fontSize: 20,
+        backgroundColor: AppColor.primary,
+        centerTitle: true,
+        leading: IconButton(
+          onPressed: () {
+            context.go(AppRoutes.homePage.path);
+          },
+          icon: SvgPicture.asset(SCIcons.rightArrow),
         ),
       ),
       body: Padding(

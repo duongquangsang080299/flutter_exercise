@@ -118,7 +118,7 @@ class SCText extends StatelessWidget {
     );
   }
 
-  factory SCText.heading(
+  factory SCText.labelMedium(
     BuildContext context, {
     required String text,
     TextStyle? style,
@@ -126,12 +126,12 @@ class SCText extends StatelessWidget {
   }) {
     return SCText(
       text: text,
-      style: style ?? context.textThemeData.labelLarge,
+      style: style ?? context.textThemeData.labelMedium,
       textAlign: textAlign,
     );
   }
 
-  factory SCText.subheading(
+  factory SCText.labelSmall(
     BuildContext context, {
     required String text,
     TextStyle? style,
@@ -139,7 +139,7 @@ class SCText extends StatelessWidget {
   }) {
     return SCText(
       text: text,
-      style: style ?? context.textThemeData.labelLarge,
+      style: style ?? context.textThemeData.labelSmall,
       textAlign: textAlign,
     );
   }

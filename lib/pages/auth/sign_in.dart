@@ -23,12 +23,13 @@ class SignInPage extends StatefulWidget {
 
 class _SignInPageState extends State<SignInPage> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-
+  final TextEditingController _passwordController = TextEditingController();
   bool showPassword = false;
   final _usernameFocusNode = FocusNode();
   final _passwordFocusNode = FocusNode();
   bool showUsernameValidation = false;
   bool showPasswordValidation = false;
+  Color _buttonColor = AppColor.whiteFlash;
 
   @override
   void initState() {
@@ -45,6 +46,14 @@ class _SignInPageState extends State<SignInPage> {
         showPasswordValidation = _passwordFocusNode.hasFocus;
       });
     });
+
+    _passwordController.addListener(() {
+      setState(() {
+        _buttonColor = _passwordController.text.isNotEmpty
+            ? AppColor.primary
+            : AppColor.whiteFlash;
+      });
+    });
   }
 
   bool _isButtonActive() {
@@ -57,6 +66,7 @@ class _SignInPageState extends State<SignInPage> {
   void dispose() {
     _usernameFocusNode.dispose();
     _passwordFocusNode.dispose();
+    _passwordController.dispose();
     super.dispose();
   }
 
@@ -112,6 +122,7 @@ class _SignInPageState extends State<SignInPage> {
                     }
                     return null;
                   },
+                  controller: _passwordController,
                   suffixIcon: IconButton(
                     icon: showPassword
                         ? SCIcon.hidden(
@@ -130,16 +141,18 @@ class _SignInPageState extends State<SignInPage> {
                 // Sign-In Button
                 const Spacer(),
                 SCButton(
-                  onPressed: () {
-                    if (_formKey.currentState?.validate() ?? false) {
-                      debugPrint('Form is valid');
-                      context.go(AppRoutes.playerPage.path);
-                    } else {
-                      debugPrint('Form is invalid');
-                    }
-                  },
+                  onPressed: _isButtonActive()
+                      ? () {
+                          if (_formKey.currentState?.validate() ?? false) {
+                            debugPrint('Form is valid');
+                            context.go(AppRoutes.playerPage.path);
+                          } else {
+                            debugPrint('Form is invalid');
+                          }
+                        }
+                      : null,
                   text: context.l10n.btnLogin,
-                  backgroundColor: AppColor.primary,
+                  backgroundColor: _buttonColor,
                   height: context.getVerticalSize(60),
                   borderRadius: 30,
                 ),

@@ -17,36 +17,32 @@ class NotificationsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(146),
-        child: SCAppBar.main(
-          title: context.l10n.notifications,
-          fontSize: 20,
-          leadingWidth: 100,
-          backgroundColor: AppColor.primary,
-          centerTitle: true,
-          leading: IconButton(
-            onPressed: () {
-              context.go(AppRoutes.homePage.path);
-            },
-            icon: SvgPicture.asset(SCIcons.rightArrow),
-          ),
-          actions: [
-            Opacity(
-              opacity: 0.5,
-              child: TextButton(
-                onPressed: () {},
-                child: SCText.bodyMedium(
-                  context,
-                  text: context.l10n.clear,
-                  style: context.textTheme.bodyMedium?.copyWith(
-                    color: AppColor.secondary,
-                  ),
+      appBar: SCAppBar.main(
+        title: context.l10n.notifications,
+        fontSize: 20,
+        centerTitle: true,
+        backgroundColor: AppColor.primary,
+        leading: IconButton(
+          onPressed: () {
+            context.go(AppRoutes.homePage.path);
+          },
+          icon: SvgPicture.asset(SCIcons.rightArrow),
+        ),
+        actions: [
+          Opacity(
+            opacity: 0.5,
+            child: TextButton(
+              onPressed: () {},
+              child: SCText.bodyMedium(
+                context,
+                text: context.l10n.clear,
+                style: context.textTheme.bodyMedium?.copyWith(
+                  color: AppColor.secondary,
                 ),
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(28),

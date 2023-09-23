@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:soccer_club_app/core/extention/builder_context_extension.dart';
 
-/// Define Card Avata
+/// Define Card Avatar
 class SCCard extends StatelessWidget {
   const SCCard({
-    super.key,
+    Key? key,
     this.color,
     this.width,
     this.height,
@@ -13,7 +13,7 @@ class SCCard extends StatelessWidget {
     this.selected,
     this.elevation,
     this.borderRadius,
-  });
+  }) : super(key: key);
 
   /// Factory constructor for creating a card with an avatar
   factory SCCard.avatar({
@@ -36,17 +36,21 @@ class SCCard extends StatelessWidget {
     );
   }
 
-  /// Factory constructor for creating a card with an match
+  /// Factory constructor for creating a card with a match
   factory SCCard.match({
     double? width,
     double? height,
     Widget? child,
+    double? elevation,
+    Color? color,
     ShapeBorder? shape,
   }) {
     return SCCard(
       width: width,
       height: height,
+      elevation: elevation,
       shape: shape,
+      color: color,
       child: child,
     );
   }
@@ -68,17 +72,18 @@ class SCCard extends StatelessWidget {
       child: Card(
         margin: EdgeInsets.zero,
         elevation: elevation,
-        shape: RoundedRectangleBorder(
-          borderRadius: borderRadius ??
-              const BorderRadius.all(
-                Radius.circular(18),
+        shape: shape ??
+            RoundedRectangleBorder(
+              borderRadius: borderRadius ??
+                  const BorderRadius.all(
+                    Radius.circular(18),
+                  ),
+              side: BorderSide(
+                color: selected ?? false
+                    ? context.colorScheme.primary
+                    : context.colorScheme.onSurface,
               ),
-          side: BorderSide(
-            color: selected ?? false
-                ? context.colorScheme.primary
-                : context.colorScheme.onSurface,
-          ),
-        ),
+            ),
         color: color,
         child: child ?? Image.asset(''),
       ),

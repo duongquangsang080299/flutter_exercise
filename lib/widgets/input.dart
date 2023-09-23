@@ -18,6 +18,7 @@ class SCInput extends StatelessWidget {
     this.contentPadding,
     this.labelStyle,
     this.obscuringCharacter,
+    this.onEditingComplete,
   });
 
   /// Factory constructor for email input
@@ -27,6 +28,7 @@ class SCInput extends StatelessWidget {
     String? labelText,
     TextInputAction? textInputAction,
     String? Function(String?)? validator,
+    void Function()? onEditingComplete,
     EdgeInsetsGeometry? contentPadding,
     TextEditingController? controller,
     bool? obscureText = false,
@@ -38,6 +40,7 @@ class SCInput extends StatelessWidget {
       keyboardType: keyboardType,
       textInputAction: textInputAction,
       obscureText: obscureText,
+      onEditingComplete: onEditingComplete,
       validator: validator,
       contentPadding: contentPadding,
       controller: controller,
@@ -52,6 +55,7 @@ class SCInput extends StatelessWidget {
     TextInputAction? textInputAction,
     String? labelText,
     TextEditingController? controller,
+    void Function()? onEditingComplete,
     String? Function(String?)? validator,
     bool? obscureText = false,
     TextStyle? labelStyle,
@@ -60,6 +64,7 @@ class SCInput extends StatelessWidget {
     return SCInput(
       focusNode: focusNode,
       keyboardType: keyboardType,
+      onEditingComplete: onEditingComplete,
       labelText: labelText,
       textInputAction: textInputAction,
       obscureText: obscureText,
@@ -77,6 +82,7 @@ class SCInput extends StatelessWidget {
     Widget? suffixIcon,
     TextEditingController? controller,
     String? labelText,
+    void Function()? onEditingComplete,
     String? obscuringCharacter,
     TextStyle? labelStyle,
     String? Function(String?)? validator,
@@ -90,6 +96,7 @@ class SCInput extends StatelessWidget {
       labelText: labelText,
       obscureText: obscureText,
       suffixIcon: suffixIcon,
+      onEditingComplete: onEditingComplete,
       keyboardType: keyboardType,
       contentPadding: contentPadding,
       obscuringCharacter: obscuringCharacter,
@@ -112,6 +119,7 @@ class SCInput extends StatelessWidget {
   final TextStyle? labelStyle;
   final EdgeInsetsGeometry? contentPadding;
   final String? obscuringCharacter;
+  final void Function()? onEditingComplete;
   @override
   Widget build(BuildContext context) {
     /// Build the TextFormField with provided properties
@@ -147,6 +155,7 @@ class SCInput extends StatelessWidget {
           focusNode: focusNode,
           validator: validator,
           controller: controller,
+          onEditingComplete: onEditingComplete,
           obscureText: obscureText ?? false,
           obscuringCharacter: '●',
         ),

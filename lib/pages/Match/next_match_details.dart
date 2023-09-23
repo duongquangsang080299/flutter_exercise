@@ -6,17 +6,24 @@ import 'package:soccer_club_app/core/constant/icons.dart';
 import 'package:soccer_club_app/core/constant/image.dart';
 import 'package:soccer_club_app/core/extention/builder_context_extension.dart';
 import 'package:soccer_club_app/core/typography/app_fontweight.dart';
+import 'package:soccer_club_app/core/utils/size_utils.dart';
 import 'package:soccer_club_app/l10n/l10n.dart';
 import 'package:soccer_club_app/routes/routes.dart';
 import 'package:soccer_club_app/widgets/app_bar.dart';
+import 'package:soccer_club_app/widgets/bottom_navigation_bar.dart';
 import 'package:soccer_club_app/widgets/card.dart';
-import 'package:soccer_club_app/widgets/icon.dart';
 import 'package:soccer_club_app/widgets/scaffold.dart';
 import 'package:soccer_club_app/widgets/text.dart';
 
-class NextMatchPage extends StatelessWidget {
+class NextMatchPage extends StatefulWidget {
   const NextMatchPage({super.key});
 
+  @override
+  State<NextMatchPage> createState() => _NextMatchPageState();
+}
+
+class _NextMatchPageState extends State<NextMatchPage> {
+  int _currentIndex = 0;
   @override
   Widget build(BuildContext context) {
     return SCScaffold(
@@ -74,7 +81,7 @@ class NextMatchPage extends StatelessWidget {
                                   ),
                                   child: Row(
                                     mainAxisAlignment:
-                                        MainAxisAlignment.spaceAround,
+                                        MainAxisAlignment.spaceBetween,
                                     children: [
                                       Row(
                                         children: [
@@ -85,7 +92,7 @@ class NextMatchPage extends StatelessWidget {
                                                 height: 35,
                                                 decoration: const BoxDecoration(
                                                   shape: BoxShape.circle,
-                                                  color: AppColor.error,
+                                                  color: AppColor.redBlur,
                                                 ),
                                               ),
                                               Positioned(
@@ -103,34 +110,9 @@ class NextMatchPage extends StatelessWidget {
                                               ),
                                             ],
                                           ),
-                                          const SizedBox(width: 15),
-                                          SCText.displayMedium(
-                                            context,
-                                            text: context.l10n.redDevils,
-                                            style: context
-                                                .textTheme.displaySmall
-                                                ?.copyWith(
-                                              color: AppColor.redBlur,
-                                              fontWeight: AppFontWeight.bold,
-                                            ),
+                                          const SizedBox(
+                                            width: 220,
                                           ),
-                                          const SizedBox(width: 5),
-                                          SCText.titleMedium(
-                                            context,
-                                            text: context.l10n.vs,
-                                          ),
-                                          const SizedBox(width: 5),
-                                          SCText.displayMedium(
-                                            context,
-                                            text: context.l10n.vGreen,
-                                            style: context
-                                                .textTheme.displaySmall
-                                                ?.copyWith(
-                                              color: AppColor.primary,
-                                              fontWeight: AppFontWeight.bold,
-                                            ),
-                                          ),
-                                          const SizedBox(width: 15),
                                           Stack(
                                             children: [
                                               Container(
@@ -143,7 +125,7 @@ class NextMatchPage extends StatelessWidget {
                                               ),
                                               Positioned(
                                                 top: 0,
-                                                left: 12,
+                                                left: 13,
                                                 child: SCText.displayLarge(
                                                   context,
                                                   text: context.l10n.numberone,
@@ -163,45 +145,26 @@ class NextMatchPage extends StatelessWidget {
                                 ),
                               ),
                             ),
-                            const SizedBox(height: 1),
-                            SCCard.match(
-                              child: Container(
-                                height: 50,
-                                decoration: const BoxDecoration(
-                                  borderRadius: BorderRadius.only(
-                                    bottomLeft: Radius.circular(10),
-                                    bottomRight: Radius.circular(10),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                IconButton(
+                                  icon: SvgPicture.asset(
+                                    SCIcons.calender,
                                   ),
-                                  gradient: LinearGradient(
-                                    colors: AppColor.linearShadow,
+                                  onPressed: () {},
+                                ),
+                                const SizedBox(
+                                  width: 10,
+                                ),
+                                SCText.bodySmall(
+                                  context,
+                                  text: context.l10n.may2021AM,
+                                  style: context.textTheme.bodySmall?.copyWith(
+                                    color: AppColor.darkBlue,
                                   ),
                                 ),
-                                child: Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                    horizontal: 18,
-                                  ),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      SCIcon.calendar(
-                                        color: AppColor.darkBlue,
-                                        height: 12,
-                                      ),
-                                      const SizedBox(
-                                        width: 10,
-                                      ),
-                                      SCText.bodySmall(
-                                        context,
-                                        text: context.l10n.may2021AM,
-                                        style: context.textTheme.bodySmall
-                                            ?.copyWith(
-                                          color: AppColor.darkBlue,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
+                              ],
                             ),
                           ],
                         );
@@ -214,14 +177,16 @@ class NextMatchPage extends StatelessWidget {
           ],
         ),
       ),
-      //    bottomNavigationBar: SCBottomNavigationBar(
-      //   currentIndex: _currentIndex,
-      //   onTap: (int index) {
-      //     setState(() {
-      //       _currentIndex = index;
-      //     });
-      //   },
-      // ),
+      bottomNavigationBar: SCBottomNavigationBar(
+        // Set the current selected index.
+        currentIndex: _currentIndex,
+        onTap: (int index) {
+          setState(() {
+            // Update the current index when tapped.
+            _currentIndex = index;
+          });
+        },
+      ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FloatingActionButton(
         elevation: 0,
@@ -231,33 +196,11 @@ class NextMatchPage extends StatelessWidget {
       ),
     );
   }
-
-  Widget listCardWidget({required String text1, required text2}) {
-    return Card(
-      margin: const EdgeInsets.all(8.0),
-      elevation: 5.0,
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            Flexible(
-                fit: FlexFit.tight,
-                child: Text(
-                  text1,
-                  style: const TextStyle(fontSize: 18),
-                )),
-          ],
-        ),
-      ),
-    );
-  }
 }
 
 class MySliverAppBar extends SliverPersistentHeaderDelegate {
-  final double expandedHeight;
-
   MySliverAppBar({required this.expandedHeight});
+  final double expandedHeight;
 
   @override
   Widget build(
@@ -270,29 +213,16 @@ class MySliverAppBar extends SliverPersistentHeaderDelegate {
           height: 185,
           child: SCAppBar.main(
             backgroundColor: AppColor.tertiary,
-            leadingWidth: 80,
-            leading: SCIcon.back(
-              color: AppColor.secondary,
+            leading: IconButton(
               onPressed: () {
                 context.go(AppRoutes.homePage.path);
               },
+              icon: SvgPicture.asset(SCIcons.rightArrow),
             ),
+            centerTitle: true,
             elevation: 0,
             fontSize: 20,
             title: context.l10n.matchDetails,
-          ),
-        ),
-        Center(
-          child: Opacity(
-            opacity: shrinkOffset / expandedHeight,
-            child: const Text(
-              'My Profile',
-              style: TextStyle(
-                color: Colors.black,
-                fontWeight: FontWeight.w700,
-                fontSize: 23,
-              ),
-            ),
           ),
         ),
         Positioned(
@@ -300,7 +230,7 @@ class MySliverAppBar extends SliverPersistentHeaderDelegate {
           right: 0,
           left: 0,
           child: Opacity(
-            opacity: (1 - shrinkOffset / expandedHeight),
+            opacity: 1 - shrinkOffset / expandedHeight,
             child: Column(
               children: [
                 SizedBox(
@@ -312,8 +242,11 @@ class MySliverAppBar extends SliverPersistentHeaderDelegate {
                         Center(
                           child: SvgPicture.asset(
                             SCIcons.arena,
-                            height: 100,
+                            height: getSize(100),
                           ),
+                        ),
+                        const SizedBox(
+                          height: 15,
                         ),
                         SCText.displaySmall(
                           context,
@@ -323,7 +256,7 @@ class MySliverAppBar extends SliverPersistentHeaderDelegate {
                             color: AppColor.grayHex,
                           ),
                         ),
-                        const SizedBox(height: 8),
+                        const SizedBox(height: 10),
                         SCText.labelLarge(
                           context,
                           text: context.l10n.may92021,
@@ -351,11 +284,12 @@ class MySliverAppBar extends SliverPersistentHeaderDelegate {
                                     color: AppColor.blueMainly,
                                   ),
                                 ),
-                                SCText.labelLarge(
+                                SCText.labelMedium(
                                   context,
                                   text: context.l10n.time,
-                                  style: context.textTheme.labelLarge?.copyWith(
-                                    fontWeight: AppFontWeight.medium,
+                                  style:
+                                      context.textTheme.labelMedium?.copyWith(
+                                    fontWeight: AppFontWeight.bold,
                                     color: AppColor.blueMainly,
                                   ),
                                 ),
@@ -421,19 +355,31 @@ class MySliverAppBar extends SliverPersistentHeaderDelegate {
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceEvenly,
                                     children: [
-                                      SCText.displaySmall(
+                                      SCText.labelMedium(
                                         context,
                                         text: context.l10n.timetwo,
                                       ),
-                                      SCText.displaySmall(
+                                      SCText.labelMedium(
+                                        context,
+                                        text: context.l10n.dots,
+                                      ),
+                                      SCText.labelMedium(
                                         context,
                                         text: context.l10n.timeeight,
                                       ),
-                                      SCText.displaySmall(
+                                      SCText.labelMedium(
+                                        context,
+                                        text: context.l10n.dots,
+                                      ),
+                                      SCText.labelMedium(
                                         context,
                                         text: context.l10n.fourseven,
                                       ),
-                                      SCText.displaySmall(
+                                      SCText.labelMedium(
+                                        context,
+                                        text: context.l10n.dots,
+                                      ),
+                                      SCText.labelMedium(
                                         context,
                                         text: context.l10n.one,
                                       ),
@@ -444,7 +390,7 @@ class MySliverAppBar extends SliverPersistentHeaderDelegate {
                                   ),
                                   Row(
                                     mainAxisAlignment:
-                                        MainAxisAlignment.spaceEvenly,
+                                        MainAxisAlignment.spaceAround,
                                     children: [
                                       SCText.displaySmall(
                                         context,

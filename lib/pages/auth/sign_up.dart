@@ -4,6 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:soccer_club_app/core/color/app_color.dart';
 import 'package:soccer_club_app/core/constant/icons.dart';
+import 'package:soccer_club_app/core/extention/builder_context_extension.dart';
 import 'package:soccer_club_app/core/typography/app_fontweight.dart';
 import 'package:soccer_club_app/core/utils/size_utils.dart';
 import 'package:soccer_club_app/core/utils/validator_utils.dart';
@@ -24,6 +25,7 @@ class SignUpPage extends StatefulWidget {
 
 class _SignUpPageState extends State<SignUpPage> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final TextEditingController _passwordController = TextEditingController();
   bool showPassword = false;
   final _usernameFocusNode = FocusNode();
   final _passwordFocusNode = FocusNode();
@@ -31,6 +33,7 @@ class _SignUpPageState extends State<SignUpPage> {
   bool showUsernameValidation = false;
   bool showPasswordValidation = false;
   bool showEmailValidation = false;
+  Color _buttonColor = AppColor.blackJet;
 
   @override
   void initState() {
@@ -53,6 +56,21 @@ class _SignUpPageState extends State<SignUpPage> {
         showPasswordValidation = _passwordFocusNode.hasFocus;
       });
     });
+
+    _passwordController.addListener(() {
+      setState(() {
+        _buttonColor = _passwordController.text.isNotEmpty
+            ? AppColor.blackJet
+            : AppColor.whiteFlash;
+      });
+    });
+  }
+
+  bool _isButtonActive() {
+    return _usernameFocusNode.hasFocus &&
+        _emailFocusNode.hasFocus &&
+        _passwordFocusNode.hasFocus &&
+        _formKey.currentState?.validate() == true;
   }
 
   @override
@@ -60,6 +78,7 @@ class _SignUpPageState extends State<SignUpPage> {
     _usernameFocusNode.dispose();
     _passwordFocusNode.dispose();
     _emailFocusNode.dispose();
+    _passwordController.dispose();
     super.dispose();
   }
 
@@ -71,17 +90,15 @@ class _SignUpPageState extends State<SignUpPage> {
           title: SCText.displayMedium(
             context,
             text: context.l10n.termsandcondition,
-            style: Theme.of(context).textTheme.displayMedium?.copyWith(
-                  color: AppColor.primary,
-                ), // Define the appropriate text style
+            style: context.textTheme.displayMedium?.copyWith(
+              color: AppColor.primary,
+            ),
           ),
           content: SingleChildScrollView(
             child: SCText.bodyMedium(
               context,
               text: context.l10n.termandconditionofourapp,
-              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  // Define the appropriate text style
-                  ),
+              style: context.textTheme.bodyMedium?.copyWith(),
             ),
           ),
           actions: [
@@ -92,9 +109,9 @@ class _SignUpPageState extends State<SignUpPage> {
               child: SCText.displaySmall(
                 context,
                 text: context.l10n.close,
-                style: Theme.of(context).textTheme.displayMedium?.copyWith(
-                      color: AppColor.primary,
-                    ), // Define the appropriate text style
+                style: context.textTheme.displayMedium?.copyWith(
+                  color: AppColor.primary,
+                ),
               ),
             ),
           ],
@@ -105,151 +122,144 @@ class _SignUpPageState extends State<SignUpPage> {
 
   @override
   Widget build(BuildContext context) {
-    return SCScaffold(
-      body: Form(
-        key: _formKey,
-        autovalidateMode: AutovalidateMode.onUserInteraction,
-        child: Padding(
-          padding: const EdgeInsets.all(28),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              IconButton(
-                onPressed: () {
-                  context.go(AppRoutes.notificationsPage.path);
-                },
-                icon: SvgPicture.asset(SCIcons.back),
-              ),
-              // SCIcon.back(
-              //   width: 24,
-              //   height: 14,
-              //   color: AppColor.tertiary,
-              //   onPressed: () {
-              //     context.go(AppRoutes.signIn.path);
-              //   },
-              // ),
-              SizedBox(height: context.getVerticalSize(50)),
-              SCText.displayLarge(
-                context,
-                text: context.l10n.createanAccount,
-              ),
-              const SizedBox(height: 16),
-              // Title Text
-              SCText.displaySmall(
-                context,
-                text: context.l10n.description,
-              ),
-              SizedBox(
-                height: getVerticalSize(
-                  30,
-                ),
-              ),
-
-              /// Text Form Fields for Username, Email, and Password
-              SCInput.username(
-                focusNode: _usernameFocusNode,
-                labelText: context.l10n.labelUsername,
-                validator: (value) {
-                  if (showUsernameValidation) {
-                    return value?.isValidUserName();
-                  }
-                  return null;
-                },
-              ),
-              const SizedBox(height: 20),
-              // Email Text Form Field
-              SCInput.email(
-                focusNode: _emailFocusNode,
-                labelText: context.l10n.lablelEmail,
-                validator: (value) {
-                  if (showEmailValidation) {
-                    return value?.isValidEmail();
-                  }
-                  return null;
-                },
-              ),
-              const SizedBox(height: 20),
-              // Password Text Form Field
-              SCInput.password(
-                focusNode: _passwordFocusNode,
-                labelText: context.l10n.lablelPassword,
-                validator: (input) {
-                  if (showPasswordValidation) {
-                    return input?.isValidPassword()?.trimRight();
-                  }
-                  return null;
-                },
-                suffixIcon: IconButton(
-                  icon: showPassword
-                      ? SCIcon.hidden(
-                          color: AppColor.primary,
-                        )
-                      : SCIcon.suffix(),
+    return GestureDetector(
+      onTap: () {
+        FocusManager.instance.primaryFocus?.unfocus();
+      },
+      child: SCScaffold(
+        body: Form(
+          key: _formKey,
+          autovalidateMode: AutovalidateMode.onUserInteraction,
+          child: Padding(
+            padding: const EdgeInsets.all(28),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                IconButton(
                   onPressed: () {
-                    setState(() {
-                      showPassword = !showPassword;
-                    });
+                    context.go(AppRoutes.signIn.path);
+                  },
+                  icon: SvgPicture.asset(SCIcons.back),
+                ),
+                SizedBox(height: context.getVerticalSize(50)),
+                SCText.displayLarge(
+                  context,
+                  text: context.l10n.createanAccount,
+                ),
+                const SizedBox(height: 16),
+                SCText.displaySmall(
+                  context,
+                  text: context.l10n.description,
+                ),
+                SizedBox(
+                  height: getVerticalSize(
+                    30,
+                  ),
+                ),
+                SCInput.username(
+                  focusNode: _usernameFocusNode,
+                  labelText: context.l10n.labelUsername,
+                  validator: (value) {
+                    if (showUsernameValidation) {
+                      return value?.isValidUserName();
+                    }
+                    return null;
                   },
                 ),
-                obscureText: !showPassword,
-              ),
-              const Spacer(),
-              // Sign-Up Button
-              SCButton(
-                onPressed: () {
-                  final form = _formKey.currentState ?? FormState();
-                  if (form.validate()) {
-                    debugPrint('Form is valid');
-                    context.go(AppRoutes.signIn.path);
-                  } else {
-                    debugPrint('Form is invalid');
-                  }
-                },
-                text: context.l10n.btnSignUp,
-                backgroundColor: AppColor.blackJet,
-                height: context.getVerticalSize(60),
-                borderRadius: 30,
-              ),
-              SizedBox(height: context.getVerticalSize(30)),
-              Text.rich(
-                TextSpan(
-                  children: [
-                    TextSpan(
-                      text: context.l10n.byTappingSignUpYouAcceptOur,
-                      style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                            color: AppColor.dimGray,
-                          ),
-                    ),
-                    TextSpan(
-                      text: context.l10n.terms,
-                      style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                            fontWeight: AppFontWeight.medium,
-                            color: AppColor.primary,
-                          ),
-                      recognizer: TapGestureRecognizer()..onTap = () {},
-                    ),
-                    TextSpan(
-                      text: context.l10n.and,
-                      style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                            color: AppColor.dimGray,
-                          ),
-                    ),
-                    TextSpan(
-                      text: context.l10n.condition,
-                      style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                            fontWeight: AppFontWeight.medium,
-                            color: AppColor.primary,
-                          ),
-                      recognizer: TapGestureRecognizer()
-                        ..onTap = () {
-                          _showTermsAndConditionsDialog(context);
-                        },
-                    ),
-                  ],
+                const SizedBox(height: 20),
+                SCInput.email(
+                  focusNode: _emailFocusNode,
+                  labelText: context.l10n.lablelEmail,
+                  validator: (value) {
+                    if (showEmailValidation) {
+                      return value?.isValidEmail();
+                    }
+                    return null;
+                  },
                 ),
-                textAlign: TextAlign.center,
-              ),
-            ],
+                const SizedBox(height: 20),
+                SCInput.password(
+                  focusNode: _passwordFocusNode,
+                  labelText: context.l10n.lablelPassword,
+                  validator: (input) {
+                    if (showPasswordValidation) {
+                      return input?.isValidPassword()?.trimRight();
+                    }
+                    return null;
+                  },
+                  controller: _passwordController,
+                  suffixIcon: IconButton(
+                    icon: showPassword
+                        ? SCIcon.hidden(
+                            color: AppColor.primary,
+                          )
+                        : SCIcon.suffix(),
+                    onPressed: () {
+                      setState(() {
+                        showPassword = !showPassword;
+                      });
+                    },
+                  ),
+                  obscureText: !showPassword,
+                ),
+                const Spacer(),
+                SCButton(
+                  onPressed: _isButtonActive()
+                      ? () {
+                          if (_formKey.currentState?.validate() ?? false) {
+                            debugPrint('Form is valid');
+                            context.go(AppRoutes.signIn.path);
+                          } else {
+                            debugPrint('Form is invalid');
+                          }
+                        }
+                      : null,
+                  text: context.l10n.btnSignUp,
+                  backgroundColor: _buttonColor,
+                  height: context.getVerticalSize(60),
+                  borderRadius: 30,
+                ),
+                SizedBox(height: context.getVerticalSize(30)),
+                Text.rich(
+                  TextSpan(
+                    children: [
+                      TextSpan(
+                        text: context.l10n.byTappingSignUpYouAcceptOur,
+                        style: context.textTheme.displaySmall?.copyWith(
+                          color: AppColor.dimGray,
+                        ),
+                      ),
+                      TextSpan(
+                        text: context.l10n.terms,
+                        style: context.textTheme.displaySmall?.copyWith(
+                          fontWeight: AppFontWeight.medium,
+                          color: AppColor.primary,
+                        ),
+                        recognizer: TapGestureRecognizer()..onTap = () {},
+                      ),
+                      TextSpan(
+                        text: context.l10n.and,
+                        style: context.textTheme.displaySmall?.copyWith(
+                          color: AppColor.dimGray,
+                        ),
+                      ),
+                      TextSpan(
+                        text: context.l10n.condition,
+                        style: context.textTheme.displaySmall?.copyWith(
+                          fontWeight: AppFontWeight.medium,
+                          color: AppColor.primary,
+                        ),
+                        recognizer: TapGestureRecognizer()
+                          ..onTap = () {
+                            _showTermsAndConditionsDialog(context);
+                          },
+                      ),
+                    ],
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+              ],
+            ),
           ),
         ),
       ),

@@ -13,7 +13,7 @@ class SCAppBar extends StatelessWidget implements PreferredSize {
     this.leading,
     this.actions = const [],
     this.backgroundColor,
-    this.centerTitle,
+    this.centerTitle = false,
     this.toolbarHeight,
     this.elevation,
     this.flexibleSpace,
@@ -90,40 +90,41 @@ class SCAppBar extends StatelessWidget implements PreferredSize {
     return AppBar(
       /// Define leading widget
       leadingWidth: leadingWidth,
-      titleSpacing: 30,
+      titleSpacing: 0,
       elevation: elevation,
-      flexibleSpace: flexibleSpace,
+      centerTitle: true,
       toolbarHeight: toolbarHeight,
       leading: leading ?? const SizedBox.shrink(),
       backgroundColor: backgroundColor,
-      title: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          SCText.displaySmall(
-            context,
-            text: title,
-            style: context.textTheme.displaySmall
-                ?.copyWith(color: AppColor.secondary, fontSize: fontSize),
-          ),
-          if (subtitle?.isNotEmpty ?? false)
-            SCText.displayLarge(
-              context,
-              text: subtitle ?? '',
-              style: context.textTheme.displayLarge
-                  ?.copyWith(color: AppColor.secondary),
+      title: centerTitle!
+          ? SCText.bodyLarge(context, text: title)
+          : Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SCText.displaySmall(
+                  context,
+                  text: title,
+                  style: context.textTheme.displaySmall
+                      ?.copyWith(color: AppColor.secondary, fontSize: fontSize),
+                ),
+                if (subtitle?.isNotEmpty ?? false)
+                  SCText.displayLarge(
+                    context,
+                    text: subtitle ?? '',
+                    style: context.textTheme.displayLarge
+                        ?.copyWith(color: AppColor.secondary),
+                  ),
+                Container(
+                  decoration: const BoxDecoration(
+                    borderRadius: BorderRadius.only(
+                      bottomRight: Radius.circular(30),
+                      bottomLeft: Radius.circular(30),
+                    ),
+                  ),
+                ),
+              ],
             ),
-          Container(
-            decoration: const BoxDecoration(
-              borderRadius: BorderRadius.only(
-                bottomRight: Radius.circular(30),
-                bottomLeft: Radius.circular(30),
-              ),
-            ),
-          ),
-        ],
-      ),
       actions: actions,
-      centerTitle: centerTitle ?? true,
     );
   }
 
@@ -131,5 +132,5 @@ class SCAppBar extends StatelessWidget implements PreferredSize {
   Widget get child => throw UnimplementedError();
 
   @override
-  Size get preferredSize => const Size.fromHeight(185);
+  Size get preferredSize => const Size.fromHeight(100);
 }

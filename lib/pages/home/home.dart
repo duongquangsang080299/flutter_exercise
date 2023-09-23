@@ -37,7 +37,7 @@ class _HomePageState extends State<HomePage> {
           toolbarHeight: getVerticalSize(139),
           backgroundColor: AppColor.primary,
           centerTitle: false,
-          leadingWidth: 0,
+          leadingWidth: 30,
           title: context.l10n.goodMorning,
           subtitle: context.l10n.adrian,
           actions: [
@@ -91,26 +91,26 @@ class _HomePageState extends State<HomePage> {
             // Use the SCCard.match constructor to create a card.
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 29),
-              child: SCCard.match(
-                child: Container(
-                  height: 66,
-                  decoration: const BoxDecoration(
-                    color: AppColor.whiteSmoke,
+              child: SizedBox(
+                height: 66,
+                child: SCCard.match(
+                  color: AppColor.whiteSmoke,
+                  shape: const RoundedRectangleBorder(
                     borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(10),
-                      topRight: Radius.circular(10),
+                      topLeft: Radius.circular(20),
+                      topRight: Radius.circular(20),
                     ),
-                    boxShadow: [
-                      BoxShadow(
-                        color: AppColor.whiteSmoke,
-                        offset: Offset(0, 80),
-                        blurRadius: 8,
-                      ),
-                    ],
                   ),
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 18,
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    decoration: const BoxDecoration(
+                      boxShadow: [
+                        BoxShadow(
+                          color: AppColor.whiteSmoke,
+                          offset: Offset(0, 80),
+                          blurRadius: 8,
+                        ),
+                      ],
                     ),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -143,15 +143,13 @@ class _HomePageState extends State<HomePage> {
                             ),
                           ],
                         ),
-                        Padding(
-                          padding: const EdgeInsets.only(right: 1),
-                          child: IconButton(
-                            onPressed: () {
-                              context.go(AppRoutes.nextMatchPage.path);
-                            },
-                            icon: const Icon(
-                              Icons.more_vert_outlined,
-                            ),
+                        IconButton(
+                          onPressed: () {
+                            context.go(AppRoutes.nextMatchPage.path);
+                          },
+                          icon: const Icon(
+                            Icons.more_vert_outlined,
+                            color: AppColor.blueAzure,
                           ),
                         ),
                       ],
@@ -160,75 +158,76 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
             ),
-            const SizedBox(height: 1),
 
             /// Create a custom card widget named 'match'.
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 29),
-              child: SCCard.match(
-                child: Container(
-                  height: 66,
-                  padding: const EdgeInsets.symmetric(vertical: 18),
-                  decoration: BoxDecoration(
-                    color: AppColor.secondary.withOpacity(0.9),
-                    borderRadius: const BorderRadius.only(
-                      bottomLeft: Radius.circular(10),
-                      bottomRight: Radius.circular(10),
+              child: SizedBox(
+                height: 66,
+                child: SCCard.match(
+                  color: AppColor.secondary,
+                  shape: const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.only(
+                      bottomLeft: Radius.circular(20),
+                      bottomRight: Radius.circular(20),
                     ),
                   ),
-                  child: Row(
-                    children: [
-                      // Create a Row of widgets for the left side of card.
-                      IconButton(
-                        icon: SvgPicture.asset(
-                          SCIcons.calender,
-                        ),
-                        onPressed: () {
-                          context.go(AppRoutes.fixturesPage.path);
-                        },
-                      ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          SCText.bodySmall(
-                            context,
-                            text: context.l10n.may9,
-                            style: context.textTheme.bodySmall?.copyWith(
-                              color: AppColor.darkBlue,
-                              fontWeight: AppFontWeight.regular,
-                            ),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 18),
+                    child: Row(
+                      children: [
+                        // Create a Row of widgets for the left side of card.
+                        IconButton(
+                          icon: SvgPicture.asset(
+                            SCIcons.calender,
                           ),
-                          SCText.bodySmall(
-                            context,
-                            text: context.l10n.years,
-                            style: context.textTheme.bodySmall?.copyWith(
-                              color: AppColor.darkBlue,
-                              fontWeight: AppFontWeight.regular,
-                            ),
-                          ),
-                        ],
-                      ),
-                      const Expanded(child: SizedBox()),
-                      // Create a Row of widgets for the right side of card.
-                      IconButton(
-                        icon: SvgPicture.asset(
-                          SCIcons.cup,
-                          // color: AppColor.darkBlue,
+                          onPressed: () {
+                            context.go(AppRoutes.fixturesPage.path);
+                          },
                         ),
-                        onPressed: () {
-                          context.go(AppRoutes.fixturesPage.path);
-                        },
-                      ),
-                      SCText.labelLarge(
-                        context,
-                        text: context.l10n.championLeague,
-                        style: context.textTheme.labelLarge
-                            ?.copyWith(color: AppColor.blueBlur),
-                      ),
-                      const SizedBox(
-                        width: 20,
-                      )
-                    ],
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            SCText.bodySmall(
+                              context,
+                              text: context.l10n.may9,
+                              style: context.textTheme.bodySmall?.copyWith(
+                                color: AppColor.darkBlue,
+                                fontWeight: AppFontWeight.regular,
+                              ),
+                            ),
+                            SCText.bodySmall(
+                              context,
+                              text: context.l10n.years,
+                              style: context.textTheme.bodySmall?.copyWith(
+                                color: AppColor.darkBlue,
+                                fontWeight: AppFontWeight.regular,
+                              ),
+                            ),
+                          ],
+                        ),
+                        const Expanded(child: SizedBox()),
+                        // Create a Row of widgets for the right side of card.
+                        IconButton(
+                          icon: SvgPicture.asset(
+                            SCIcons.cup,
+                            // color: AppColor.darkBlue,
+                          ),
+                          onPressed: () {
+                            context.go(AppRoutes.fixturesPage.path);
+                          },
+                        ),
+                        SCText.labelLarge(
+                          context,
+                          text: context.l10n.championLeague,
+                          style: context.textTheme.labelLarge
+                              ?.copyWith(color: AppColor.blueBlur),
+                        ),
+                        const SizedBox(
+                          width: 20,
+                        )
+                      ],
+                    ),
                   ),
                 ),
               ),
@@ -296,7 +295,7 @@ class _HomePageState extends State<HomePage> {
                               ],
                             ),
                             const SizedBox(
-                              height: 11,
+                              height: 5,
                             ),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -454,49 +453,52 @@ class _HomePageState extends State<HomePage> {
             ),
 
             /// Create a Stack widget
-            Stack(
-              clipBehavior: Clip.none,
-              alignment: Alignment.center,
-              children: [
-                Container(
-                  width: 317,
-                  height: 199,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(18),
-                    border: Border.all(color: AppColor.primary),
-                  ),
-                  child: SCCard.avatar(
-                    child: Image.asset(
-                      SCAssets.soccerStadium,
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                ),
-                Positioned(
-                  bottom: 1,
-                  child: SizedBox(
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Stack(
+                clipBehavior: Clip.none,
+                alignment: Alignment.center,
+                children: [
+                  Container(
                     width: 317,
-                    height: 42,
+                    height: 199,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(18),
+                      border: Border.all(color: AppColor.primary),
+                    ),
                     child: SCCard.avatar(
-                      borderRadius: const BorderRadius.only(
-                        bottomLeft: Radius.circular(15),
-                        bottomRight: Radius.circular(15),
+                      child: Image.asset(
+                        SCAssets.soccerStadium,
+                        fit: BoxFit.cover,
                       ),
-                      color: Colors.transparent,
-                      child: const SizedBox.shrink(),
                     ),
                   ),
-                ),
-                Positioned(
-                  top: 170,
-                  left: 15,
-                  child: Container(
-                    decoration: const BoxDecoration(color: AppColor.primary),
-                    width: 93,
-                    height: 5,
+                  Positioned(
+                    bottom: 1,
+                    child: SizedBox(
+                      width: 317,
+                      height: 71,
+                      child: SCCard.avatar(
+                        borderRadius: const BorderRadius.only(
+                          bottomLeft: Radius.circular(15),
+                          bottomRight: Radius.circular(15),
+                        ),
+                        color: Colors.transparent,
+                        child: const SizedBox.shrink(),
+                      ),
+                    ),
                   ),
-                ),
-              ],
+                  Positioned(
+                    top: 145,
+                    left: 15,
+                    child: Container(
+                      decoration: const BoxDecoration(color: AppColor.primary),
+                      width: 93,
+                      height: 5,
+                    ),
+                  ),
+                ],
+              ),
             ),
             const SizedBox(height: 18),
 
@@ -548,6 +550,9 @@ class _HomePageState extends State<HomePage> {
                 ),
               ],
             ),
+            const SizedBox(
+              height: 50,
+            )
           ],
         ),
       ),
