@@ -6,9 +6,9 @@ extension Validator on String {
     if (passNonNullValue.isEmpty) {
       return 'Password is required';
     } else if (passNonNullValue.length < 6) {
-      return 'Password should be atleast 5 characters';
+      return 'Password 5-character minimum';
     } else if (!regex.hasMatch(passNonNullValue)) {
-      return 'Password requires uppercase, lowercase, digit, and special character.';
+      return 'Password least uppercase, digit, and special character.';
     }
     return null;
   }
@@ -18,7 +18,7 @@ extension Validator on String {
     if (passNonNullValue.isEmpty) {
       return 'Email is required';
     } else if (passNonNullValue.length < 6) {
-      return 'Email should be atleast 5 characters';
+      return 'Email 5-character minimum';
     } else if (!passNonNullValue.contains('@')) {
       return 'Email should contains @';
     }
@@ -30,7 +30,7 @@ extension Validator on String {
     if (passNonNullValue.isEmpty) {
       return 'Username is required';
     } else if (passNonNullValue.length < 6) {
-      return 'Username should be atleast 5 characters';
+      return 'Username 5-character minimum';
     }
     return null;
   }

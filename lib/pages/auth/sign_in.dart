@@ -23,13 +23,15 @@ class SignInPage extends StatefulWidget {
 
 class _SignInPageState extends State<SignInPage> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   bool showPassword = false;
   final _usernameFocusNode = FocusNode();
   final _passwordFocusNode = FocusNode();
   bool showUsernameValidation = false;
   bool showPasswordValidation = false;
-  Color _buttonColor = AppColor.whiteFlash;
+  bool isPasswordFilled = false;
+  bool _isButtonActive = false;
 
   @override
   void initState() {
@@ -49,23 +51,28 @@ class _SignInPageState extends State<SignInPage> {
 
     _passwordController.addListener(() {
       setState(() {
-        _buttonColor = _passwordController.text.isNotEmpty
-            ? AppColor.primary
-            : AppColor.whiteFlash;
+        isPasswordFilled = _passwordController.text.isNotEmpty;
+        _updateButtonState();
       });
+    });
+    _usernameController.addListener(() {
+      setState(_updateButtonState);
     });
   }
 
-  bool _isButtonActive() {
-    return showUsernameValidation &&
-        showPasswordValidation &&
-        _formKey.currentState?.validate() == true;
+  void _updateButtonState() {
+    setState(() {
+      _isButtonActive = isPasswordFilled &&
+          _usernameController.text.isNotEmpty &&
+          _formKey.currentState?.validate() == true;
+    });
   }
 
   @override
   void dispose() {
     _usernameFocusNode.dispose();
     _passwordFocusNode.dispose();
+    _usernameController.dispose();
     _passwordController.dispose();
     super.dispose();
   }
@@ -86,19 +93,16 @@ class _SignInPageState extends State<SignInPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(height: context.getVerticalSize(87)),
-                // Display Large Text
                 SCText.displayLarge(
                   context,
                   text: context.l10n.signIn,
                 ),
                 const SizedBox(height: 16),
-                // Title Text
                 SCText.displaySmall(
                   context,
                   text: context.l10n.description,
                 ),
                 SizedBox(height: getVerticalSize(30)),
-                // Text Form Fields for Username
                 SCInput.username(
                   focusNode: _usernameFocusNode,
                   labelText: context.l10n.labelUsername,
@@ -108,11 +112,9 @@ class _SignInPageState extends State<SignInPage> {
                     }
                     return null;
                   },
+                  controller: _usernameController,
                 ),
-
                 const SizedBox(height: 20),
-
-                // Password Text Form Field
                 SCInput.password(
                   focusNode: _passwordFocusNode,
                   labelText: context.l10n.lablelPassword,
@@ -137,11 +139,9 @@ class _SignInPageState extends State<SignInPage> {
                   ),
                   obscureText: !showPassword,
                 ),
-
-                // Sign-In Button
                 const Spacer(),
                 SCButton(
-                  onPressed: _isButtonActive()
+                  onPressed: _isButtonActive
                       ? () {
                           if (_formKey.currentState?.validate() ?? false) {
                             debugPrint('Form is valid');
@@ -151,12 +151,12 @@ class _SignInPageState extends State<SignInPage> {
                           }
                         }
                       : null,
-                  text: context.l10n.btnLogin,
-                  backgroundColor: _buttonColor,
+                  text: context.l10n.btnSignUp,
+                  backgroundColor:
+                      _isButtonActive ? AppColor.primary : AppColor.whiteFlash,
                   height: context.getVerticalSize(60),
                   borderRadius: 30,
                 ),
-
                 const SizedBox(height: 16),
                 Text.rich(
                   TextSpan(
@@ -193,7 +193,8 @@ class _SignInPageState extends State<SignInPage> {
                 const SizedBox(height: 19),
                 SCButton(
                   onPressed: () {
-                    context.go(AppRoutes.signUp.path);
+                    context.go(
+                        AppRoutes.signUp.path); // Navigate to the desired page
                   },
                   text: context.l10n.btnAccount,
                   style: context.textTheme.displayMedium?.copyWith(
