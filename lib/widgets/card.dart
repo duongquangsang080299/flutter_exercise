@@ -4,7 +4,7 @@ import 'package:soccer_club_app/core/extention/builder_context_extension.dart';
 /// Define Card Avatar
 class SCCard extends StatelessWidget {
   const SCCard({
-    Key? key,
+    super.key,
     this.color,
     this.width,
     this.height,
@@ -13,7 +13,7 @@ class SCCard extends StatelessWidget {
     this.selected,
     this.elevation,
     this.borderRadius,
-  }) : super(key: key);
+  });
 
   /// Factory constructor for creating a card with an avatar
   factory SCCard.avatar({

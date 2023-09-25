@@ -28,19 +28,23 @@ class _PlayerPageState extends State<PlayerPage> {
 
   @override
   Widget build(BuildContext context) {
+    const sizedBox20 = SizedBox(height: 20);
+
     return SCScaffold(
       body: Padding(
-        padding: const EdgeInsets.all(28),
+        padding: const EdgeInsets.symmetric(horizontal: 28),
         child: Column(
+          // mainAxisAlignment: MainAxisAlignment.end,
           children: [
+            const SizedBox(height: 40),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
+              padding: const EdgeInsets.symmetric(horizontal: 18),
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   IconButton(
                     onPressed: () {
-                      context.go(AppRoutes.notificationsPage.path);
+                      context.go(AppRoutes.signIn.path);
                     },
                     icon: SvgPicture.asset(SCIcons.back),
                   ),
@@ -139,37 +143,45 @@ class _PlayerPageState extends State<PlayerPage> {
                 },
               ),
             ),
-            const Spacer(),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Expanded(
-                  child: SCOutlineButton(
-                    onPressed: () {
-                      context.go(AppRoutes.homePage.path);
-                    },
-                    text: context.l10n.btnSkip,
-                    style: context.textTheme.displayMedium?.copyWith(
-                      color: AppColor.neonSilver,
-                      fontWeight: AppFontWeight.semiBold,
-                    ),
+            sizedBox20,
+            Expanded(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Expanded(
+                        child: SCOutlineButton(
+                          onPressed: () {
+                            context.go(AppRoutes.homePage.path);
+                          },
+                          text: context.l10n.btnSkip,
+                          style: context.textTheme.displayMedium?.copyWith(
+                            color: AppColor.neonSilver,
+                            fontWeight: AppFontWeight.semiBold,
+                          ),
+                        ),
+                      ),
+                      const SizedBox(width: 20),
+                      Expanded(
+                        child: SCButton(
+                          onPressed: () {
+                            context.go(AppRoutes.homePage.path);
+                          },
+                          text: context.l10n.btnConfirm,
+                          style: context.textTheme.displayMedium?.copyWith(
+                            fontWeight: AppFontWeight.semiBold,
+                          ),
+                          backgroundColor: AppColor.primary,
+                        ),
+                      ),
+                    ],
                   ),
-                ),
-                const SizedBox(width: 20),
-                Expanded(
-                  child: SCButton(
-                    onPressed: () {
-                      context.go(AppRoutes.homePage.path);
-                    },
-                    text: context.l10n.btnConfirm,
-                    style: context.textTheme.displayMedium?.copyWith(
-                      fontWeight: AppFontWeight.semiBold,
-                    ),
-                    backgroundColor: AppColor.primary,
-                  ),
-                ),
-              ],
+                ],
+              ),
             ),
+            sizedBox20,
           ],
         ),
       ),

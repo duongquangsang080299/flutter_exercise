@@ -93,66 +93,71 @@ class _HomePageState extends State<HomePage> {
               padding: const EdgeInsets.symmetric(horizontal: 29),
               child: SizedBox(
                 height: 66,
-                child: SCCard.match(
-                  color: AppColor.whiteSmoke,
-                  shape: const RoundedRectangleBorder(
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(20),
-                      topRight: Radius.circular(20),
+                child: GestureDetector(
+                  onTap: () {
+                    context.go(AppRoutes.nextMatchPage.path);
+                  },
+                  child: SCCard.match(
+                    color: AppColor.whiteSmoke,
+                    shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(20),
+                        topRight: Radius.circular(20),
+                      ),
                     ),
-                  ),
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
-                    decoration: const BoxDecoration(
-                      boxShadow: [
-                        BoxShadow(
-                          color: AppColor.whiteSmoke,
-                          offset: Offset(0, 80),
-                          blurRadius: 8,
-                        ),
-                      ],
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        /// Create stack circular with different colors.
-                        Stack(
-                          // Allow items to overflow the stack.
-                          clipBehavior: Clip.none,
-                          alignment: Alignment.center,
-                          children: [
-                            Container(
-                              width: 35,
-                              height: 35,
-                              decoration: const BoxDecoration(
-                                shape: BoxShape.circle,
-                                color: AppColor.redBlur,
-                              ),
-                            ),
-                            Positioned(
-                              top: 0,
-                              left: 30,
-                              child: Container(
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      decoration: const BoxDecoration(
+                        boxShadow: [
+                          BoxShadow(
+                            color: AppColor.whiteSmoke,
+                            offset: Offset(0, 80),
+                            blurRadius: 8,
+                          ),
+                        ],
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          /// Create stack circular with different colors.
+                          Stack(
+                            // Allow items to overflow the stack.
+                            clipBehavior: Clip.none,
+                            alignment: Alignment.center,
+                            children: [
+                              Container(
                                 width: 35,
                                 height: 35,
                                 decoration: const BoxDecoration(
                                   shape: BoxShape.circle,
-                                  color: AppColor.primary,
+                                  color: AppColor.redBlur,
                                 ),
                               ),
-                            ),
-                          ],
-                        ),
-                        IconButton(
-                          onPressed: () {
-                            context.go(AppRoutes.nextMatchPage.path);
-                          },
-                          icon: const Icon(
-                            Icons.more_vert_outlined,
-                            color: AppColor.blueAzure,
+                              Positioned(
+                                top: 0,
+                                left: 30,
+                                child: Container(
+                                  width: 35,
+                                  height: 35,
+                                  decoration: const BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    color: AppColor.primary,
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
-                        ),
-                      ],
+                          IconButton(
+                            onPressed: () {
+                              context.go(AppRoutes.nextMatchPage.path);
+                            },
+                            icon: const Icon(
+                              Icons.more_vert_outlined,
+                              color: AppColor.blueAzure,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
@@ -165,7 +170,6 @@ class _HomePageState extends State<HomePage> {
               child: SizedBox(
                 height: 66,
                 child: SCCard.match(
-                  color: AppColor.secondary,
                   shape: const RoundedRectangleBorder(
                     borderRadius: BorderRadius.only(
                       bottomLeft: Radius.circular(20),
@@ -181,9 +185,7 @@ class _HomePageState extends State<HomePage> {
                           icon: SvgPicture.asset(
                             SCIcons.calender,
                           ),
-                          onPressed: () {
-                            context.go(AppRoutes.fixturesPage.path);
-                          },
+                          onPressed: () {},
                         ),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,

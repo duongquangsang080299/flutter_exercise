@@ -26,7 +26,7 @@ class SCButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: double.infinity,
-      height: context.getVerticalSize(height),
+      height: height,
       child: ElevatedButton(
         onPressed: onPressed,
         style: ButtonStyle(

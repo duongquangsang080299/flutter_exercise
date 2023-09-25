@@ -10,7 +10,6 @@ import 'package:soccer_club_app/l10n/l10n.dart';
 import 'package:soccer_club_app/routes/routes.dart';
 import 'package:soccer_club_app/widgets/app_bar.dart';
 import 'package:soccer_club_app/widgets/card.dart';
-import 'package:soccer_club_app/widgets/icon.dart';
 import 'package:soccer_club_app/widgets/text.dart';
 
 class FixturesPage extends StatelessWidget {
@@ -39,11 +38,9 @@ class FixturesPage extends StatelessWidget {
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SCText.displayLarge(
+                  SCText.bodyLarge(
                     text: context.l10n.league,
                     context,
-                    style: context.textTheme.displayLarge
-                        ?.copyWith(color: AppColor.tertiary),
                   ),
                 ],
               ),
@@ -51,27 +48,26 @@ class FixturesPage extends StatelessWidget {
               ...List.generate(6, (index) {
                 return Column(
                   children: [
-                    SCCard.match(
-                      child: Container(
-                        height: 66,
-                        width: 318,
-                        decoration: const BoxDecoration(
-                          color: AppColor.whiteSmoke,
+                    SizedBox(
+                      height: 49,
+                      child: SCCard.match(
+                        color: AppColor.whiteSmoke,
+                        shape: const RoundedRectangleBorder(
                           borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(10),
-                            topRight: Radius.circular(10),
+                            topLeft: Radius.circular(20),
+                            topRight: Radius.circular(20),
                           ),
-                          boxShadow: [
-                            BoxShadow(
-                              color: AppColor.whiteSmoke,
-                              offset: Offset(0, 80),
-                              blurRadius: 8,
-                            ),
-                          ],
                         ),
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 18,
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(horizontal: 20),
+                          decoration: const BoxDecoration(
+                            boxShadow: [
+                              BoxShadow(
+                                color: AppColor.whiteSmoke,
+                                offset: Offset(0, 9),
+                                blurRadius: 8,
+                              ),
+                            ],
                           ),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -122,45 +118,33 @@ class FixturesPage extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 1),
-                    SCCard.match(
-                      child: Container(
-                        width: 318,
-                        height: 66,
-                        decoration: BoxDecoration(
-                          color: AppColor.secondary.withOpacity(0.9),
-                          borderRadius: const BorderRadius.only(
-                            bottomLeft: Radius.circular(10),
-                            bottomRight: Radius.circular(10),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 18,
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          IconButton(
+                            icon: SvgPicture.asset(
+                              SCIcons.calender,
+                            ),
+                            onPressed: () {},
                           ),
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 18,
+                          const SizedBox(
+                            width: 10,
                           ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              SCIcon.calendar(
-                                color: AppColor.darkBlue,
-                                width: 12,
-                                height: 12,
-                              ),
-                              const SizedBox(
-                                width: 10,
-                              ),
-                              SCText.bodySmall(
-                                context,
-                                text: context.l10n.may2021AM,
-                                style: context.textTheme.bodySmall?.copyWith(
-                                  color: AppColor.darkBlue,
-                                ),
-                              ),
-                              const SizedBox(
-                                width: 10,
-                              ),
-                            ],
+                          SCText.bodySmall(
+                            context,
+                            text: context.l10n.may2021AM,
+                            style: context.textTheme.bodySmall?.copyWith(
+                              color: AppColor.darkBlue,
+                            ),
                           ),
-                        ),
+                          const SizedBox(
+                            width: 10,
+                          ),
+                        ],
                       ),
                     ),
                   ],

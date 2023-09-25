@@ -12,56 +12,134 @@ import 'package:flutter/widgets.dart';
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
-  /// File path: assets/images/background.svg
-  String get background => 'assets/images/background.svg';
+  /// File path: assets/images/arena.svg
+  String get arena => 'assets/images/arena.svg';
 
-  /// File path: assets/images/btnNotifications.svg
-  String get btnNotifications => 'assets/images/btnNotifications.svg';
+  /// File path: assets/images/icon_back.svg
+  String get iconBack => 'assets/images/icon_back.svg';
 
-  /// File path: assets/images/clubLogo.svg
-  String get clubLogo => 'assets/images/clubLogo.svg';
+  /// File path: assets/images/icon_calender.svg
+  String get iconCalender => 'assets/images/icon_calender.svg';
 
-  /// File path: assets/images/favouritePlayer.svg
-  String get favouritePlayer => 'assets/images/favouritePlayer.svg';
+  /// File path: assets/images/icon_cup.svg
+  String get iconCup => 'assets/images/icon_cup.svg';
 
-  /// File path: assets/images/logoSplashScreen.svg
-  String get logoSplashScreen => 'assets/images/logoSplashScreen.svg';
+  /// File path: assets/images/icon_fixtures.svg
+  String get iconFixtures => 'assets/images/icon_fixtures.svg';
 
-  /// File path: assets/images/logofloatingbutton.svg
-  String get logofloatingbutton => 'assets/images/logofloatingbutton.svg';
+  /// File path: assets/images/icon_home.svg
+  String get iconHome => 'assets/images/icon_home.svg';
 
-  /// File path: assets/images/placeholder.svg
-  String get placeholder => 'assets/images/placeholder.svg';
+  /// File path: assets/images/icon_menu.svg
+  String get iconMenu => 'assets/images/icon_menu.svg';
 
-  /// File path: assets/images/player.svg
-  String get player => 'assets/images/player.svg';
+  /// File path: assets/images/icon_notification.svg
+  String get iconNotification => 'assets/images/icon_notification.svg';
 
-  /// File path: assets/images/player3.svg
-  String get player3 => 'assets/images/player3.svg';
+  /// File path: assets/images/icon_right_arrow.svg
+  String get iconRightArrow => 'assets/images/icon_right_arrow.svg';
 
-  /// File path: assets/images/playerone.svg
-  String get playerone => 'assets/images/playerone.svg';
+  /// File path: assets/images/icon_shop.svg
+  String get iconShop => 'assets/images/icon_shop.svg';
 
-  /// File path: assets/images/stadium.svg
-  String get stadium => 'assets/images/stadium.svg';
+  /// File path: assets/images/icon_tickets.svg
+  String get iconTickets => 'assets/images/icon_tickets.svg';
 
-  /// File path: assets/images/stadiumtranfor.svg
-  String get stadiumtranfor => 'assets/images/stadiumtranfor.svg';
+  /// File path: assets/images/icon_ticketss.svg
+  String get iconTicketss => 'assets/images/icon_ticketss.svg';
+
+  /// File path: assets/images/icon_youtube.svg
+  String get iconYoutube => 'assets/images/icon_youtube.svg';
+
+  /// File path: assets/images/image_user.png
+  AssetGenImage get imageUser =>
+      const AssetGenImage('assets/images/image_user.png');
+
+  /// File path: assets/images/jame_player.png
+  AssetGenImage get jamePlayer =>
+      const AssetGenImage('assets/images/jame_player.png');
+
+  /// File path: assets/images/logo_match.png
+  AssetGenImage get logoMatch =>
+      const AssetGenImage('assets/images/logo_match.png');
+
+  /// File path: assets/images/logo_match_detail.png
+  AssetGenImage get logoMatchDetail =>
+      const AssetGenImage('assets/images/logo_match_detail.png');
+
+  /// File path: assets/images/logo_second_match.png
+  AssetGenImage get logoSecondMatch =>
+      const AssetGenImage('assets/images/logo_second_match.png');
+
+  /// File path: assets/images/logo_splash_screen.png
+  AssetGenImage get logoSplashScreen =>
+      const AssetGenImage('assets/images/logo_splash_screen.png');
+
+  /// File path: assets/images/logo_sport.png
+  AssetGenImage get logoSport =>
+      const AssetGenImage('assets/images/logo_sport.png');
+
+  /// File path: assets/images/player_fifth.png
+  AssetGenImage get playerFifth =>
+      const AssetGenImage('assets/images/player_fifth.png');
+
+  /// File path: assets/images/player_first.png
+  AssetGenImage get playerFirst =>
+      const AssetGenImage('assets/images/player_first.png');
+
+  /// File path: assets/images/player_fourth.png
+  AssetGenImage get playerFourth =>
+      const AssetGenImage('assets/images/player_fourth.png');
+
+  /// File path: assets/images/player_match.png
+  AssetGenImage get playerMatch =>
+      const AssetGenImage('assets/images/player_match.png');
+
+  /// File path: assets/images/player_second.png
+  AssetGenImage get playerSecond =>
+      const AssetGenImage('assets/images/player_second.png');
+
+  /// File path: assets/images/player_third.png
+  AssetGenImage get playerThird =>
+      const AssetGenImage('assets/images/player_third.png');
+
+  /// File path: assets/images/soccer_stadium.png
+  AssetGenImage get soccerStadium =>
+      const AssetGenImage('assets/images/soccer_stadium.png');
+
+  /// File path: assets/images/stadium.png
+  AssetGenImage get stadium => const AssetGenImage('assets/images/stadium.png');
 
   /// List of all assets
-  List<String> get values => [
-        background,
-        btnNotifications,
-        clubLogo,
-        favouritePlayer,
+  List<dynamic> get values => [
+        arena,
+        iconBack,
+        iconCalender,
+        iconCup,
+        iconFixtures,
+        iconHome,
+        iconMenu,
+        iconNotification,
+        iconRightArrow,
+        iconShop,
+        iconTickets,
+        iconTicketss,
+        iconYoutube,
+        imageUser,
+        jamePlayer,
+        logoMatch,
+        logoMatchDetail,
+        logoSecondMatch,
         logoSplashScreen,
-        logofloatingbutton,
-        placeholder,
-        player,
-        player3,
-        playerone,
-        stadium,
-        stadiumtranfor
+        logoSport,
+        playerFifth,
+        playerFirst,
+        playerFourth,
+        playerMatch,
+        playerSecond,
+        playerThird,
+        soccerStadium,
+        stadium
       ];
 }
 

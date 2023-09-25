@@ -37,6 +37,38 @@ class AppTheme {
     );
   }
 
+  ThemeData get darkTheme {
+    return ThemeData(
+      appBarTheme: const AppBarTheme(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(
+            bottom: Radius.circular(30),
+          ),
+        ),
+      ),
+      primaryColor: AppColor.blackHex,
+      scaffoldBackgroundColor: AppColor.secondary,
+      colorScheme: _colorScheme,
+      buttonTheme: _buttonTheme,
+      cardTheme: const CardTheme(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(
+            Radius.circular(15),
+          ),
+        ),
+      ),
+      elevatedButtonTheme: _elevatedButtonTheme,
+      outlinedButtonTheme: OutlinedButtonThemeData(
+        style: _outlinedButtonStyle,
+      ),
+      iconTheme: const IconThemeData(
+        color: AppColor.blackJet,
+        size: 24,
+      ),
+      textTheme: _textTheme,
+    );
+  }
+
   ColorScheme get _colorScheme {
     return const ColorScheme.light(
       primary: AppColor.primary,

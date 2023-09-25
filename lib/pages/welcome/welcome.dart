@@ -61,7 +61,7 @@ class WelcomePage extends StatelessWidget {
               style: context.textTheme.displayMedium?.copyWith(
                 fontWeight: AppFontWeight.semiBold,
               ),
-              backgroundColor: AppColor.blackHex,
+              backgroundColor: Theme.of(context).primaryColor,
             ),
             const SizedBox(
               height: 20,

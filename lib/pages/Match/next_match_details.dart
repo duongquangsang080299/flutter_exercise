@@ -24,6 +24,7 @@ class NextMatchPage extends StatefulWidget {
 
 class _NextMatchPageState extends State<NextMatchPage> {
   int _currentIndex = 0;
+
   @override
   Widget build(BuildContext context) {
     return SCScaffold(
@@ -37,7 +38,7 @@ class _NextMatchPageState extends State<NextMatchPage> {
             SliverList(
               delegate: SliverChildListDelegate([
                 const SizedBox(
-                  height: 350,
+                  height: 380,
                 ),
                 Padding(
                   padding: const EdgeInsets.all(30),
@@ -58,30 +59,32 @@ class _NextMatchPageState extends State<NextMatchPage> {
                       ...List.generate(4, (index) {
                         return Column(
                           children: [
-                            SCCard.match(
-                              child: Container(
-                                height: 50,
-                                decoration: const BoxDecoration(
-                                  color: AppColor.whiteSmoke,
+                            SizedBox(
+                              height: 49,
+                              child: SCCard.match(
+                                color: AppColor.whiteSmoke,
+                                shape: const RoundedRectangleBorder(
                                   borderRadius: BorderRadius.only(
-                                    topLeft: Radius.circular(10),
-                                    topRight: Radius.circular(10),
+                                    topLeft: Radius.circular(20),
+                                    topRight: Radius.circular(20),
                                   ),
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: AppColor.whiteSmoke,
-                                      offset: Offset(0, 80),
-                                      blurRadius: 8,
-                                    ),
-                                  ],
                                 ),
-                                child: Padding(
+                                child: Container(
                                   padding: const EdgeInsets.symmetric(
-                                    horizontal: 18,
+                                    horizontal: 20,
+                                  ),
+                                  decoration: const BoxDecoration(
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: AppColor.whiteSmoke,
+                                        offset: Offset(0, 9),
+                                        blurRadius: 8,
+                                      ),
+                                    ],
                                   ),
                                   child: Row(
                                     mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
+                                        MainAxisAlignment.spaceAround,
                                     children: [
                                       Row(
                                         children: [
@@ -209,21 +212,19 @@ class MySliverAppBar extends SliverPersistentHeaderDelegate {
       clipBehavior: Clip.none,
       fit: StackFit.expand,
       children: [
-        SizedBox(
-          height: 185,
-          child: SCAppBar.main(
-            backgroundColor: AppColor.tertiary,
-            leading: IconButton(
-              onPressed: () {
-                context.go(AppRoutes.homePage.path);
-              },
-              icon: SvgPicture.asset(SCIcons.rightArrow),
-            ),
-            centerTitle: true,
-            elevation: 0,
-            fontSize: 20,
-            title: context.l10n.matchDetails,
+        SCAppBar.main(
+          toolbarHeight: 139,
+          backgroundColor: AppColor.tertiary,
+          leading: IconButton(
+            onPressed: () {
+              context.go(AppRoutes.homePage.path);
+            },
+            icon: SvgPicture.asset(SCIcons.rightArrow),
           ),
+          centerTitle: true,
+          elevation: 0,
+          fontSize: 20,
+          title: context.l10n.matchDetails,
         ),
         Positioned(
           top: expandedHeight / 1.5 - shrinkOffset,
@@ -231,12 +232,13 @@ class MySliverAppBar extends SliverPersistentHeaderDelegate {
           left: 0,
           child: Opacity(
             opacity: 1 - shrinkOffset / expandedHeight,
-            child: Column(
-              children: [
-                SizedBox(
-                  height: 440,
-                  width: 319,
-                  child: SCCard.match(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 28),
+              child: SizedBox(
+                height: context.getVerticalSize(440),
+                child: SCCard.match(
+                  child: Padding(
+                    padding: const EdgeInsets.all(5),
                     child: Column(
                       children: [
                         Center(
@@ -246,7 +248,7 @@ class MySliverAppBar extends SliverPersistentHeaderDelegate {
                           ),
                         ),
                         const SizedBox(
-                          height: 15,
+                          height: 12,
                         ),
                         SCText.displaySmall(
                           context,
@@ -256,7 +258,9 @@ class MySliverAppBar extends SliverPersistentHeaderDelegate {
                             color: AppColor.grayHex,
                           ),
                         ),
-                        const SizedBox(height: 10),
+                        const SizedBox(
+                          height: 9,
+                        ),
                         SCText.labelLarge(
                           context,
                           text: context.l10n.may92021,
@@ -265,7 +269,9 @@ class MySliverAppBar extends SliverPersistentHeaderDelegate {
                             color: AppColor.grayHex,
                           ),
                         ),
-                        const SizedBox(height: 8),
+                        const SizedBox(
+                          height: 18,
+                        ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -297,7 +303,7 @@ class MySliverAppBar extends SliverPersistentHeaderDelegate {
                             ),
                             const SizedBox(width: 30),
                             Image.asset(
-                              SCAssets.logoMatch,
+                              SCAssets.logoMatchDetail,
                               height: 67,
                             ),
                             const SizedBox(width: 8),
@@ -326,111 +332,117 @@ class MySliverAppBar extends SliverPersistentHeaderDelegate {
                             ),
                           ],
                         ),
-                        const SizedBox(height: 28),
-                        SizedBox(
-                          width: 280,
-                          height: 127,
-                          child: SCCard.avatar(
-                            child: Container(
-                              decoration: const BoxDecoration(
-                                borderRadius: BorderRadius.all(
-                                  Radius.circular(18),
+                        SizedBox(height: context.getVerticalSize(28)),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 20),
+                          child: SizedBox(
+                            height: 127,
+                            width: 280,
+                            child: SCCard.avatar(
+                              child: Container(
+                                decoration: const BoxDecoration(
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(18),
+                                  ),
+                                  gradient: LinearGradient(
+                                    begin: Alignment(1, -4),
+                                    end: Alignment(-1, 2),
+                                    colors: AppColor.linearGradient,
+                                  ),
                                 ),
-                                gradient: LinearGradient(
-                                  begin: Alignment(1, -4),
-                                  end: Alignment(-1, 2),
-                                  colors: AppColor.linearGradient,
+                                child: Column(
+                                  children: [
+                                    const SizedBox(
+                                      height: 10,
+                                    ),
+                                    SCText.displayMedium(
+                                      context,
+                                      text: context.l10n.matchcountdown,
+                                    ),
+                                    const SizedBox(
+                                      height: 25,
+                                    ),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceEvenly,
+                                      children: [
+                                        SCText.labelMedium(
+                                          context,
+                                          text: context.l10n.timetwo,
+                                        ),
+                                        SCText.labelMedium(
+                                          context,
+                                          text: context.l10n.dots,
+                                        ),
+                                        SCText.labelMedium(
+                                          context,
+                                          text: context.l10n.timeeight,
+                                        ),
+                                        SCText.labelMedium(
+                                          context,
+                                          text: context.l10n.dots,
+                                        ),
+                                        SCText.labelMedium(
+                                          context,
+                                          text: context.l10n.fourseven,
+                                        ),
+                                        SCText.labelMedium(
+                                          context,
+                                          text: context.l10n.dots,
+                                        ),
+                                        SCText.labelMedium(
+                                          context,
+                                          text: context.l10n.one,
+                                        ),
+                                      ],
+                                    ),
+                                    const SizedBox(
+                                      height: 2,
+                                    ),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceAround,
+                                      children: [
+                                        SCText.displaySmall(
+                                          context,
+                                          text: context.l10n.days,
+                                          style: context.textTheme.displaySmall
+                                              ?.copyWith(
+                                            fontWeight: AppFontWeight.medium,
+                                            color: AppColor.secondary,
+                                          ),
+                                        ),
+                                        SCText.displaySmall(
+                                          context,
+                                          text: context.l10n.hours,
+                                          style: context.textTheme.displaySmall
+                                              ?.copyWith(
+                                            fontWeight: AppFontWeight.medium,
+                                            color: AppColor.secondary,
+                                          ),
+                                        ),
+                                        SCText.displaySmall(
+                                          context,
+                                          text: context.l10n.mins,
+                                          style: context.textTheme.displaySmall
+                                              ?.copyWith(
+                                            fontWeight: AppFontWeight.medium,
+                                            color: AppColor.secondary,
+                                          ),
+                                        ),
+                                        SCText.displaySmall(
+                                          context,
+                                          text: context.l10n.secs,
+                                          style: context.textTheme.displaySmall
+                                              ?.copyWith(
+                                            fontWeight: AppFontWeight.medium,
+                                            color: AppColor.secondary,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
                                 ),
-                              ),
-                              child: Column(
-                                children: [
-                                  SCText.displayMedium(
-                                    context,
-                                    text: context.l10n.matchcountdown,
-                                  ),
-                                  const SizedBox(
-                                    height: 25,
-                                  ),
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceEvenly,
-                                    children: [
-                                      SCText.labelMedium(
-                                        context,
-                                        text: context.l10n.timetwo,
-                                      ),
-                                      SCText.labelMedium(
-                                        context,
-                                        text: context.l10n.dots,
-                                      ),
-                                      SCText.labelMedium(
-                                        context,
-                                        text: context.l10n.timeeight,
-                                      ),
-                                      SCText.labelMedium(
-                                        context,
-                                        text: context.l10n.dots,
-                                      ),
-                                      SCText.labelMedium(
-                                        context,
-                                        text: context.l10n.fourseven,
-                                      ),
-                                      SCText.labelMedium(
-                                        context,
-                                        text: context.l10n.dots,
-                                      ),
-                                      SCText.labelMedium(
-                                        context,
-                                        text: context.l10n.one,
-                                      ),
-                                    ],
-                                  ),
-                                  const SizedBox(
-                                    height: 2,
-                                  ),
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceAround,
-                                    children: [
-                                      SCText.displaySmall(
-                                        context,
-                                        text: context.l10n.days,
-                                        style: context.textTheme.displaySmall
-                                            ?.copyWith(
-                                          fontWeight: AppFontWeight.medium,
-                                          color: AppColor.secondary,
-                                        ),
-                                      ),
-                                      SCText.displaySmall(
-                                        context,
-                                        text: context.l10n.hours,
-                                        style: context.textTheme.displaySmall
-                                            ?.copyWith(
-                                          fontWeight: AppFontWeight.medium,
-                                          color: AppColor.secondary,
-                                        ),
-                                      ),
-                                      SCText.displaySmall(
-                                        context,
-                                        text: context.l10n.mins,
-                                        style: context.textTheme.displaySmall
-                                            ?.copyWith(
-                                          fontWeight: AppFontWeight.medium,
-                                          color: AppColor.secondary,
-                                        ),
-                                      ),
-                                      SCText.displaySmall(
-                                        context,
-                                        text: context.l10n.secs,
-                                        style: context.textTheme.displaySmall
-                                            ?.copyWith(
-                                          fontWeight: AppFontWeight.medium,
-                                          color: AppColor.secondary,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ],
                               ),
                             ),
                           ),
@@ -439,7 +451,7 @@ class MySliverAppBar extends SliverPersistentHeaderDelegate {
                     ),
                   ),
                 ),
-              ],
+              ),
             ),
           ),
         ),

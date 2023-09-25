@@ -151,7 +151,7 @@ class _SignInPageState extends State<SignInPage> {
                           }
                         }
                       : null,
-                  text: context.l10n.btnSignUp,
+                  text: context.l10n.btnLogin,
                   backgroundColor:
                       _isButtonActive ? AppColor.primary : AppColor.whiteFlash,
                   height: context.getVerticalSize(60),
@@ -194,7 +194,8 @@ class _SignInPageState extends State<SignInPage> {
                 SCButton(
                   onPressed: () {
                     context.go(
-                        AppRoutes.signUp.path); // Navigate to the desired page
+                      AppRoutes.signUp.path,
+                    ); // Navigate to the desired page
                   },
                   text: context.l10n.btnAccount,
                   style: context.textTheme.displayMedium?.copyWith(
