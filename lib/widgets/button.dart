@@ -92,7 +92,7 @@ class SCButtonIcon extends StatelessWidget {
             Opacity(
               opacity: 0,
               child: icon,
-            )
+            ),
           ],
         ),
       ),

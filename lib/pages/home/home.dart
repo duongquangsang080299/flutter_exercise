@@ -48,7 +48,7 @@ class _HomePageState extends State<HomePage> {
                 SCIcons.notifications,
               ),
               onPressed: () {
-                // Define onPressed callback to navigate to the notifications page
+                // Define onPressed callback to navigate to  notifications page
                 context.go(AppRoutes.notificationsPage.path);
               },
             ),
@@ -227,7 +227,7 @@ class _HomePageState extends State<HomePage> {
                         ),
                         const SizedBox(
                           width: 20,
-                        )
+                        ),
                       ],
                     ),
                   ),
@@ -554,7 +554,7 @@ class _HomePageState extends State<HomePage> {
             ),
             const SizedBox(
               height: 50,
-            )
+            ),
           ],
         ),
       ),

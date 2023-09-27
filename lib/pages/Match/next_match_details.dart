@@ -171,12 +171,12 @@ class _NextMatchPageState extends State<NextMatchPage> {
                             ),
                           ],
                         );
-                      })
+                      }),
                     ],
                   ),
                 ),
               ]),
-            )
+            ),
           ],
         ),
       ),
@@ -207,7 +207,10 @@ class MySliverAppBar extends SliverPersistentHeaderDelegate {
 
   @override
   Widget build(
-      BuildContext context, double shrinkOffset, bool overlapsContent) {
+    BuildContext context,
+    double shrinkOffset,
+    bool overlapsContent,
+  ) {
     return Stack(
       clipBehavior: Clip.none,
       fit: StackFit.expand,
