@@ -1,7 +1,9 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:soccer_club_app/core/color/app_color.dart';
+import 'package:soccer_club_app/core/constant/icons.dart';
 import 'package:soccer_club_app/core/extention/builder_context_extension.dart';
 import 'package:soccer_club_app/core/typography/app_fontweight.dart';
 import 'package:soccer_club_app/core/utils/size_utils.dart';
@@ -33,8 +35,20 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
         child: Padding(
           padding: const EdgeInsets.all(28),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              SizedBox(height: context.getVerticalSize(40)),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  IconButton(
+                    onPressed: () {
+                      context.go(AppRoutes.signIn.path);
+                    },
+                    icon: SvgPicture.asset(SCIcons.back),
+                  ),
+                ],
+              ),
+              SizedBox(height: context.getVerticalSize(50)),
               SCText.displayLarge(
                 context,
                 text: context.l10n.forgotPassword,
@@ -54,9 +68,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                 labelText: context.l10n.lablelEmail,
                 validator: (value) => value?.isValidEmail(),
               ),
-              SizedBox(
-                height: context.getVerticalSize(50),
-              ),
+              const Spacer(),
               SCButton(
                 onPressed: () {
                   final form = _formKey.currentState ?? FormState();

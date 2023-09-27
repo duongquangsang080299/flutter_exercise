@@ -20,7 +20,7 @@ class SCCard extends StatelessWidget {
     ShapeBorder? shape,
     Widget? child,
     double width = 120,
-    double height = 122,
+    double height = 132,
     bool? selected,
     Color? color,
     BorderRadiusGeometry? borderRadius,

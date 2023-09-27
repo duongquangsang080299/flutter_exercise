@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:soccer_club_app/core/color/app_color.dart';
+import 'package:soccer_club_app/core/constant/assets.dart';
 import 'package:soccer_club_app/core/constant/icons.dart';
-import 'package:soccer_club_app/core/constant/image.dart';
 import 'package:soccer_club_app/core/extention/builder_context_extension.dart';
 import 'package:soccer_club_app/core/typography/app_fontweight.dart';
 import 'package:soccer_club_app/core/utils/size_utils.dart';
@@ -37,8 +37,8 @@ class _NextMatchPageState extends State<NextMatchPage> {
             ),
             SliverList(
               delegate: SliverChildListDelegate([
-                const SizedBox(
-                  height: 380,
+                SizedBox(
+                  height: context.getVerticalSize(400),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(30),
@@ -84,62 +84,55 @@ class _NextMatchPageState extends State<NextMatchPage> {
                                   ),
                                   child: Row(
                                     mainAxisAlignment:
-                                        MainAxisAlignment.spaceAround,
+                                        MainAxisAlignment.spaceBetween,
                                     children: [
-                                      Row(
+                                      Stack(
                                         children: [
-                                          Stack(
-                                            children: [
-                                              Container(
-                                                width: 35,
-                                                height: 35,
-                                                decoration: const BoxDecoration(
-                                                  shape: BoxShape.circle,
-                                                  color: AppColor.redBlur,
-                                                ),
-                                              ),
-                                              Positioned(
-                                                top: 0,
-                                                left: 12,
-                                                child: SCText.displayLarge(
-                                                  context,
-                                                  text: context.l10n.numbertwo,
-                                                  style: context
-                                                      .textTheme.displayLarge
-                                                      ?.copyWith(
-                                                    color: AppColor.secondary,
-                                                  ),
-                                                ),
-                                              ),
-                                            ],
+                                          Container(
+                                            width: 35,
+                                            height: 35,
+                                            decoration: const BoxDecoration(
+                                              shape: BoxShape.circle,
+                                              color: AppColor.redBlur,
+                                            ),
                                           ),
-                                          const SizedBox(
-                                            width: 220,
+                                          Positioned(
+                                            top: 0,
+                                            left: 12,
+                                            child: SCText.displayLarge(
+                                              context,
+                                              text: context.l10n.numbertwo,
+                                              style: context
+                                                  .textTheme.displayLarge
+                                                  ?.copyWith(
+                                                color: AppColor.secondary,
+                                              ),
+                                            ),
                                           ),
-                                          Stack(
-                                            children: [
-                                              Container(
-                                                width: 35,
-                                                height: 35,
-                                                decoration: const BoxDecoration(
-                                                  shape: BoxShape.circle,
-                                                  color: AppColor.primary,
-                                                ),
+                                        ],
+                                      ),
+                                      Stack(
+                                        children: [
+                                          Container(
+                                            width: 35,
+                                            height: 35,
+                                            decoration: const BoxDecoration(
+                                              shape: BoxShape.circle,
+                                              color: AppColor.primary,
+                                            ),
+                                          ),
+                                          Positioned(
+                                            top: 0,
+                                            left: 13,
+                                            child: SCText.displayLarge(
+                                              context,
+                                              text: context.l10n.numberone,
+                                              style: context
+                                                  .textTheme.displayLarge
+                                                  ?.copyWith(
+                                                color: AppColor.secondary,
                                               ),
-                                              Positioned(
-                                                top: 0,
-                                                left: 13,
-                                                child: SCText.displayLarge(
-                                                  context,
-                                                  text: context.l10n.numberone,
-                                                  style: context
-                                                      .textTheme.displayLarge
-                                                      ?.copyWith(
-                                                    color: AppColor.secondary,
-                                                  ),
-                                                ),
-                                              ),
-                                            ],
+                                            ),
                                           ),
                                         ],
                                       ),
@@ -216,7 +209,6 @@ class MySliverAppBar extends SliverPersistentHeaderDelegate {
       fit: StackFit.expand,
       children: [
         SCAppBar.main(
-          toolbarHeight: 139,
           backgroundColor: AppColor.tertiary,
           leading: IconButton(
             onPressed: () {
@@ -237,222 +229,103 @@ class MySliverAppBar extends SliverPersistentHeaderDelegate {
             opacity: 1 - shrinkOffset / expandedHeight,
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 28),
-              child: SizedBox(
-                height: context.getVerticalSize(440),
-                child: SCCard.match(
-                  child: Padding(
-                    padding: const EdgeInsets.all(5),
-                    child: Column(
+              child: SCCard.match(
+                child: Column(
+                  children: [
+                    Center(
+                      child: SvgPicture.asset(
+                        SCIcons.arena,
+                        height: getSize(100),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 12,
+                    ),
+                    SCText.displaySmall(
+                      context,
+                      text: context.l10n.devilsArenaStadium,
+                      style: context.textTheme.displaySmall?.copyWith(
+                        fontWeight: AppFontWeight.medium,
+                        color: AppColor.grayHex,
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 9,
+                    ),
+                    SCText.labelLarge(
+                      context,
+                      text: context.l10n.may92021,
+                      style: context.textTheme.labelLarge?.copyWith(
+                        fontWeight: AppFontWeight.medium,
+                        color: AppColor.grayHex,
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 18,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Center(
-                          child: SvgPicture.asset(
-                            SCIcons.arena,
-                            height: getSize(100),
-                          ),
+                        Image.asset(
+                          SCAssets.logoMatchDetail,
+                          height: 67,
                         ),
-                        const SizedBox(
-                          height: 12,
-                        ),
-                        SCText.displaySmall(
-                          context,
-                          text: context.l10n.devilsArenaStadium,
-                          style: context.textTheme.displaySmall?.copyWith(
-                            fontWeight: AppFontWeight.medium,
-                            color: AppColor.grayHex,
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 9,
-                        ),
-                        SCText.labelLarge(
-                          context,
-                          text: context.l10n.may92021,
-                          style: context.textTheme.labelLarge?.copyWith(
-                            fontWeight: AppFontWeight.medium,
-                            color: AppColor.grayHex,
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 18,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
+                        const SizedBox(width: 30),
+                        Column(
                           children: [
-                            Image.asset(
-                              SCAssets.logoMatchDetail,
-                              height: 67,
-                            ),
-                            const SizedBox(width: 30),
-                            Column(
-                              children: [
-                                SCText.labelLarge(
-                                  context,
-                                  text: context.l10n.kickoff,
-                                  style: context.textTheme.labelLarge?.copyWith(
-                                    fontWeight: AppFontWeight.medium,
-                                    color: AppColor.blueMainly,
-                                  ),
-                                ),
-                                SCText.labelMedium(
-                                  context,
-                                  text: context.l10n.time,
-                                  style:
-                                      context.textTheme.labelMedium?.copyWith(
-                                    fontWeight: AppFontWeight.bold,
-                                    color: AppColor.blueMainly,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            const SizedBox(width: 30),
-                            Image.asset(
-                              SCAssets.logoMatchDetail,
-                              height: 67,
-                            ),
-                            const SizedBox(width: 8),
-                          ],
-                        ),
-                        const SizedBox(
-                          height: 15,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            SCText.displayMedium(
+                            SCText.labelLarge(
                               context,
-                              text: context.l10n.redD,
-                              style: context.textTheme.displayMedium
-                                  ?.copyWith(color: AppColor.tertiary),
-                            ),
-                            const SizedBox(
-                              width: 143,
-                            ),
-                            SCText.displayMedium(
-                              context,
-                              text: context.l10n.victoryG,
-                              style: context.textTheme.displayMedium
-                                  ?.copyWith(color: AppColor.tertiary),
-                            ),
-                          ],
-                        ),
-                        SizedBox(height: context.getVerticalSize(28)),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 20),
-                          child: SizedBox(
-                            height: 127,
-                            width: 280,
-                            child: SCCard.avatar(
-                              child: Container(
-                                decoration: const BoxDecoration(
-                                  borderRadius: BorderRadius.all(
-                                    Radius.circular(18),
-                                  ),
-                                  gradient: LinearGradient(
-                                    begin: Alignment(1, -4),
-                                    end: Alignment(-1, 2),
-                                    colors: AppColor.linearGradient,
-                                  ),
-                                ),
-                                child: Column(
-                                  children: [
-                                    const SizedBox(
-                                      height: 10,
-                                    ),
-                                    SCText.displayMedium(
-                                      context,
-                                      text: context.l10n.matchcountdown,
-                                    ),
-                                    const SizedBox(
-                                      height: 25,
-                                    ),
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceEvenly,
-                                      children: [
-                                        SCText.labelMedium(
-                                          context,
-                                          text: context.l10n.timetwo,
-                                        ),
-                                        SCText.labelMedium(
-                                          context,
-                                          text: context.l10n.dots,
-                                        ),
-                                        SCText.labelMedium(
-                                          context,
-                                          text: context.l10n.timeeight,
-                                        ),
-                                        SCText.labelMedium(
-                                          context,
-                                          text: context.l10n.dots,
-                                        ),
-                                        SCText.labelMedium(
-                                          context,
-                                          text: context.l10n.fourseven,
-                                        ),
-                                        SCText.labelMedium(
-                                          context,
-                                          text: context.l10n.dots,
-                                        ),
-                                        SCText.labelMedium(
-                                          context,
-                                          text: context.l10n.one,
-                                        ),
-                                      ],
-                                    ),
-                                    const SizedBox(
-                                      height: 2,
-                                    ),
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceAround,
-                                      children: [
-                                        SCText.displaySmall(
-                                          context,
-                                          text: context.l10n.days,
-                                          style: context.textTheme.displaySmall
-                                              ?.copyWith(
-                                            fontWeight: AppFontWeight.medium,
-                                            color: AppColor.secondary,
-                                          ),
-                                        ),
-                                        SCText.displaySmall(
-                                          context,
-                                          text: context.l10n.hours,
-                                          style: context.textTheme.displaySmall
-                                              ?.copyWith(
-                                            fontWeight: AppFontWeight.medium,
-                                            color: AppColor.secondary,
-                                          ),
-                                        ),
-                                        SCText.displaySmall(
-                                          context,
-                                          text: context.l10n.mins,
-                                          style: context.textTheme.displaySmall
-                                              ?.copyWith(
-                                            fontWeight: AppFontWeight.medium,
-                                            color: AppColor.secondary,
-                                          ),
-                                        ),
-                                        SCText.displaySmall(
-                                          context,
-                                          text: context.l10n.secs,
-                                          style: context.textTheme.displaySmall
-                                              ?.copyWith(
-                                            fontWeight: AppFontWeight.medium,
-                                            color: AppColor.secondary,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
+                              text: context.l10n.kickoff,
+                              style: context.textTheme.labelLarge?.copyWith(
+                                fontWeight: AppFontWeight.medium,
+                                color: AppColor.blueMainly,
                               ),
                             ),
-                          ),
+                            SCText.labelMedium(
+                              context,
+                              text: context.l10n.time,
+                              style: context.textTheme.labelMedium?.copyWith(
+                                fontWeight: AppFontWeight.bold,
+                                color: AppColor.blueMainly,
+                              ),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(width: 30),
+                        Image.asset(
+                          SCAssets.logoMatchDetail,
+                          height: 67,
+                        ),
+                        const SizedBox(width: 8),
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 15,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        SCText.displayMedium(
+                          context,
+                          text: context.l10n.redD,
+                          style: context.textTheme.displayMedium
+                              ?.copyWith(color: AppColor.tertiary),
+                        ),
+                        const SizedBox(
+                          width: 143,
+                        ),
+                        SCText.displayMedium(
+                          context,
+                          text: context.l10n.victoryG,
+                          style: context.textTheme.displayMedium
+                              ?.copyWith(color: AppColor.tertiary),
                         ),
                       ],
                     ),
-                  ),
+                    SizedBox(height: context.getVerticalSize(28)),
+                    const _MatchCountDown(),
+                    const SizedBox(height: 20),
+                  ],
                 ),
               ),
             ),
@@ -470,4 +343,119 @@ class MySliverAppBar extends SliverPersistentHeaderDelegate {
 
   @override
   bool shouldRebuild(SliverPersistentHeaderDelegate oldDelegate) => true;
+}
+
+class _MatchCountDown extends StatelessWidget {
+  const _MatchCountDown();
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+      child: SizedBox(
+        width: 280,
+        child: SCCard.avatar(
+          child: Container(
+            decoration: const BoxDecoration(
+              borderRadius: BorderRadius.all(
+                Radius.circular(18),
+              ),
+              gradient: LinearGradient(
+                begin: Alignment(1, -4),
+                end: Alignment(-1, 2),
+                colors: AppColor.linearGradient,
+              ),
+            ),
+            child: Column(
+              children: [
+                const SizedBox(
+                  height: 10,
+                ),
+                SCText.displayMedium(
+                  context,
+                  text: context.l10n.matchcountdown,
+                ),
+                const SizedBox(
+                  height: 25,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    SCText.labelMedium(
+                      context,
+                      text: context.l10n.timetwo,
+                    ),
+                    SCText.labelMedium(
+                      context,
+                      text: context.l10n.dots,
+                    ),
+                    SCText.labelMedium(
+                      context,
+                      text: context.l10n.timeeight,
+                    ),
+                    SCText.labelMedium(
+                      context,
+                      text: context.l10n.dots,
+                    ),
+                    SCText.labelMedium(
+                      context,
+                      text: context.l10n.fourseven,
+                    ),
+                    SCText.labelMedium(
+                      context,
+                      text: context.l10n.dots,
+                    ),
+                    SCText.labelMedium(
+                      context,
+                      text: context.l10n.one,
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 2,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    SCText.displaySmall(
+                      context,
+                      text: context.l10n.days,
+                      style: context.textTheme.displaySmall?.copyWith(
+                        fontWeight: AppFontWeight.medium,
+                        color: AppColor.secondary,
+                      ),
+                    ),
+                    SCText.displaySmall(
+                      context,
+                      text: context.l10n.hours,
+                      style: context.textTheme.displaySmall?.copyWith(
+                        fontWeight: AppFontWeight.medium,
+                        color: AppColor.secondary,
+                      ),
+                    ),
+                    SCText.displaySmall(
+                      context,
+                      text: context.l10n.mins,
+                      style: context.textTheme.displaySmall?.copyWith(
+                        fontWeight: AppFontWeight.medium,
+                        color: AppColor.secondary,
+                      ),
+                    ),
+                    SCText.displaySmall(
+                      context,
+                      text: context.l10n.secs,
+                      style: context.textTheme.displaySmall?.copyWith(
+                        fontWeight: AppFontWeight.medium,
+                        color: AppColor.secondary,
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
 }

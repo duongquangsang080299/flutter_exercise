@@ -1,9 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:soccer_club_app/core/color/app_color.dart';
-import 'package:soccer_club_app/core/constant/icons.dart';
 import 'package:soccer_club_app/core/extention/builder_context_extension.dart';
 import 'package:soccer_club_app/core/typography/app_fontweight.dart';
 import 'package:soccer_club_app/core/utils/size_utils.dart';
@@ -16,26 +14,22 @@ import 'package:soccer_club_app/widgets/input.dart';
 import 'package:soccer_club_app/widgets/scaffold.dart';
 import 'package:soccer_club_app/widgets/text.dart';
 
-class SignUpPage extends StatefulWidget {
-  const SignUpPage({super.key});
+class SignInPage extends StatefulWidget {
+  const SignInPage({super.key});
 
   @override
-  State<SignUpPage> createState() => _SignUpPageState();
+  State<SignInPage> createState() => _SignInPageState();
 }
 
-class _SignUpPageState extends State<SignUpPage> {
+class _SignInPageState extends State<SignInPage> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController _usernameController = TextEditingController();
-  final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-
   bool showPassword = false;
   final _usernameFocusNode = FocusNode();
   final _passwordFocusNode = FocusNode();
-  final _emailFocusNode = FocusNode();
   bool showUsernameValidation = false;
   bool showPasswordValidation = false;
-  bool showEmailValidation = false;
   bool isPasswordFilled = false;
   bool _isButtonActive = false;
 
@@ -46,12 +40,6 @@ class _SignUpPageState extends State<SignUpPage> {
     _usernameFocusNode.addListener(() {
       setState(() {
         showUsernameValidation = _usernameFocusNode.hasFocus;
-      });
-    });
-
-    _emailFocusNode.addListener(() {
-      setState(() {
-        showEmailValidation = _emailFocusNode.hasFocus;
       });
     });
 
@@ -67,12 +55,7 @@ class _SignUpPageState extends State<SignUpPage> {
         _updateButtonState();
       });
     });
-
     _usernameController.addListener(() {
-      setState(_updateButtonState);
-    });
-
-    _emailController.addListener(() {
       setState(_updateButtonState);
     });
   }
@@ -81,7 +64,6 @@ class _SignUpPageState extends State<SignUpPage> {
     setState(() {
       _isButtonActive = isPasswordFilled &&
           _usernameController.text.isNotEmpty &&
-          _emailController.text.isNotEmpty &&
           _formKey.currentState?.validate() == true;
     });
   }
@@ -90,49 +72,9 @@ class _SignUpPageState extends State<SignUpPage> {
   void dispose() {
     _usernameFocusNode.dispose();
     _passwordFocusNode.dispose();
-    _emailFocusNode.dispose();
     _usernameController.dispose();
-    _emailController.dispose();
     _passwordController.dispose();
     super.dispose();
-  }
-
-  void _showTermsAndConditionsDialog(BuildContext context) {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: SCText.displayMedium(
-            context,
-            text: context.l10n.termsandcondition,
-            style: context.textTheme.displayMedium?.copyWith(
-              color: AppColor.primary,
-            ),
-          ),
-          content: SingleChildScrollView(
-            child: SCText.bodyMedium(
-              context,
-              text: context.l10n.termandconditionofourapp,
-              style: context.textTheme.bodyMedium?.copyWith(),
-            ),
-          ),
-          actions: [
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              child: SCText.displaySmall(
-                context,
-                text: context.l10n.close,
-                style: context.textTheme.displayMedium?.copyWith(
-                  color: AppColor.primary,
-                ),
-              ),
-            ),
-          ],
-        );
-      },
-    );
   }
 
   @override
@@ -150,25 +92,17 @@ class _SignUpPageState extends State<SignUpPage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                IconButton(
-                  onPressed: () {
-                    context.go(AppRoutes.signIn.path);
-                  },
-                  icon: SvgPicture.asset(SCIcons.back),
-                ),
-                SizedBox(height: context.getVerticalSize(50)),
+                SizedBox(height: context.getVerticalSize(87)),
                 SCText.displayLarge(
                   context,
-                  text: context.l10n.createanAccount,
+                  text: context.l10n.signIn,
                 ),
                 const SizedBox(height: 16),
                 SCText.displaySmall(
                   context,
                   text: context.l10n.description,
                 ),
-                SizedBox(
-                  height: getVerticalSize(30),
-                ),
+                SizedBox(height: getVerticalSize(30)),
                 SCInput.username(
                   focusNode: _usernameFocusNode,
                   labelText: context.l10n.labelUsername,
@@ -181,21 +115,10 @@ class _SignUpPageState extends State<SignUpPage> {
                   controller: _usernameController,
                 ),
                 const SizedBox(height: 20),
-                SCInput.email(
-                  focusNode: _emailFocusNode,
-                  labelText: context.l10n.lablelEmail,
-                  validator: (value) {
-                    if (showEmailValidation) {
-                      return value?.isValidEmail();
-                    }
-                    return null;
-                  },
-                  controller: _emailController,
-                ),
-                const SizedBox(height: 20),
                 SCInput.password(
                   focusNode: _passwordFocusNode,
                   labelText: context.l10n.lablelPassword,
+                  fontSize: showPassword ? 16 : 12,
                   validator: (input) {
                     if (showPasswordValidation) {
                       return input?.isValidPassword()?.trimRight();
@@ -223,56 +146,62 @@ class _SignUpPageState extends State<SignUpPage> {
                       ? () {
                           if (_formKey.currentState?.validate() ?? false) {
                             debugPrint('Form is valid');
-                            context.go(AppRoutes.signIn.path);
+                            context.go(AppRoutes.playerPage.path);
                           } else {
                             debugPrint('Form is invalid');
                           }
                         }
                       : null,
-                  text: context.l10n.btnSignUp,
+                  text: context.l10n.btnLogin,
                   backgroundColor:
-                      _isButtonActive ? AppColor.blackJet : AppColor.whiteFlash,
-                  height: context.getVerticalSize(60),
+                      _isButtonActive ? AppColor.primary : AppColor.whiteFlash,
                   borderRadius: 30,
                 ),
-                SizedBox(height: context.getVerticalSize(30)),
+                const SizedBox(height: 16),
                 Text.rich(
                   TextSpan(
                     children: [
                       TextSpan(
-                        text: context.l10n.byTappingSignUpYouAcceptOur,
+                        text: context.l10n.forgotPassword,
                         style: context.textTheme.displaySmall?.copyWith(
                           color: AppColor.dimGray,
                         ),
                       ),
                       TextSpan(
-                        text: context.l10n.terms,
-                        style: context.textTheme.displaySmall?.copyWith(
-                          fontWeight: AppFontWeight.medium,
-                          color: AppColor.primary,
-                        ),
-                        recognizer: TapGestureRecognizer()..onTap = () {},
-                      ),
-                      TextSpan(
-                        text: context.l10n.and,
-                        style: context.textTheme.displaySmall?.copyWith(
-                          color: AppColor.dimGray,
-                        ),
-                      ),
-                      TextSpan(
-                        text: context.l10n.condition,
+                        text: context.l10n.resetHere,
                         style: context.textTheme.displaySmall?.copyWith(
                           fontWeight: AppFontWeight.medium,
                           color: AppColor.primary,
                         ),
                         recognizer: TapGestureRecognizer()
                           ..onTap = () {
-                            _showTermsAndConditionsDialog(context);
+                            context.go(AppRoutes.forgotPasswordPage.path);
                           },
                       ),
                     ],
                   ),
-                  textAlign: TextAlign.center,
+                ),
+                SizedBox(height: getVerticalSize(30)),
+                Align(
+                  child: SCText.displaySmall(
+                    context,
+                    text: context.l10n.donthaveaccount,
+                    style: context.textTheme.displaySmall
+                        ?.copyWith(color: AppColor.graysuva),
+                  ),
+                ),
+                const SizedBox(height: 19),
+                SCButton(
+                  onPressed: () {
+                    context.go(
+                      AppRoutes.signUp.path,
+                    ); // Navigate to the desired page
+                  },
+                  text: context.l10n.btnAccount,
+                  style: context.textTheme.displayMedium?.copyWith(
+                    fontWeight: AppFontWeight.semiBold,
+                  ),
+                  backgroundColor: AppColor.blackJet,
                 ),
               ],
             ),

@@ -18,6 +18,7 @@ class SCInput extends StatelessWidget {
     this.contentPadding,
     this.labelStyle,
     this.obscuringCharacter,
+    this.fontSize,
   });
 
   /// Factory constructor for email input
@@ -78,6 +79,7 @@ class SCInput extends StatelessWidget {
     TextEditingController? controller,
     String? labelText,
     String? obscuringCharacter,
+    double? fontSize,
     TextStyle? labelStyle,
     String? Function(String?)? validator,
     bool obscureText = false,
@@ -89,6 +91,7 @@ class SCInput extends StatelessWidget {
       focusNode: focusNode,
       labelText: labelText,
       obscureText: obscureText,
+      fontSize: fontSize,
       suffixIcon: suffixIcon,
       keyboardType: keyboardType,
       contentPadding: contentPadding,
@@ -112,6 +115,7 @@ class SCInput extends StatelessWidget {
   final TextStyle? labelStyle;
   final EdgeInsetsGeometry? contentPadding;
   final String? obscuringCharacter;
+  final double? fontSize;
   @override
   Widget build(BuildContext context) {
     /// Build the TextFormField with provided properties
@@ -131,6 +135,7 @@ class SCInput extends StatelessWidget {
         ],
         TextFormField(
           style: context.textTheme.displayMedium?.copyWith(
+            fontSize: fontSize,
             color: AppColor.tertiary,
             fontWeight: AppFontWeight.regular,
           ),
