@@ -32,11 +32,11 @@ class _PlayerPageState extends State<PlayerPage> {
 
     return SCScaffold(
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 28),
+        padding: const EdgeInsets.symmetric(horizontal: 20),
         child: Column(
           // mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            const SizedBox(height: 40),
+            SizedBox(height: context.getVerticalSize(40)),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 18),
               child: Row(
@@ -119,7 +119,7 @@ class _PlayerPageState extends State<PlayerPage> {
             SCText.displaySmall(context, text: context.l10n.swipeToSelect),
             SizedBox(height: context.getVerticalSize(30)),
             SizedBox(
-              height: 35,
+              height: context.getVerticalSize(38),
               child: PageView.builder(
                 controller: PageController(
                   viewportFraction: 1 / 6,
@@ -219,20 +219,18 @@ class AvatarItem extends StatelessWidget {
             color: isActive ? AppColor.primary : Colors.transparent,
           ),
           borderRadius: const BorderRadius.all(
-            Radius.circular(8),
+            Radius.circular(11),
           ),
         ),
         child: Stack(
           clipBehavior: Clip.none,
           children: [
-            SizedBox(
-              width: 70,
-              height: 70,
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(8),
-                child: Image.asset(
-                  avatar?.url ?? '',
-                ),
+            ClipRRect(
+              borderRadius: BorderRadius.circular(11),
+              child: Image.asset(
+                avatar?.url ?? '',
+                width: double.infinity,
+                height: context.getVerticalSize(45),
               ),
             ),
             if (isActive)

@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:soccer_club_app/core/color/app_color.dart';
+import 'package:soccer_club_app/core/constant/assets.dart';
 import 'package:soccer_club_app/core/constant/icons.dart';
-import 'package:soccer_club_app/core/constant/image.dart';
 import 'package:soccer_club_app/core/extention/builder_context_extension.dart';
 import 'package:soccer_club_app/core/typography/app_fontweight.dart';
 import 'package:soccer_club_app/core/utils/size_utils.dart';
@@ -37,8 +37,8 @@ class _NextMatchPageState extends State<NextMatchPage> {
             ),
             SliverList(
               delegate: SliverChildListDelegate([
-                const SizedBox(
-                  height: 380,
+                SizedBox(
+                  height: context.getVerticalSize(380),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(30),
@@ -84,62 +84,55 @@ class _NextMatchPageState extends State<NextMatchPage> {
                                   ),
                                   child: Row(
                                     mainAxisAlignment:
-                                        MainAxisAlignment.spaceAround,
+                                        MainAxisAlignment.spaceBetween,
                                     children: [
-                                      Row(
+                                      Stack(
                                         children: [
-                                          Stack(
-                                            children: [
-                                              Container(
-                                                width: 35,
-                                                height: 35,
-                                                decoration: const BoxDecoration(
-                                                  shape: BoxShape.circle,
-                                                  color: AppColor.redBlur,
-                                                ),
-                                              ),
-                                              Positioned(
-                                                top: 0,
-                                                left: 12,
-                                                child: SCText.displayLarge(
-                                                  context,
-                                                  text: context.l10n.numbertwo,
-                                                  style: context
-                                                      .textTheme.displayLarge
-                                                      ?.copyWith(
-                                                    color: AppColor.secondary,
-                                                  ),
-                                                ),
-                                              ),
-                                            ],
+                                          Container(
+                                            width: 35,
+                                            height: 35,
+                                            decoration: const BoxDecoration(
+                                              shape: BoxShape.circle,
+                                              color: AppColor.redBlur,
+                                            ),
                                           ),
-                                          const SizedBox(
-                                            width: 220,
+                                          Positioned(
+                                            top: 0,
+                                            left: 12,
+                                            child: SCText.displayLarge(
+                                              context,
+                                              text: context.l10n.numbertwo,
+                                              style: context
+                                                  .textTheme.displayLarge
+                                                  ?.copyWith(
+                                                color: AppColor.secondary,
+                                              ),
+                                            ),
                                           ),
-                                          Stack(
-                                            children: [
-                                              Container(
-                                                width: 35,
-                                                height: 35,
-                                                decoration: const BoxDecoration(
-                                                  shape: BoxShape.circle,
-                                                  color: AppColor.primary,
-                                                ),
+                                        ],
+                                      ),
+                                      Stack(
+                                        children: [
+                                          Container(
+                                            width: 35,
+                                            height: 35,
+                                            decoration: const BoxDecoration(
+                                              shape: BoxShape.circle,
+                                              color: AppColor.primary,
+                                            ),
+                                          ),
+                                          Positioned(
+                                            top: 0,
+                                            left: 13,
+                                            child: SCText.displayLarge(
+                                              context,
+                                              text: context.l10n.numberone,
+                                              style: context
+                                                  .textTheme.displayLarge
+                                                  ?.copyWith(
+                                                color: AppColor.secondary,
                                               ),
-                                              Positioned(
-                                                top: 0,
-                                                left: 13,
-                                                child: SCText.displayLarge(
-                                                  context,
-                                                  text: context.l10n.numberone,
-                                                  style: context
-                                                      .textTheme.displayLarge
-                                                      ?.copyWith(
-                                                    color: AppColor.secondary,
-                                                  ),
-                                                ),
-                                              ),
-                                            ],
+                                            ),
                                           ),
                                         ],
                                       ),
@@ -207,13 +200,15 @@ class MySliverAppBar extends SliverPersistentHeaderDelegate {
 
   @override
   Widget build(
-      BuildContext context, double shrinkOffset, bool overlapsContent) {
+    BuildContext context,
+    double shrinkOffset,
+    bool overlapsContent,
+  ) {
     return Stack(
       clipBehavior: Clip.none,
       fit: StackFit.expand,
       children: [
         SCAppBar.main(
-          toolbarHeight: 139,
           backgroundColor: AppColor.tertiary,
           leading: IconButton(
             onPressed: () {

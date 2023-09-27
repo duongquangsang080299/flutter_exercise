@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:soccer_club_app/core/color/app_color.dart';
+import 'package:soccer_club_app/core/constant/assets.dart';
 import 'package:soccer_club_app/core/constant/icons.dart';
-import 'package:soccer_club_app/core/constant/image.dart';
 import 'package:soccer_club_app/core/extention/builder_context_extension.dart';
 import 'package:soccer_club_app/core/typography/app_fontweight.dart';
 import 'package:soccer_club_app/core/utils/size_utils.dart';
@@ -48,7 +48,7 @@ class _HomePageState extends State<HomePage> {
                 SCIcons.notifications,
               ),
               onPressed: () {
-                // Define onPressed callback to navigate to the notifications page
+                // Define onPressed callback  navigate to the notifications page
                 context.go(AppRoutes.notificationsPage.path);
               },
             ),

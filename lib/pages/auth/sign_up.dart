@@ -196,6 +196,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 SCInput.password(
                   focusNode: _passwordFocusNode,
                   labelText: context.l10n.lablelPassword,
+                  fontSize: showPassword ? 16 : 12,
                   validator: (input) {
                     if (showPasswordValidation) {
                       return input?.isValidPassword()?.trimRight();

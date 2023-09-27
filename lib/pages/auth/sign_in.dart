@@ -118,6 +118,7 @@ class _SignInPageState extends State<SignInPage> {
                 SCInput.password(
                   focusNode: _passwordFocusNode,
                   labelText: context.l10n.lablelPassword,
+                  fontSize: showPassword ? 16 : 12,
                   validator: (input) {
                     if (showPasswordValidation) {
                       return input?.isValidPassword()?.trimRight();
@@ -154,7 +155,6 @@ class _SignInPageState extends State<SignInPage> {
                   text: context.l10n.btnLogin,
                   backgroundColor:
                       _isButtonActive ? AppColor.primary : AppColor.whiteFlash,
-                  height: context.getVerticalSize(60),
                   borderRadius: 30,
                 ),
                 const SizedBox(height: 16),

@@ -18,8 +18,8 @@ class WidgetbookApp extends StatelessWidget {
 
 class CustomButton extends StatelessWidget {
   const CustomButton({
-    super.key,
     required this.title,
+    super.key,
     this.onPressed,
   });
 
