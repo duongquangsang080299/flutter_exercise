@@ -29,9 +29,6 @@ class _SignInPageState extends State<SignInPage> {
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
-  /// Boolean to control password visibility
-  bool showPassword = false;
-
   /// Create FocusNodes for the username and password fields
   final _usernameFocusNode = FocusNode();
   final _passwordFocusNode = FocusNode();
@@ -45,6 +42,9 @@ class _SignInPageState extends State<SignInPage> {
 
   /// Boolean to track the overall button activation state
   bool _isButtonActive = false;
+
+  /// Boolean to control password visibility
+  bool showPassword = false;
 
   @override
   void initState() {
@@ -183,7 +183,6 @@ class _SignInPageState extends State<SignInPage> {
                   text: context.l10n.btnLogin,
                   backgroundColor:
                       _isButtonActive ? AppColor.primary : AppColor.whiteFlash,
-                  borderRadius: 30,
                 ),
                 sizedBox16,
                 Text.rich(

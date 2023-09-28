@@ -19,8 +19,8 @@ class SCCard extends StatelessWidget {
   factory SCCard.avatar({
     ShapeBorder? shape,
     Widget? child,
-    double width = 120,
-    double height = 132,
+    double? width,
+    double? height,
     bool? selected,
     Color? color,
     BorderRadiusGeometry? borderRadius,

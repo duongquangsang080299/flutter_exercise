@@ -14,7 +14,10 @@
 
 ***Start date :*** 21/08/2023
 
-***Timeline:*** 2 weeks ( 10 days practice in total)
+
+***Timeline:*** 2 weeks ( 21/8/2023-5/9/2023)
+
+***Actual:*** 25 days 
 
 ***Target :***
 

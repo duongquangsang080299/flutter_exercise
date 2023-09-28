@@ -6,19 +6,15 @@ class SCButton extends StatelessWidget {
   const SCButton({
     required this.text,
     this.onPressed,
-    this.textColor,
     super.key,
     this.backgroundColor,
     this.height = 60,
-    this.borderRadius,
     this.style,
   });
   final String text;
-  final Color? textColor;
   final Color? backgroundColor;
   final VoidCallback? onPressed;
   final double height;
-  final int? borderRadius;
   final TextStyle? style;
 
   @override
@@ -55,7 +51,6 @@ class SCButtonIcon extends StatelessWidget {
     this.icon,
     this.backgroundColor,
     this.color,
-    this.borderRadius,
     this.style,
     this.height = 60,
   });
@@ -63,7 +58,6 @@ class SCButtonIcon extends StatelessWidget {
   final VoidCallback? onPressed;
   final Widget? icon;
   final Color? color;
-  final int? borderRadius;
   final Color? backgroundColor;
   final TextStyle? style;
   final double height;
@@ -110,14 +104,12 @@ class SCOutlineButton extends StatelessWidget {
     this.onPressed,
     this.height = 60,
     this.width = double.infinity,
-    this.borderRadius,
     this.style,
   });
   final String text;
   final VoidCallback? onPressed;
   final double height;
   final double width;
-  final int? borderRadius;
   final TextStyle? style;
 
   @override

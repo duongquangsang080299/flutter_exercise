@@ -32,9 +32,6 @@ class _SignUpPageState extends State<SignUpPage> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
-  /// Boolean to control password visibility
-  bool showPassword = false;
-
   /// Create FocusNodes for the username,email and password fields
   final _usernameFocusNode = FocusNode();
   final _emailFocusNode = FocusNode();
@@ -50,6 +47,9 @@ class _SignUpPageState extends State<SignUpPage> {
 
   /// Boolean to track the overall button activation state
   bool _isButtonActive = false;
+
+  /// Boolean to control password visibility
+  bool showPassword = false;
 
   @override
   void initState() {
@@ -264,7 +264,6 @@ class _SignUpPageState extends State<SignUpPage> {
                   backgroundColor:
                       _isButtonActive ? AppColor.blackJet : AppColor.whiteFlash,
                   height: context.getVerticalSize(60),
-                  borderRadius: 30,
                 ),
                 SizedBox(height: context.getVerticalSize(30)),
                 Text.rich(

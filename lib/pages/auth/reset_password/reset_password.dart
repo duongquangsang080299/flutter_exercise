@@ -84,7 +84,6 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                 text: context.l10n.btnResetPassword,
                 backgroundColor: AppColor.primary,
                 height: context.getVerticalSize(60),
-                borderRadius: 30,
               ),
               const SizedBox(height: 20),
               Text.rich(

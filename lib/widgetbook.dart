@@ -76,14 +76,12 @@ Widget disabledButton(BuildContext context) {
         onPressed: () {},
         text: 'Sign in',
         backgroundColor: AppColor.primary,
-        borderRadius: 30,
       ),
       const SizedBox(height: 20),
       SCButton(
         onPressed: () {},
         text: 'Sign up',
         backgroundColor: AppColor.blueAlice,
-        borderRadius: 30,
       ),
     ],
   );
@@ -98,6 +96,5 @@ SCButton signinButton(BuildContext context) {
     onPressed: () {},
     text: 'Sign in -- ',
     backgroundColor: AppColor.blackHex,
-    borderRadius: 30,
   );
 }

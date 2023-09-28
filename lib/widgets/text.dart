@@ -118,7 +118,7 @@ class SCText extends StatelessWidget {
     );
   }
 
-  factory SCText.labelMedium(
+  factory SCText.headlineMedium(
     BuildContext context, {
     required String text,
     TextStyle? style,

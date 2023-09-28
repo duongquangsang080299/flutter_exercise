@@ -29,156 +29,93 @@ class _NextMatchPageState extends State<NextMatchPage> {
   @override
   Widget build(BuildContext context) {
     return SCScaffold(
-      body: Material(
-        child: CustomScrollView(
-          slivers: [
-            SliverPersistentHeader(
-              // Header should remain pinned
-              pinned: true,
-              // Custom SliverAppBar delegate
-              delegate: MySliverAppBar(expandedHeight: 200),
-            ),
-            SliverList(
-              delegate: SliverChildListDelegate([
-                SizedBox(
-                  height: context.getVerticalSize(400),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(30),
-                  child: Column(
-                    children: [
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          SCText.bodyLarge(
-                            text: context.l10n.matchs,
-                            context,
-                          ),
-                        ],
-                      ),
-                      const SizedBox(
-                        height: 13,
-                      ),
+      body: CustomScrollView(
+        slivers: [
+          SliverPersistentHeader(
+            // Header should remain pinned
+            pinned: true,
+            // Custom SliverAppBar delegate
+            delegate: MySliverAppBar(expandedHeight: 200),
+          ),
+          SliverList(
+            delegate: SliverChildListDelegate([
+              SizedBox(
+                height: context.getVerticalSize(400),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(30),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SCText.bodyLarge(
+                      text: context.l10n.matchs,
+                      context,
+                    ),
+                    const SizedBox(
+                      height: 13,
+                    ),
 
-                      /// Generate a list of match cards using List.generate
-                      ...List.generate(4, (index) {
-                        return Column(
-                          children: [
-                            SizedBox(
-                              height: context.getVerticalSize(49),
-                              child: SCCard.match(
-                                color: AppColor.whiteSmoke,
-                                shape: const RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.only(
-                                    topLeft: Radius.circular(20),
-                                    topRight: Radius.circular(20),
-                                  ),
-                                ),
-                                child: Container(
-                                  padding: const EdgeInsets.symmetric(
-                                    horizontal: 20,
-                                  ),
-                                  decoration: const BoxDecoration(
-                                    boxShadow: [
-                                      BoxShadow(
-                                        color: AppColor.whiteSmoke,
-                                        offset: Offset(0, 9),
-                                        blurRadius: 8,
-                                      ),
-                                    ],
-                                  ),
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Stack(
-                                        children: [
-                                          Container(
-                                            width:
-                                                context.getHorizontalSize(35),
-                                            height: context.getVerticalSize(35),
-                                            decoration: const BoxDecoration(
-                                              shape: BoxShape.circle,
-                                              color: AppColor.redBlur,
-                                            ),
-                                          ),
-                                          Positioned(
-                                            top: 0,
-                                            left: 12,
-                                            child: SCText.displayLarge(
-                                              context,
-                                              text: context.l10n.numbertwo,
-                                              style: context
-                                                  .textTheme.displayLarge
-                                                  ?.copyWith(
-                                                color: AppColor.secondary,
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                      Stack(
-                                        children: [
-                                          Container(
-                                            width:
-                                                context.getHorizontalSize(35),
-                                            height: context.getVerticalSize(35),
-                                            decoration: const BoxDecoration(
-                                              shape: BoxShape.circle,
-                                              color: AppColor.primary,
-                                            ),
-                                          ),
-                                          Positioned(
-                                            top: 0,
-                                            left: 13,
-                                            child: SCText.displayLarge(
-                                              context,
-                                              text: context.l10n.numberone,
-                                              style: context
-                                                  .textTheme.displayLarge
-                                                  ?.copyWith(
-                                                color: AppColor.secondary,
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ],
-                                  ),
+                    /// Generate a list of match cards using List.generate
+                    ...List.generate(4, (index) {
+                      return Column(
+                        children: [
+                          SizedBox(
+                            height: context.getVerticalSize(49),
+                            child: SCCard.match(
+                              color: AppColor.whiteSmoke,
+                              shape: const RoundedRectangleBorder(
+                                borderRadius: BorderRadius.only(
+                                  topLeft: Radius.circular(20),
+                                  topRight: Radius.circular(20),
                                 ),
                               ),
+                              child: Container(
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 20,
+                                ),
+                                decoration: const BoxDecoration(
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: AppColor.whiteSmoke,
+                                      offset: Offset(0, 9),
+                                      blurRadius: 8,
+                                    ),
+                                  ],
+                                ),
+                                child: const _CardMatchs(),
+                              ),
                             ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                IconButton(
-                                  icon: SvgPicture.asset(
-                                    SCIcons.calender,
-                                  ),
-                                  onPressed: () {},
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              IconButton(
+                                icon: SvgPicture.asset(
+                                  SCIcons.calender,
                                 ),
-                                const SizedBox(
-                                  width: 10,
+                                onPressed: () {},
+                              ),
+                              const SizedBox(
+                                width: 10,
+                              ),
+                              SCText.bodySmall(
+                                context,
+                                text: context.l10n.may2021AM,
+                                style: context.textTheme.bodySmall?.copyWith(
+                                  color: AppColor.darkBlue,
                                 ),
-                                SCText.bodySmall(
-                                  context,
-                                  text: context.l10n.may2021AM,
-                                  style: context.textTheme.bodySmall?.copyWith(
-                                    color: AppColor.darkBlue,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ],
-                        );
-                      }),
-                    ],
-                  ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      );
+                    }),
+                  ],
                 ),
-              ]),
-            ),
-          ],
-        ),
+              ),
+            ]),
+          ),
+        ],
       ),
       bottomNavigationBar: SCBottomNavigationBar(
         // Set the current selected index.
@@ -201,6 +138,65 @@ class _NextMatchPageState extends State<NextMatchPage> {
         backgroundColor: AppColor.secondary,
         child: Image.asset(SCAssets.logoMatch),
       ),
+    );
+  }
+}
+
+class _CardMatchs extends StatelessWidget {
+  const _CardMatchs();
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Stack(
+          children: [
+            Container(
+              width: context.getHorizontalSize(35),
+              height: context.getVerticalSize(35),
+              decoration: const BoxDecoration(
+                shape: BoxShape.circle,
+                color: AppColor.redBlur,
+              ),
+            ),
+            Positioned(
+              top: 0,
+              left: 12,
+              child: SCText.displayLarge(
+                context,
+                text: context.l10n.numbertwo,
+                style: context.textTheme.displayLarge?.copyWith(
+                  color: AppColor.secondary,
+                ),
+              ),
+            ),
+          ],
+        ),
+        Stack(
+          children: [
+            Container(
+              width: context.getHorizontalSize(35),
+              height: context.getVerticalSize(35),
+              decoration: const BoxDecoration(
+                shape: BoxShape.circle,
+                color: AppColor.primary,
+              ),
+            ),
+            Positioned(
+              top: 0,
+              left: 13,
+              child: SCText.displayLarge(
+                context,
+                text: context.l10n.numberone,
+                style: context.textTheme.displayLarge?.copyWith(
+                  color: AppColor.secondary,
+                ),
+              ),
+            ),
+          ],
+        ),
+      ],
     );
   }
 }
@@ -293,10 +289,10 @@ class MySliverAppBar extends SliverPersistentHeaderDelegate {
                                 color: AppColor.blueMainly,
                               ),
                             ),
-                            SCText.labelMedium(
+                            SCText.headlineMedium(
                               context,
                               text: context.l10n.time,
-                              style: context.textTheme.labelMedium?.copyWith(
+                              style: context.textTheme.headlineMedium?.copyWith(
                                 fontWeight: AppFontWeight.bold,
                                 color: AppColor.blueMainly,
                               ),
@@ -366,7 +362,6 @@ class _MatchCountDown extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       child: SizedBox(
-        width: context.getHorizontalSize(280),
         child: SCCard.avatar(
           child: Container(
             decoration: const BoxDecoration(
@@ -394,31 +389,31 @@ class _MatchCountDown extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    SCText.labelMedium(
+                    SCText.headlineMedium(
                       context,
                       text: context.l10n.timetwo,
                     ),
-                    SCText.labelMedium(
+                    SCText.headlineMedium(
                       context,
                       text: context.l10n.dots,
                     ),
-                    SCText.labelMedium(
+                    SCText.headlineMedium(
                       context,
                       text: context.l10n.timeeight,
                     ),
-                    SCText.labelMedium(
+                    SCText.headlineMedium(
                       context,
                       text: context.l10n.dots,
                     ),
-                    SCText.labelMedium(
+                    SCText.headlineMedium(
                       context,
                       text: context.l10n.fourseven,
                     ),
-                    SCText.labelMedium(
+                    SCText.headlineMedium(
                       context,
                       text: context.l10n.dots,
                     ),
-                    SCText.labelMedium(
+                    SCText.headlineMedium(
                       context,
                       text: context.l10n.one,
                     ),

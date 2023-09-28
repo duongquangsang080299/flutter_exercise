@@ -119,7 +119,7 @@ class AppTheme {
     bodyMedium: AppTextStyles.bodyMeidum,
     bodySmall: AppTextStyles.bodySmall,
     labelLarge: AppTextStyles.labelLarge,
-    labelMedium: AppTextStyles.heading,
+    headlineMedium: AppTextStyles.heading,
     labelSmall: AppTextStyles.subheading,
   );
 }

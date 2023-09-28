@@ -34,7 +34,7 @@ class _HomePageState extends State<HomePage> {
     return SCScaffold(
       // Customize the app bar with specific properties.
       appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(150),
+        preferredSize: const Size.fromHeight(159),
         child: SCAppBar.second(
           toolbarHeight: getVerticalSize(139),
           backgroundColor: AppColor.primary,
@@ -102,7 +102,7 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             sizedBox13,
-            const _ListNew(),
+            const _MatchNews(),
             const SizedBox(height: 20),
 
             /// Create a Stack widget
@@ -147,52 +147,57 @@ class _Stadium extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      clipBehavior: Clip.none,
-      alignment: Alignment.center,
-      children: [
-        SCCard.avatar(
-          width: context.getHorizontalSize(318),
-          height: context.getVerticalSize(150),
-          child: Container(
-            decoration: const BoxDecoration(
-              borderRadius: BorderRadius.all(Radius.circular(10)),
-              gradient: LinearGradient(
-                colors: AppColor.linearGradient,
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 29),
+      child: Stack(
+        clipBehavior: Clip.none,
+        alignment: Alignment.center,
+        children: [
+          SCCard.avatar(
+            width: double.infinity,
+            height: context.getVerticalSize(150),
+            child: Container(
+              decoration: const BoxDecoration(
+                borderRadius: BorderRadius.all(Radius.circular(18)),
+                gradient: LinearGradient(
+                  begin: Alignment(1, -4),
+                  end: Alignment(-1, 2),
+                  colors: AppColor.linearGradient,
+                ),
               ),
             ),
           ),
-        ),
-        Positioned(
-          top: 10,
-          right: 200,
-          child: Image.asset(
-            SCAssets.stadium,
-            width: getSize(145),
-            height: getSize(125),
-          ),
-        ),
-        Positioned(
-          bottom: 15,
-          left: 150,
-          child: Container(
-            width: context.getHorizontalSize(149),
-            height: context.getVerticalSize(30),
-            decoration: BoxDecoration(
-              color: AppColor.secondary.withOpacity(0.2),
-              borderRadius: BorderRadius.circular(15),
+          Positioned(
+            top: 10,
+            right: 220,
+            child: Image.asset(
+              SCAssets.stadium,
+              width: getSize(145),
+              height: getSize(125),
             ),
-            child: Center(
-              child: SCText.displaySmall(
-                context,
-                text: context.l10n.getOFF,
-                style: context.textTheme.displaySmall
-                    ?.copyWith(color: AppColor.secondary),
+          ),
+          Positioned(
+            bottom: 15,
+            left: 170,
+            child: Container(
+              width: context.getHorizontalSize(149),
+              height: context.getVerticalSize(30),
+              decoration: BoxDecoration(
+                color: AppColor.secondary.withOpacity(0.2),
+                borderRadius: BorderRadius.circular(15),
+              ),
+              child: Center(
+                child: SCText.displaySmall(
+                  context,
+                  text: context.l10n.getOFF,
+                  style: context.textTheme.displaySmall
+                      ?.copyWith(color: AppColor.secondary),
+                ),
               ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
@@ -203,22 +208,22 @@ class _LiveMatch extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
+      padding: const EdgeInsets.symmetric(horizontal: 29),
       child: Stack(
         clipBehavior: Clip.none,
         alignment: Alignment.center,
         children: [
-          Container(
-            width: context.getHorizontalSize(317),
+          SizedBox(
+            width: double.infinity,
             height: context.getVerticalSize(199),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(18),
-              border: Border.all(color: AppColor.primary),
-            ),
             child: SCCard.avatar(
+              shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(18)),
+                side: BorderSide(color: AppColor.primary),
+              ),
               child: Image.asset(
                 SCAssets.soccerStadium,
-                fit: BoxFit.cover,
+                fit: BoxFit.fill,
               ),
             ),
           ),
@@ -252,8 +257,8 @@ class _LiveMatch extends StatelessWidget {
   }
 }
 
-class _ListNew extends StatelessWidget {
-  const _ListNew();
+class _MatchNews extends StatelessWidget {
+  const _MatchNews();
 
   @override
   Widget build(BuildContext context) {
@@ -364,12 +369,12 @@ class _ListNew extends StatelessWidget {
                 child: SCCard.avatar(
                   child: Image.asset(
                     SCAssets.playerMatch,
-                    fit: BoxFit.cover,
+                    fit: BoxFit.fill,
                   ),
                 ),
               ),
               Positioned(
-                bottom: 1,
+                bottom: 4,
                 child: SizedBox(
                   width: context.getHorizontalSize(149),
                   height: context.getVerticalSize(42),
@@ -419,12 +424,12 @@ class _ListNew extends StatelessWidget {
                 child: SCCard.avatar(
                   child: Image.asset(
                     SCAssets.playerMatch,
-                    fit: BoxFit.cover,
+                    fit: BoxFit.fill,
                   ),
                 ),
               ),
               Positioned(
-                bottom: 1,
+                bottom: 4,
                 child: SizedBox(
                   width: context.getHorizontalSize(149),
                   height: context.getVerticalSize(42),
@@ -516,7 +521,7 @@ class _CardInfo extends StatelessWidget {
                           ),
                           Positioned(
                             top: 0,
-                            left: 30,
+                            left: 25,
                             child: Container(
                               width: context.getHorizontalSize(35),
                               height: context.getVerticalSize(35),

@@ -16,7 +16,6 @@ class SCAppBar extends StatelessWidget implements PreferredSize {
     this.centerTitle = false,
     this.toolbarHeight,
     this.elevation,
-    this.flexibleSpace,
     this.fontSize,
     this.leadingWidth,
   });
@@ -32,7 +31,6 @@ class SCAppBar extends StatelessWidget implements PreferredSize {
     double? leadingWidth,
     List<Widget>? actions,
     double? toolbarHeight,
-    Widget? flexibleSpace,
   }) {
     return SCAppBar(
       backgroundColor: backgroundColor,
@@ -44,7 +42,6 @@ class SCAppBar extends StatelessWidget implements PreferredSize {
       leadingWidth: leadingWidth,
       actions: actions ?? [],
       toolbarHeight: toolbarHeight,
-      flexibleSpace: flexibleSpace,
     );
   }
 
@@ -56,7 +53,6 @@ class SCAppBar extends StatelessWidget implements PreferredSize {
     double? elevation,
     bool? centerTitle,
     double? leadingWidth,
-    Widget? flexibleSpace,
     double? toolbarHeight,
     List<Widget>? actions,
   }) {
@@ -67,7 +63,6 @@ class SCAppBar extends StatelessWidget implements PreferredSize {
       actions: actions ?? [],
       leadingWidth: leadingWidth,
       elevation: elevation,
-      flexibleSpace: flexibleSpace,
       toolbarHeight: toolbarHeight,
       centerTitle: centerTitle,
     );
@@ -83,7 +78,6 @@ class SCAppBar extends StatelessWidget implements PreferredSize {
   final double? toolbarHeight;
   final double? elevation;
   final double? leadingWidth;
-  final Widget? flexibleSpace;
 
   @override
   Widget build(BuildContext context) {

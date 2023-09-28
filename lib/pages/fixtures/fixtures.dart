@@ -41,15 +41,11 @@ class FixturesPage extends StatelessWidget {
         padding: const EdgeInsets.all(28),
         child: SingleChildScrollView(
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SCText.bodyLarge(
-                    text: context.l10n.league,
-                    context,
-                  ),
-                ],
+              SCText.bodyLarge(
+                text: context.l10n.league,
+                context,
               ),
               const SizedBox(height: 13),
 
@@ -81,45 +77,39 @@ class FixturesPage extends StatelessWidget {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
-                              Row(
-                                children: [
-                                  Image.asset(
-                                    SCAssets.logoMatch,
-                                    width: getSize(40),
-                                    height: getSize(40),
-                                  ),
-                                  sizedBox15,
-                                  SCText.displayMedium(
-                                    context,
-                                    text: context.l10n.redDevils,
-                                    style: context.textTheme.displaySmall
-                                        ?.copyWith(
-                                      color: AppColor.error,
-                                      fontWeight: AppFontWeight.bold,
-                                    ),
-                                  ),
-                                  sizedBox5,
-                                  SCText.titleMedium(
-                                    context,
-                                    text: context.l10n.vs,
-                                  ),
-                                  sizedBox5,
-                                  SCText.displayMedium(
-                                    context,
-                                    text: context.l10n.vGreen,
-                                    style: context.textTheme.displaySmall
-                                        ?.copyWith(
-                                      color: AppColor.primary,
-                                      fontWeight: AppFontWeight.bold,
-                                    ),
-                                  ),
-                                  sizedBox15,
-                                  Image.asset(
-                                    SCAssets.logoSecondMatch,
-                                    width: getSize(40),
-                                    height: getSize(40),
-                                  ),
-                                ],
+                              Image.asset(
+                                SCAssets.logoMatch,
+                                width: getSize(40),
+                                height: getSize(40),
+                              ),
+                              sizedBox15,
+                              SCText.displayMedium(
+                                context,
+                                text: context.l10n.redDevils,
+                                style: context.textTheme.displaySmall?.copyWith(
+                                  color: AppColor.error,
+                                  fontWeight: AppFontWeight.bold,
+                                ),
+                              ),
+                              sizedBox5,
+                              SCText.titleMedium(
+                                context,
+                                text: context.l10n.vs,
+                              ),
+                              sizedBox5,
+                              SCText.displayMedium(
+                                context,
+                                text: context.l10n.vGreen,
+                                style: context.textTheme.displaySmall?.copyWith(
+                                  color: AppColor.primary,
+                                  fontWeight: AppFontWeight.bold,
+                                ),
+                              ),
+                              sizedBox15,
+                              Image.asset(
+                                SCAssets.logoSecondMatch,
+                                width: getSize(40),
+                                height: getSize(40),
                               ),
                             ],
                           ),

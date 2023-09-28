@@ -94,6 +94,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
 
                     /// Apply SCDotsIndicator Widget
                     child: SCDotsIndicator(
+                      duration: const Duration(microseconds: 500),
                       isActive: index == _pageIndex,
                     ),
                   ),
@@ -132,7 +133,6 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
                       backgroundColor: _isButtonEnabled
                           ? AppColor.primary
                           : AppColor.whiteFlash,
-                      borderRadius: 30,
                     ),
                   ),
                 ],

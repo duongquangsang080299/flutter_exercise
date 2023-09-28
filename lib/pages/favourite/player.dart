@@ -68,52 +68,54 @@ class PlayerPageState extends State<PlayerPage> {
               text: context.l10n.description,
             ),
             SizedBox(height: context.getVerticalSize(62)),
-            Stack(
-              clipBehavior: Clip.none,
-              alignment: Alignment.center,
-              children: [
-                SCCard.avatar(
-                  borderRadius: const BorderRadius.all(Radius.circular(20)),
-                  width: context.getHorizontalSize(141),
-                  height: context.getVerticalSize(152),
-                  color: AppColor.blackJet,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      SCText.bodySmall(
-                        context,
-                        text: context.l10n.favoritePlayer,
-                      ),
-                      const SizedBox(height: 5),
-                      SCText.bodySmall(
-                        context,
-                        text: context.l10n.chooseNow,
-                        style: context.textTheme.bodySmall?.copyWith(
-                          color: AppColor.mainlyGreen,
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 106),
+              child: Stack(
+                clipBehavior: Clip.none,
+                alignment: Alignment.center,
+                children: [
+                  SCCard.avatar(
+                    borderRadius: const BorderRadius.all(Radius.circular(20)),
+                    width: double.infinity,
+                    height: context.getVerticalSize(152),
+                    color: AppColor.blackJet,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        SCText.bodySmall(
+                          context,
+                          text: context.l10n.favoritePlayer,
                         ),
-                      ),
-                      sizedBox20,
-                    ],
+                        const SizedBox(height: 5),
+                        SCText.bodySmall(
+                          context,
+                          text: context.l10n.chooseNow,
+                          style: context.textTheme.bodySmall?.copyWith(
+                            color: AppColor.mainlyGreen,
+                          ),
+                        ),
+                        sizedBox20,
+                      ],
+                    ),
                   ),
-                ),
-                Positioned(
-                  bottom: 70,
-                  child: SizedBox(
-                    width: context.getHorizontalSize(121),
-                    height: context.getVerticalSize(123),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(18),
-                      child: SCCard.avatar(
-                        color: Colors.transparent,
-                        child: Image.asset(
-                          listAvatars[_selectedIndex].url,
-                          fit: BoxFit.cover,
+                  Positioned(
+                    bottom: 70,
+                    child: SizedBox(
+                      height: context.getVerticalSize(123),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(18),
+                        child: SCCard.avatar(
+                          color: Colors.transparent,
+                          child: Image.asset(
+                            listAvatars[_selectedIndex].url,
+                            fit: BoxFit.cover,
+                          ),
                         ),
                       ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
             SizedBox(height: context.getVerticalSize(44)),
             SCText.displaySmall(context, text: context.l10n.swipeToSelect),
