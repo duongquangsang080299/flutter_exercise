@@ -190,7 +190,11 @@ class _NextMatchPageState extends State<NextMatchPage> {
           });
         },
       ),
+
+      /// Define the location of the floating action button.
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+
+      /// Define the floating action button.
       floatingActionButton: FloatingActionButton(
         elevation: 0,
         onPressed: () {},
