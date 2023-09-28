@@ -29,6 +29,8 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    const sizedBox13 = SizedBox(height: 13);
+
     return SCScaffold(
       // Customize the app bar with specific properties.
       appBar: PreferredSize(
@@ -48,7 +50,7 @@ class _HomePageState extends State<HomePage> {
                 SCIcons.notifications,
               ),
               onPressed: () {
-                // Define onPressed callback  navigate to the notifications page
+                // Define onPressed callback navigate to the notifications page
                 context.go(AppRoutes.notificationsPage.path);
               },
             ),
@@ -83,9 +85,9 @@ class _HomePageState extends State<HomePage> {
                 ],
               ),
             ),
-            const SizedBox(height: 13),
+            sizedBox13,
             const _CardInfo(),
-            const SizedBox(height: 13),
+            sizedBox13,
             // Create a Row widget
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 29),
@@ -99,7 +101,7 @@ class _HomePageState extends State<HomePage> {
                 ],
               ),
             ),
-            const SizedBox(height: 13),
+            sizedBox13,
             const _ListNew(),
             const SizedBox(height: 20),
 
@@ -109,7 +111,7 @@ class _HomePageState extends State<HomePage> {
 
             /// Create a Stack widget
             const _Stadium(),
-            const SizedBox(height: 50),
+            SizedBox(height: context.getVerticalSize(50)),
           ],
         ),
       ),
@@ -150,8 +152,8 @@ class _Stadium extends StatelessWidget {
       alignment: Alignment.center,
       children: [
         SCCard.avatar(
-          width: 318,
-          height: 150,
+          width: context.getHorizontalSize(318),
+          height: context.getVerticalSize(150),
           child: Container(
             decoration: const BoxDecoration(
               borderRadius: BorderRadius.all(Radius.circular(10)),
@@ -166,16 +168,16 @@ class _Stadium extends StatelessWidget {
           right: 200,
           child: Image.asset(
             SCAssets.stadium,
-            width: 145,
-            height: 125,
+            width: getSize(145),
+            height: getSize(125),
           ),
         ),
         Positioned(
           bottom: 15,
           left: 150,
           child: Container(
-            width: 149,
-            height: 30,
+            width: context.getHorizontalSize(149),
+            height: context.getVerticalSize(30),
             decoration: BoxDecoration(
               color: AppColor.secondary.withOpacity(0.2),
               borderRadius: BorderRadius.circular(15),
@@ -207,8 +209,8 @@ class _LiveMatch extends StatelessWidget {
         alignment: Alignment.center,
         children: [
           Container(
-            width: 317,
-            height: 199,
+            width: context.getHorizontalSize(317),
+            height: context.getVerticalSize(199),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(18),
               border: Border.all(color: AppColor.primary),
@@ -223,8 +225,8 @@ class _LiveMatch extends StatelessWidget {
           Positioned(
             bottom: 1,
             child: SizedBox(
-              width: 317,
-              height: 71,
+              width: context.getHorizontalSize(317),
+              height: context.getVerticalSize(71),
               child: SCCard.avatar(
                 borderRadius: const BorderRadius.only(
                   bottomLeft: Radius.circular(15),
@@ -240,7 +242,7 @@ class _LiveMatch extends StatelessWidget {
             left: 15,
             child: Container(
               decoration: const BoxDecoration(color: AppColor.primary),
-              width: 93,
+              width: context.getHorizontalSize(93),
               height: 5,
             ),
           ),
@@ -257,7 +259,7 @@ class _ListNew extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.only(left: 29),
-      height: 175,
+      height: context.getVerticalSize(175),
       child: ListView(
         scrollDirection: Axis.horizontal,
         shrinkWrap: true,
@@ -296,8 +298,8 @@ class _ListNew extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         Image.asset(SCAssets.logoMatch),
-                        const SizedBox(
-                          width: 45,
+                        SizedBox(
+                          width: context.getHorizontalSize(45),
                         ),
                         Image.asset(SCAssets.logoSecondMatch),
                       ],
@@ -320,8 +322,8 @@ class _ListNew extends StatelessWidget {
                                 ?.copyWith(color: AppColor.tertiary),
                           ),
                         ),
-                        const SizedBox(
-                          width: 27,
+                        SizedBox(
+                          width: context.getHorizontalSize(27),
                         ),
                         SCText.displayLarge(
                           context,
@@ -329,8 +331,8 @@ class _ListNew extends StatelessWidget {
                           style: context.textTheme.displayLarge
                               ?.copyWith(color: AppColor.tertiary),
                         ),
-                        const SizedBox(
-                          width: 24,
+                        SizedBox(
+                          width: context.getHorizontalSize(24),
                         ),
                         SCText.displayLarge(
                           context,
@@ -353,8 +355,8 @@ class _ListNew extends StatelessWidget {
             alignment: Alignment.center,
             children: [
               Container(
-                width: 150,
-                height: 170,
+                width: context.getHorizontalSize(150),
+                height: context.getVerticalSize(170),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(18),
                   border: Border.all(color: AppColor.primary),
@@ -369,8 +371,8 @@ class _ListNew extends StatelessWidget {
               Positioned(
                 bottom: 1,
                 child: SizedBox(
-                  width: 149,
-                  height: 42,
+                  width: context.getHorizontalSize(149),
+                  height: context.getVerticalSize(42),
                   child: SCCard.avatar(
                     borderRadius: const BorderRadius.only(
                       bottomLeft: Radius.circular(15),
@@ -408,8 +410,8 @@ class _ListNew extends StatelessWidget {
             alignment: Alignment.center,
             children: [
               Container(
-                width: 150,
-                height: 170,
+                width: context.getHorizontalSize(150),
+                height: context.getVerticalSize(170),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(18),
                   border: Border.all(color: AppColor.primary),
@@ -424,8 +426,8 @@ class _ListNew extends StatelessWidget {
               Positioned(
                 bottom: 1,
                 child: SizedBox(
-                  width: 149,
-                  height: 42,
+                  width: context.getHorizontalSize(149),
+                  height: context.getVerticalSize(42),
                   child: SCCard.avatar(
                     borderRadius: const BorderRadius.only(
                       bottomLeft: Radius.circular(15),
@@ -471,7 +473,7 @@ class _CardInfo extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 29),
           child: SizedBox(
-            height: 66,
+            height: context.getVerticalSize(66),
             child: GestureDetector(
               onTap: () {
                 context.go(AppRoutes.nextMatchPage.path);
@@ -505,8 +507,8 @@ class _CardInfo extends StatelessWidget {
                         alignment: Alignment.center,
                         children: [
                           Container(
-                            width: 35,
-                            height: 35,
+                            width: context.getHorizontalSize(35),
+                            height: context.getVerticalSize(35),
                             decoration: const BoxDecoration(
                               shape: BoxShape.circle,
                               color: AppColor.redBlur,
@@ -516,8 +518,8 @@ class _CardInfo extends StatelessWidget {
                             top: 0,
                             left: 30,
                             child: Container(
-                              width: 35,
-                              height: 35,
+                              width: context.getHorizontalSize(35),
+                              height: context.getVerticalSize(35),
                               decoration: const BoxDecoration(
                                 shape: BoxShape.circle,
                                 color: AppColor.primary,

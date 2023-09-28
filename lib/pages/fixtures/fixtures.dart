@@ -6,6 +6,7 @@ import 'package:soccer_club_app/core/constant/assets.dart';
 import 'package:soccer_club_app/core/constant/icons.dart';
 import 'package:soccer_club_app/core/extention/builder_context_extension.dart';
 import 'package:soccer_club_app/core/typography/app_fontweight.dart';
+import 'package:soccer_club_app/core/utils/size_utils.dart';
 import 'package:soccer_club_app/l10n/l10n.dart';
 import 'package:soccer_club_app/routes/routes.dart';
 import 'package:soccer_club_app/widgets/app_bar.dart';
@@ -17,6 +18,11 @@ class FixturesPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Define some constant sized boxes for spacing
+    const sizedBox5 = SizedBox(width: 5);
+    const sizedBox10 = SizedBox(width: 10);
+    const sizedBox15 = SizedBox(width: 15);
+
     return Scaffold(
       appBar: SCAppBar.main(
         title: context.l10n.upcomingSchedule,
@@ -25,6 +31,7 @@ class FixturesPage extends StatelessWidget {
         centerTitle: true,
         leading: IconButton(
           onPressed: () {
+            // Navigate back to home page when leading arrow button is pressed
             context.go(AppRoutes.homePage.path);
           },
           icon: SvgPicture.asset(SCIcons.rightArrow),
@@ -45,11 +52,13 @@ class FixturesPage extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: 13),
+
+              /// Generate a list of match cards using List.generate
               ...List.generate(6, (index) {
                 return Column(
                   children: [
                     SizedBox(
-                      height: 49,
+                      height: context.getVerticalSize(49),
                       child: SCCard.match(
                         color: AppColor.whiteSmoke,
                         shape: const RoundedRectangleBorder(
@@ -76,10 +85,10 @@ class FixturesPage extends StatelessWidget {
                                 children: [
                                   Image.asset(
                                     SCAssets.logoMatch,
-                                    width: 40,
-                                    height: 40,
+                                    width: getSize(40),
+                                    height: getSize(40),
                                   ),
-                                  const SizedBox(width: 15),
+                                  sizedBox15,
                                   SCText.displayMedium(
                                     context,
                                     text: context.l10n.redDevils,
@@ -89,12 +98,12 @@ class FixturesPage extends StatelessWidget {
                                       fontWeight: AppFontWeight.bold,
                                     ),
                                   ),
-                                  const SizedBox(width: 5),
+                                  sizedBox5,
                                   SCText.titleMedium(
                                     context,
                                     text: context.l10n.vs,
                                   ),
-                                  const SizedBox(width: 5),
+                                  sizedBox5,
                                   SCText.displayMedium(
                                     context,
                                     text: context.l10n.vGreen,
@@ -104,11 +113,11 @@ class FixturesPage extends StatelessWidget {
                                       fontWeight: AppFontWeight.bold,
                                     ),
                                   ),
-                                  const SizedBox(width: 15),
+                                  sizedBox15,
                                   Image.asset(
                                     SCAssets.logoSecondMatch,
-                                    width: 40,
-                                    height: 40,
+                                    width: getSize(40),
+                                    height: getSize(40),
                                   ),
                                 ],
                               ),
@@ -131,9 +140,7 @@ class FixturesPage extends StatelessWidget {
                             ),
                             onPressed: () {},
                           ),
-                          const SizedBox(
-                            width: 10,
-                          ),
+                          sizedBox10,
                           SCText.bodySmall(
                             context,
                             text: context.l10n.may2021AM,
@@ -141,9 +148,7 @@ class FixturesPage extends StatelessWidget {
                               color: AppColor.darkBlue,
                             ),
                           ),
-                          const SizedBox(
-                            width: 10,
-                          ),
+                          sizedBox10,
                         ],
                       ),
                     ),

@@ -23,7 +23,9 @@ class OnBoardingPage extends StatefulWidget {
 
 /// Define the state for the OnBoardingPage widget
 class _OnBoardingPageState extends State<OnBoardingPage> {
+  // Create a PageController for managing pages
   final PageController _pageController = PageController();
+  // Store the current page index
   int _pageIndex = 0;
   // Initially disable the button
   bool _isButtonEnabled = false;
@@ -35,8 +37,10 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
     _pageController.addListener(_pageListener);
   }
 
+  /// Callback function called when the page changes
   void _pageListener() {
     setState(() {
+      // Update the current page index when the user swipes
       _pageIndex = _pageController.page?.round() ?? 0;
 
       // Enable the button when the last page is reached
@@ -46,6 +50,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
 
   @override
   void dispose() {
+    // Remove the listener and dispose of the PageController
     _pageController
       ..removeListener(_pageListener)
       ..dispose();

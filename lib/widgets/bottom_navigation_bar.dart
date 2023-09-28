@@ -15,7 +15,7 @@ class SCBottomNavigationBar extends StatelessWidget {
   });
 
   final int currentIndex;
-  final Function(int) onTap;
+  final void Function(int) onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -94,7 +94,7 @@ class SCBottomNavigationBar extends StatelessWidget {
         onTap(index);
         switch (index) {
           case 0:
-            Navigator.of(context).pushReplacementNamed('/home');
+            context.go(AppRoutes.homePage.path);
           case 1:
             context.go(AppRoutes.fixturesPage.path);
         }

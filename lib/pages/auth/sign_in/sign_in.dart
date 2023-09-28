@@ -22,21 +22,35 @@ class SignInPage extends StatefulWidget {
 }
 
 class _SignInPageState extends State<SignInPage> {
+  /// Create a GlobalKey for the form to access its state
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
+  /// Create controllers for the username and password text fields
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+
+  /// Boolean to control password visibility
   bool showPassword = false;
+
+  /// Create FocusNodes for the username and password fields
   final _usernameFocusNode = FocusNode();
   final _passwordFocusNode = FocusNode();
+
+  /// Booleans to track when to show validation hints
   bool showUsernameValidation = false;
   bool showPasswordValidation = false;
+
+  /// Boolean to track if the password field is filled
   bool isPasswordFilled = false;
+
+  /// Boolean to track the overall button activation state
   bool _isButtonActive = false;
 
   @override
   void initState() {
     super.initState();
 
+    /// Add listeners to username and password FocusNodes to show/hide validation hints
     _usernameFocusNode.addListener(() {
       setState(() {
         showUsernameValidation = _usernameFocusNode.hasFocus;
@@ -49,17 +63,22 @@ class _SignInPageState extends State<SignInPage> {
       });
     });
 
+    /// Add listener to the password controller to track if the field is filled
     _passwordController.addListener(() {
       setState(() {
         isPasswordFilled = _passwordController.text.isNotEmpty;
+        // Call a function to update the button activation state
         _updateButtonState();
       });
     });
+
+    /// Add listener username controller to update the button activation state
     _usernameController.addListener(() {
       setState(_updateButtonState);
     });
   }
 
+  /// Function to update the button activation state based on conditions
   void _updateButtonState() {
     setState(() {
       _isButtonActive = isPasswordFilled &&
@@ -70,6 +89,7 @@ class _SignInPageState extends State<SignInPage> {
 
   @override
   void dispose() {
+    // Dispose of the FocusNodes and controllers to prevent memory leaks
     _usernameFocusNode.dispose();
     _passwordFocusNode.dispose();
     _usernameController.dispose();
@@ -79,12 +99,15 @@ class _SignInPageState extends State<SignInPage> {
 
   @override
   Widget build(BuildContext context) {
+    const sizedBox16 = SizedBox(height: 16);
     return GestureDetector(
       onTap: () {
+        // Unfocus the keyboard when tapped outside of the input fields
         FocusManager.instance.primaryFocus?.unfocus();
       },
       child: SCScaffold(
         body: Form(
+          // Associate the form with a GlobalKey
           key: _formKey,
           autovalidateMode: AutovalidateMode.onUserInteraction,
           child: Padding(
@@ -97,7 +120,7 @@ class _SignInPageState extends State<SignInPage> {
                   context,
                   text: context.l10n.signIn,
                 ),
-                const SizedBox(height: 16),
+                sizedBox16,
                 SCText.displaySmall(
                   context,
                   text: context.l10n.description,
@@ -107,6 +130,7 @@ class _SignInPageState extends State<SignInPage> {
                   focusNode: _usernameFocusNode,
                   labelText: context.l10n.labelUsername,
                   validator: (value) {
+                    // Validate username input if focus is on the field
                     if (showUsernameValidation) {
                       return value?.isValidUserName();
                     }
@@ -120,6 +144,7 @@ class _SignInPageState extends State<SignInPage> {
                   labelText: context.l10n.lablelPassword,
                   fontSize: showPassword ? 16 : 12,
                   validator: (input) {
+                    // Validate password input if focus is on the field
                     if (showPasswordValidation) {
                       return input?.isValidPassword()?.trimRight();
                     }
@@ -134,10 +159,12 @@ class _SignInPageState extends State<SignInPage> {
                         : SCIcon.suffix(),
                     onPressed: () {
                       setState(() {
+                        // Toggle password visibility
                         showPassword = !showPassword;
                       });
                     },
                   ),
+                  // Hide password character
                   obscureText: !showPassword,
                 ),
                 const Spacer(),
@@ -146,6 +173,7 @@ class _SignInPageState extends State<SignInPage> {
                       ? () {
                           if (_formKey.currentState?.validate() ?? false) {
                             debugPrint('Form is valid');
+                            // Navigate to the player page if the form is valid
                             context.go(AppRoutes.playerPage.path);
                           } else {
                             debugPrint('Form is invalid');
@@ -157,7 +185,7 @@ class _SignInPageState extends State<SignInPage> {
                       _isButtonActive ? AppColor.primary : AppColor.whiteFlash,
                   borderRadius: 30,
                 ),
-                const SizedBox(height: 16),
+                sizedBox16,
                 Text.rich(
                   TextSpan(
                     children: [
@@ -195,7 +223,7 @@ class _SignInPageState extends State<SignInPage> {
                   onPressed: () {
                     context.go(
                       AppRoutes.signUp.path,
-                    ); // Navigate to the desired page
+                    );
                   },
                   text: context.l10n.btnAccount,
                   style: context.textTheme.displayMedium?.copyWith(

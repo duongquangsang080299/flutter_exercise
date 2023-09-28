@@ -12,7 +12,26 @@ class WidgetbookApp extends StatelessWidget {
   const WidgetbookApp({super.key});
   @override
   Widget build(BuildContext context) {
-    return Widgetbook.material(directories: directories);
+    return Widgetbook.material(
+      directories: directories,
+      addons: [
+        LocalizationAddon(
+          locales: [
+            const Locale('en', 'es'),
+          ],
+          localizationsDelegates: [
+            DefaultWidgetsLocalizations.delegate,
+            DefaultMaterialLocalizations.delegate,
+          ],
+        ),
+        DeviceFrameAddon(
+          devices: [
+            Devices.ios.iPhoneSE,
+            Devices.ios.iPhone13,
+          ],
+        ),
+      ],
+    );
   }
 }
 

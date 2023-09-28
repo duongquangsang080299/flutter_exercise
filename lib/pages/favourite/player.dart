@@ -19,10 +19,10 @@ class PlayerPage extends StatefulWidget {
   const PlayerPage({super.key});
 
   @override
-  _PlayerPageState createState() => _PlayerPageState();
+  PlayerPageState createState() => PlayerPageState();
 }
 
-class _PlayerPageState extends State<PlayerPage> {
+class PlayerPageState extends State<PlayerPage> {
   final PageController _pageController = PageController();
   int _selectedIndex = 0;
 
@@ -74,8 +74,8 @@ class _PlayerPageState extends State<PlayerPage> {
               children: [
                 SCCard.avatar(
                   borderRadius: const BorderRadius.all(Radius.circular(20)),
-                  width: 141,
-                  height: 152,
+                  width: context.getHorizontalSize(141),
+                  height: context.getVerticalSize(152),
                   color: AppColor.blackJet,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.end,
@@ -92,15 +92,15 @@ class _PlayerPageState extends State<PlayerPage> {
                           color: AppColor.mainlyGreen,
                         ),
                       ),
-                      const SizedBox(height: 20),
+                      sizedBox20,
                     ],
                   ),
                 ),
                 Positioned(
                   bottom: 70,
                   child: SizedBox(
-                    width: 121,
-                    height: 123,
+                    width: context.getHorizontalSize(121),
+                    height: context.getVerticalSize(123),
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(18),
                       child: SCCard.avatar(

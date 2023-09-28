@@ -48,8 +48,9 @@ Before you continue, ensure you meet the following requirements:
 ## UI
 - [X] UI Splash Screen
 - [X] UI OnBroarding Screen
+- [X] UI Welcome Screen
 - [X] UI Sign In Screen
-- [X] UI Create Account Screen
+- [X] UI Sign Up Screen
 - [X] UI Player Favorite Screen
 - [X] UI Home Screen
 - [X] UI Next Match Details Screen

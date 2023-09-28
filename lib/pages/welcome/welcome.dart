@@ -12,6 +12,7 @@ import 'package:soccer_club_app/widgets/icon.dart';
 import 'package:soccer_club_app/widgets/scaffold.dart';
 import 'package:soccer_club_app/widgets/text.dart';
 
+/// Define WelcomePage Page
 class WelcomePage extends StatelessWidget {
   const WelcomePage({super.key});
 
@@ -25,6 +26,7 @@ class WelcomePage extends StatelessWidget {
             SizedBox(
               height: context.getVerticalSize(71),
             ),
+            // Displays an image from an asset
             Image.asset(
               SCAssets.clubLogo,
               width: context.getSize(228),
@@ -37,11 +39,14 @@ class WelcomePage extends StatelessWidget {
                 color: AppColor.tertiary,
               ),
               textAlign: TextAlign.center,
+              // Localized text
               text: context.l10n.welcomeToVictoryGreensApp,
             ),
+            // A Spacer widget to expand and push content to the bottom
             const Spacer(),
             SCButtonIcon(
               onPressed: () {
+                // Navigation action
                 context.go(AppRoutes.signIn.path);
               },
               icon: SCIcon.email(color: AppColor.secondary),

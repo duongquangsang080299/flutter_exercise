@@ -23,6 +23,7 @@ class ForgotPasswordPage extends StatefulWidget {
 }
 
 class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
+  /// Create a GlobalKey for the form to access its state
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   bool showPassword = false;
 
@@ -30,6 +31,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
   Widget build(BuildContext context) {
     return SCScaffold(
       body: Form(
+        // Associate the form with a GlobalKey
         key: _formKey,
         autovalidateMode: AutovalidateMode.onUserInteraction,
         child: Padding(

@@ -24,25 +24,38 @@ class SignUpPage extends StatefulWidget {
 }
 
 class _SignUpPageState extends State<SignUpPage> {
+  /// Create a GlobalKey for the form to access its state
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
+  /// Create controllers for the username,email and password text fields
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
+  /// Boolean to control password visibility
   bool showPassword = false;
+
+  /// Create FocusNodes for the username,email and password fields
   final _usernameFocusNode = FocusNode();
-  final _passwordFocusNode = FocusNode();
   final _emailFocusNode = FocusNode();
+  final _passwordFocusNode = FocusNode();
+
+  /// Booleans to track when to show validation hints
   bool showUsernameValidation = false;
   bool showPasswordValidation = false;
   bool showEmailValidation = false;
+
+  /// Boolean to track if the password field is filled
   bool isPasswordFilled = false;
+
+  /// Boolean to track the overall button activation state
   bool _isButtonActive = false;
 
   @override
   void initState() {
     super.initState();
 
+    /// Add listeners username, email and password FocusNodes show/hide validation hint
     _usernameFocusNode.addListener(() {
       setState(() {
         showUsernameValidation = _usernameFocusNode.hasFocus;
@@ -61,13 +74,16 @@ class _SignUpPageState extends State<SignUpPage> {
       });
     });
 
+    /// Add listener to the password controller to track if the field is filled
     _passwordController.addListener(() {
       setState(() {
         isPasswordFilled = _passwordController.text.isNotEmpty;
+        // Call a function to update the button activation state
         _updateButtonState();
       });
     });
 
+    /// Add listener username,email controller to update button activation state
     _usernameController.addListener(() {
       setState(_updateButtonState);
     });
@@ -77,6 +93,7 @@ class _SignUpPageState extends State<SignUpPage> {
     });
   }
 
+  /// Function to update the button activation state based on conditions
   void _updateButtonState() {
     setState(() {
       _isButtonActive = isPasswordFilled &&
@@ -88,6 +105,7 @@ class _SignUpPageState extends State<SignUpPage> {
 
   @override
   void dispose() {
+    // Dispose of the FocusNodes and controllers to prevent memory leaks
     _usernameFocusNode.dispose();
     _passwordFocusNode.dispose();
     _emailFocusNode.dispose();
@@ -98,7 +116,8 @@ class _SignUpPageState extends State<SignUpPage> {
   }
 
   void _showTermsAndConditionsDialog(BuildContext context) {
-    showDialog(
+    // Show a dialog box with terms and conditions
+    showDialog<Widget>(
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
@@ -117,6 +136,7 @@ class _SignUpPageState extends State<SignUpPage> {
             ),
           ),
           actions: [
+            // Add a close button to dismiss the dialog
             TextButton(
               onPressed: () {
                 Navigator.of(context).pop();
@@ -137,13 +157,17 @@ class _SignUpPageState extends State<SignUpPage> {
 
   @override
   Widget build(BuildContext context) {
+    const sizedBox20 = SizedBox(height: 20);
+
     return GestureDetector(
       onTap: () {
+        // Unfocus the keyboard when tapped outside of the input fields
         FocusManager.instance.primaryFocus?.unfocus();
       },
       child: SCScaffold(
         body: Form(
           key: _formKey,
+          // Associate the form with a GlobalKey
           autovalidateMode: AutovalidateMode.onUserInteraction,
           child: Padding(
             padding: const EdgeInsets.all(28),
@@ -173,6 +197,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   focusNode: _usernameFocusNode,
                   labelText: context.l10n.labelUsername,
                   validator: (value) {
+                    // Validate username input if focus is on the field
                     if (showUsernameValidation) {
                       return value?.isValidUserName();
                     }
@@ -180,11 +205,12 @@ class _SignUpPageState extends State<SignUpPage> {
                   },
                   controller: _usernameController,
                 ),
-                const SizedBox(height: 20),
+                sizedBox20,
                 SCInput.email(
                   focusNode: _emailFocusNode,
                   labelText: context.l10n.lablelEmail,
                   validator: (value) {
+                    // Validate email input if focus is on the field
                     if (showEmailValidation) {
                       return value?.isValidEmail();
                     }
@@ -192,12 +218,13 @@ class _SignUpPageState extends State<SignUpPage> {
                   },
                   controller: _emailController,
                 ),
-                const SizedBox(height: 20),
+                sizedBox20,
                 SCInput.password(
                   focusNode: _passwordFocusNode,
                   labelText: context.l10n.lablelPassword,
                   fontSize: showPassword ? 16 : 12,
                   validator: (input) {
+                    // Validate password input if focus is on the field
                     if (showPasswordValidation) {
                       return input?.isValidPassword()?.trimRight();
                     }
@@ -212,10 +239,12 @@ class _SignUpPageState extends State<SignUpPage> {
                         : SCIcon.suffix(),
                     onPressed: () {
                       setState(() {
+                        // Toggle password visibility
                         showPassword = !showPassword;
                       });
                     },
                   ),
+                  // Hide password character
                   obscureText: !showPassword,
                 ),
                 const Spacer(),
@@ -224,6 +253,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       ? () {
                           if (_formKey.currentState?.validate() ?? false) {
                             debugPrint('Form is valid');
+                            // Navigate to the player page if the form is valid
                             context.go(AppRoutes.signIn.path);
                           } else {
                             debugPrint('Form is invalid');

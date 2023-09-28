@@ -23,6 +23,7 @@ class NextMatchPage extends StatefulWidget {
 }
 
 class _NextMatchPageState extends State<NextMatchPage> {
+  // Initialize a variable to keep track of the current index
   int _currentIndex = 0;
 
   @override
@@ -32,7 +33,9 @@ class _NextMatchPageState extends State<NextMatchPage> {
         child: CustomScrollView(
           slivers: [
             SliverPersistentHeader(
+              // Header should remain pinned
               pinned: true,
+              // Custom SliverAppBar delegate
               delegate: MySliverAppBar(expandedHeight: 200),
             ),
             SliverList(
@@ -56,11 +59,13 @@ class _NextMatchPageState extends State<NextMatchPage> {
                       const SizedBox(
                         height: 13,
                       ),
+
+                      /// Generate a list of match cards using List.generate
                       ...List.generate(4, (index) {
                         return Column(
                           children: [
                             SizedBox(
-                              height: 49,
+                              height: context.getVerticalSize(49),
                               child: SCCard.match(
                                 color: AppColor.whiteSmoke,
                                 shape: const RoundedRectangleBorder(
@@ -89,8 +94,9 @@ class _NextMatchPageState extends State<NextMatchPage> {
                                       Stack(
                                         children: [
                                           Container(
-                                            width: 35,
-                                            height: 35,
+                                            width:
+                                                context.getHorizontalSize(35),
+                                            height: context.getVerticalSize(35),
                                             decoration: const BoxDecoration(
                                               shape: BoxShape.circle,
                                               color: AppColor.redBlur,
@@ -114,8 +120,9 @@ class _NextMatchPageState extends State<NextMatchPage> {
                                       Stack(
                                         children: [
                                           Container(
-                                            width: 35,
-                                            height: 35,
+                                            width:
+                                                context.getHorizontalSize(35),
+                                            height: context.getVerticalSize(35),
                                             decoration: const BoxDecoration(
                                               shape: BoxShape.circle,
                                               color: AppColor.primary,
@@ -204,6 +211,7 @@ class MySliverAppBar extends SliverPersistentHeaderDelegate {
     double shrinkOffset,
     bool overlapsContent,
   ) {
+    // Stack widget allows for overlapping content.
     return Stack(
       clipBehavior: Clip.none,
       fit: StackFit.expand,
@@ -268,9 +276,9 @@ class MySliverAppBar extends SliverPersistentHeaderDelegate {
                       children: [
                         Image.asset(
                           SCAssets.logoMatchDetail,
-                          height: 67,
+                          height: getSize(67),
                         ),
-                        const SizedBox(width: 30),
+                        SizedBox(width: context.getHorizontalSize(30)),
                         Column(
                           children: [
                             SCText.labelLarge(
@@ -291,10 +299,10 @@ class MySliverAppBar extends SliverPersistentHeaderDelegate {
                             ),
                           ],
                         ),
-                        const SizedBox(width: 30),
+                        SizedBox(width: context.getHorizontalSize(30)),
                         Image.asset(
                           SCAssets.logoMatchDetail,
-                          height: 67,
+                          height: getSize(67),
                         ),
                         const SizedBox(width: 8),
                       ],
@@ -311,8 +319,8 @@ class MySliverAppBar extends SliverPersistentHeaderDelegate {
                           style: context.textTheme.displayMedium
                               ?.copyWith(color: AppColor.tertiary),
                         ),
-                        const SizedBox(
-                          width: 143,
+                        SizedBox(
+                          width: context.getHorizontalSize(143),
                         ),
                         SCText.displayMedium(
                           context,
@@ -335,6 +343,7 @@ class MySliverAppBar extends SliverPersistentHeaderDelegate {
     );
   }
 
+  /// Implement required methods from SliverPersistentHeaderDelegate
   @override
   double get maxExtent => expandedHeight;
 
@@ -353,7 +362,7 @@ class _MatchCountDown extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       child: SizedBox(
-        width: 280,
+        width: context.getHorizontalSize(280),
         child: SCCard.avatar(
           child: Container(
             decoration: const BoxDecoration(
@@ -375,8 +384,8 @@ class _MatchCountDown extends StatelessWidget {
                   context,
                   text: context.l10n.matchcountdown,
                 ),
-                const SizedBox(
-                  height: 25,
+                SizedBox(
+                  height: context.getVerticalSize(25),
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,

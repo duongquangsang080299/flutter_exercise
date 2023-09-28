@@ -16,6 +16,9 @@ class NotificationsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Define a constant sized box for spacing
+    const sizedBox14 = SizedBox(height: 14);
+
     return Scaffold(
       appBar: SCAppBar.main(
         title: context.l10n.notifications,
@@ -24,6 +27,7 @@ class NotificationsPage extends StatelessWidget {
         backgroundColor: AppColor.primary,
         leading: IconButton(
           onPressed: () {
+            // Navigate back to home page when leading arrow button is pressed
             context.go(AppRoutes.homePage.path);
           },
           icon: SvgPicture.asset(SCIcons.rightArrow),
@@ -51,11 +55,15 @@ class NotificationsPage extends StatelessWidget {
             SliverList(
               delegate: SliverChildBuilderDelegate(
                 (BuildContext context, int index) {
+                  // Determine if it's a card based on the index
                   final isCard = index < 2;
+                  // Set border color
                   final borderColor =
                       isCard ? AppColor.blackJet : AppColor.primary;
+                  // Set background color
                   final backgroundColor =
                       isCard ? AppColor.secondary : AppColor.blueAlice;
+                  // Set text color
                   final textColor =
                       isCard ? AppColor.tertiary : AppColor.primary;
 
@@ -84,14 +92,14 @@ class NotificationsPage extends StatelessWidget {
                                 ),
                                 context,
                               ),
-                              const SizedBox(height: 14),
+                              sizedBox14,
                               SCText.bodyMedium(
                                 text: context.l10n.textDescriptionOnboarding,
                                 style: context.textTheme.bodyMedium
                                     ?.copyWith(color: AppColor.grayHex),
                                 context,
                               ),
-                              const SizedBox(height: 14),
+                              sizedBox14,
                               SCText.labelLarge(
                                 text: context.l10n.may2021AM,
                                 style: context.textTheme.labelLarge
@@ -105,7 +113,7 @@ class NotificationsPage extends StatelessWidget {
                     ),
                   );
                 },
-                childCount: 5, // Number of cards
+                childCount: 7, // Number of cards
               ),
             ),
           ],
