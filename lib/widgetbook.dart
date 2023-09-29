@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:soccer_club_app/core/color/app_color.dart';
+import 'package:soccer_club_app/core/extention/builder_context_extension.dart';
+import 'package:soccer_club_app/core/typography/app_fontweight.dart';
 import 'package:soccer_club_app/widgetbook.directories.g.dart';
 import 'package:soccer_club_app/widgets/button.dart';
 import 'package:widgetbook/widgetbook.dart';
@@ -28,6 +30,18 @@ class WidgetbookApp extends StatelessWidget {
           devices: [
             Devices.ios.iPhoneSE,
             Devices.ios.iPhone13,
+          ],
+        ),
+        MaterialThemeAddon(
+          themes: [
+            WidgetbookTheme(
+              name: 'Light',
+              data: ThemeData.light(),
+            ),
+            WidgetbookTheme(
+              name: 'Dark',
+              data: ThemeData.dark(),
+            ),
           ],
         ),
       ],
@@ -70,31 +84,58 @@ CustomButton enabledButton(BuildContext context) {
   type: Widget,
 )
 Widget disabledButton(BuildContext context) {
-  return Column(
-    children: [
-      SCButton(
-        onPressed: () {},
-        text: 'Sign in',
-        backgroundColor: AppColor.primary,
-      ),
-      const SizedBox(height: 20),
-      SCButton(
-        onPressed: () {},
-        text: 'Sign up',
-        backgroundColor: AppColor.blueAlice,
-      ),
-    ],
+  return Padding(
+    padding: const EdgeInsets.all(29),
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Expanded(
+          child: SCOutlineButton(
+            onPressed: () {},
+            text: 'Skip',
+            style: context.textTheme.displayMedium?.copyWith(
+              fontWeight: AppFontWeight.semiBold,
+            ),
+          ),
+        ),
+        const SizedBox(
+          width: 5,
+        ),
+        Expanded(
+          child: SCButton(
+            onPressed: () {},
+            text: 'Campaigns',
+            backgroundColor: AppColor.primary,
+          ),
+        ),
+      ],
+    ),
   );
 }
 
 @widgetbook.UseCase(
-  name: 'signinButton',
+  name: 'Login With Email',
   type: SCButton,
 )
-SCButton signinButton(BuildContext context) {
-  return SCButton(
-    onPressed: () {},
-    text: 'Sign in -- ',
-    backgroundColor: AppColor.blackHex,
+Padding signinButton(BuildContext context) {
+  return Padding(
+    padding: const EdgeInsets.all(29),
+    child: Column(
+      children: [
+        SCButton(
+          onPressed: () {},
+          text: 'Login With Email ',
+          backgroundColor: AppColor.primary,
+        ),
+        const SizedBox(
+          height: 40,
+        ),
+        SCButton(
+          onPressed: () {},
+          text: 'Sign Up ',
+          backgroundColor: AppColor.blackHex,
+        ),
+      ],
+    ),
   );
 }

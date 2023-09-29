@@ -153,8 +153,8 @@ class _CardMatchs extends StatelessWidget {
         Stack(
           children: [
             Container(
-              width: context.getHorizontalSize(35),
-              height: context.getVerticalSize(35),
+              width: 35,
+              height: 35,
               decoration: const BoxDecoration(
                 shape: BoxShape.circle,
                 color: AppColor.redBlur,
@@ -176,8 +176,8 @@ class _CardMatchs extends StatelessWidget {
         Stack(
           children: [
             Container(
-              width: context.getHorizontalSize(35),
-              height: context.getVerticalSize(35),
+              width: 35,
+              height: 35,
               decoration: const BoxDecoration(
                 shape: BoxShape.circle,
                 color: AppColor.primary,
@@ -278,7 +278,7 @@ class MySliverAppBar extends SliverPersistentHeaderDelegate {
                           SCAssets.logoMatchDetail,
                           height: getSize(67),
                         ),
-                        SizedBox(width: context.getHorizontalSize(30)),
+                        const SizedBox(width: 30),
                         Column(
                           children: [
                             SCText.labelLarge(
@@ -299,7 +299,7 @@ class MySliverAppBar extends SliverPersistentHeaderDelegate {
                             ),
                           ],
                         ),
-                        SizedBox(width: context.getHorizontalSize(30)),
+                        const SizedBox(width: 30),
                         Image.asset(
                           SCAssets.logoMatchDetail,
                           height: getSize(67),
@@ -319,8 +319,8 @@ class MySliverAppBar extends SliverPersistentHeaderDelegate {
                           style: context.textTheme.displayMedium
                               ?.copyWith(color: AppColor.tertiary),
                         ),
-                        SizedBox(
-                          width: context.getHorizontalSize(143),
+                        const SizedBox(
+                          width: 143,
                         ),
                         SCText.displayMedium(
                           context,

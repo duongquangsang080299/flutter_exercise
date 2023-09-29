@@ -148,14 +148,13 @@ class _Stadium extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 29),
+      padding: const EdgeInsets.symmetric(horizontal: 27),
       child: Stack(
         clipBehavior: Clip.none,
         alignment: Alignment.center,
         children: [
           SCCard.avatar(
-            width: double.infinity,
-            height: context.getVerticalSize(150),
+            height: 150,
             child: Container(
               decoration: const BoxDecoration(
                 borderRadius: BorderRadius.all(Radius.circular(18)),
@@ -169,7 +168,7 @@ class _Stadium extends StatelessWidget {
           ),
           Positioned(
             top: 10,
-            right: 220,
+            right: 230,
             child: Image.asset(
               SCAssets.stadium,
               width: getSize(145),
@@ -180,8 +179,8 @@ class _Stadium extends StatelessWidget {
             bottom: 15,
             left: 170,
             child: Container(
-              width: context.getHorizontalSize(149),
-              height: context.getVerticalSize(30),
+              width: 149,
+              height: 30,
               decoration: BoxDecoration(
                 color: AppColor.secondary.withOpacity(0.2),
                 borderRadius: BorderRadius.circular(15),
@@ -211,11 +210,9 @@ class _LiveMatch extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 29),
       child: Stack(
         clipBehavior: Clip.none,
-        alignment: Alignment.center,
         children: [
           SizedBox(
-            width: double.infinity,
-            height: context.getVerticalSize(199),
+            height: 199,
             child: SCCard.avatar(
               shape: const RoundedRectangleBorder(
                 borderRadius: BorderRadius.all(Radius.circular(18)),
@@ -230,8 +227,8 @@ class _LiveMatch extends StatelessWidget {
           Positioned(
             bottom: 1,
             child: SizedBox(
-              width: context.getHorizontalSize(317),
-              height: context.getVerticalSize(71),
+              width: 317,
+              height: 71,
               child: SCCard.avatar(
                 borderRadius: const BorderRadius.only(
                   bottomLeft: Radius.circular(15),
@@ -247,7 +244,7 @@ class _LiveMatch extends StatelessWidget {
             left: 15,
             child: Container(
               decoration: const BoxDecoration(color: AppColor.primary),
-              width: context.getHorizontalSize(93),
+              width: 93,
               height: 5,
             ),
           ),
@@ -264,7 +261,8 @@ class _MatchNews extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.only(left: 29),
-      height: context.getVerticalSize(175),
+      // width: double.infinity,
+      height: 175,
       child: ListView(
         scrollDirection: Axis.horizontal,
         shrinkWrap: true,
@@ -304,7 +302,7 @@ class _MatchNews extends StatelessWidget {
                       children: [
                         Image.asset(SCAssets.logoMatch),
                         SizedBox(
-                          width: context.getHorizontalSize(45),
+                          width: getSize(45),
                         ),
                         Image.asset(SCAssets.logoSecondMatch),
                       ],
@@ -327,8 +325,8 @@ class _MatchNews extends StatelessWidget {
                                 ?.copyWith(color: AppColor.tertiary),
                           ),
                         ),
-                        SizedBox(
-                          width: context.getHorizontalSize(27),
+                        const SizedBox(
+                          width: 27,
                         ),
                         SCText.displayLarge(
                           context,
@@ -336,8 +334,8 @@ class _MatchNews extends StatelessWidget {
                           style: context.textTheme.displayLarge
                               ?.copyWith(color: AppColor.tertiary),
                         ),
-                        SizedBox(
-                          width: context.getHorizontalSize(24),
+                        const SizedBox(
+                          width: 24,
                         ),
                         SCText.displayLarge(
                           context,
@@ -360,8 +358,7 @@ class _MatchNews extends StatelessWidget {
             alignment: Alignment.center,
             children: [
               Container(
-                width: context.getHorizontalSize(150),
-                height: context.getVerticalSize(170),
+                height: 170,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(18),
                   border: Border.all(color: AppColor.primary),
@@ -376,8 +373,8 @@ class _MatchNews extends StatelessWidget {
               Positioned(
                 bottom: 4,
                 child: SizedBox(
-                  width: context.getHorizontalSize(149),
-                  height: context.getVerticalSize(42),
+                  width: 149,
+                  height: 42,
                   child: SCCard.avatar(
                     borderRadius: const BorderRadius.only(
                       bottomLeft: Radius.circular(15),
@@ -415,8 +412,7 @@ class _MatchNews extends StatelessWidget {
             alignment: Alignment.center,
             children: [
               Container(
-                width: context.getHorizontalSize(150),
-                height: context.getVerticalSize(170),
+                height: 170,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(18),
                   border: Border.all(color: AppColor.primary),
@@ -431,8 +427,8 @@ class _MatchNews extends StatelessWidget {
               Positioned(
                 bottom: 4,
                 child: SizedBox(
-                  width: context.getHorizontalSize(149),
-                  height: context.getVerticalSize(42),
+                  width: 149,
+                  height: 42,
                   child: SCCard.avatar(
                     borderRadius: const BorderRadius.only(
                       bottomLeft: Radius.circular(15),
@@ -478,7 +474,7 @@ class _CardInfo extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 29),
           child: SizedBox(
-            height: context.getVerticalSize(66),
+            height: 66,
             child: GestureDetector(
               onTap: () {
                 context.go(AppRoutes.nextMatchPage.path);
@@ -512,8 +508,8 @@ class _CardInfo extends StatelessWidget {
                         alignment: Alignment.center,
                         children: [
                           Container(
-                            width: context.getHorizontalSize(35),
-                            height: context.getVerticalSize(35),
+                            width: 35,
+                            height: 35,
                             decoration: const BoxDecoration(
                               shape: BoxShape.circle,
                               color: AppColor.redBlur,
@@ -523,8 +519,8 @@ class _CardInfo extends StatelessWidget {
                             top: 0,
                             left: 25,
                             child: Container(
-                              width: context.getHorizontalSize(35),
-                              height: context.getVerticalSize(35),
+                              width: 35,
+                              height: 35,
                               decoration: const BoxDecoration(
                                 shape: BoxShape.circle,
                                 color: AppColor.primary,

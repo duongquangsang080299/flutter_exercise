@@ -6,7 +6,6 @@ import 'package:soccer_club_app/core/constant/assets.dart';
 import 'package:soccer_club_app/core/constant/icons.dart';
 import 'package:soccer_club_app/core/extention/builder_context_extension.dart';
 import 'package:soccer_club_app/core/typography/app_fontweight.dart';
-import 'package:soccer_club_app/core/utils/size_utils.dart';
 import 'package:soccer_club_app/l10n/l10n.dart';
 import 'package:soccer_club_app/routes/routes.dart';
 import 'package:soccer_club_app/widgets/app_bar.dart';
@@ -54,7 +53,7 @@ class FixturesPage extends StatelessWidget {
                 return Column(
                   children: [
                     SizedBox(
-                      height: context.getVerticalSize(49),
+                      height: 49,
                       child: SCCard.match(
                         color: AppColor.whiteSmoke,
                         shape: const RoundedRectangleBorder(
@@ -75,12 +74,10 @@ class FixturesPage extends StatelessWidget {
                             ],
                           ),
                           child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
                               Image.asset(
                                 SCAssets.logoMatch,
-                                width: getSize(40),
-                                height: getSize(40),
                               ),
                               sizedBox15,
                               SCText.displayMedium(
@@ -108,8 +105,6 @@ class FixturesPage extends StatelessWidget {
                               sizedBox15,
                               Image.asset(
                                 SCAssets.logoSecondMatch,
-                                width: getSize(40),
-                                height: getSize(40),
                               ),
                             ],
                           ),

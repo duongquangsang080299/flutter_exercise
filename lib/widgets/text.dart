@@ -126,7 +126,7 @@ class SCText extends StatelessWidget {
   }) {
     return SCText(
       text: text,
-      style: style ?? context.textThemeData.labelMedium,
+      style: style ?? context.textThemeData.headlineMedium,
       textAlign: textAlign,
     );
   }
