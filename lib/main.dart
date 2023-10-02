@@ -1,3 +1,4 @@
+// ignore: depend_on_referenced_packages
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:soccer_club_app/core/theme/app_theme.dart';

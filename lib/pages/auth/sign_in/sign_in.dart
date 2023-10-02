@@ -83,7 +83,7 @@ class _SignInPageState extends State<SignInPage> {
     setState(() {
       _isButtonActive = isPasswordFilled &&
           _usernameController.text.isNotEmpty &&
-          _formKey.currentState?.validate() == true;
+          (_formKey.currentState?.validate() ?? false);
     });
   }
 
@@ -129,6 +129,7 @@ class _SignInPageState extends State<SignInPage> {
                 SCInput.username(
                   focusNode: _usernameFocusNode,
                   labelText: context.l10n.labelUsername,
+                  textInputAction: TextInputAction.next,
                   validator: (value) {
                     // Validate username input if focus is on the field
                     if (showUsernameValidation) {

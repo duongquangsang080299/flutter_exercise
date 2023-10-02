@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:go_router/go_router.dart';
 import 'package:soccer_club_app/core/color/app_color.dart';
 import 'package:soccer_club_app/core/constant/assets.dart';
 import 'package:soccer_club_app/core/constant/icons.dart';
@@ -8,7 +7,6 @@ import 'package:soccer_club_app/core/extention/builder_context_extension.dart';
 import 'package:soccer_club_app/core/typography/app_fontweight.dart';
 import 'package:soccer_club_app/core/utils/size_utils.dart';
 import 'package:soccer_club_app/l10n/l10n.dart';
-import 'package:soccer_club_app/routes/routes.dart';
 import 'package:soccer_club_app/widgets/app_bar.dart';
 import 'package:soccer_club_app/widgets/bottom_navigation_bar.dart';
 import 'package:soccer_club_app/widgets/card.dart';
@@ -16,14 +14,13 @@ import 'package:soccer_club_app/widgets/scaffold.dart';
 import 'package:soccer_club_app/widgets/text.dart';
 
 class NextMatchPage extends StatefulWidget {
-  const NextMatchPage({super.key});
+  const NextMatchPage({Key? key}) : super(key: key);
 
   @override
   State<NextMatchPage> createState() => _NextMatchPageState();
 }
 
 class _NextMatchPageState extends State<NextMatchPage> {
-  // Initialize a variable to keep track of the current index
   int _currentIndex = 0;
 
   @override
@@ -32,106 +29,77 @@ class _NextMatchPageState extends State<NextMatchPage> {
       body: CustomScrollView(
         slivers: [
           SliverPersistentHeader(
-            // Header should remain pinned
             pinned: true,
-            // Custom SliverAppBar delegate
             delegate: MySliverAppBar(expandedHeight: 200),
           ),
           SliverList(
-            delegate: SliverChildListDelegate([
-              SizedBox(
-                height: context.getVerticalSize(400),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(30),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+            delegate: SliverChildBuilderDelegate(
+              (BuildContext context, int index) {
+                return Column(
                   children: [
-                    SCText.bodyLarge(
-                      text: context.l10n.matchs,
-                      context,
-                    ),
-                    const SizedBox(
-                      height: 13,
-                    ),
-
-                    /// Generate a list of match cards using List.generate
-                    ...List.generate(4, (index) {
-                      return Column(
-                        children: [
-                          SizedBox(
-                            height: context.getVerticalSize(49),
-                            child: SCCard.match(
-                              color: AppColor.whiteSmoke,
-                              shape: const RoundedRectangleBorder(
-                                borderRadius: BorderRadius.only(
-                                  topLeft: Radius.circular(20),
-                                  topRight: Radius.circular(20),
-                                ),
-                              ),
-                              child: Container(
-                                padding: const EdgeInsets.symmetric(
-                                  horizontal: 20,
-                                ),
-                                decoration: const BoxDecoration(
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: AppColor.whiteSmoke,
-                                      offset: Offset(0, 9),
-                                      blurRadius: 8,
-                                    ),
-                                  ],
-                                ),
-                                child: const _CardMatchs(),
-                              ),
-                            ),
+                    SizedBox(
+                      height: context.getVerticalSize(49),
+                      child: SCCard.match(
+                        color: AppColor.whiteSmoke,
+                        shape: const RoundedRectangleBorder(
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(20),
+                            topRight: Radius.circular(20),
                           ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              IconButton(
-                                icon: SvgPicture.asset(
-                                  SCIcons.calender,
-                                ),
-                                onPressed: () {},
-                              ),
-                              const SizedBox(
-                                width: 10,
-                              ),
-                              SCText.bodySmall(
-                                context,
-                                text: context.l10n.may2021AM,
-                                style: context.textTheme.bodySmall?.copyWith(
-                                  color: AppColor.darkBlue,
-                                ),
+                        ),
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(horizontal: 20),
+                          decoration: const BoxDecoration(
+                            boxShadow: [
+                              BoxShadow(
+                                color: AppColor.whiteSmoke,
+                                offset: Offset(0, 9),
+                                blurRadius: 8,
                               ),
                             ],
                           ),
-                        ],
-                      );
-                    }),
+                          child: const _CardMatchs(),
+                        ),
+                      ),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        IconButton(
+                          icon: SvgPicture.asset(
+                            SCIcons.calender,
+                          ),
+                          onPressed: () {},
+                        ),
+                        const SizedBox(
+                          width: 10,
+                        ),
+                        SCText.bodySmall(
+                          context,
+                          text: context.l10n.may2021AM,
+                          style: context.textTheme.bodySmall?.copyWith(
+                            color: AppColor.darkBlue,
+                          ),
+                        ),
+                      ],
+                    ),
                   ],
-                ),
-              ),
-            ]),
+                );
+              },
+              childCount: 4,
+            ),
           ),
         ],
       ),
       bottomNavigationBar: SCBottomNavigationBar(
-        // Set the current selected index.
         currentIndex: _currentIndex,
         onTap: (int index) {
           setState(() {
-            // Update the current index when tapped.
             _currentIndex = index;
           });
         },
       ),
-
-      /// Define the location of the floating action button.
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-
-      /// Define the floating action button.
       floatingActionButton: FloatingActionButton(
         elevation: 0,
         onPressed: () {},
@@ -211,7 +179,6 @@ class MySliverAppBar extends SliverPersistentHeaderDelegate {
     double shrinkOffset,
     bool overlapsContent,
   ) {
-    // Stack widget allows for overlapping content.
     return Stack(
       clipBehavior: Clip.none,
       fit: StackFit.expand,
@@ -220,7 +187,8 @@ class MySliverAppBar extends SliverPersistentHeaderDelegate {
           backgroundColor: AppColor.tertiary,
           leading: IconButton(
             onPressed: () {
-              context.go(AppRoutes.homePage.path);
+              // Navigate back to home page
+              Navigator.pop(context);
             },
             icon: SvgPicture.asset(SCIcons.rightArrow),
           ),
@@ -343,7 +311,6 @@ class MySliverAppBar extends SliverPersistentHeaderDelegate {
     );
   }
 
-  /// Implement required methods from SliverPersistentHeaderDelegate
   @override
   double get maxExtent => expandedHeight;
 

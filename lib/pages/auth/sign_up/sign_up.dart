@@ -99,7 +99,7 @@ class _SignUpPageState extends State<SignUpPage> {
       _isButtonActive = isPasswordFilled &&
           _usernameController.text.isNotEmpty &&
           _emailController.text.isNotEmpty &&
-          _formKey.currentState?.validate() == true;
+          (_formKey.currentState?.validate() ?? false);
     });
   }
 
@@ -195,6 +195,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 ),
                 SCInput.username(
                   focusNode: _usernameFocusNode,
+                  textInputAction: TextInputAction.next,
                   labelText: context.l10n.labelUsername,
                   validator: (value) {
                     // Validate username input if focus is on the field
@@ -208,6 +209,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 sizedBox20,
                 SCInput.email(
                   focusNode: _emailFocusNode,
+                  textInputAction: TextInputAction.next,
                   labelText: context.l10n.lablelEmail,
                   validator: (value) {
                     // Validate email input if focus is on the field
