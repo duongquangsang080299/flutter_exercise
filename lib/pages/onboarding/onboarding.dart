@@ -10,7 +10,7 @@ import 'package:soccer_club_app/l10n/l10n.dart';
 import 'package:soccer_club_app/routes/routes.dart';
 import 'package:soccer_club_app/widgets/button.dart';
 import 'package:soccer_club_app/widgets/dots_indicator.dart';
-import 'package:soccer_club_app/widgets/scaffold.dart';
+import 'package:soccer_club_app/layout/scaffold.dart';
 import 'package:soccer_club_app/widgets/text.dart';
 
 /// Define the OnBoardingPage widget
@@ -112,10 +112,8 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
                       },
                       // Localize the 'Skip' text using context.l10n
                       text: context.l10n.btnSkip,
-                      style: context.textTheme.displayMedium?.copyWith(
-                        color: AppColor.neonSilver,
-                        fontWeight: AppFontWeight.semiBold,
-                      ),
+                      style: context.textTheme.headlineSmall
+                          ?.copyWith(color: AppColor.neonSilver),
                     ),
                   ),
                   const SizedBox(width: 20),
@@ -127,9 +125,6 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
                             }
                           : null,
                       text: context.l10n.btnCampaigns,
-                      style: context.textTheme.displayMedium?.copyWith(
-                        fontWeight: AppFontWeight.semiBold,
-                      ),
                       backgroundColor: _isButtonEnabled
                           ? AppColor.primary
                           : AppColor.whiteFlash,
@@ -172,23 +167,20 @@ class OnBoardingBody extends StatelessWidget {
         ),
         const Spacer(),
 
-        SCText.displayLarge(
+        SCText.displaySmall(
           context,
-          style: context.textTheme.displayLarge?.copyWith(
-            color: AppColor.tertiary,
-          ),
           text: title,
         ),
         const SizedBox(height: 4),
-        SCText.displayMedium(
+        SCText.headlineSmall(
           context,
-          style: context.textTheme.displayMedium?.copyWith(
-            color: AppColor.grayHex,
-          ),
           text: subtitle,
+          style: context.textTheme.headlineSmall?.copyWith(
+              fontWeight: AppFontWeight.medium,
+              color: AppColor.onTertiaryContainer),
         ),
         SizedBox(height: context.getVerticalSize(45)),
-        SCText.displaySmall(
+        SCText.bodyLarge(
           context,
           textAlign: TextAlign.center,
           text: description,

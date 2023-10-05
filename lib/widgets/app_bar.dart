@@ -91,14 +91,14 @@ class SCAppBar extends StatelessWidget implements PreferredSize {
       leading: leading ?? const SizedBox.shrink(),
       backgroundColor: backgroundColor,
       title: centerTitle!
-          ? SCText.labelSmall(context, text: title)
+          ? SCText.headlineLarge(context, text: title)
           : Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SCText.displaySmall(
+                SCText.bodyLarge(
                   context,
                   text: title,
-                  style: context.textTheme.displaySmall
+                  style: context.textTheme.bodyLarge
                       ?.copyWith(color: AppColor.secondary, fontSize: fontSize),
                 ),
                 if (subtitle?.isNotEmpty ?? false)

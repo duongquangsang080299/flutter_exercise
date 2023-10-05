@@ -1,32 +1,31 @@
-extension Validator on String {
-  String? isValidPassword() {
+mixin InputValidationMixin {
+  String? isPasswordValid(String password) {
     final regex =
         RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$');
-    final passNonNullValue = this;
-    if (passNonNullValue.isEmpty) {
+    if (password.isEmpty) {
       return 'Password is required';
-    } else if (passNonNullValue.length < 6) {
+    } else if (password.length < 6) {
       return 'Password 5-character minimum';
-    } else if (!regex.hasMatch(passNonNullValue)) {
+    } else if (!regex.hasMatch(password)) {
       return 'Password least uppercase, digit, and special character.';
     }
     return null;
   }
 
-  String? isValidEmail() {
-    final passNonNullValue = this;
+  String? isValidEmail(String email) {
+    final passNonNullValue = email;
     if (passNonNullValue.isEmpty) {
       return 'Email is required';
     } else if (passNonNullValue.length < 6) {
       return 'Email 5-character minimum';
     } else if (!passNonNullValue.contains('@')) {
-      return 'Email should contains @';
+      return 'Email should contain @';
     }
     return null;
   }
 
-  String? isValidUserName() {
-    final passNonNullValue = this;
+  String? isValidUserName(String username) {
+    final passNonNullValue = username;
     if (passNonNullValue.isEmpty) {
       return 'Username is required';
     } else if (passNonNullValue.length < 6) {

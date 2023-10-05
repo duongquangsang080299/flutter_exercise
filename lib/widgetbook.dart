@@ -1,5 +1,4 @@
 // ignore_for_file: depend_on_referenced_packages
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:soccer_club_app/core/color/app_color.dart';
@@ -10,11 +9,12 @@ import 'package:soccer_club_app/core/typography/app_fontweight.dart';
 import 'package:soccer_club_app/core/utils/size_utils.dart';
 import 'package:soccer_club_app/widgetbook.directories.g.dart';
 import 'package:soccer_club_app/widgets/app_bar.dart';
-import 'package:soccer_club_app/widgets/bottom_navigation_bar.dart';
+import 'package:soccer_club_app/layout/bottom_navigation_bar.dart';
 import 'package:soccer_club_app/widgets/button.dart';
 import 'package:soccer_club_app/widgets/card.dart';
 import 'package:soccer_club_app/widgets/dots_indicator.dart';
 import 'package:soccer_club_app/widgets/text.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
@@ -43,6 +43,21 @@ class WidgetbookApp extends StatelessWidget {
             Devices.ios.iPhone13,
           ],
         ),
+        TimeDilationAddon(),
+        AlignmentAddon(
+          initialAlignment: Alignment.center,
+        ),
+        TextScaleAddon(
+          scales: [1.0, 2.0],
+          initialScale: 1,
+        ),
+        BuilderAddon(
+          name: 'Red',
+          builder: (context, child) => ColoredBox(
+            color: Colors.red,
+            child: child,
+          ),
+        ),
         MaterialThemeAddon(
           themes: [
             WidgetbookTheme(
@@ -56,6 +71,21 @@ class WidgetbookApp extends StatelessWidget {
           ],
         ),
       ],
+      appBuilder: (context, child) {
+        return ScreenUtilInit(
+          designSize: const Size(375, 812),
+          minTextAdapt: true,
+          splitScreenMode: true,
+          useInheritedMediaQuery: true,
+          builder: (context, child) {
+            return MaterialApp(
+              debugShowCheckedModeBanner: false,
+              home: child,
+            );
+          },
+          child: child,
+        );
+      },
     );
   }
 }
@@ -126,7 +156,7 @@ Padding welcomeButton(BuildContext context) {
         SCButton(
           onPressed: () {},
           text: 'Create an account',
-          backgroundColor: AppColor.blackJet,
+          backgroundColor: AppColor.onTertiary,
           style: context.textTheme.displayMedium?.copyWith(
             fontWeight: AppFontWeight.semiBold,
             fontSize: 16,
@@ -164,7 +194,7 @@ Padding signInButton(BuildContext context) {
         SCButton(
           onPressed: () {},
           text: 'CREATE AN ACCOUNT',
-          backgroundColor: AppColor.blackJet,
+          backgroundColor: AppColor.onTertiary,
           style: context.textTheme.displayMedium?.copyWith(
             fontWeight: AppFontWeight.semiBold,
             fontSize: 16,

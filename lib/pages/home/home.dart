@@ -10,9 +10,9 @@ import 'package:soccer_club_app/core/utils/size_utils.dart';
 import 'package:soccer_club_app/l10n/l10n.dart';
 import 'package:soccer_club_app/routes/routes.dart';
 import 'package:soccer_club_app/widgets/app_bar.dart';
-import 'package:soccer_club_app/widgets/bottom_navigation_bar.dart';
+import 'package:soccer_club_app/layout/bottom_navigation_bar.dart';
 import 'package:soccer_club_app/widgets/card.dart';
-import 'package:soccer_club_app/widgets/scaffold.dart';
+import 'package:soccer_club_app/layout/scaffold.dart';
 import 'package:soccer_club_app/widgets/text.dart';
 
 /// Define a class named HomePage
@@ -37,7 +37,6 @@ class _HomePageState extends State<HomePage> {
         preferredSize: const Size.fromHeight(159),
         child: SCAppBar.second(
           toolbarHeight: getVerticalSize(139),
-          backgroundColor: AppColor.primary,
           centerTitle: false,
           leadingWidth: 30,
           title: context.l10n.goodMorning,
@@ -78,7 +77,7 @@ class _HomePageState extends State<HomePage> {
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SCText.bodyLarge(
+                  SCText.headlineMedium(
                     text: context.l10n.netxMatch,
                     context,
                   ),
@@ -94,7 +93,7 @@ class _HomePageState extends State<HomePage> {
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SCText.bodyLarge(
+                  SCText.headlineMedium(
                     text: context.l10n.news,
                     context,
                   ),
@@ -186,10 +185,10 @@ class _Stadium extends StatelessWidget {
                 borderRadius: BorderRadius.circular(15),
               ),
               child: Center(
-                child: SCText.displaySmall(
+                child: SCText.bodyLarge(
                   context,
                   text: context.l10n.getOFF,
-                  style: context.textTheme.displaySmall
+                  style: context.textTheme.bodyLarge
                       ?.copyWith(color: AppColor.secondary),
                 ),
               ),
@@ -279,20 +278,19 @@ class _MatchNews extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     // Create SCText Display Medium widget for text.
-                    SCText.displayMedium(
+                    SCText.headlineSmall(
                       text: context.l10n.superLiga,
-                      style: context.textTheme.displayMedium
+                      style: context.textTheme.headlineSmall
                           ?.copyWith(color: AppColor.blackHex),
                       context,
                     ),
 
                     const SizedBox(height: 5),
                     // Create SCText Body small widget for the text.
-                    SCText.bodySmall(
+                    SCText.labelMedium(
                       text: context.l10n.sun01May,
-                      style: context.textTheme.bodySmall?.copyWith(
+                      style: context.textTheme.labelMedium?.copyWith(
                         color: AppColor.blueAzure,
-                        fontWeight: AppFontWeight.regular,
                       ),
                       context,
                     ),
@@ -318,30 +316,24 @@ class _MatchNews extends StatelessWidget {
                             vertical: 1,
                             horizontal: 6,
                           ),
-                          child: SCText.displayLarge(
+                          child: SCText.displaySmall(
                             context,
-                            text: '4',
-                            style: context.textTheme.displayLarge
-                                ?.copyWith(color: AppColor.tertiary),
+                            text: context.l10n.numberfour,
                           ),
                         ),
                         const SizedBox(
                           width: 27,
                         ),
-                        SCText.displayLarge(
+                        SCText.displaySmall(
                           context,
-                          text: '-',
-                          style: context.textTheme.displayLarge
-                              ?.copyWith(color: AppColor.tertiary),
+                          text: context.l10n.dash,
                         ),
                         const SizedBox(
                           width: 24,
                         ),
-                        SCText.displayLarge(
+                        SCText.displaySmall(
                           context,
-                          text: '1',
-                          style: context.textTheme.displayLarge
-                              ?.copyWith(color: AppColor.tertiary),
+                          text: context.l10n.numberone,
                         ),
                       ],
                     ),
@@ -388,7 +380,7 @@ class _MatchNews extends StatelessWidget {
               Positioned(
                 top: 132,
                 left: 7,
-                child: SCText.bodySmall(
+                child: SCText.titleLarge(
                   text: context.l10n.greatestGamsvVictoryGreatWinner,
                   context,
                 ),
@@ -442,7 +434,7 @@ class _MatchNews extends StatelessWidget {
               Positioned(
                 top: 132,
                 left: 7,
-                child: SCText.bodySmall(
+                child: SCText.titleLarge(
                   text: context.l10n.greatestGamsvVictoryGreatWinner,
                   context,
                 ),
@@ -512,7 +504,7 @@ class _CardInfo extends StatelessWidget {
                             height: 35,
                             decoration: const BoxDecoration(
                               shape: BoxShape.circle,
-                              color: AppColor.redBlur,
+                              color: AppColor.onError,
                             ),
                           ),
                           Positioned(
@@ -573,16 +565,12 @@ class _CardInfo extends StatelessWidget {
                       SCText.bodySmall(
                         context,
                         text: context.l10n.may9,
-                        style: context.textTheme.bodySmall?.copyWith(
-                          color: AppColor.darkBlue,
-                          fontWeight: AppFontWeight.regular,
-                        ),
                       ),
                       SCText.bodySmall(
                         context,
                         text: context.l10n.years,
                         style: context.textTheme.bodySmall?.copyWith(
-                          color: AppColor.darkBlue,
+                          color: AppColor.scrim,
                           fontWeight: AppFontWeight.regular,
                         ),
                       ),
@@ -599,10 +587,10 @@ class _CardInfo extends StatelessWidget {
                       context.go(AppRoutes.fixturesPage.path);
                     },
                   ),
-                  SCText.labelLarge(
+                  SCText.bodySmall(
                     context,
                     text: context.l10n.championLeague,
-                    style: context.textTheme.labelLarge
+                    style: context.textTheme.bodySmall
                         ?.copyWith(color: AppColor.blueBlur),
                   ),
                   const SizedBox(

@@ -5,12 +5,11 @@ import 'package:soccer_club_app/core/color/app_color.dart';
 import 'package:soccer_club_app/core/constant/assets.dart';
 import 'package:soccer_club_app/core/constant/icons.dart';
 import 'package:soccer_club_app/core/extention/builder_context_extension.dart';
-import 'package:soccer_club_app/core/typography/app_fontweight.dart';
 import 'package:soccer_club_app/l10n/l10n.dart';
 import 'package:soccer_club_app/routes/routes.dart';
 import 'package:soccer_club_app/widgets/app_bar.dart';
 import 'package:soccer_club_app/widgets/card.dart';
-import 'package:soccer_club_app/widgets/scaffold.dart';
+import 'package:soccer_club_app/layout/scaffold.dart';
 import 'package:soccer_club_app/widgets/text.dart';
 
 class FixturesPage extends StatelessWidget {
@@ -36,7 +35,7 @@ class FixturesPage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SCText.bodyLarge(
+            SCText.headlineMedium(
               text: context.l10n.league,
               context,
             ),
@@ -75,28 +74,22 @@ class FixturesPage extends StatelessWidget {
                                   SCAssets.logoMatch,
                                 ),
                                 const SizedBox(width: 15),
-                                SCText.displayMedium(
+                                SCText.labelLarge(
                                   context,
                                   text: context.l10n.redDevils,
-                                  style:
-                                      context.textTheme.displaySmall?.copyWith(
-                                    color: AppColor.error,
-                                    fontWeight: AppFontWeight.bold,
-                                  ),
                                 ),
                                 const SizedBox(width: 5),
-                                SCText.titleMedium(
+                                SCText.labelSmall(
                                   context,
                                   text: context.l10n.vs,
                                 ),
                                 const SizedBox(width: 5),
-                                SCText.displayMedium(
+                                SCText.labelLarge(
                                   context,
                                   text: context.l10n.vGreen,
                                   style:
                                       context.textTheme.displaySmall?.copyWith(
                                     color: AppColor.primary,
-                                    fontWeight: AppFontWeight.bold,
                                   ),
                                 ),
                                 const SizedBox(width: 15),
@@ -125,7 +118,7 @@ class FixturesPage extends StatelessWidget {
                               context,
                               text: context.l10n.may2021AM,
                               style: context.textTheme.bodySmall?.copyWith(
-                                color: AppColor.darkBlue,
+                                color: AppColor.scrim,
                               ),
                             ),
                             const SizedBox(width: 10),

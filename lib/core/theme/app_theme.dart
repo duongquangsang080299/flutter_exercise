@@ -8,6 +8,7 @@ class AppTheme {
   ThemeData get themeData {
     return ThemeData(
       appBarTheme: const AppBarTheme(
+        backgroundColor: AppColor.primary,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(
             bottom: Radius.circular(30),
@@ -30,7 +31,7 @@ class AppTheme {
         style: _outlinedButtonStyle,
       ),
       iconTheme: const IconThemeData(
-        color: AppColor.blackJet,
+        color: AppColor.error,
         size: 24,
       ),
       textTheme: _textTheme,
@@ -40,16 +41,16 @@ class AppTheme {
   ThemeData get darkTheme {
     return ThemeData(
       appBarTheme: const AppBarTheme(
+        backgroundColor: AppColor.onTertiary,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(
             bottom: Radius.circular(30),
           ),
         ),
       ),
-      primaryColor: AppColor.blackHex,
-      scaffoldBackgroundColor: AppColor.secondary,
-      colorScheme: _colorScheme,
-      buttonTheme: _buttonTheme,
+      primaryColor: AppColor.transparent,
+      scaffoldBackgroundColor: AppColor.tertiary,
+      colorScheme: _darkColorScheme,
       cardTheme: const CardTheme(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.all(
@@ -57,12 +58,8 @@ class AppTheme {
           ),
         ),
       ),
-      elevatedButtonTheme: _elevatedButtonTheme,
-      outlinedButtonTheme: OutlinedButtonThemeData(
-        style: _outlinedButtonStyle,
-      ),
       iconTheme: const IconThemeData(
-        color: AppColor.blackJet,
+        color: AppColor.onTertiary,
         size: 24,
       ),
       textTheme: _textTheme,
@@ -71,9 +68,37 @@ class AppTheme {
 
   ColorScheme get _colorScheme {
     return const ColorScheme.light(
+      brightness: Brightness.light,
       primary: AppColor.primary,
+      onPrimary: AppColor.onPrimary,
+      primaryContainer: AppColor.primaryContainer,
       secondary: AppColor.secondary,
-      onSurface: AppColor.transparent,
+      tertiary: AppColor.tertiary,
+      onTertiary: AppColor.onTertiary,
+      tertiaryContainer: AppColor.tertiaryContainer,
+      onTertiaryContainer: AppColor.onTertiaryContainer,
+      surface: AppColor.transparent,
+      error: AppColor.error,
+      onError: AppColor.onError,
+      scrim: AppColor.scrim,
+    );
+  }
+
+  ColorScheme get _darkColorScheme {
+    return const ColorScheme.dark(
+      brightness: Brightness.dark,
+      primary: AppColor.error,
+      onPrimary: AppColor.onPrimary,
+      primaryContainer: AppColor.primaryContainer,
+      secondary: AppColor.secondary,
+      tertiary: AppColor.secondary,
+      onTertiary: AppColor.onTertiary,
+      tertiaryContainer: AppColor.tertiaryContainer,
+      onTertiaryContainer: AppColor.onTertiaryContainer,
+      surface: AppColor.transparent,
+      error: AppColor.error,
+      onError: AppColor.onError,
+      scrim: AppColor.scrim,
     );
   }
 
@@ -112,26 +137,18 @@ class AppTheme {
 
   /// Define the text theme for the app
   static final TextTheme _textTheme = TextTheme(
-    displayLarge: AppTextStyles.titleLarge,
-    displayMedium: AppTextStyles.titleMedium,
-    displaySmall: AppTextStyles.titleSmall,
+    displayLarge: AppTextStyles.displayLarge,
+    displayMedium: AppTextStyles.displayMedium,
+    displaySmall: AppTextStyles.displaySmall,
+    headlineLarge: AppTextStyles.headlineLarge,
+    headlineMedium: AppTextStyles.headlineMedium,
+    headlineSmall: AppTextStyles.headlineSmall,
     bodyLarge: AppTextStyles.bodyLarge,
     bodyMedium: AppTextStyles.bodyMeidum,
     bodySmall: AppTextStyles.bodySmall,
+    titleLarge: AppTextStyles.titleLager,
     labelLarge: AppTextStyles.labelLarge,
-    headlineMedium: AppTextStyles.heading,
-    labelSmall: AppTextStyles.subheading,
+    labelMedium: AppTextStyles.labelMedium,
+    labelSmall: AppTextStyles.labelSmall,
   );
-}
-
-class AppDarkTheme extends AppTheme {
-  const AppDarkTheme();
-
-  @override
-  ColorScheme get _colorScheme {
-    return const ColorScheme.dark().copyWith(
-      primary: AppColor.primary,
-      background: AppColor.secondary,
-    );
-  }
 }

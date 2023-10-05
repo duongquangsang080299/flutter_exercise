@@ -4,7 +4,6 @@ import 'package:go_router/go_router.dart';
 import 'package:soccer_club_app/core/color/app_color.dart';
 import 'package:soccer_club_app/core/constant/icons.dart';
 import 'package:soccer_club_app/core/extention/builder_context_extension.dart';
-import 'package:soccer_club_app/core/typography/app_fontweight.dart';
 import 'package:soccer_club_app/core/utils/size_utils.dart';
 import 'package:soccer_club_app/data/models/avatar_model.dart';
 import 'package:soccer_club_app/l10n/l10n.dart';
@@ -12,7 +11,7 @@ import 'package:soccer_club_app/routes/routes.dart';
 import 'package:soccer_club_app/widgets/button.dart';
 import 'package:soccer_club_app/widgets/card.dart';
 import 'package:soccer_club_app/widgets/icon.dart';
-import 'package:soccer_club_app/widgets/scaffold.dart';
+import 'package:soccer_club_app/layout/scaffold.dart';
 import 'package:soccer_club_app/widgets/text.dart';
 
 class PlayerPage extends StatefulWidget {
@@ -54,15 +53,18 @@ class PlayerPageState extends State<PlayerPage> {
             SizedBox(
               height: context.getVerticalSize(44),
             ),
-            SCText.displayLarge(
+            SCText.displayMedium(
               context,
               text: context.l10n.whoIsYourFavouriteVictoryPlayers,
+              style: context.textTheme.displayMedium?.copyWith(
+                color: AppColor.primary,
+              ),
               textAlign: TextAlign.center,
             ),
             SizedBox(
               height: context.getVerticalSize(41),
             ),
-            SCText.displaySmall(
+            SCText.bodyLarge(
               context,
               textAlign: TextAlign.center,
               text: context.l10n.description,
@@ -76,22 +78,22 @@ class PlayerPageState extends State<PlayerPage> {
                 children: [
                   SCCard.avatar(
                     borderRadius: const BorderRadius.all(Radius.circular(20)),
-                    width: double.infinity,
+                    width: context.getHorizontalSize(141),
                     height: context.getVerticalSize(152),
-                    color: AppColor.blackJet,
+                    color: AppColor.onTertiary,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        SCText.bodySmall(
+                        SCText.titleLarge(
                           context,
                           text: context.l10n.favoritePlayer,
                         ),
                         const SizedBox(height: 5),
-                        SCText.bodySmall(
+                        SCText.titleLarge(
                           context,
                           text: context.l10n.chooseNow,
                           style: context.textTheme.bodySmall?.copyWith(
-                            color: AppColor.mainlyGreen,
+                            color: AppColor.primaryContainer,
                           ),
                         ),
                         sizedBox20,
@@ -118,7 +120,7 @@ class PlayerPageState extends State<PlayerPage> {
               ),
             ),
             SizedBox(height: context.getVerticalSize(44)),
-            SCText.displaySmall(context, text: context.l10n.swipeToSelect),
+            SCText.bodyLarge(context, text: context.l10n.swipeToSelect),
             SizedBox(height: context.getVerticalSize(30)),
             SizedBox(
               height: context.getVerticalSize(38),
@@ -159,9 +161,8 @@ class PlayerPageState extends State<PlayerPage> {
                             context.go(AppRoutes.homePage.path);
                           },
                           text: context.l10n.btnSkip,
-                          style: context.textTheme.displayMedium?.copyWith(
+                          style: context.textTheme.headlineSmall?.copyWith(
                             color: AppColor.neonSilver,
-                            fontWeight: AppFontWeight.semiBold,
                           ),
                         ),
                       ),
@@ -172,9 +173,7 @@ class PlayerPageState extends State<PlayerPage> {
                             context.go(AppRoutes.homePage.path);
                           },
                           text: context.l10n.btnConfirm,
-                          style: context.textTheme.displayMedium?.copyWith(
-                            fontWeight: AppFontWeight.semiBold,
-                          ),
+                          style: context.textTheme.headlineSmall,
                           backgroundColor: AppColor.primary,
                         ),
                       ),
@@ -241,7 +240,7 @@ class AvatarItem extends StatelessWidget {
                 child: SCIcon.backward(
                   width: 7,
                   height: 7,
-                  color: AppColor.blackJet,
+                  color: AppColor.onTertiary,
                 ),
               ),
             if (isActive)
@@ -250,7 +249,7 @@ class AvatarItem extends StatelessWidget {
                 child: SCIcon.forward(
                   width: 7,
                   height: 7,
-                  color: AppColor.blackJet,
+                  color: AppColor.onTertiary,
                 ),
               ),
           ],

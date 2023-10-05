@@ -80,6 +80,8 @@
     "numberone":"1",
     "numbertwo":"2",
     "numbertheree":"3",
+    "numberfour":"4",
+    "dash":"-",
     "dots":":"
     
 }

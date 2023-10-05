@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:soccer_club_app/core/color/app_color.dart';
 import 'package:soccer_club_app/core/constant/assets.dart';
-import 'package:soccer_club_app/widgets/scaffold.dart';
+import 'package:soccer_club_app/layout/scaffold.dart';
 
 /// Define Splash Screen Class
 class SplashScreen extends StatelessWidget {

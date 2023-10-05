@@ -18,37 +18,55 @@ class AppTextStyles {
     );
   }
 
-  /// Text style for large titles
-  static TextStyle titleLarge = _baseTextStyle(
+  static TextStyle displayLarge = _baseTextStyle(
     fontFamily: 'Poppins',
-    fontSize: 24,
-    fontWeight: AppFontWeight.semiBold,
-    color: AppColor.primary,
-  );
-
-  /// Text style for medium titles
-  static TextStyle titleMedium = _baseTextStyle(
-    fontFamily: 'Poppins',
-    fontSize: 16,
-    fontWeight: AppFontWeight.medium,
+    fontSize: 28,
+    fontWeight: AppFontWeight.bold,
     color: AppColor.secondary,
   );
 
-  /// Text style for extra bold content
-  static TextStyle titleSmall = _baseTextStyle(
+  static TextStyle displayMedium = _baseTextStyle(
+    fontFamily: 'Poppins',
+    fontSize: 27,
+    fontWeight: AppFontWeight.bold,
+    color: AppColor.blueMainly,
+  );
+
+  static TextStyle displaySmall = _baseTextStyle(
+    fontFamily: 'Poppins',
+    fontSize: 24,
+    fontWeight: AppFontWeight.semiBold,
+    color: AppColor.tertiary,
+  );
+
+  static TextStyle headlineLarge = _baseTextStyle(
+    fontFamily: 'Poppins',
+    fontSize: 20,
+    fontWeight: AppFontWeight.semiBold,
+    color: AppColor.secondary,
+  );
+
+  static TextStyle headlineMedium = _baseTextStyle(
+    fontFamily: 'Poppins',
+    fontSize: 18,
+    fontWeight: AppFontWeight.medium,
+    color: AppColor.tertiary,
+  );
+
+  static TextStyle headlineSmall = _baseTextStyle(
+    fontFamily: 'Poppins',
+    fontSize: 16,
+    fontWeight: AppFontWeight.semiBold,
+    color: AppColor.secondary,
+  );
+
+  static TextStyle bodyLarge = _baseTextStyle(
     fontFamily: 'Poppins',
     fontSize: 14,
     fontWeight: AppFontWeight.regular,
     color: AppColor.tertiary,
   );
 
-  /// Text style for bold content
-  static TextStyle bodyLarge = _baseTextStyle(
-    fontFamily: 'Poppins',
-    fontSize: 18,
-    fontWeight: AppFontWeight.medium,
-    color: AppColor.tertiary,
-  );
   static TextStyle bodyMeidum = _baseTextStyle(
     fontFamily: 'Poppins',
     fontSize: 12,
@@ -56,33 +74,38 @@ class AppTextStyles {
     color: AppColor.tertiary,
   );
 
-  /// Text style for subtitles
-  static TextStyle labelLarge = _baseTextStyle(
+  static TextStyle bodySmall = _baseTextStyle(
     fontFamily: 'Poppins',
     fontSize: 11,
     fontWeight: AppFontWeight.regular,
-    color: AppColor.error,
+    color: AppColor.scrim,
   );
 
-  /// Text style for captions
-  static TextStyle bodySmall = _baseTextStyle(
+  static TextStyle titleLager = _baseTextStyle(
     fontFamily: 'Poppins',
     fontSize: 10,
     fontWeight: AppFontWeight.semiBold,
     color: AppColor.secondary,
   );
 
-  static TextStyle heading = _baseTextStyle(
+  static TextStyle labelLarge = _baseTextStyle(
     fontFamily: 'Poppins',
-    fontSize: 27,
-    fontWeight: AppFontWeight.bold,
+    fontSize: 15,
+    fontWeight: AppFontWeight.semiBold,
+    color: AppColor.onError,
+  );
+
+  static TextStyle labelMedium = _baseTextStyle(
+    fontFamily: 'Poppins',
+    fontSize: 10,
+    fontWeight: AppFontWeight.semiBold,
     color: AppColor.secondary,
   );
 
-  static TextStyle subheading = _baseTextStyle(
+  static TextStyle labelSmall = _baseTextStyle(
     fontFamily: 'Poppins',
-    fontSize: 20,
-    fontWeight: AppFontWeight.bold,
-    color: AppColor.secondary,
+    fontSize: 9,
+    fontWeight: AppFontWeight.regular,
+    color: AppColor.tertiary,
   );
 }

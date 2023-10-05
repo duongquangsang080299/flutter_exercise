@@ -47,7 +47,47 @@ class SCText extends StatelessWidget {
   }) {
     return SCText(
       text: text,
-      style: style ?? context.textThemeData.displaySmall,
+      style: style ??
+          context.textThemeData.displaySmall
+              ?.copyWith(color: context.colorScheme.tertiary),
+      textAlign: textAlign,
+    );
+  }
+  factory SCText.headlineLarge(
+    BuildContext context, {
+    required String text,
+    TextStyle? style,
+    TextAlign? textAlign,
+  }) {
+    return SCText(
+      text: text,
+      style: style ?? context.textThemeData.headlineLarge,
+      textAlign: textAlign,
+    );
+  }
+  factory SCText.headlineMedium(
+    BuildContext context, {
+    required String text,
+    TextStyle? style,
+    TextAlign? textAlign,
+  }) {
+    return SCText(
+      text: text,
+      style: style ?? context.textThemeData.headlineMedium,
+      textAlign: textAlign,
+    );
+  }
+  factory SCText.headlineSmall(
+    BuildContext context, {
+    required String text,
+    TextStyle? style,
+    TextAlign? textAlign,
+  }) {
+    return SCText(
+      text: text,
+      style: style ??
+          context.textThemeData.headlineSmall
+              ?.copyWith(color: context.colorScheme.tertiary),
       textAlign: textAlign,
     );
   }
@@ -59,7 +99,9 @@ class SCText extends StatelessWidget {
   }) {
     return SCText(
       text: text,
-      style: style ?? context.textThemeData.bodyLarge,
+      style: style ??
+          context.textThemeData.bodyLarge
+              ?.copyWith(color: context.colorScheme.tertiary),
       textAlign: textAlign,
     );
   }
@@ -77,22 +119,6 @@ class SCText extends StatelessWidget {
       textAlign: textAlign,
     );
   }
-
-  /// Factory constructor to create Medium Text .
-  factory SCText.titleMedium(
-    BuildContext context, {
-    required String text,
-    TextStyle? style,
-    TextAlign? textAlign,
-  }) {
-    return SCText(
-      text: text,
-      style: style ?? context.textThemeData.titleMedium,
-      textAlign: textAlign,
-    );
-  }
-
-  /// Factory constructor to create Small Text .
   factory SCText.bodySmall(
     BuildContext context, {
     required String text,
@@ -102,6 +128,20 @@ class SCText extends StatelessWidget {
     return SCText(
       text: text,
       style: style ?? context.textThemeData.bodySmall,
+      textAlign: textAlign,
+    );
+  }
+
+  /// Factory constructor to create Medium Text .
+  factory SCText.titleLarge(
+    BuildContext context, {
+    required String text,
+    TextStyle? style,
+    TextAlign? textAlign,
+  }) {
+    return SCText(
+      text: text,
+      style: style ?? context.textThemeData.titleLarge,
       textAlign: textAlign,
     );
   }
@@ -117,8 +157,7 @@ class SCText extends StatelessWidget {
       textAlign: textAlign,
     );
   }
-
-  factory SCText.headlineMedium(
+  factory SCText.labelMedium(
     BuildContext context, {
     required String text,
     TextStyle? style,
@@ -126,11 +165,10 @@ class SCText extends StatelessWidget {
   }) {
     return SCText(
       text: text,
-      style: style ?? context.textThemeData.headlineMedium,
+      style: style ?? context.textThemeData.labelMedium,
       textAlign: textAlign,
     );
   }
-
   factory SCText.labelSmall(
     BuildContext context, {
     required String text,

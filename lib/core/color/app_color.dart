@@ -4,25 +4,29 @@ import 'package:flutter/material.dart';
 abstract class AppColor {
   static const primary = Color(0xFF04764E);
 
+  static const onPrimary = Color(0xFF00AD70);
+
+  static const primaryContainer = Color(0xFF6CAE97);
+
   static const secondary = Colors.white;
 
   static const tertiary = Colors.black;
+
+  static const tertiaryContainer = Color(0xFF0A0909);
+
+  static const onTertiaryContainer = Color(0xFF595959);
 
   static const surface = Color(0xFFF7F7F7);
 
   static const error = Colors.red;
 
-  static const grayHex = Color(0xFF595959);
+  static const onError = Color(0xFFF02626);
 
   static const graysuva = Color(0xFF8A8A8A);
 
-  static const mainlyGreen = Color(0xFF6CAE97);
-
   static const neonSilver = Color(0xFFCBCBCB);
 
-  static const outLine = Color(0xFF00AD70);
-
-  static const blackJet = Color(0xFF373737);
+  static const onTertiary = Color(0xFF373737);
 
   static const whiteSmoke = Color(0xFFF3F3F3);
 
@@ -32,15 +36,13 @@ abstract class AppColor {
 
   static const transparent = Colors.transparent;
 
-  static const blackSplit = Color(0xFF0A0909);
-
   static const blueAzure = Color(0xFF5C709F);
 
   static const blueAlice = Color(0xFFF6FBFF);
 
   static const dimGray = Color(0xFF656565);
 
-  static const darkBlue = Color(0XFF5B6897);
+  static const scrim = Color(0XFF5B6897);
 
   static const veryDarkBlue = Color(0xFF172A6B);
 
@@ -49,13 +51,6 @@ abstract class AppColor {
   static const blueMainly = Color(0xFF8C95B6);
 
   static const blueBlur = Color(0xFF173477);
-
-  static const redBlur = Color(0xFFF02626);
-
-  static const linearShadow = [
-    Color(0xFFEFEFEF),
-    Color(0xFFFFFFFF),
-  ];
 
   static const linearGradient = [
     Color(0xFF29B986),

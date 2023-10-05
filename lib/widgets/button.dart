@@ -32,7 +32,7 @@ class SCButton extends StatelessWidget {
             ),
           ),
         ),
-        child: SCText.displayMedium(
+        child: SCText.headlineSmall(
           context,
           text: text,
           style: style,
@@ -81,7 +81,7 @@ class SCButtonIcon extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             icon!,
-            SCText.displaySmall(
+            SCText.headlineSmall(
               context,
               text: text,
               style: style,
@@ -127,7 +127,7 @@ class SCOutlineButton extends StatelessWidget {
             ),
           ),
         ),
-        child: SCText.displayMedium(
+        child: SCText.headlineSmall(
           context,
           text: text,
           style: style,

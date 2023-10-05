@@ -7,12 +7,11 @@ import 'package:soccer_club_app/core/constant/icons.dart';
 import 'package:soccer_club_app/core/extention/builder_context_extension.dart';
 import 'package:soccer_club_app/core/typography/app_fontweight.dart';
 import 'package:soccer_club_app/core/utils/size_utils.dart';
-import 'package:soccer_club_app/core/utils/validator_utils.dart';
 import 'package:soccer_club_app/l10n/l10n.dart';
 import 'package:soccer_club_app/routes/routes.dart';
 import 'package:soccer_club_app/widgets/button.dart';
 import 'package:soccer_club_app/widgets/input.dart';
-import 'package:soccer_club_app/widgets/scaffold.dart';
+import 'package:soccer_club_app/layout/scaffold.dart';
 import 'package:soccer_club_app/widgets/text.dart';
 
 class ForgotPasswordPage extends StatefulWidget {
@@ -66,10 +65,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
               SizedBox(
                 height: context.getVerticalSize(50),
               ),
-              SCInput.email(
-                labelText: context.l10n.lablelEmail,
-                validator: (value) => value?.isValidEmail(),
-              ),
+              SCInput.email(),
               const Spacer(),
               SCButton(
                 onPressed: () {

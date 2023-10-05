@@ -1,6 +1,8 @@
 // ignore: depend_on_referenced_packages
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:soccer_club_app/core/theme/app_theme.dart';
 import 'package:soccer_club_app/l10n/l10n.dart';
 import 'package:soccer_club_app/routes/routes.dart';
@@ -19,13 +21,18 @@ class MyApp extends StatelessWidget {
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
       theme: const AppTheme().themeData,
-      darkTheme: const AppDarkTheme().darkTheme,
+      darkTheme: const AppTheme().darkTheme,
       locale: DevicePreview.locale(context),
       builder: DevicePreview.appBuilder,
-      localizationsDelegates: AppLocalizations.localizationsDelegates,
+      localizationsDelegates: const [
+        AppLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
       supportedLocales: const [
         Locale('en'), // English
-        Locale('es'),
+        Locale('es'), // Spanish
       ],
       routeInformationProvider: appRouter.routeInformationProvider,
       routeInformationParser: appRouter.routeInformationParser,

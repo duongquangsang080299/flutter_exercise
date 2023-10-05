@@ -10,9 +10,9 @@ import 'package:soccer_club_app/core/utils/size_utils.dart';
 import 'package:soccer_club_app/l10n/l10n.dart';
 import 'package:soccer_club_app/routes/routes.dart';
 import 'package:soccer_club_app/widgets/app_bar.dart';
-import 'package:soccer_club_app/widgets/bottom_navigation_bar.dart';
+import 'package:soccer_club_app/layout/bottom_navigation_bar.dart';
 import 'package:soccer_club_app/widgets/card.dart';
-import 'package:soccer_club_app/widgets/scaffold.dart';
+import 'package:soccer_club_app/layout/scaffold.dart';
 import 'package:soccer_club_app/widgets/text.dart';
 
 class NextMatchPage extends StatefulWidget {
@@ -101,9 +101,6 @@ class _NextMatchPageState extends State<NextMatchPage> {
                               SCText.bodySmall(
                                 context,
                                 text: context.l10n.may2021AM,
-                                style: context.textTheme.bodySmall?.copyWith(
-                                  color: AppColor.darkBlue,
-                                ),
                               ),
                             ],
                           ),
@@ -157,18 +154,15 @@ class _CardMatchs extends StatelessWidget {
               height: 35,
               decoration: const BoxDecoration(
                 shape: BoxShape.circle,
-                color: AppColor.redBlur,
+                color: AppColor.onError,
               ),
             ),
             Positioned(
               top: 0,
               left: 12,
-              child: SCText.displayLarge(
+              child: SCText.headlineLarge(
                 context,
                 text: context.l10n.numbertwo,
-                style: context.textTheme.displayLarge?.copyWith(
-                  color: AppColor.secondary,
-                ),
               ),
             ),
           ],
@@ -186,12 +180,9 @@ class _CardMatchs extends StatelessWidget {
             Positioned(
               top: 0,
               left: 13,
-              child: SCText.displayLarge(
+              child: SCText.headlineLarge(
                 context,
                 text: context.l10n.numberone,
-                style: context.textTheme.displayLarge?.copyWith(
-                  color: AppColor.secondary,
-                ),
               ),
             ),
           ],
@@ -249,23 +240,22 @@ class MySliverAppBar extends SliverPersistentHeaderDelegate {
                     const SizedBox(
                       height: 12,
                     ),
-                    SCText.displaySmall(
+                    SCText.bodyLarge(
                       context,
                       text: context.l10n.devilsArenaStadium,
-                      style: context.textTheme.displaySmall?.copyWith(
-                        fontWeight: AppFontWeight.medium,
-                        color: AppColor.grayHex,
+                      style: context.textTheme.bodyLarge?.copyWith(
+                        color: AppColor.onTertiaryContainer,
                       ),
                     ),
                     const SizedBox(
                       height: 9,
                     ),
-                    SCText.labelLarge(
+                    SCText.bodySmall(
                       context,
                       text: context.l10n.may92021,
                       style: context.textTheme.labelLarge?.copyWith(
                         fontWeight: AppFontWeight.medium,
-                        color: AppColor.grayHex,
+                        color: AppColor.onTertiaryContainer,
                       ),
                     ),
                     const SizedBox(
@@ -281,19 +271,18 @@ class MySliverAppBar extends SliverPersistentHeaderDelegate {
                         const SizedBox(width: 30),
                         Column(
                           children: [
-                            SCText.labelLarge(
+                            SCText.bodySmall(
                               context,
                               text: context.l10n.kickoff,
-                              style: context.textTheme.labelLarge?.copyWith(
+                              style: context.textTheme.bodySmall?.copyWith(
                                 fontWeight: AppFontWeight.medium,
                                 color: AppColor.blueMainly,
                               ),
                             ),
-                            SCText.headlineMedium(
+                            SCText.displayLarge(
                               context,
                               text: context.l10n.time,
-                              style: context.textTheme.headlineMedium?.copyWith(
-                                fontWeight: AppFontWeight.bold,
+                              style: context.textTheme.displayLarge?.copyWith(
                                 color: AppColor.blueMainly,
                               ),
                             ),
@@ -313,19 +302,19 @@ class MySliverAppBar extends SliverPersistentHeaderDelegate {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        SCText.displayMedium(
+                        SCText.headlineSmall(
                           context,
                           text: context.l10n.redD,
-                          style: context.textTheme.displayMedium
+                          style: context.textTheme.headlineSmall
                               ?.copyWith(color: AppColor.tertiary),
                         ),
                         const SizedBox(
                           width: 143,
                         ),
-                        SCText.displayMedium(
+                        SCText.headlineSmall(
                           context,
                           text: context.l10n.victoryG,
-                          style: context.textTheme.displayMedium
+                          style: context.textTheme.headlineSmall
                               ?.copyWith(color: AppColor.tertiary),
                         ),
                       ],
@@ -379,7 +368,7 @@ class _MatchCountDown extends StatelessWidget {
                 const SizedBox(
                   height: 10,
                 ),
-                SCText.displayMedium(
+                SCText.headlineSmall(
                   context,
                   text: context.l10n.matchcountdown,
                 ),
@@ -389,31 +378,31 @@ class _MatchCountDown extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    SCText.headlineMedium(
+                    SCText.displayLarge(
                       context,
                       text: context.l10n.timetwo,
                     ),
-                    SCText.headlineMedium(
+                    SCText.displayLarge(
                       context,
                       text: context.l10n.dots,
                     ),
-                    SCText.headlineMedium(
+                    SCText.displayLarge(
                       context,
                       text: context.l10n.timeeight,
                     ),
-                    SCText.headlineMedium(
+                    SCText.displayLarge(
                       context,
                       text: context.l10n.dots,
                     ),
-                    SCText.headlineMedium(
+                    SCText.displayLarge(
                       context,
                       text: context.l10n.fourseven,
                     ),
-                    SCText.headlineMedium(
+                    SCText.displayLarge(
                       context,
                       text: context.l10n.dots,
                     ),
-                    SCText.headlineMedium(
+                    SCText.displayLarge(
                       context,
                       text: context.l10n.one,
                     ),
@@ -425,34 +414,34 @@ class _MatchCountDown extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    SCText.displaySmall(
+                    SCText.bodyLarge(
                       context,
                       text: context.l10n.days,
-                      style: context.textTheme.displaySmall?.copyWith(
+                      style: context.textTheme.bodyLarge?.copyWith(
                         fontWeight: AppFontWeight.medium,
                         color: AppColor.secondary,
                       ),
                     ),
-                    SCText.displaySmall(
+                    SCText.bodyLarge(
                       context,
                       text: context.l10n.hours,
-                      style: context.textTheme.displaySmall?.copyWith(
+                      style: context.textTheme.bodyLarge?.copyWith(
                         fontWeight: AppFontWeight.medium,
                         color: AppColor.secondary,
                       ),
                     ),
-                    SCText.displaySmall(
+                    SCText.bodyLarge(
                       context,
                       text: context.l10n.mins,
-                      style: context.textTheme.displaySmall?.copyWith(
+                      style: context.textTheme.bodyLarge?.copyWith(
                         fontWeight: AppFontWeight.medium,
                         color: AppColor.secondary,
                       ),
                     ),
-                    SCText.displaySmall(
+                    SCText.bodyLarge(
                       context,
                       text: context.l10n.secs,
-                      style: context.textTheme.displaySmall?.copyWith(
+                      style: context.textTheme.bodyLarge?.copyWith(
                         fontWeight: AppFontWeight.medium,
                         color: AppColor.secondary,
                       ),

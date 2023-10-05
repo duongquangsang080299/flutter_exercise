@@ -11,7 +11,7 @@ import 'package:soccer_club_app/routes/routes.dart';
 import 'package:soccer_club_app/widgets/button.dart';
 import 'package:soccer_club_app/widgets/icon.dart';
 import 'package:soccer_club_app/widgets/input.dart';
-import 'package:soccer_club_app/widgets/scaffold.dart';
+import 'package:soccer_club_app/layout/scaffold.dart';
 import 'package:soccer_club_app/widgets/text.dart';
 
 class SignInPage extends StatefulWidget {
@@ -21,7 +21,7 @@ class SignInPage extends StatefulWidget {
   State<SignInPage> createState() => _SignInPageState();
 }
 
-class _SignInPageState extends State<SignInPage> {
+class _SignInPageState extends State<SignInPage> with InputValidationMixin {
   /// Create a GlobalKey for the form to access its state
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
@@ -116,38 +116,31 @@ class _SignInPageState extends State<SignInPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(height: context.getVerticalSize(87)),
-                SCText.displayLarge(
+                SCText.displaySmall(
                   context,
                   text: context.l10n.signIn,
+                  style: context.textTheme.displaySmall
+                      ?.copyWith(color: AppColor.primary),
                 ),
                 sizedBox16,
-                SCText.displaySmall(
+                SCText.bodyLarge(
                   context,
                   text: context.l10n.description,
                 ),
                 SizedBox(height: getVerticalSize(30)),
+                // Username input field
                 SCInput.username(
                   focusNode: _usernameFocusNode,
-                  labelText: context.l10n.labelUsername,
-                  textInputAction: TextInputAction.next,
-                  validator: (value) {
-                    // Validate username input if focus is on the field
-                    if (showUsernameValidation) {
-                      return value?.isValidUserName();
-                    }
-                    return null;
-                  },
                   controller: _usernameController,
                 ),
                 const SizedBox(height: 20),
                 SCInput.password(
                   focusNode: _passwordFocusNode,
-                  labelText: context.l10n.lablelPassword,
                   fontSize: showPassword ? 16 : 12,
                   validator: (input) {
                     // Validate password input if focus is on the field
                     if (showPasswordValidation) {
-                      return input?.isValidPassword()?.trimRight();
+                      return isPasswordValid(input ?? '')?.trimRight();
                     }
                     return null;
                   },
@@ -182,6 +175,7 @@ class _SignInPageState extends State<SignInPage> {
                         }
                       : null,
                   text: context.l10n.btnLogin,
+                  style: context.textTheme.headlineSmall,
                   backgroundColor:
                       _isButtonActive ? AppColor.primary : AppColor.whiteFlash,
                 ),
@@ -191,14 +185,14 @@ class _SignInPageState extends State<SignInPage> {
                     children: [
                       TextSpan(
                         text: context.l10n.forgotPassword,
-                        style: context.textTheme.displaySmall?.copyWith(
+                        style: context.textTheme.bodyLarge?.copyWith(
                           color: AppColor.dimGray,
                         ),
                       ),
                       TextSpan(
                         text: context.l10n.resetHere,
-                        style: context.textTheme.displaySmall?.copyWith(
-                          fontWeight: AppFontWeight.medium,
+                        style: context.textTheme.bodyLarge?.copyWith(
+                          fontWeight: AppFontWeight.bold,
                           color: AppColor.primary,
                         ),
                         recognizer: TapGestureRecognizer()
@@ -211,10 +205,10 @@ class _SignInPageState extends State<SignInPage> {
                 ),
                 SizedBox(height: getVerticalSize(30)),
                 Align(
-                  child: SCText.displaySmall(
+                  child: SCText.bodyLarge(
                     context,
                     text: context.l10n.donthaveaccount,
-                    style: context.textTheme.displaySmall
+                    style: context.textTheme.bodyLarge
                         ?.copyWith(color: AppColor.graysuva),
                   ),
                 ),
@@ -226,10 +220,8 @@ class _SignInPageState extends State<SignInPage> {
                     );
                   },
                   text: context.l10n.btnAccount,
-                  style: context.textTheme.displayMedium?.copyWith(
-                    fontWeight: AppFontWeight.semiBold,
-                  ),
-                  backgroundColor: AppColor.blackJet,
+                  style: context.textTheme.headlineSmall,
+                  backgroundColor: AppColor.onTertiary,
                 ),
               ],
             ),

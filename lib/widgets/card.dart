@@ -81,7 +81,7 @@ class SCCard extends StatelessWidget {
               side: BorderSide(
                 color: selected ?? false
                     ? context.colorScheme.primary
-                    : context.colorScheme.onSurface,
+                    : context.colorScheme.surface,
               ),
             ),
         color: color,

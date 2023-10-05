@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:soccer_club_app/core/color/app_color.dart';
 import 'package:soccer_club_app/core/extention/builder_context_extension.dart';
 import 'package:soccer_club_app/core/typography/app_fontweight.dart';
+import 'package:soccer_club_app/core/utils/validator_utils.dart';
 import 'package:soccer_club_app/widgets/text.dart';
 
-class SCInput extends StatelessWidget {
+class SCInput extends StatelessWidget with InputValidationMixin {
   const SCInput({
     super.key,
     this.focusNode,
@@ -12,7 +13,7 @@ class SCInput extends StatelessWidget {
     this.textInputAction,
     this.keyboardType,
     this.labelText,
-    this.obscureText = true,
+    this.obscureText = false,
     this.controller,
     this.validator,
     this.contentPadding,
@@ -24,21 +25,16 @@ class SCInput extends StatelessWidget {
   /// Factory constructor for email input
   factory SCInput.email({
     FocusNode? focusNode,
-    TextInputType keyboardType = TextInputType.emailAddress,
-    String? labelText,
-    TextInputAction? textInputAction,
     String? Function(String?)? validator,
     EdgeInsetsGeometry? contentPadding,
     TextEditingController? controller,
-    bool? obscureText = false,
     TextStyle? labelStyle,
   }) {
     return SCInput(
       focusNode: focusNode,
-      labelText: labelText,
-      keyboardType: keyboardType,
-      textInputAction: textInputAction,
-      obscureText: obscureText,
+      labelText: '',
+      keyboardType: TextInputType.emailAddress,
+      textInputAction: TextInputAction.next,
       validator: validator,
       contentPadding: contentPadding,
       controller: controller,
@@ -49,21 +45,16 @@ class SCInput extends StatelessWidget {
   /// Factory constructor for username input
   factory SCInput.username({
     FocusNode? focusNode,
-    TextInputType keyboardType = TextInputType.name,
-    TextInputAction? textInputAction,
-    String? labelText,
     TextEditingController? controller,
     String? Function(String?)? validator,
-    bool? obscureText = false,
     TextStyle? labelStyle,
     EdgeInsetsGeometry? contentPadding,
   }) {
     return SCInput(
       focusNode: focusNode,
-      keyboardType: keyboardType,
-      labelText: labelText,
-      textInputAction: textInputAction,
-      obscureText: obscureText,
+      keyboardType: TextInputType.name,
+      labelText: '',
+      textInputAction: TextInputAction.next,
       controller: controller,
       validator: validator,
       contentPadding: contentPadding,
@@ -73,27 +64,23 @@ class SCInput extends StatelessWidget {
 
   /// Factory constructor for password input
   factory SCInput.password({
-    Key? key,
     FocusNode? focusNode,
     Widget? suffixIcon,
     TextEditingController? controller,
-    String? labelText,
     String? obscuringCharacter,
     double? fontSize,
     TextStyle? labelStyle,
     String? Function(String?)? validator,
     bool obscureText = false,
-    TextInputType keyboardType = TextInputType.visiblePassword,
     EdgeInsetsGeometry? contentPadding,
   }) {
     return SCInput(
-      key: key,
       focusNode: focusNode,
-      labelText: labelText,
+      labelText: '',
       obscureText: obscureText,
       fontSize: fontSize,
       suffixIcon: suffixIcon,
-      keyboardType: keyboardType,
+      keyboardType: TextInputType.visiblePassword,
       contentPadding: contentPadding,
       obscuringCharacter: obscuringCharacter,
       controller: controller,
@@ -150,7 +137,6 @@ class SCInput extends StatelessWidget {
           keyboardType: keyboardType,
           textInputAction: textInputAction,
           focusNode: focusNode,
-          validator: validator,
           controller: controller,
           obscureText: obscureText ?? false,
           obscuringCharacter: '●',

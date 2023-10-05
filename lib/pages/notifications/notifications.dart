@@ -59,7 +59,7 @@ class NotificationsPage extends StatelessWidget {
                   final isCard = index < 2;
                   // Set border color
                   final borderColor =
-                      isCard ? AppColor.blackJet : AppColor.primary;
+                      isCard ? AppColor.onTertiary : AppColor.primary;
                   // Set background color
                   final backgroundColor =
                       isCard ? AppColor.secondary : AppColor.blueAlice;
@@ -84,9 +84,9 @@ class NotificationsPage extends StatelessWidget {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              SCText.displaySmall(
+                              SCText.bodyLarge(
                                 text: context.l10n.continuePayment,
-                                style: context.textTheme.displaySmall?.copyWith(
+                                style: context.textTheme.bodyLarge?.copyWith(
                                   fontWeight: AppFontWeight.bold,
                                   color: textColor,
                                 ),
@@ -95,15 +95,17 @@ class NotificationsPage extends StatelessWidget {
                               sizedBox14,
                               SCText.bodyMedium(
                                 text: context.l10n.textDescriptionOnboarding,
-                                style: context.textTheme.bodyMedium
-                                    ?.copyWith(color: AppColor.grayHex),
+                                style: context.textTheme.bodyMedium?.copyWith(
+                                  color: AppColor.onTertiaryContainer,
+                                ),
                                 context,
                               ),
                               sizedBox14,
-                              SCText.labelLarge(
+                              SCText.bodySmall(
                                 text: context.l10n.may2021AM,
-                                style: context.textTheme.labelLarge
-                                    ?.copyWith(color: AppColor.grayHex),
+                                style: context.textTheme.bodySmall?.copyWith(
+                                  color: AppColor.onTertiaryContainer,
+                                ),
                                 context,
                               ),
                             ],

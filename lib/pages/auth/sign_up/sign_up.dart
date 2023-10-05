@@ -13,7 +13,7 @@ import 'package:soccer_club_app/routes/routes.dart';
 import 'package:soccer_club_app/widgets/button.dart';
 import 'package:soccer_club_app/widgets/icon.dart';
 import 'package:soccer_club_app/widgets/input.dart';
-import 'package:soccer_club_app/widgets/scaffold.dart';
+import 'package:soccer_club_app/layout/scaffold.dart';
 import 'package:soccer_club_app/widgets/text.dart';
 
 class SignUpPage extends StatefulWidget {
@@ -23,7 +23,7 @@ class SignUpPage extends StatefulWidget {
   State<SignUpPage> createState() => _SignUpPageState();
 }
 
-class _SignUpPageState extends State<SignUpPage> {
+class _SignUpPageState extends State<SignUpPage> with InputValidationMixin {
   /// Create a GlobalKey for the form to access its state
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
@@ -181,12 +181,14 @@ class _SignUpPageState extends State<SignUpPage> {
                   icon: SvgPicture.asset(SCIcons.back),
                 ),
                 SizedBox(height: context.getVerticalSize(50)),
-                SCText.displayLarge(
+                SCText.displaySmall(
                   context,
                   text: context.l10n.createanAccount,
+                  style: context.textTheme.displaySmall
+                      ?.copyWith(color: AppColor.primary),
                 ),
                 const SizedBox(height: 16),
-                SCText.displaySmall(
+                SCText.bodyLarge(
                   context,
                   text: context.l10n.description,
                 ),
@@ -195,26 +197,15 @@ class _SignUpPageState extends State<SignUpPage> {
                 ),
                 SCInput.username(
                   focusNode: _usernameFocusNode,
-                  textInputAction: TextInputAction.next,
-                  labelText: context.l10n.labelUsername,
-                  validator: (value) {
-                    // Validate username input if focus is on the field
-                    if (showUsernameValidation) {
-                      return value?.isValidUserName();
-                    }
-                    return null;
-                  },
                   controller: _usernameController,
                 ),
                 sizedBox20,
                 SCInput.email(
                   focusNode: _emailFocusNode,
-                  textInputAction: TextInputAction.next,
-                  labelText: context.l10n.lablelEmail,
-                  validator: (value) {
+                  validator: (email) {
                     // Validate email input if focus is on the field
                     if (showEmailValidation) {
-                      return value?.isValidEmail();
+                      return isValidUserName(email ?? '');
                     }
                     return null;
                   },
@@ -223,15 +214,8 @@ class _SignUpPageState extends State<SignUpPage> {
                 sizedBox20,
                 SCInput.password(
                   focusNode: _passwordFocusNode,
-                  labelText: context.l10n.lablelPassword,
                   fontSize: showPassword ? 16 : 12,
-                  validator: (input) {
-                    // Validate password input if focus is on the field
-                    if (showPasswordValidation) {
-                      return input?.isValidPassword()?.trimRight();
-                    }
-                    return null;
-                  },
+
                   controller: _passwordController,
                   suffixIcon: IconButton(
                     icon: showPassword
@@ -263,8 +247,10 @@ class _SignUpPageState extends State<SignUpPage> {
                         }
                       : null,
                   text: context.l10n.btnSignUp,
-                  backgroundColor:
-                      _isButtonActive ? AppColor.blackJet : AppColor.whiteFlash,
+                  style: context.textTheme.headlineSmall,
+                  backgroundColor: _isButtonActive
+                      ? AppColor.onTertiary
+                      : AppColor.whiteFlash,
                   height: context.getVerticalSize(60),
                 ),
                 SizedBox(height: context.getVerticalSize(30)),
@@ -273,28 +259,28 @@ class _SignUpPageState extends State<SignUpPage> {
                     children: [
                       TextSpan(
                         text: context.l10n.byTappingSignUpYouAcceptOur,
-                        style: context.textTheme.displaySmall?.copyWith(
+                        style: context.textTheme.bodyLarge?.copyWith(
                           color: AppColor.dimGray,
                         ),
                       ),
                       TextSpan(
                         text: context.l10n.terms,
-                        style: context.textTheme.displaySmall?.copyWith(
-                          fontWeight: AppFontWeight.medium,
+                        style: context.textTheme.bodyLarge?.copyWith(
+                          fontWeight: AppFontWeight.bold,
                           color: AppColor.primary,
                         ),
                         recognizer: TapGestureRecognizer()..onTap = () {},
                       ),
                       TextSpan(
                         text: context.l10n.and,
-                        style: context.textTheme.displaySmall?.copyWith(
+                        style: context.textTheme.bodyLarge?.copyWith(
                           color: AppColor.dimGray,
                         ),
                       ),
                       TextSpan(
                         text: context.l10n.condition,
-                        style: context.textTheme.displaySmall?.copyWith(
-                          fontWeight: AppFontWeight.medium,
+                        style: context.textTheme.bodyLarge?.copyWith(
+                          fontWeight: AppFontWeight.bold,
                           color: AppColor.primary,
                         ),
                         recognizer: TapGestureRecognizer()
