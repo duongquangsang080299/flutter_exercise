@@ -1,6 +1,8 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:soccer_club_app/auth_sign_in_repo/bloc/auth_sign_in_bloc.dart';
 import 'package:soccer_club_app/core/color/app_color.dart';
 import 'package:soccer_club_app/core/extention/builder_context_extension.dart';
 import 'package:soccer_club_app/core/typography/app_fontweight.dart';
@@ -25,16 +27,18 @@ class _SignInPageState extends State<SignInPage> with InputValidationMixin {
   /// Create a GlobalKey for the form to access its state
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
-  /// Create controllers for the username and password text fields
-  final TextEditingController _usernameController = TextEditingController();
+  /// Create controllers for the email and password text fields
+  final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
-  /// Create FocusNodes for the username and password fields
-  final _usernameFocusNode = FocusNode();
+  /// Create FocusNodes for the email and password fields
+  final _emailFocusNode = FocusNode();
   final _passwordFocusNode = FocusNode();
 
   /// Booleans to track when to show validation hints
-  bool showUsernameValidation = false;
+  bool showemailValidation = false;
+  bool showEmailValidation = false;
+
   bool showPasswordValidation = false;
 
   /// Boolean to track if the password field is filled
@@ -50,13 +54,17 @@ class _SignInPageState extends State<SignInPage> with InputValidationMixin {
   void initState() {
     super.initState();
 
-    /// Add listeners to username and password FocusNodes to show/hide validation hints
-    _usernameFocusNode.addListener(() {
+    /// Add listeners to email and password FocusNodes to show/hide validation hints
+    _emailFocusNode.addListener(() {
       setState(() {
-        showUsernameValidation = _usernameFocusNode.hasFocus;
+        showemailValidation = _emailFocusNode.hasFocus;
       });
     });
-
+    _emailFocusNode.addListener(() {
+      setState(() {
+        showEmailValidation = _emailFocusNode.hasFocus;
+      });
+    });
     _passwordFocusNode.addListener(() {
       setState(() {
         showPasswordValidation = _passwordFocusNode.hasFocus;
@@ -72,8 +80,11 @@ class _SignInPageState extends State<SignInPage> with InputValidationMixin {
       });
     });
 
-    /// Add listener username controller to update the button activation state
-    _usernameController.addListener(() {
+    /// Add listener email controller to update the button activation state
+    _emailController.addListener(() {
+      setState(_updateButtonState);
+    });
+    _emailController.addListener(() {
       setState(_updateButtonState);
     });
   }
@@ -82,7 +93,7 @@ class _SignInPageState extends State<SignInPage> with InputValidationMixin {
   void _updateButtonState() {
     setState(() {
       _isButtonActive = isPasswordFilled &&
-          _usernameController.text.isNotEmpty &&
+          _emailController.text.isNotEmpty &&
           (_formKey.currentState?.validate() ?? false);
     });
   }
@@ -90,9 +101,9 @@ class _SignInPageState extends State<SignInPage> with InputValidationMixin {
   @override
   void dispose() {
     // Dispose of the FocusNodes and controllers to prevent memory leaks
-    _usernameFocusNode.dispose();
+    _emailFocusNode.dispose();
     _passwordFocusNode.dispose();
-    _usernameController.dispose();
+    _emailController.dispose();
     _passwordController.dispose();
     super.dispose();
   }
@@ -128,10 +139,10 @@ class _SignInPageState extends State<SignInPage> with InputValidationMixin {
                   text: context.l10n.description,
                 ),
                 SizedBox(height: getVerticalSize(30)),
-                // Username input field
-                SCInput.username(
-                  focusNode: _usernameFocusNode,
-                  controller: _usernameController,
+                // email input field
+                SCInput.email(
+                  focusNode: _emailFocusNode,
+                  controller: _emailController,
                 ),
                 const SizedBox(height: 20),
                 SCInput.password(
@@ -162,22 +173,39 @@ class _SignInPageState extends State<SignInPage> with InputValidationMixin {
                   obscureText: !showPassword,
                 ),
                 const Spacer(),
-                SCButton(
-                  onPressed: _isButtonActive
-                      ? () {
-                          if (_formKey.currentState?.validate() ?? false) {
-                            debugPrint('Form is valid');
-                            // Navigate to the player page if the form is valid
-                            context.go(AppRoutes.playerPage.path);
-                          } else {
-                            debugPrint('Form is invalid');
+                BlocListener<AuthSignInBloc, AuthSignInState>(
+                  listener: (context, state) {
+                    if (state is AuthSignInSucces) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(content: Text('Login Successful')));
+                    }
+                    if (state is AuthSignInError) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(content: Text('Login failed')));
+                    }
+                  },
+                  child: SCButton(
+                    onPressed: _isButtonActive
+                        ? () {
+                            BlocProvider.of<AuthSignInBloc>(context).add(
+                                EnterSignInEvent(
+                                    email: _emailController.text,
+                                    password: _passwordController.text));
+                            // if (_formKey.currentState?.validate() ?? false) {
+                            //   debugPrint('Form is valid');
+                            //   // Navigate to the player page if the form is valid
+                            //   context.go(AppRoutes.playerPage.path);
+                            // } else {
+                            //   debugPrint('Form is invalid');
+                            // }
                           }
-                        }
-                      : null,
-                  text: context.l10n.btnLogin,
-                  style: context.textTheme.headlineSmall,
-                  backgroundColor:
-                      _isButtonActive ? AppColor.primary : AppColor.whiteFlash,
+                        : null,
+                    text: context.l10n.btnLogin,
+                    style: context.textTheme.headlineSmall,
+                    backgroundColor: _isButtonActive
+                        ? AppColor.primary
+                        : AppColor.whiteFlash,
+                  ),
                 ),
                 sizedBox16,
                 Text.rich(
