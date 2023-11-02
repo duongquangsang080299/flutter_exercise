@@ -7,7 +7,10 @@ import 'package:soccer_club_app/core/theme/app_theme.dart';
 import 'package:soccer_club_app/l10n/l10n.dart';
 import 'package:soccer_club_app/routes/routes.dart';
 
-void main() => runApp(
+void main() =>
+// WidgetsFlutterBinding().ensureInitiallized();
+// await Firebase.initializeApp();
+    runApp(
       DevicePreview(
         builder: (context) => const MyApp(),
       ),
