@@ -1,7 +1,9 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
+import 'package:soccer_club_app/blocs/auth_bloc/sign_up_bloc/sign_up_bloc.dart';
 import 'package:soccer_club_app/core/color/app_color.dart';
 import 'package:soccer_club_app/core/constant/icons.dart';
 import 'package:soccer_club_app/core/extention/builder_context_extension.dart';
@@ -235,24 +237,35 @@ class _SignUpPageState extends State<SignUpPage> with InputValidationMixin {
                   obscureText: !showPassword,
                 ),
                 const Spacer(),
-                SCButton(
-                  onPressed: _isButtonActive
-                      ? () {
-                          if (_formKey.currentState?.validate() ?? false) {
-                            debugPrint('Form is valid');
-                            // Navigate to the player page if the form is valid
-                            context.go(AppRoutes.signIn.path);
-                          } else {
-                            debugPrint('Form is invalid');
+                BlocListener<AuthSignUpBloc, AuthSignUpState>(
+                  listener: (context, state) {
+                    if (state is AuthenticationSucces) {
+                      context.go(AppRoutes.signIn.path);
+                    }
+                  },
+                  child: SCButton(
+                    onPressed: _isButtonActive
+                        ? () {
+                            BlocProvider.of<AuthSignUpBloc>(context).add(
+                                SendDataEvent(
+                                    email: _emailController.text,
+                                    password: _passwordController.text));
+
+                            if (_formKey.currentState?.validate() ?? false) {
+                              debugPrint('Form is valid');
+                              // Navigate to the player page if the form is valid
+                            } else {
+                              debugPrint('Form is invalid');
+                            }
                           }
-                        }
-                      : null,
-                  text: context.l10n.btnSignUp,
-                  style: context.textTheme.headlineSmall,
-                  backgroundColor: _isButtonActive
-                      ? AppColor.onTertiary
-                      : AppColor.whiteFlash,
-                  height: context.getVerticalSize(60),
+                        : null,
+                    text: context.l10n.btnSignUp,
+                    style: context.textTheme.headlineSmall,
+                    backgroundColor: _isButtonActive
+                        ? AppColor.onTertiary
+                        : AppColor.whiteFlash,
+                    height: context.getVerticalSize(60),
+                  ),
                 ),
                 SizedBox(height: context.getVerticalSize(30)),
                 Text.rich(
