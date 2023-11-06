@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:soccer_club_app/pages/auth/reset_password/reset_password.dart';
-import 'package:soccer_club_app/pages/auth/sign_in/sign_in.dart';
-import 'package:soccer_club_app/pages/auth/sign_up/sign_up.dart';
+import 'package:soccer_club_app/features/auth/reset_password/pages/reset_password.dart';
+import 'package:soccer_club_app/features/auth/sign_in/pages/sign_in.dart';
+import 'package:soccer_club_app/features/auth/sign_up/pages/sign_up.dart';
 import 'package:soccer_club_app/pages/favourite/player.dart';
 import 'package:soccer_club_app/pages/fixtures/fixtures.dart';
-import 'package:soccer_club_app/pages/home/home.dart';
-import 'package:soccer_club_app/pages/match/next_match_details.dart';
+import 'package:soccer_club_app/features/home/pages/home.dart';
+import 'package:soccer_club_app/features/next_match/pages/next_match_details.dart';
 import 'package:soccer_club_app/pages/notifications/notifications.dart';
 import 'package:soccer_club_app/pages/onboarding/onboarding.dart';
 import 'package:soccer_club_app/pages/welcome/welcome.dart';

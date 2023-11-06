@@ -5,7 +5,7 @@ import 'package:soccer_club_app/core/constant/assets.dart';
 import 'package:soccer_club_app/core/extention/builder_context_extension.dart';
 import 'package:soccer_club_app/core/typography/app_fontweight.dart';
 import 'package:soccer_club_app/core/utils/utils.dart';
-import 'package:soccer_club_app/data/models/user_model.dart';
+import 'package:soccer_club_app/models/user_model.dart';
 import 'package:soccer_club_app/l10n/l10n.dart';
 import 'package:soccer_club_app/routes/routes.dart';
 import 'package:soccer_club_app/widgets/button.dart';

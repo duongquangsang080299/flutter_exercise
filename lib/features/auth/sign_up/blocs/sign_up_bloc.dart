@@ -1,8 +1,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:soccer_club_app/auth_sign_up_repo/sign_up_repo.dart';
-part 'auth_sign_up_event.dart';
-part 'auth_sign_up_state.dart';
+import 'package:soccer_club_app/features/auth/sign_up/repository/sign_up_repo.dart';
+part 'sign_up_event.dart';
+part 'sign_up_state.dart';
 
 class AuthSignUpBloc extends Bloc<AuthSignUpEvent, AuthSignUpState> {
   AuthSignUpBloc({required this.repo}) : super(AuthenticationInitial()) {

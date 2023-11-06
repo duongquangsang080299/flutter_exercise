@@ -12,24 +12,19 @@
 
 - 1 Dev
 
-***Start date :*** 21/08/2023
+***Start date :*** 02/11/2023
 
 
-***Timeline:*** 2 weeks ( 21/8/2023-5/9/2023)
+***Timeline:*** 2 weeks ( 02/11/2023-15/11/2023)
 
-***Actual:*** 20 days 
 
 ***Target :***
 
-- Setup tools for check Dart, Flutter code styles (Very Good Analysis)
-- Understanding and apply Flutter Widget for building UI
-- Apply responsive & adaptive for build mobile app support various Android & iOS devices resolution (with device_preview plugin)
-- Interactive (Tap, double tap, swipe, etc..)
-- Multi-languages with L10n and theme (dark, light)
-- Build a form with validation, auto focus, adjust layout, focus when keyboard pop-up
-- Portrait only
-- Understanding and apply navigation for switch between screens
-- Understanding and apply widget_book plugin for building UI documentation
+- Use storage to persist current user information logged in
+- Understanding and apply basic state management
+- Understanding and apply widget lifecycle
+- Make API calls from Flutter app
+- Apply unit testing (coverage >= 80%) and coverage report
 
 ## Prerequisites
 Before you continue, ensure you meet the following requirements:
@@ -38,27 +33,22 @@ Before you continue, ensure you meet the following requirements:
     
 ## Documents
 - [Plan Training Flutter](https://docs.google.com/document/d/1pJoljLSp24DMVJ0TVf86HTEyqC9LjLFA-YmMfjMhSLY/edit)
-- [Estimate](https://trello.com/b/YdQqrfmn/flutter-practice-part-1)
+- [Estimate](https://trello.com/b/82lBZEoK/flutter-practice-part-2)
 ​
 ## Deployment Plan
 - [X] Epic 1: Requirement analysis
 - [X] Epic 2: Setup environment
 - [X] Epic 3: Create skeleton structure practice
-- [X] Epic 4: Setup themes, routes
+- [X] Epic 4: Setup Firbase, Bloc
 - [X] Epic 5: Implement the UI
 - [X] Epic 6: Test the application and prepare for the review
 
 ## UI
-- [X] UI Splash Screen
-- [X] UI OnBroarding Screen
-- [X] UI Welcome Screen
-- [X] UI Sign In Screen
-- [X] UI Sign Up Screen
-- [X] UI Player Favorite Screen
-- [X] UI Home Screen
-- [X] UI Next Match Details Screen
-- [X] UI Fixture Screen
-- [X] UI Notifications Screen
+- [] Sign In Screen + Bloc + FireBase
+- [] Sign Up Screen + Bloc + FireBase
+- [] Forgot Password Screen + Bloc + FireBase
+- [] Home Screen + Bloc + API
+- [] Next Match Screen + Bloc + API
 ## Installation
 1. Clone the repository:
 ​
@@ -68,12 +58,12 @@ Before you continue, ensure you meet the following requirements:
 2. Checkout branch:
 ​
     ```
-    git checkout <practice-one> 
+    git checkout <practice-two> 
     ```
 3. Pull origin branch:
 ​
     ```
-    git pull origin <practice-one> 
+    git pull origin <practice-two> 
     ```
 4. Run project
    ```

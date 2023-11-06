@@ -1,4 +1,4 @@
-part of 'auth_sign_up_bloc.dart';
+part of 'sign_up_bloc.dart';
 
 @immutable
 abstract class AuthSignUpEvent {}
