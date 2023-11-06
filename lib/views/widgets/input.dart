@@ -3,7 +3,7 @@ import 'package:soccer_club_app/core/color/app_color.dart';
 import 'package:soccer_club_app/core/extention/builder_context_extension.dart';
 import 'package:soccer_club_app/core/typography/app_fontweight.dart';
 import 'package:soccer_club_app/core/utils/validator_utils.dart';
-import 'package:soccer_club_app/widgets/text.dart';
+import 'package:soccer_club_app/views/widgets/text.dart';
 
 class SCInput extends StatelessWidget with InputValidationMixin {
   const SCInput({

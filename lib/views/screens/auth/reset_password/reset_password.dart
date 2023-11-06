@@ -9,10 +9,11 @@ import 'package:soccer_club_app/core/typography/app_fontweight.dart';
 import 'package:soccer_club_app/core/utils/size_utils.dart';
 import 'package:soccer_club_app/l10n/l10n.dart';
 import 'package:soccer_club_app/routes/routes.dart';
-import 'package:soccer_club_app/widgets/button.dart';
-import 'package:soccer_club_app/widgets/input.dart';
+
 import 'package:soccer_club_app/layout/scaffold.dart';
-import 'package:soccer_club_app/widgets/text.dart';
+import 'package:soccer_club_app/views/widgets/button.dart';
+import 'package:soccer_club_app/views/widgets/input.dart';
+import 'package:soccer_club_app/views/widgets/text.dart';
 
 class ForgotPasswordPage extends StatefulWidget {
   const ForgotPasswordPage({super.key});

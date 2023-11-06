@@ -8,11 +8,12 @@ import 'package:soccer_club_app/core/utils/size_utils.dart';
 import 'package:soccer_club_app/data/models/avatar_model.dart';
 import 'package:soccer_club_app/l10n/l10n.dart';
 import 'package:soccer_club_app/routes/routes.dart';
-import 'package:soccer_club_app/widgets/button.dart';
-import 'package:soccer_club_app/widgets/card.dart';
-import 'package:soccer_club_app/widgets/icon.dart';
+import 'package:soccer_club_app/views/widgets/button.dart';
+import 'package:soccer_club_app/views/widgets/card.dart';
+import 'package:soccer_club_app/views/widgets/icon.dart';
+import 'package:soccer_club_app/views/widgets/text.dart';
+
 import 'package:soccer_club_app/layout/scaffold.dart';
-import 'package:soccer_club_app/widgets/text.dart';
 
 class PlayerPage extends StatefulWidget {
   const PlayerPage({super.key});

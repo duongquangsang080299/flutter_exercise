@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:soccer_club_app/core/color/app_color.dart';
 import 'package:soccer_club_app/core/extention/builder_context_extension.dart';
-import 'package:soccer_club_app/widgets/text.dart';
+import 'package:soccer_club_app/views/widgets/text.dart';
 
 /// Define AppBar
 class SCAppBar extends StatelessWidget implements PreferredSize {

@@ -7,10 +7,10 @@ import 'package:soccer_club_app/core/constant/icons.dart';
 import 'package:soccer_club_app/core/extention/builder_context_extension.dart';
 import 'package:soccer_club_app/l10n/l10n.dart';
 import 'package:soccer_club_app/routes/routes.dart';
-import 'package:soccer_club_app/widgets/app_bar.dart';
-import 'package:soccer_club_app/widgets/card.dart';
+import 'package:soccer_club_app/views/widgets/app_bar.dart';
+import 'package:soccer_club_app/views/widgets/card.dart';
+import 'package:soccer_club_app/views/widgets/text.dart';
 import 'package:soccer_club_app/layout/scaffold.dart';
-import 'package:soccer_club_app/widgets/text.dart';
 
 class FixturesPage extends StatelessWidget {
   const FixturesPage({super.key});

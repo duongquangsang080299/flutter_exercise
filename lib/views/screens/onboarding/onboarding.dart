@@ -8,10 +8,11 @@ import 'package:soccer_club_app/core/utils/utils.dart';
 import 'package:soccer_club_app/data/models/user_model.dart';
 import 'package:soccer_club_app/l10n/l10n.dart';
 import 'package:soccer_club_app/routes/routes.dart';
-import 'package:soccer_club_app/widgets/button.dart';
-import 'package:soccer_club_app/widgets/dots_indicator.dart';
+import 'package:soccer_club_app/views/widgets/button.dart';
+import 'package:soccer_club_app/views/widgets/dots_indicator.dart';
+
 import 'package:soccer_club_app/layout/scaffold.dart';
-import 'package:soccer_club_app/widgets/text.dart';
+import 'package:soccer_club_app/views/widgets/text.dart';
 
 /// Define the OnBoardingPage widget
 class OnBoardingPage extends StatefulWidget {

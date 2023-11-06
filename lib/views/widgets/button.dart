@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:soccer_club_app/widgets/text.dart';
+import 'package:soccer_club_app/views/widgets/text.dart';
 
 /// Define SCButton widget with text
 class SCButton extends StatelessWidget {

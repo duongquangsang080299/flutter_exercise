@@ -1,41 +1,47 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:soccer_club_app/core/color/app_color.dart';
+import 'package:soccer_club_app/core/constant/icons.dart';
 import 'package:soccer_club_app/core/extention/builder_context_extension.dart';
 import 'package:soccer_club_app/core/typography/app_fontweight.dart';
 import 'package:soccer_club_app/core/utils/size_utils.dart';
 import 'package:soccer_club_app/core/utils/validator_utils.dart';
 import 'package:soccer_club_app/l10n/l10n.dart';
 import 'package:soccer_club_app/routes/routes.dart';
-import 'package:soccer_club_app/widgets/button.dart';
-import 'package:soccer_club_app/widgets/icon.dart';
-import 'package:soccer_club_app/widgets/input.dart';
-import 'package:soccer_club_app/layout/scaffold.dart';
-import 'package:soccer_club_app/widgets/text.dart';
 
-class SignInPage extends StatefulWidget {
-  const SignInPage({super.key});
+import 'package:soccer_club_app/layout/scaffold.dart';
+import 'package:soccer_club_app/views/widgets/button.dart';
+import 'package:soccer_club_app/views/widgets/icon.dart';
+import 'package:soccer_club_app/views/widgets/input.dart';
+import 'package:soccer_club_app/views/widgets/text.dart';
+
+class SignUpPage extends StatefulWidget {
+  const SignUpPage({super.key});
 
   @override
-  State<SignInPage> createState() => _SignInPageState();
+  State<SignUpPage> createState() => _SignUpPageState();
 }
 
-class _SignInPageState extends State<SignInPage> with InputValidationMixin {
+class _SignUpPageState extends State<SignUpPage> with InputValidationMixin {
   /// Create a GlobalKey for the form to access its state
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
-  /// Create controllers for the username and password text fields
+  /// Create controllers for the username,email and password text fields
   final TextEditingController _usernameController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
-  /// Create FocusNodes for the username and password fields
+  /// Create FocusNodes for the username,email and password fields
   final _usernameFocusNode = FocusNode();
+  final _emailFocusNode = FocusNode();
   final _passwordFocusNode = FocusNode();
 
   /// Booleans to track when to show validation hints
   bool showUsernameValidation = false;
   bool showPasswordValidation = false;
+  bool showEmailValidation = false;
 
   /// Boolean to track if the password field is filled
   bool isPasswordFilled = false;
@@ -50,10 +56,16 @@ class _SignInPageState extends State<SignInPage> with InputValidationMixin {
   void initState() {
     super.initState();
 
-    /// Add listeners to username and password FocusNodes to show/hide validation hints
+    /// Add listeners username, email and password FocusNodes show/hide validation hint
     _usernameFocusNode.addListener(() {
       setState(() {
         showUsernameValidation = _usernameFocusNode.hasFocus;
+      });
+    });
+
+    _emailFocusNode.addListener(() {
+      setState(() {
+        showEmailValidation = _emailFocusNode.hasFocus;
       });
     });
 
@@ -72,8 +84,12 @@ class _SignInPageState extends State<SignInPage> with InputValidationMixin {
       });
     });
 
-    /// Add listener username controller to update the button activation state
+    /// Add listener username,email controller to update button activation state
     _usernameController.addListener(() {
+      setState(_updateButtonState);
+    });
+
+    _emailController.addListener(() {
       setState(_updateButtonState);
     });
   }
@@ -83,6 +99,7 @@ class _SignInPageState extends State<SignInPage> with InputValidationMixin {
     setState(() {
       _isButtonActive = isPasswordFilled &&
           _usernameController.text.isNotEmpty &&
+          _emailController.text.isNotEmpty &&
           (_formKey.currentState?.validate() ?? false);
     });
   }
@@ -92,14 +109,57 @@ class _SignInPageState extends State<SignInPage> with InputValidationMixin {
     // Dispose of the FocusNodes and controllers to prevent memory leaks
     _usernameFocusNode.dispose();
     _passwordFocusNode.dispose();
+    _emailFocusNode.dispose();
     _usernameController.dispose();
+    _emailController.dispose();
     _passwordController.dispose();
     super.dispose();
   }
 
+  void _showTermsAndConditionsDialog(BuildContext context) {
+    // Show a dialog box with terms and conditions
+    showDialog<Widget>(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: SCText.displayMedium(
+            context,
+            text: context.l10n.termsandcondition,
+            style: context.textTheme.displayMedium?.copyWith(
+              color: AppColor.primary,
+            ),
+          ),
+          content: SingleChildScrollView(
+            child: SCText.bodyMedium(
+              context,
+              text: context.l10n.termandconditionofourapp,
+              style: context.textTheme.bodyMedium?.copyWith(),
+            ),
+          ),
+          actions: [
+            // Add a close button to dismiss the dialog
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: SCText.displaySmall(
+                context,
+                text: context.l10n.close,
+                style: context.textTheme.displayMedium?.copyWith(
+                  color: AppColor.primary,
+                ),
+              ),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    const sizedBox16 = SizedBox(height: 16);
+    const sizedBox20 = SizedBox(height: 20);
+
     return GestureDetector(
       onTap: () {
         // Unfocus the keyboard when tapped outside of the input fields
@@ -107,43 +167,56 @@ class _SignInPageState extends State<SignInPage> with InputValidationMixin {
       },
       child: SCScaffold(
         body: Form(
-          // Associate the form with a GlobalKey
           key: _formKey,
+          // Associate the form with a GlobalKey
           autovalidateMode: AutovalidateMode.onUserInteraction,
           child: Padding(
             padding: const EdgeInsets.all(28),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(height: context.getVerticalSize(87)),
+                IconButton(
+                  onPressed: () {
+                    context.go(AppRoutes.signIn.path);
+                  },
+                  icon: SvgPicture.asset(SCIcons.back),
+                ),
+                SizedBox(height: context.getVerticalSize(50)),
                 SCText.displaySmall(
                   context,
-                  text: context.l10n.signIn,
+                  text: context.l10n.createanAccount,
                   style: context.textTheme.displaySmall
                       ?.copyWith(color: AppColor.primary),
                 ),
-                sizedBox16,
+                const SizedBox(height: 16),
                 SCText.bodyLarge(
                   context,
                   text: context.l10n.description,
                 ),
-                SizedBox(height: getVerticalSize(30)),
-                // Username input field
+                SizedBox(
+                  height: getVerticalSize(30),
+                ),
                 SCInput.username(
                   focusNode: _usernameFocusNode,
                   controller: _usernameController,
                 ),
-                const SizedBox(height: 20),
-                SCInput.password(
-                  focusNode: _passwordFocusNode,
-                  fontSize: showPassword ? 16 : 12,
-                  validator: (input) {
-                    // Validate password input if focus is on the field
-                    if (showPasswordValidation) {
-                      return isPasswordValid(input ?? '')?.trimRight();
+                sizedBox20,
+                SCInput.email(
+                  focusNode: _emailFocusNode,
+                  validator: (email) {
+                    // Validate email input if focus is on the field
+                    if (showEmailValidation) {
+                      return isValidUserName(email ?? '');
                     }
                     return null;
                   },
+                  controller: _emailController,
+                ),
+                sizedBox20,
+                SCInput.password(
+                  focusNode: _passwordFocusNode,
+                  fontSize: showPassword ? 16 : 12,
+
                   controller: _passwordController,
                   suffixIcon: IconButton(
                     icon: showPassword
@@ -168,60 +241,57 @@ class _SignInPageState extends State<SignInPage> with InputValidationMixin {
                           if (_formKey.currentState?.validate() ?? false) {
                             debugPrint('Form is valid');
                             // Navigate to the player page if the form is valid
-                            context.go(AppRoutes.playerPage.path);
+                            context.go(AppRoutes.signIn.path);
                           } else {
                             debugPrint('Form is invalid');
                           }
                         }
                       : null,
-                  text: context.l10n.btnLogin,
+                  text: context.l10n.btnSignUp,
                   style: context.textTheme.headlineSmall,
-                  backgroundColor:
-                      _isButtonActive ? AppColor.primary : AppColor.whiteFlash,
+                  backgroundColor: _isButtonActive
+                      ? AppColor.onTertiary
+                      : AppColor.whiteFlash,
+                  height: context.getVerticalSize(60),
                 ),
-                sizedBox16,
+                SizedBox(height: context.getVerticalSize(30)),
                 Text.rich(
                   TextSpan(
                     children: [
                       TextSpan(
-                        text: context.l10n.forgotPassword,
+                        text: context.l10n.byTappingSignUpYouAcceptOur,
                         style: context.textTheme.bodyLarge?.copyWith(
                           color: AppColor.dimGray,
                         ),
                       ),
                       TextSpan(
-                        text: context.l10n.resetHere,
+                        text: context.l10n.terms,
+                        style: context.textTheme.bodyLarge?.copyWith(
+                          fontWeight: AppFontWeight.bold,
+                          color: AppColor.primary,
+                        ),
+                        recognizer: TapGestureRecognizer()..onTap = () {},
+                      ),
+                      TextSpan(
+                        text: context.l10n.and,
+                        style: context.textTheme.bodyLarge?.copyWith(
+                          color: AppColor.dimGray,
+                        ),
+                      ),
+                      TextSpan(
+                        text: context.l10n.condition,
                         style: context.textTheme.bodyLarge?.copyWith(
                           fontWeight: AppFontWeight.bold,
                           color: AppColor.primary,
                         ),
                         recognizer: TapGestureRecognizer()
                           ..onTap = () {
-                            context.go(AppRoutes.forgotPasswordPage.path);
+                            _showTermsAndConditionsDialog(context);
                           },
                       ),
                     ],
                   ),
-                ),
-                SizedBox(height: getVerticalSize(30)),
-                Align(
-                  child: SCText.bodyLarge(
-                    context,
-                    text: context.l10n.donthaveaccount,
-                    style: context.textTheme.bodyLarge
-                        ?.copyWith(color: AppColor.graysuva),
-                  ),
-                ),
-                const SizedBox(height: 19),
-                SCButton(
-                  onPressed: () {
-                    context.go(
-                      AppRoutes.signUp.path,
-                    );
-                  },
-                  text: context.l10n.btnAccount,
-                  style: context.textTheme.headlineSmall,
-                  backgroundColor: AppColor.onTertiary,
+                  textAlign: TextAlign.center,
                 ),
               ],
             ),
