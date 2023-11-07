@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -25,7 +26,33 @@ class ForgotPasswordPage extends StatefulWidget {
 class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
   /// Create a GlobalKey for the form to access its state
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final TextEditingController _emailController = TextEditingController();
+  final _emailFocusNode = FocusNode();
+
   bool showPassword = false;
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    super.dispose();
+  }
+
+  Future passwordReset() async {
+    try {
+      await FirebaseAuth.instance
+          .sendPasswordResetEmail(email: _emailController.text.trim());
+      // ignore: use_build_context_synchronously
+      showDialog(
+          context: context,
+          builder: (context) {
+            return const AlertDialog(
+              content: Text('Password reset link sent! Check your email'),
+            );
+          });
+    } on FirebaseAuthException catch (e) {
+      print(e);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -66,18 +93,22 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
               SizedBox(
                 height: context.getVerticalSize(50),
               ),
-              SCInput.email(),
+              SCInput.email(
+                focusNode: _emailFocusNode,
+                controller: _emailController,
+              ),
               const Spacer(),
               SCButton(
-                onPressed: () {
-                  final form = _formKey.currentState ?? FormState();
-                  if (form.validate()) {
-                    debugPrint('Form is valid');
-                    context.go(AppRoutes.signIn.path);
-                  } else {
-                    debugPrint('Form is invalid');
-                  }
-                },
+                onPressed: passwordReset,
+                // onPressed: () {
+                //   final form = _formKey.currentState ?? FormState();
+                //   if (form.validate()) {
+                //     debugPrint('Form is valid');
+                //     context.go(AppRoutes.signIn.path);
+                //   } else {
+                //     debugPrint('Form is invalid');
+                //   }
+                // },
                 text: context.l10n.btnResetPassword,
                 backgroundColor: AppColor.primary,
                 height: context.getVerticalSize(60),

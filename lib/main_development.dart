@@ -1,5 +1,6 @@
 // ignore: depend_on_referenced_packages
 import 'package:device_preview/device_preview.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -13,7 +14,7 @@ import 'package:soccer_club_app/data/repositories/sign_up_repo.dart';
 import 'package:soccer_club_app/l10n/l10n.dart';
 import 'package:soccer_club_app/routes/routes.dart';
 
-void main() async {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
       options: const FirebaseOptions(
@@ -24,6 +25,7 @@ void main() async {
     authDomain: 'sporrt-club-app.firebaseapp.com',
     storageBucket: 'sporrt-club-app.appspot.com',
   ));
+  await FirebaseAuth.instance.setPersistence(Persistence.LOCAL);
   runApp(
     DevicePreview(
       builder: (context) => const MyApp(),
@@ -32,7 +34,7 @@ void main() async {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -47,11 +49,11 @@ class MyApp extends StatelessWidget {
       ],
       child: MultiBlocProvider(
         providers: [
-          BlocProvider(
+          BlocProvider<AuthSignUpBloc>(
             create: (context) => AuthSignUpBloc(
                 repo: RepositoryProvider.of<SignUpRepo>(context)),
           ),
-          BlocProvider(
+          BlocProvider<AuthSignInBloc>(
             create: (context) => AuthSignInBloc(
                 repo: RepositoryProvider.of<SignInRepo>(context)),
           ),
@@ -80,25 +82,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-//     return MaterialApp.router(
-//       debugShowCheckedModeBanner: false,
-//       theme: const AppTheme().themeData,
-//       darkTheme: const AppTheme().darkTheme,
-//       locale: DevicePreview.locale(context),
-//       builder: DevicePreview.appBuilder,
-//       localizationsDelegates: const [
-//         AppLocalizations.delegate,
-//         GlobalMaterialLocalizations.delegate,
-//         GlobalWidgetsLocalizations.delegate,
-//         GlobalCupertinoLocalizations.delegate,
-//       ],
-//       supportedLocales: const [
-//         Locale('en'), // English
-//         Locale('es'), // Spanish
-//       ],
-//       routeInformationProvider: appRouter.routeInformationProvider,
-//       routeInformationParser: appRouter.routeInformationParser,
-//       routerDelegate: appRouter.routerDelegate,
-//     );
-//   }
-// }
