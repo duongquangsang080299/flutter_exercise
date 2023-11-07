@@ -1,18 +1,17 @@
 // ignore: depend_on_referenced_packages
+import 'dart:async';
+
 import 'package:device_preview/device_preview.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:soccer_club_app/blocs/auth_bloc/sign_in_bloc/sign_in_bloc.dart';
-import 'package:soccer_club_app/blocs/auth_bloc/sign_up_bloc/sign_up_bloc.dart';
+import 'package:soccer_club_app/blocs/auth/sign_in/sign_in_bloc.dart';
+import 'package:soccer_club_app/blocs/auth/sign_up/sign_up_bloc.dart';
 import 'package:soccer_club_app/core/theme/app_theme.dart';
-import 'package:soccer_club_app/data/repositories/sign_in_repo.dart';
-import 'package:soccer_club_app/data/repositories/sign_up_repo.dart';
-import 'package:soccer_club_app/l10n/l10n.dart';
-import 'package:soccer_club_app/routes/routes.dart';
+import 'package:soccer_club_app/core/routes/routes.dart';
+import 'package:soccer_club_app/data/repositories/auth_repo.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -25,12 +24,7 @@ Future<void> main() async {
     authDomain: 'sporrt-club-app.firebaseapp.com',
     storageBucket: 'sporrt-club-app.appspot.com',
   ));
-  await FirebaseAuth.instance.setPersistence(Persistence.LOCAL);
-  runApp(
-    DevicePreview(
-      builder: (context) => const MyApp(),
-    ),
-  );
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -41,21 +35,21 @@ class MyApp extends StatelessWidget {
     return MultiRepositoryProvider(
       providers: [
         RepositoryProvider(
-          create: (context) => SignUpRepo(),
+          create: (context) => AuthRepo(),
         ),
         RepositoryProvider(
-          create: (context) => SignInRepo(),
+          create: (context) => AuthRepo(),
         ),
       ],
       child: MultiBlocProvider(
         providers: [
-          BlocProvider<AuthSignUpBloc>(
-            create: (context) => AuthSignUpBloc(
-                repo: RepositoryProvider.of<SignUpRepo>(context)),
+          BlocProvider<SignUpBloc>(
+            create: (context) =>
+                SignUpBloc(repo: RepositoryProvider.of<AuthRepo>(context)),
           ),
-          BlocProvider<AuthSignInBloc>(
-            create: (context) => AuthSignInBloc(
-                repo: RepositoryProvider.of<SignInRepo>(context)),
+          BlocProvider<SignInBloc>(
+            create: (context) =>
+                SignInBloc(repo: RepositoryProvider.of<AuthRepo>(context)),
           ),
         ],
         child: MaterialApp.router(
