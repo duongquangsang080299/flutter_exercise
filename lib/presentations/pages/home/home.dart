@@ -5,6 +5,7 @@ import 'package:soccer_club_app/core/color/app_color.dart';
 import 'package:soccer_club_app/core/constant/assets.dart';
 import 'package:soccer_club_app/core/constant/icons.dart';
 import 'package:soccer_club_app/core/extention/builder_context_extension.dart';
+import 'package:soccer_club_app/data/repositories/auth_repo.dart';
 import 'package:soccer_club_app/l10n/l10n.dart';
 import 'package:soccer_club_app/core/typography/app_fontweight.dart';
 import 'package:soccer_club_app/core/utils/size_utils.dart';
@@ -26,6 +27,8 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   // Define a private integer variable to track the current index.
   int _currentIndex = 0;
+
+  final authRepo = AuthRepo();
 
   @override
   Widget build(BuildContext context) {
@@ -61,8 +64,9 @@ class _HomePageState extends State<HomePage> {
                 icon: SvgPicture.asset(
                   SCIcons.menu,
                 ),
-                onPressed: () {
-                  context.go(AppRoutes.fixturesPage.path);
+                onPressed: () async {
+                  await authRepo.signOut();
+                  context.go(AppRoutes.onBoarding.path);
                 },
               ),
             ),

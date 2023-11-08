@@ -6,8 +6,6 @@ import 'package:soccer_club_app/core/color/app_color.dart';
 import 'package:soccer_club_app/core/constant/assets.dart';
 import 'package:soccer_club_app/core/routes/routes.dart';
 import 'package:soccer_club_app/presentations/layout/scaffold.dart';
-import 'package:soccer_club_app/presentations/pages/home/home.dart';
-import 'package:soccer_club_app/presentations/pages/welcome/welcome.dart';
 
 /// Define Splash Screen Class
 class SplashScreen extends StatefulWidget {

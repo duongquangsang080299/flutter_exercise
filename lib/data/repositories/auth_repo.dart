@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthRepo {
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -21,6 +22,15 @@ class AuthRepo {
   }
 
   Future<void> signOut() async {
-    await _auth.signOut();
+    try {
+      await _auth.signOut();
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+
+      /// Clear cache of SharePreferences
+      prefs.clear();
+      print("User signed out successfully");
+    } catch (e) {
+      print("Error signing out: $e");
+    }
   }
 }
