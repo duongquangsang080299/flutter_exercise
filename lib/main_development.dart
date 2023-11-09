@@ -47,10 +47,10 @@ class MyApp extends StatelessWidget {
             create: (context) =>
                 SignUpBloc(repo: RepositoryProvider.of<AuthRepo>(context)),
           ),
-          BlocProvider<SignInBloc>(
-            create: (context) =>
-                SignInBloc(repo: RepositoryProvider.of<AuthRepo>(context)),
-          ),
+          // BlocProvider<SignInBloc>(
+          //   create: (context) =>
+          //       SignInBloc(repo: RepositoryProvider.of<AuthRepo>(context)),
+          // ),
         ],
         child: MaterialApp.router(
           debugShowCheckedModeBanner: false,

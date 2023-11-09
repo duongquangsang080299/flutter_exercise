@@ -19,7 +19,7 @@ class SCInput extends StatelessWidget with InputValidationMixin {
     this.contentPadding,
     this.labelStyle,
     this.obscuringCharacter,
-    this.fontSize,
+    this.fontSize, this.onChanged,
   });
 
   /// Factory constructor for email input
@@ -27,6 +27,7 @@ class SCInput extends StatelessWidget with InputValidationMixin {
     FocusNode? focusNode,
     String? Function(String?)? validator,
     EdgeInsetsGeometry? contentPadding,
+    Function(String)? onChanged,
     TextEditingController? controller,
     TextStyle? labelStyle,
   }) {
@@ -37,6 +38,7 @@ class SCInput extends StatelessWidget with InputValidationMixin {
       textInputAction: TextInputAction.next,
       validator: validator,
       contentPadding: contentPadding,
+      onChanged: onChanged,
       controller: controller,
       labelStyle: labelStyle,
     );
@@ -69,6 +71,7 @@ class SCInput extends StatelessWidget with InputValidationMixin {
     TextEditingController? controller,
     String? obscuringCharacter,
     double? fontSize,
+    Function(String)? onChanged,
     TextStyle? labelStyle,
     String? Function(String?)? validator,
     bool obscureText = false,
@@ -80,6 +83,7 @@ class SCInput extends StatelessWidget with InputValidationMixin {
       obscureText: obscureText,
       fontSize: fontSize,
       suffixIcon: suffixIcon,
+      onChanged: onChanged,
       keyboardType: TextInputType.visiblePassword,
       contentPadding: contentPadding,
       obscuringCharacter: obscuringCharacter,
@@ -103,6 +107,7 @@ class SCInput extends StatelessWidget with InputValidationMixin {
   final EdgeInsetsGeometry? contentPadding;
   final String? obscuringCharacter;
   final double? fontSize;
+  final Function(String)? onChanged;
   @override
   Widget build(BuildContext context) {
     /// Build the TextFormField with provided properties
@@ -140,6 +145,7 @@ class SCInput extends StatelessWidget with InputValidationMixin {
           controller: controller,
           obscureText: obscureText ?? false,
           obscuringCharacter: '●',
+          onChanged: onChanged,
         ),
       ],
     );
