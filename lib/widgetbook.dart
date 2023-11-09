@@ -13,7 +13,6 @@ import 'package:soccer_club_app/presentations/widgets/card.dart';
 import 'package:soccer_club_app/presentations/widgets/text.dart';
 import 'package:soccer_club_app/widgetbook.directories.g.dart';
 import 'package:soccer_club_app/presentations/layout/bottom_navigation_bar.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 import 'package:soccer_club_app/presentations/widgets/dots_indicator.dart';
@@ -71,21 +70,7 @@ class WidgetbookApp extends StatelessWidget {
           ],
         ),
       ],
-      appBuilder: (context, child) {
-        return ScreenUtilInit(
-          designSize: const Size(375, 812),
-          minTextAdapt: true,
-          splitScreenMode: true,
-          useInheritedMediaQuery: true,
-          builder: (context, child) {
-            return MaterialApp(
-              debugShowCheckedModeBanner: false,
-              home: child,
-            );
-          },
-          child: child,
-        );
-      },
+      
     );
   }
 }
