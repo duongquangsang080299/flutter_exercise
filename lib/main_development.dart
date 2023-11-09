@@ -7,7 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:soccer_club_app/blocs/auth/sign_in/sign_in_bloc.dart';
 import 'package:soccer_club_app/blocs/auth/sign_up/sign_up_bloc.dart';
 import 'package:soccer_club_app/core/theme/app_theme.dart';
 import 'package:soccer_club_app/core/routes/routes.dart';
