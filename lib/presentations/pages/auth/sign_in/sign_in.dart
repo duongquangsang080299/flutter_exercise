@@ -52,21 +52,156 @@ class _SignInPageState extends State<SignInPage> {
               style: context.textTheme.displaySmall
                   ?.copyWith(color: AppColor.primary),
             ),
-            const SizedBox(
-              height: 16,
-            ),
+            SizedBox(height: getVerticalSize(16)),
             SCText.bodyLarge(
               context,
               text: context.l10n.description,
             ),
             SizedBox(height: getVerticalSize(30)),
             const LoginForm(),
+            Text.rich(
+              TextSpan(
+                children: [
+                  TextSpan(
+                    text: context.l10n.forgotPassword,
+                    style: context.textTheme.bodyLarge?.copyWith(
+                      color: AppColor.dimGray,
+                    ),
+                  ),
+                  TextSpan(
+                    text: context.l10n.resetHere,
+                    style: context.textTheme.bodyLarge?.copyWith(
+                      fontWeight: AppFontWeight.bold,
+                      color: AppColor.primary,
+                    ),
+                    recognizer: TapGestureRecognizer()
+                      ..onTap = () {
+                        context.go(AppRoutes.forgotPasswordPage.path);
+                      },
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(height: getVerticalSize(30)),
+            Align(
+              child: SCText.bodyLarge(
+                context,
+                text: context.l10n.donthaveaccount,
+                style: context.textTheme.bodyLarge
+                    ?.copyWith(color: AppColor.graysuva),
+              ),
+            ),
+            const SizedBox(height: 19),
+            SCButton(
+              onPressed: () {
+                context.go(
+                  AppRoutes.signUp.path,
+                );
+              },
+              text: context.l10n.btnAccount,
+              style: context.textTheme.headlineSmall,
+              backgroundColor: AppColor.onTertiary,
+            ),
           ]),
         ),
       ),
     ));
   }
 }
+
+class LoginForm extends StatelessWidget {
+  const LoginForm({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocListener<SignInBloc, SignInState>(
+      listener: (context, state) {
+        if (state.status.isFailure) {
+          ScaffoldMessenger.of(context)
+            ..hideCurrentSnackBar()
+            ..showSnackBar(
+                const SnackBar(content: Text('Authentication Failure')));
+        }
+      },
+      child: const Align(
+        alignment: Alignment(0, -1 / 3),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            _EmailInput(),
+            SizedBox(height: 20),
+            _PasswordInput(),
+            SizedBox(height: 30),
+            _LoginButton(),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _EmailInput extends StatelessWidget {
+  const _EmailInput();
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<SignInBloc, SignInState>(builder: (context, state) {
+      return SCInput.email(
+        onChanged: (email) =>
+            context.read<SignInBloc>().add(SignInEmailChanged(email)),
+        // decoration: InputDecoration(
+        //   labelText: 'email',
+        //   errorText:
+        //       state.email.displayError != null ? 'invalid username' : null,
+        // ),
+      );
+    });
+  }
+}
+
+class _PasswordInput extends StatelessWidget {
+  const _PasswordInput();
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<SignInBloc, SignInState>(builder: (context, state) {
+      return SCInput.password(
+        onChanged: (password) =>
+            context.read<SignInBloc>().add(SignInPasswordChanged(password)),
+      );
+    });
+  }
+}
+
+class _LoginButton extends StatelessWidget {
+  const _LoginButton();
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<SignInBloc, SignInState>(
+      builder: (context, state) {
+        return state.status.isInProgress
+            ? const CircularProgressIndicator()
+            : SCButton(
+                text: context.l10n.btnLogin,
+                style: context.textTheme.headlineSmall,
+                backgroundColor: AppColor.primary,
+              );
+      },
+    );
+  }
+}
+
+class MyWidget extends StatelessWidget {
+  const MyWidget({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const Placeholder();
+  }
+}
+
+
 
 // class SignInPage extends StatefulWidget {
 //   const SignInPage({super.key});
@@ -312,117 +447,3 @@ class _SignInPageState extends State<SignInPage> {
 //     );
 //   }
 // }
-
-class LoginForm extends StatelessWidget {
-  const LoginForm({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return BlocListener<SignInBloc, SignInState>(
-      listener: (context, state) {
-        if (state.status.isFailure) {
-          ScaffoldMessenger.of(context)
-            ..hideCurrentSnackBar()
-            ..showSnackBar(
-                const SnackBar(content: Text('Authentication Failure')));
-        }
-      },
-      child: Align(
-        alignment: const Alignment(0, -1 / 3),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            _EmailInput(),
-            const Padding(padding: EdgeInsets.all(12)),
-            _PasswordInput(),
-            const Padding(padding: EdgeInsets.all(12)),
-            _LoginButton(),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class _EmailInput extends StatelessWidget {
-  const _EmailInput({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return BlocBuilder<SignInBloc, SignInState>(builder: (context, state) {
-      return SCInput.email(
-        onChanged: (email) =>
-            context.read<SignInBloc>().add(SignInEmailChanged(email)),
-        // decoration: InputDecoration(
-        //   labelText: 'email',
-        //   errorText:
-        //       state.email.displayError != null ? 'invalid username' : null,
-        // ),
-      );
-    });
-  }
-}
-
-class _PasswordInput extends StatelessWidget {
-  const _PasswordInput({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return BlocBuilder<SignInBloc, SignInState>(builder: (context, state) {
-      return TextFormField(
-        onChanged: (password) =>
-            context.read<SignInBloc>().add(SignInPasswordChanged(password)),
-        obscureText: true,
-        decoration: InputDecoration(
-          labelText: 'password',
-          errorText:
-              state.password.displayError != null ? 'invalid password' : null,
-        ),
-      );
-    });
-  }
-}
-
-class _LoginButton extends StatelessWidget {
-  const _LoginButton({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return BlocBuilder<SignInBloc, SignInState>(
-      builder: (context, state) {
-        return state.status.isInProgress
-            ? const CircularProgressIndicator()
-            : SCButton(
-                text: context.l10n.btnLogin,
-                style: context.textTheme.headlineSmall,
-                backgroundColor: AppColor.primary,
-              );
-//                     backgroundColor: _isButtonActive
-//                         ? AppColor.primary
-//                         : AppColor.whiteFlash,)
-//                     onPressed: _isButtonActive
-//                         ? () {
-//                             BlocProvider.of<SignInBloc>(context).add(
-//                                 AuthSignInEvent(
-//                                     email: _emailController.text,
-//                                     password: _passwordController.text));
-//                             // if (_formKey.currentState?.validate() ?? false) {
-//                             //   debugPrint('Form is valid');
-//                             //   // Navigate to the player page if the form is valid
-//                             //   context.go(AppRoutes.playerPage.path);
-//                             // } else {
-//                             //   debugPrint('Form is invalid');
-//                             // }
-//                           }
-//                         : null,
-//                     text: context.l10n.btnLogin,
-//                     style: context.textTheme.headlineSmall,
-//                     backgroundColor: _isButtonActive
-//                         ? AppColor.primary
-//                         : AppColor.whiteFlash,
-//                   ),
-//                 ),
-      },
-    );
-  }
-}
