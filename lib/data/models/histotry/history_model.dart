@@ -1,4 +1,3 @@
-
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:flutter/foundation.dart';
 
@@ -10,7 +9,7 @@ class HistoryModel with _$HistoryModel {
   const factory HistoryModel({
     required String id,
     required String result,
-required DateTime dateTime,
+    required DateTime dateTime,
   }) = _HistoryModel;
 
   factory HistoryModel.fromJson(Map<String, Object?> json) =>
