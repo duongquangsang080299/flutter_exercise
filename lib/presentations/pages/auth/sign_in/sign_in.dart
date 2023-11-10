@@ -5,7 +5,7 @@ import 'package:go_router/go_router.dart';
 import 'package:soccer_club_app/blocs/auth/sign_in/sign_in_bloc.dart';
 import 'package:soccer_club_app/core/color/app_color.dart';
 import 'package:soccer_club_app/core/extention/builder_context_extension.dart';
-import 'package:soccer_club_app/data/models/password_model.dart';
+// import 'package:soccer_club_app/data/models/password_model.dart';
 import 'package:soccer_club_app/data/repositories/auth_repo.dart';
 import 'package:soccer_club_app/core/l10n/l10n.dart';
 import 'package:soccer_club_app/core/typography/app_fontweight.dart';

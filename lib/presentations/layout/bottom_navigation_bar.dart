@@ -5,9 +5,9 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:soccer_club_app/core/color/app_color.dart';
 import 'package:soccer_club_app/core/constant/icons.dart';
-import 'package:soccer_club_app/l10n/l10n.dart';
+import 'package:soccer_club_app/core/l10n/l10n.dart';
 import 'package:soccer_club_app/core/typography/typography.dart';
-import 'package:soccer_club_app/core/routes/routes.dart';
+import 'package:soccer_club_app/core/router/router.dart';
 
 class SCBottomNavigationBar extends StatelessWidget {
   const SCBottomNavigationBar({
