@@ -6,7 +6,7 @@ import 'package:soccer_club_app/core/extention/builder_context_extension.dart';
 import 'package:soccer_club_app/core/l10n/l10n.dart';
 import 'package:soccer_club_app/core/typography/app_fontweight.dart';
 import 'package:soccer_club_app/core/utils/utils.dart';
-import 'package:soccer_club_app/data/models/user_model.dart';
+import 'package:soccer_club_app/presentations/pages/onboarding/view/onboarding_model.dart';
 import 'package:soccer_club_app/presentations/widgets/button.dart';
 import 'package:soccer_club_app/presentations/widgets/dots_indicator.dart';
 import 'package:soccer_club_app/presentations/widgets/text.dart';
