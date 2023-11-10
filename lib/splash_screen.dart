@@ -4,7 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:soccer_club_app/core/color/app_color.dart';
 import 'package:soccer_club_app/core/constant/assets.dart';
-import 'package:soccer_club_app/core/routes/routes.dart';
+import 'package:soccer_club_app/core/router/router.dart';
 import 'package:soccer_club_app/presentations/layout/scaffold.dart';
 
 /// Define Splash Screen Class

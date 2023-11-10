@@ -9,7 +9,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:soccer_club_app/blocs/auth/sign_up/sign_up_bloc.dart';
 import 'package:soccer_club_app/core/theme/app_theme.dart';
-import 'package:soccer_club_app/core/routes/routes.dart';
+import 'package:soccer_club_app/core/router/router.dart';
 import 'package:soccer_club_app/data/repositories/auth_repo.dart';
 
 Future<void> main() async {
