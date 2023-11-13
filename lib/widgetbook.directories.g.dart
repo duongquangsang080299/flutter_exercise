@@ -19,14 +19,12 @@ final directories = <_i1.WidgetbookNode>[
       _i1.WidgetbookFolder(
         name: 'color',
         children: [
-          _i1.WidgetbookComponent(
+          _i1.WidgetbookLeafComponent(
             name: 'AppColor',
-            useCases: [
-              _i1.WidgetbookUseCase(
-                name: 'Color',
-                builder: _i2.appColor,
-              )
-            ],
+            useCase: _i1.WidgetbookUseCase(
+              name: 'Color',
+              builder: _i2.appColor,
+            ),
           )
         ],
       )
@@ -38,14 +36,12 @@ final directories = <_i1.WidgetbookNode>[
       _i1.WidgetbookFolder(
         name: 'layout',
         children: [
-          _i1.WidgetbookComponent(
+          _i1.WidgetbookLeafComponent(
             name: 'SCBottomNavigationBar',
-            useCases: [
-              _i1.WidgetbookUseCase(
-                name: 'Bottom Navigation Bar',
-                builder: _i2.bottomNavigationBar,
-              )
-            ],
+            useCase: _i1.WidgetbookUseCase(
+              name: 'Bottom Navigation Bar',
+              builder: _i2.bottomNavigationBar,
+            ),
           )
         ],
       ),
@@ -91,23 +87,19 @@ final directories = <_i1.WidgetbookNode>[
               ),
             ],
           ),
-          _i1.WidgetbookComponent(
+          _i1.WidgetbookLeafComponent(
             name: 'SCDotsIndicator',
-            useCases: [
-              _i1.WidgetbookUseCase(
-                name: 'Dots Indicator',
-                builder: _i2.dotsIndicator,
-              )
-            ],
+            useCase: _i1.WidgetbookUseCase(
+              name: 'Dots Indicator',
+              builder: _i2.dotsIndicator,
+            ),
           ),
-          _i1.WidgetbookComponent(
+          _i1.WidgetbookLeafComponent(
             name: 'SCText',
-            useCases: [
-              _i1.WidgetbookUseCase(
-                name: 'Text',
-                builder: _i2.textWidget,
-              )
-            ],
+            useCase: _i1.WidgetbookUseCase(
+              name: 'Text',
+              builder: _i2.textWidget,
+            ),
           ),
         ],
       ),
@@ -116,14 +108,12 @@ final directories = <_i1.WidgetbookNode>[
   _i1.WidgetbookFolder(
     name: 'widgets',
     children: [
-      _i1.WidgetbookComponent(
+      _i1.WidgetbookLeafComponent(
         name: 'Widget',
-        useCases: [
-          _i1.WidgetbookUseCase(
-            name: 'Onboarding Screen Button',
-            builder: _i2.goshtButton,
-          )
-        ],
+        useCase: _i1.WidgetbookUseCase(
+          name: 'Onboarding Screen Button',
+          builder: _i2.goshtButton,
+        ),
       )
     ],
   ),

@@ -1,31 +1,31 @@
-part of 'sign_in_bloc.dart';
+// part of 'sign_in_bloc.dart';
 
-@immutable
-abstract class SignInEvent extends Equatable {
-  const SignInEvent();
-  @override
-  List<Object> get props => [];
-}
+// @immutable
+// abstract class SignInEvent extends Equatable {
+//   const SignInEvent();
+//   @override
+//   List<Object> get props => [];
+// }
 
-final class SignInEmailChanged extends SignInEvent {
-  const SignInEmailChanged(this.email);
+// final class SignInEmailChanged extends SignInEvent {
+//   const SignInEmailChanged(this.email);
 
-  final String email;
-  @override
-  List<Object> get props => [email];
-}
+//   final String email;
+//   @override
+//   List<Object> get props => [email];
+// }
 
-final class SignInPasswordChanged extends SignInEvent {
-  const SignInPasswordChanged(this.password);
+// final class SignInPasswordChanged extends SignInEvent {
+//   const SignInPasswordChanged(this.password);
 
-  final String password;
-  @override
-  List<Object> get props => [password];
-}
+//   final String password;
+//   @override
+//   List<Object> get props => [password];
+// }
 
-final class SignInSubmitted extends SignInEvent {
-  const SignInSubmitted();
-}
+// final class SignInSubmitted extends SignInEvent {
+//   const SignInSubmitted();
+// }
 
 // class AuthSignInEvent extends SignInEvent {
 //   final String email;
