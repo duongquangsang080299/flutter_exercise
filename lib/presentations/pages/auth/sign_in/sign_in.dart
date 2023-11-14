@@ -149,6 +149,7 @@ class _EmailInput extends StatelessWidget {
     return BlocBuilder<SignInBloc, SignInState>(
       builder: (context, state) {
         return SCInput.email(
+          labelText: context.l10n.lablelEmail,
           onChanged: (email) =>
               context.read<SignInBloc>().add(SignInEmailChanged(email)),
         );
@@ -165,8 +166,14 @@ class _PasswordInput extends StatelessWidget {
     return BlocBuilder<SignInBloc, SignInState>(
       builder: (context, state) {
         return SCInput.password(
+          fontSize: state.showPassword ? 24 : 12,
+          labelText: context.l10n.lablelPassword,
           onChanged: (password) =>
               context.read<SignInBloc>().add(SignInPasswordChanged(password)),
+          showPassword: state.showPassword,
+          obscureText: !state.showPassword,
+          onTogglePassword: () =>
+              context.read<SignInBloc>().add(const TogglePasswordVisibility()),
         );
       },
     );

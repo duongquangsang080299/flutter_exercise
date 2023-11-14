@@ -17,6 +17,7 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
     on<SignInEmailChanged>(_onEmailChanged);
     on<SignInPasswordChanged>(_onPasswordChanged);
     on<SignInSubmitted>(_onSubmitted);
+    on<TogglePasswordVisibility>(_onTogglePasswordVisibility);
   }
 
   void _onEmailChanged(SignInEmailChanged event, Emitter<SignInState> emit) {
@@ -36,14 +37,19 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
     ));
   }
 
+  void _onTogglePasswordVisibility(
+      TogglePasswordVisibility event, Emitter<SignInState> emit) {
+    emit(state.copyWith(showPassword: !state.showPassword));
+  }
+
   void _onSubmitted(SignInSubmitted event, Emitter<SignInState> emit) async {
     if (state.isButtonActive) {
-      emit(SignInLoading());
+      emit(const SignInLoading());
       try {
         await authRepo.signIn(email: state.email, password: state.password);
         final SharedPreferences prefs = await SharedPreferences.getInstance();
         prefs.setBool('isLoggedIn', true);
-        emit(SignInSuccess());
+        emit(const SignInSuccess());
       } catch (_) {
         emit(SignInError(errorMessage: 'Failed to sign in: $_'));
       }

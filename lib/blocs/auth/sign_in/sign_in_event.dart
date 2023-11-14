@@ -46,44 +46,18 @@ class UpdateFormEvent extends SignInEvent {
   const UpdateFormEvent({required this.email, required this.password});
 }
 
+class TogglePasswordVisibility extends SignInEvent {
+  const TogglePasswordVisibility();
+}
+
 class EmailEvent extends SignInEvent {
   final String email;
 
-  EmailEvent({required this.email});
+  const EmailEvent({required this.email});
 }
 
 class PasswordEvent extends SignInEvent {
   final String password;
 
-  PasswordEvent({required this.password});
+  const PasswordEvent({required this.password});
 }
-
-
-// class AuthSignInEvent extends SignInEvent {
-//   final String email;
-//   final String password;
-
-//   const AuthSignInEvent({
-//     required this.email,
-//     required this.password,
-//   });
-// }
-
-// class UpdateFormEvent extends SignInEvent {
-//   final String email;
-//   final String password;
-
-//   const UpdateFormEvent({required this.email, required this.password});
-// }
-
-// class EmailEvent extends SignInEvent {
-//   final String email;
-
-//   EmailEvent({required this.email});
-// }
-
-// class PasswordEvent extends SignInEvent {
-//   final String password;
-
-//   PasswordEvent({required this.password});
-// }
