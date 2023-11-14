@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:soccer_club_app/presentations/pages/auth/reset_password/reset_password.dart';
 import 'package:soccer_club_app/presentations/pages/auth/sign_in/sign_in.dart';
-import 'package:soccer_club_app/presentations/pages/auth/sign_up/sign_up.dart';
 import 'package:soccer_club_app/presentations/pages/favourite/player.dart';
 import 'package:soccer_club_app/presentations/pages/fixtures/fixtures.dart';
 import 'package:soccer_club_app/presentations/pages/home/home.dart';
@@ -45,12 +44,12 @@ final GoRouter appRouter = GoRouter(
       builder: (BuildContext context, GoRouterState state) =>
           const SignInPage(),
     ),
-    GoRoute(
-      path: AppRoutes.signUp.path,
-      name: AppRoutes.signUp.name,
-      builder: (BuildContext context, GoRouterState state) =>
-          const SignUpPage(),
-    ),
+    // GoRoute(
+    //   path: AppRoutes.signUp.path,
+    //   name: AppRoutes.signUp.name,
+    //   builder: (BuildContext context, GoRouterState state) =>
+    //       const SignUpPage(),
+    // ),
     GoRoute(
       path: AppRoutes.playerPage.path,
       name: AppRoutes.playerPage.name,

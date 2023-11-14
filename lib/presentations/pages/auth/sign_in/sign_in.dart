@@ -5,21 +5,18 @@ import 'package:go_router/go_router.dart';
 import 'package:soccer_club_app/blocs/auth/sign_in/sign_in_bloc.dart';
 import 'package:soccer_club_app/core/color/app_color.dart';
 import 'package:soccer_club_app/core/extention/builder_context_extension.dart';
-// import 'package:soccer_club_app/data/models/password_model.dart';
-import 'package:soccer_club_app/data/repositories/auth_repo.dart';
 import 'package:soccer_club_app/core/l10n/l10n.dart';
+import 'package:soccer_club_app/core/router/router.dart';
 import 'package:soccer_club_app/core/typography/app_fontweight.dart';
 import 'package:soccer_club_app/core/utils/size_utils.dart';
-import 'package:soccer_club_app/core/utils/validator_utils.dart';
+import 'package:soccer_club_app/data/repositories/auth_repo.dart';
+import 'package:soccer_club_app/presentations/layout/scaffold.dart';
 import 'package:soccer_club_app/presentations/widgets/button.dart';
-import 'package:soccer_club_app/presentations/widgets/icon.dart';
 import 'package:soccer_club_app/presentations/widgets/input.dart';
 import 'package:soccer_club_app/presentations/widgets/text.dart';
-import 'package:soccer_club_app/core/router/router.dart';
-import 'package:soccer_club_app/presentations/layout/scaffold.dart';
 
 class SignInPage extends StatefulWidget {
-  const SignInPage({super.key});
+  const SignInPage({Key? key}) : super(key: key);
 
   @override
   State<SignInPage> createState() => _SignInPageState();
@@ -31,85 +28,89 @@ class _SignInPageState extends State<SignInPage> {
   @override
   Widget build(BuildContext context) {
     return SCScaffold(
-        body: Form(
-      key: _formKey,
-      autovalidateMode: AutovalidateMode.onUserInteraction,
-      child: Padding(
-        padding: const EdgeInsets.all(28),
-        child: BlocProvider(
-          create: (context) {
-            return SignInBloc(
-              authRepo: RepositoryProvider.of<AuthRepo>(context),
-            );
-          },
-          child:
-              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            SizedBox(height: context.getVerticalSize(87)),
-            SCText.displaySmall(
-              context,
-              text: context.l10n.signIn,
-              style: context.textTheme.displaySmall
-                  ?.copyWith(color: AppColor.primary),
-            ),
-            SizedBox(height: getVerticalSize(16)),
-            SCText.bodyLarge(
-              context,
-              text: context.l10n.description,
-            ),
-            SizedBox(height: getVerticalSize(30)),
-            const LoginForm(),
-            Text.rich(
-              TextSpan(
-                children: [
-                  TextSpan(
-                    text: context.l10n.forgotPassword,
-                    style: context.textTheme.bodyLarge?.copyWith(
-                      color: AppColor.dimGray,
-                    ),
+      body: Form(
+        key: _formKey,
+        autovalidateMode: AutovalidateMode.onUserInteraction,
+        child: Padding(
+          padding: const EdgeInsets.all(28),
+          child: BlocProvider(
+            create: (context) {
+              return SignInBloc(
+                authRepo: RepositoryProvider.of<AuthRepo>(context),
+              );
+            },
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(height: context.getVerticalSize(87)),
+                SCText.displaySmall(
+                  context,
+                  text: context.l10n.signIn,
+                  style: context.textTheme.displaySmall?.copyWith(
+                    color: AppColor.primary,
                   ),
+                ),
+                SizedBox(height: getVerticalSize(16)),
+                SCText.bodyLarge(
+                  context,
+                  text: context.l10n.description,
+                ),
+                SizedBox(height: getVerticalSize(30)),
+                const LoginForm(),
+                Text.rich(
                   TextSpan(
-                    text: context.l10n.resetHere,
-                    style: context.textTheme.bodyLarge?.copyWith(
-                      fontWeight: AppFontWeight.bold,
-                      color: AppColor.primary,
-                    ),
-                    recognizer: TapGestureRecognizer()
-                      ..onTap = () {
-                        context.go(AppRoutes.forgotPasswordPage.path);
-                      },
+                    children: [
+                      TextSpan(
+                        text: context.l10n.forgotPassword,
+                        style: context.textTheme.bodyLarge?.copyWith(
+                          color: AppColor.dimGray,
+                        ),
+                      ),
+                      TextSpan(
+                        text: context.l10n.resetHere,
+                        style: context.textTheme.bodyLarge?.copyWith(
+                          fontWeight: AppFontWeight.bold,
+                          color: AppColor.primary,
+                        ),
+                        recognizer: TapGestureRecognizer()
+                          ..onTap = () {
+                            context.go(AppRoutes.forgotPasswordPage.path);
+                          },
+                      ),
+                    ],
                   ),
-                ],
-              ),
+                ),
+                SizedBox(height: getVerticalSize(30)),
+                Align(
+                  child: SCText.bodyLarge(
+                    context,
+                    text: context.l10n.donthaveaccount,
+                    style: context.textTheme.bodyLarge
+                        ?.copyWith(color: AppColor.graysuva),
+                  ),
+                ),
+                const SizedBox(height: 19),
+                SCButton(
+                  onPressed: () {
+                    context.go(
+                      AppRoutes.signUp.path,
+                    );
+                  },
+                  text: context.l10n.btnAccount,
+                  style: context.textTheme.headlineSmall,
+                  backgroundColor: AppColor.onTertiary,
+                ),
+              ],
             ),
-            SizedBox(height: getVerticalSize(30)),
-            Align(
-              child: SCText.bodyLarge(
-                context,
-                text: context.l10n.donthaveaccount,
-                style: context.textTheme.bodyLarge
-                    ?.copyWith(color: AppColor.graysuva),
-              ),
-            ),
-            const SizedBox(height: 19),
-            SCButton(
-              onPressed: () {
-                context.go(
-                  AppRoutes.signUp.path,
-                );
-              },
-              text: context.l10n.btnAccount,
-              style: context.textTheme.headlineSmall,
-              backgroundColor: AppColor.onTertiary,
-            ),
-          ]),
+          ),
         ),
       ),
-    ));
+    );
   }
 }
 
 class LoginForm extends StatelessWidget {
-  const LoginForm({super.key});
+  const LoginForm({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -119,7 +120,8 @@ class LoginForm extends StatelessWidget {
           ScaffoldMessenger.of(context)
             ..hideCurrentSnackBar()
             ..showSnackBar(
-                const SnackBar(content: Text('Authentication Failure')));
+              const SnackBar(content: Text('Authentication Failure')),
+            );
         }
       },
       child: const Align(
@@ -144,17 +146,14 @@ class _EmailInput extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<SignInBloc, SignInState>(builder: (context, state) {
-      return SCInput.email(
-        onChanged: (email) =>
-            context.read<SignInBloc>().add(SignInEmailChanged(email)),
-        // decoration: InputDecoration(
-        //   labelText: 'email',
-        //   errorText:
-        //       state.email.displayError != null ? 'invalid username' : null,
-        // ),
-      );
-    });
+    return BlocBuilder<SignInBloc, SignInState>(
+      builder: (context, state) {
+        return SCInput.email(
+          onChanged: (email) =>
+              context.read<SignInBloc>().add(SignInEmailChanged(email)),
+        );
+      },
+    );
   }
 }
 
@@ -163,12 +162,14 @@ class _PasswordInput extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<SignInBloc, SignInState>(builder: (context, state) {
-      return SCInput.password(
-        onChanged: (password) =>
-            context.read<SignInBloc>().add(SignInPasswordChanged(password)),
-      );
-    });
+    return BlocBuilder<SignInBloc, SignInState>(
+      builder: (context, state) {
+        return SCInput.password(
+          onChanged: (password) =>
+              context.read<SignInBloc>().add(SignInPasswordChanged(password)),
+        );
+      },
+    );
   }
 }
 
@@ -190,17 +191,6 @@ class _LoginButton extends StatelessWidget {
     );
   }
 }
-
-class MyWidget extends StatelessWidget {
-  const MyWidget({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Placeholder();
-  }
-}
-
-
 
 // class SignInPage extends StatefulWidget {
 //   const SignInPage({super.key});

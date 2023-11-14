@@ -1,88 +1,69 @@
-// import 'package:equatable/equatable.dart';
-// import 'package:flutter/material.dart';
-// import 'package:flutter_bloc/flutter_bloc.dart';
-// import 'package:formz/formz.dart';
-// import 'package:bloc/bloc.dart';
-// import 'package:shared_preferences/shared_preferences.dart';
-// import 'package:soccer_club_app/data/models/email_model.dart';
-// import 'package:soccer_club_app/data/repositories/auth_repo.dart';
-// import 'package:soccer_club_app/data/models/password_model.dart';
-// part 'sign_in_event.dart';
-// part 'sign_in_state.dart';
+import 'package:bloc/bloc.dart';
+import 'package:equatable/equatable.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:soccer_club_app/data/repositories/auth_repo.dart';
 
-// class SignInBloc extends Bloc<SignInEvent, SignInState> {
-//   SignInBloc({
-//     required AuthRepo authRepo,
-//   })  : _authRepo = authRepo,
-//         super(const SignInState()) {
-//     on<SignInEmailChanged>(_onEmailChanged);
-//     on<SignInPasswordChanged>(_onPasswordChanged);
-//     on<SignInSubmitted>(_onSubmitted);
-//   }
+part 'sign_in_event.dart';
+part 'sign_in_state.dart';
 
-//   final AuthRepo _authRepo;
-//   void _onEmailChanged(
-//     SignInEmailChanged event,
-//     Emitter<SignInState> emit,
-//   ) {
-//     final email = Email.dirty(event.email);
-//     emit(state.copyWith(
-//       email: email,
-//       isValid: Formz.validate([state.password, email]),
-//     ));
-//   }
+class SignInBloc extends Bloc<SignInEvent, SignInState> {
+  final AuthRepo authRepo;
 
-//   void _onPasswordChanged(
-//     SignInPasswordChanged event,
-//     Emitter<SignInState> emit,
-//   ) {
-//     final password = Password.dirty(event.password);
-//     emit(state.copyWith(
-//       password: password,
-//       isValid: Formz.validate([state.email, password]),
-//     ));
-//   }
+  SignInBloc({
+    required this.authRepo,
+  }) : super(const SignInInitial()) {
+    on<SignInEmailChanged>(_onEmailChanged);
+    on<SignInPasswordChanged>(_onPasswordChanged);
+    on<SignInSubmitted>(_onSubmitted);
+  }
 
-//   Future<void> _onSubmitted(
-//     SignInSubmitted event,
-//     Emitter<SignInState> emit,
-//   ) async {
-//     if (state.isValid) {
-//       emit(state.copyWith(status: FormzSubmissionStatus.inProgress));
-//       try {
-//         await _authRepo.signIn(
-//             email: state.email.value, password: state.password.value);
-//         final SharedPreferences prefs = await SharedPreferences.getInstance();
-//         prefs.setBool('isLoggedIn', true);
-//         emit(state.copyWith(status: FormzSubmissionStatus.success));
-//       } catch (_) {
-//         emit(state.copyWith(status: FormzSubmissionStatus.failure));
-//       }
-//     }
-//   }
-// }
+  void _onEmailChanged(SignInEmailChanged event, Emitter<SignInState> emit) {
+    final email = event.email;
+    emit(state.copyWith(
+      email: email,
+      isButtonActive: _validateButtonState(email, state.password),
+    ));
+  }
 
-// class SignInBloc extends Bloc<SignInEvent, SignInState> {
-//   SignInBloc({required this.repo}) : super(SignInInitial()) {
-//     on<AuthSignInEvent>((event, emit) async {
-//       try {
-//         emit(SignInLoading());
-//         await repo.signIn(email: event.email, password: event.password);
-//         final SharedPreferences prefs = await SharedPreferences.getInstance();
-//         prefs.setBool('isLoggedIn', true);
-//         emit(SignInSuccess());
-//       } catch (e) {
-//         print(e);
-//         emit(SignInError(errorMessage: 'Failed to sign in: $e'));
-//       }
-//     });
+  void _onPasswordChanged(
+      SignInPasswordChanged event, Emitter<SignInState> emit) {
+    final password = event.password;
+    emit(state.copyWith(
+      password: password,
+      isButtonActive: _validateButtonState(state.email, password),
+    ));
+  }
 
-//     on<UpdateFormEvent>((event, emit) {
-//       final isButtonActive =
-//           event.email.isNotEmpty && event.password.isNotEmpty;
-//       emit(UpdateForm(email: event.email, password: event.password, isButtonActive: isButtonActive));
-//     });
-//   } 
+  void _onSubmitted(SignInSubmitted event, Emitter<SignInState> emit) async {
+    if (state.isButtonActive) {
+      emit(SignInLoading());
+      try {
+        await authRepo.signIn(email: state.email, password: state.password);
+        final SharedPreferences prefs = await SharedPreferences.getInstance();
+        prefs.setBool('isLoggedIn', true);
+        emit(SignInSuccess());
+      } catch (_) {
+        emit(SignInError(errorMessage: 'Failed to sign in: $_'));
+      }
+    }
+  }
 
-//   final AuthRepo repo;
-// }
+  bool _validateButtonState(String email, String password) {
+    return email.isNotEmpty && password.isNotEmpty;
+  }
+}
+
+enum AuthStatus {
+  initial,
+  inProgress,
+  success,
+  failure,
+}
+
+extension AuthStatusExtensions on AuthStatus {
+  bool get isInProgress => this == AuthStatus.inProgress;
+  bool get isSuccess => this == AuthStatus.success;
+  bool get isFailure => this == AuthStatus.failure;
+}

@@ -1,66 +1,70 @@
-// part of 'sign_in_bloc.dart';
+part of 'sign_in_bloc.dart';
 
-// final class SignInState extends Equatable {
-//   const SignInState({
-//     this.status = FormzSubmissionStatus.initial,
-//     this.email = const Email.pure(),
-//     this.password = const Password.pure(),
-//     this.isValid = false,
-//   });
-  
-//   final FormzSubmissionStatus status;
-//   final Email email;
-//   final Password password;
-//   final bool isValid;
+class SignInState extends Equatable {
+  final String email;
+  final String password;
+  final bool isButtonActive;
+  final AuthStatus status;
 
-//   SignInState copyWith({
-//     FormzSubmissionStatus? status,
-//     Email? email,
-//     Password? password,
-//     bool? isValid,
-//   }) {
-//     return SignInState(
-//       status: status ?? this.status,
-//       email: email ?? this.email,
-//       password: password ?? this.password,
-//       isValid: isValid ?? this.isValid,
-//     );
-//   }
+  const SignInState({
+    required this.email,
+    required this.password,
+    required this.isButtonActive,
+    required this.status,
+  });
 
-//   @override
-//   List<Object> get props => [status, email, password];
-// }
-// @immutable
-// abstract class SignInState {
-//   final String email;
-//   final String password;
-//   final bool isButtonActive;
+  SignInState copyWith({
+    String? email,
+    String? password,
+    bool? isButtonActive,
+    AuthStatus? status,
+  }) {
+    return SignInState(
+      email: email ?? this.email,
+      password: password ?? this.password,
+      isButtonActive: isButtonActive ?? this.isButtonActive,
+      status: status ?? this.status,
+    );
+  }
 
-//   const SignInState({
-//     required this.email,
-//     required this.password,
-//     required this.isButtonActive,
-//   });
-// }
+  @override
+  List<Object?> get props => [email, password, isButtonActive, status];
+}
 
-// class SignInInitial extends SignInState {
-//   const SignInInitial()
-//       : super(email: '', password: '', isButtonActive: false);
-// }
+class SignInInitial extends SignInState {
+  const SignInInitial()
+      : super(
+            email: '',
+            password: '',
+            isButtonActive: false,
+            status: AuthStatus.initial);
+}
 
-// class SignInLoading extends SignInState {
-//   const SignInLoading()
-//       : super(email: '', password: '', isButtonActive: false);
-// }
+class SignInLoading extends SignInState {
+  const SignInLoading()
+      : super(
+            email: '',
+            password: '',
+            isButtonActive: false,
+            status: AuthStatus.inProgress);
+}
 
-// class SignInSuccess extends SignInState {
-//   const SignInSuccess()
-//       : super(email: '', password: '', isButtonActive: true);
-// }
+class SignInSuccess extends SignInState {
+  const SignInSuccess()
+      : super(
+            email: '',
+            password: '',
+            isButtonActive: true,
+            status: AuthStatus.success);
+}
 
-// class SignInError extends SignInState {
-//   final String errorMessage;
+class SignInError extends SignInState {
+  final String errorMessage;
 
-//   const SignInError({required this.errorMessage})
-//       : super(email: '', password: '', isButtonActive: false);
-// }
+  const SignInError({required this.errorMessage})
+      : super(
+            email: '',
+            password: '',
+            isButtonActive: false,
+            status: AuthStatus.failure);
+}
