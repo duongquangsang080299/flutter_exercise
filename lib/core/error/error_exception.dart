@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:http/http.dart' as http;
 import 'package:soccer_club_app/core/constant/app_exceptions.dart';
 
 class ErrorException extends Equatable implements Exception {
@@ -116,10 +117,12 @@ class AppException implements Exception {
 }
 
 class AppBaseResponse {
-  final int statusCode;
-  final dynamic data;
+  final http.Response response;
 
-  AppBaseResponse(this.statusCode, {this.data});
+  AppBaseResponse(this.response);
+
+  int get statusCode => response.statusCode;
+  dynamic get data => response.body;
 }
 
 enum AppExceptionType {
@@ -133,8 +136,10 @@ enum AppExceptionType {
   badResponse,
 }
 
-Future<void> processResponse(AppBaseResponse response) async {
+void processResponse(AppBaseResponse response) {
   if (response.statusCode == 401) {
-    // Perform actions for status code 401 (Unauthorized)
+    throw const UnauthorizedException();
+  } else if (response.statusCode >= 400 && response.statusCode < 600) {
+    throw AppException(AppExceptionType.badResponse, response: response);
   }
 }
