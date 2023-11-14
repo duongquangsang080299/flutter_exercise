@@ -1,50 +1,60 @@
+import 'dart:convert';
+
 import 'package:http/http.dart' as http;
 import 'package:soccer_club_app/core/error/error_exception.dart';
 
-class EndPointApi {
-  static Future<String> fetchData(String url) async {
+class ApiConsumer {
+  static Future<dynamic> _handleResponse(http.Response response) {
+    if (response.statusCode >= 200 && response.statusCode < 300) {
+      return json.decode(response.body);
+    } else {
+      throw AppException(AppExceptionType.connectionError, response: response);
+    }
+  }
+
+  static Future<dynamic> get(String url) async {
     try {
       final response = await http.get(Uri.parse(url));
-      if (response.statusCode == 200) {
-        return response.body;
-      } else {
-        throw AppException(AppExceptionType.badResponse, response: response);
-      }
+      return _handleResponse(response);
     } catch (e) {
-      throw AppException(AppExceptionType.connectionError);
+      throw AppException(AppExceptionType.badResponse);
     }
   }
 
-  static Future<void> addData(String url, Map<String, dynamic> data) async {
+  static Future<dynamic> post(String url, Map<String, dynamic> data) async {
     try {
-      final response = await http.post(Uri.parse(url), body: data);
-      if (response.statusCode != 201) {
-        throw AppException(AppExceptionType.badResponse, response: response);
-      }
+      final response = await http.post(Uri.parse(url), body: json.encode(data));
+      return _handleResponse(response);
     } catch (e) {
-      throw AppException(AppExceptionType.connectionError);
+      throw AppException(AppExceptionType.badResponse);
     }
   }
 
-  static Future<void> updateData(String url, Map<String, dynamic> data) async {
+  static Future<dynamic> put(String url, Map<String, dynamic> data) async {
     try {
-      final response = await http.put(Uri.parse(url), body: data);
-      if (response.statusCode != 200) {
-        throw AppException(AppExceptionType.badResponse, response: response);
-      }
+      final response = await http.put(Uri.parse(url), body: json.encode(data));
+      return _handleResponse(response);
     } catch (e) {
-      throw AppException(AppExceptionType.connectionError);
+      throw AppException(AppExceptionType.badResponse);
     }
   }
 
-  static Future<void> deleteData(String url) async {
+  static Future<dynamic> patch(String url, Map<String, dynamic> data) async {
+    try {
+      final response =
+          await http.patch(Uri.parse(url), body: json.encode(data));
+      return _handleResponse(response);
+    } catch (e) {
+      throw AppException(AppExceptionType.badResponse);
+    }
+  }
+
+  static Future<dynamic> delete(String url) async {
     try {
       final response = await http.delete(Uri.parse(url));
-      if (response.statusCode != 200) {
-        throw AppException(AppExceptionType.badResponse, response: response);
-      }
+      return _handleResponse(response);
     } catch (e) {
-      throw AppException(AppExceptionType.connectionError);
+      throw AppException(AppExceptionType.badResponse);
     }
   }
 }
