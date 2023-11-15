@@ -26,38 +26,17 @@ class SignInPasswordChanged extends SignInEvent {
 }
 
 class SignInSubmitted extends SignInEvent {
-  const SignInSubmitted();
-}
-
-class AuthSignInEvent extends SignInEvent {
   final String email;
   final String password;
 
-  const AuthSignInEvent({
+  const SignInSubmitted({
     required this.email,
     required this.password,
   });
-}
-
-class UpdateFormEvent extends SignInEvent {
-  final String email;
-  final String password;
-
-  const UpdateFormEvent({required this.email, required this.password});
 }
 
 class TogglePasswordVisibility extends SignInEvent {
   const TogglePasswordVisibility();
 }
 
-class EmailEvent extends SignInEvent {
-  final String email;
-
-  const EmailEvent({required this.email});
-}
-
-class PasswordEvent extends SignInEvent {
-  final String password;
-
-  const PasswordEvent({required this.password});
-}
+class ToggleValidatorEvent extends SignInEvent {}

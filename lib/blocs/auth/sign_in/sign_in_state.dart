@@ -6,6 +6,7 @@ class SignInState extends Equatable {
   final bool isButtonActive;
   final AuthStatus status;
   final bool showPassword;
+  final bool isEmailValidatorVisible;
 
   const SignInState({
     required this.email,
@@ -13,6 +14,7 @@ class SignInState extends Equatable {
     required this.isButtonActive,
     required this.status,
     required this.showPassword,
+    this.isEmailValidatorVisible = false,
   });
 
   SignInState copyWith({
@@ -21,6 +23,8 @@ class SignInState extends Equatable {
     bool? isButtonActive,
     AuthStatus? status,
     bool? showPassword,
+    bool? isEmailValidatorVisible,
+    bool? isPasswordValidatorVisible,
   }) {
     return SignInState(
       email: email ?? this.email,
@@ -28,6 +32,8 @@ class SignInState extends Equatable {
       isButtonActive: isButtonActive ?? this.isButtonActive,
       status: status ?? this.status,
       showPassword: showPassword ?? this.showPassword,
+      isEmailValidatorVisible:
+          isEmailValidatorVisible ?? this.isEmailValidatorVisible,
     );
   }
 

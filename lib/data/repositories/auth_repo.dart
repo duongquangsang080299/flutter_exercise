@@ -25,9 +25,7 @@ class AuthRepo {
     try {
       await _auth.signOut();
       SharedPreferences prefs = await SharedPreferences.getInstance();
-
-      /// Clear cache of SharePreferences
-      prefs.clear();
+      prefs.clear(); // Clear cache of SharedPreferences
       print("User signed out successfully");
     } catch (e) {
       print("Error signing out: $e");
