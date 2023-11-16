@@ -23,8 +23,8 @@ mixin _$SignInFormModel {
   String get email => throw _privateConstructorUsedError;
   String get password => throw _privateConstructorUsedError;
   bool get showPassword => throw _privateConstructorUsedError;
-  bool? get formValid => throw _privateConstructorUsedError;
-  bool? get processing => throw _privateConstructorUsedError;
+  @GlobalKeyConverter()
+  GlobalKey<FormState>? get formKey => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -42,8 +42,7 @@ abstract class $SignInFormModelCopyWith<$Res> {
       {String email,
       String password,
       bool showPassword,
-      bool? formValid,
-      bool? processing});
+      @GlobalKeyConverter() GlobalKey<FormState>? formKey});
 }
 
 /// @nodoc
@@ -62,8 +61,7 @@ class _$SignInFormModelCopyWithImpl<$Res, $Val extends SignInFormModel>
     Object? email = null,
     Object? password = null,
     Object? showPassword = null,
-    Object? formValid = freezed,
-    Object? processing = freezed,
+    Object? formKey = freezed,
   }) {
     return _then(_value.copyWith(
       email: null == email
@@ -78,14 +76,10 @@ class _$SignInFormModelCopyWithImpl<$Res, $Val extends SignInFormModel>
           ? _value.showPassword
           : showPassword // ignore: cast_nullable_to_non_nullable
               as bool,
-      formValid: freezed == formValid
-          ? _value.formValid
-          : formValid // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      processing: freezed == processing
-          ? _value.processing
-          : processing // ignore: cast_nullable_to_non_nullable
-              as bool?,
+      formKey: freezed == formKey
+          ? _value.formKey
+          : formKey // ignore: cast_nullable_to_non_nullable
+              as GlobalKey<FormState>?,
     ) as $Val);
   }
 }
@@ -102,8 +96,7 @@ abstract class _$$SignInFormModelImplCopyWith<$Res>
       {String email,
       String password,
       bool showPassword,
-      bool? formValid,
-      bool? processing});
+      @GlobalKeyConverter() GlobalKey<FormState>? formKey});
 }
 
 /// @nodoc
@@ -120,8 +113,7 @@ class __$$SignInFormModelImplCopyWithImpl<$Res>
     Object? email = null,
     Object? password = null,
     Object? showPassword = null,
-    Object? formValid = freezed,
-    Object? processing = freezed,
+    Object? formKey = freezed,
   }) {
     return _then(_$SignInFormModelImpl(
       email: null == email
@@ -136,27 +128,23 @@ class __$$SignInFormModelImplCopyWithImpl<$Res>
           ? _value.showPassword
           : showPassword // ignore: cast_nullable_to_non_nullable
               as bool,
-      formValid: freezed == formValid
-          ? _value.formValid
-          : formValid // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      processing: freezed == processing
-          ? _value.processing
-          : processing // ignore: cast_nullable_to_non_nullable
-              as bool?,
+      formKey: freezed == formKey
+          ? _value.formKey
+          : formKey // ignore: cast_nullable_to_non_nullable
+              as GlobalKey<FormState>?,
     ));
   }
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(explicitToJson: true)
 class _$SignInFormModelImpl implements _SignInFormModel {
   const _$SignInFormModelImpl(
       {required this.email,
       required this.password,
       required this.showPassword,
-      this.formValid,
-      this.processing});
+      @GlobalKeyConverter() this.formKey});
 
   factory _$SignInFormModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$SignInFormModelImplFromJson(json);
@@ -168,13 +156,12 @@ class _$SignInFormModelImpl implements _SignInFormModel {
   @override
   final bool showPassword;
   @override
-  final bool? formValid;
-  @override
-  final bool? processing;
+  @GlobalKeyConverter()
+  final GlobalKey<FormState>? formKey;
 
   @override
   String toString() {
-    return 'SignInFormModel(email: $email, password: $password, showPassword: $showPassword, formValid: $formValid, processing: $processing)';
+    return 'SignInFormModel(email: $email, password: $password, showPassword: $showPassword, formKey: $formKey)';
   }
 
   @override
@@ -187,16 +174,13 @@ class _$SignInFormModelImpl implements _SignInFormModel {
                 other.password == password) &&
             (identical(other.showPassword, showPassword) ||
                 other.showPassword == showPassword) &&
-            (identical(other.formValid, formValid) ||
-                other.formValid == formValid) &&
-            (identical(other.processing, processing) ||
-                other.processing == processing));
+            (identical(other.formKey, formKey) || other.formKey == formKey));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, email, password, showPassword, formValid, processing);
+  int get hashCode =>
+      Object.hash(runtimeType, email, password, showPassword, formKey);
 
   @JsonKey(ignore: true)
   @override
@@ -215,11 +199,11 @@ class _$SignInFormModelImpl implements _SignInFormModel {
 
 abstract class _SignInFormModel implements SignInFormModel {
   const factory _SignInFormModel(
-      {required final String email,
-      required final String password,
-      required final bool showPassword,
-      final bool? formValid,
-      final bool? processing}) = _$SignInFormModelImpl;
+          {required final String email,
+          required final String password,
+          required final bool showPassword,
+          @GlobalKeyConverter() final GlobalKey<FormState>? formKey}) =
+      _$SignInFormModelImpl;
 
   factory _SignInFormModel.fromJson(Map<String, dynamic> json) =
       _$SignInFormModelImpl.fromJson;
@@ -231,9 +215,8 @@ abstract class _SignInFormModel implements SignInFormModel {
   @override
   bool get showPassword;
   @override
-  bool? get formValid;
-  @override
-  bool? get processing;
+  @GlobalKeyConverter()
+  GlobalKey<FormState>? get formKey;
   @override
   @JsonKey(ignore: true)
   _$$SignInFormModelImplCopyWith<_$SignInFormModelImpl> get copyWith =>
