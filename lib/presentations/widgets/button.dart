@@ -10,12 +10,14 @@ class SCButton extends StatelessWidget {
     this.backgroundColor,
     this.height = 60,
     this.style,
+    this.isActive = false,
   });
   final String text;
   final Color? backgroundColor;
   final VoidCallback? onPressed;
   final double height;
   final TextStyle? style;
+  final bool isActive;
 
   @override
   Widget build(BuildContext context) {
