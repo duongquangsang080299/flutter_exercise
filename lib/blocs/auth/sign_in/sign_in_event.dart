@@ -1,57 +1,47 @@
-// part of 'sign_in_bloc.dart';
+part of 'sign_in_bloc.dart';
 
-// @immutable
-// abstract class SignInEvent extends Equatable {
-//   const SignInEvent();
-//   @override
-//   List<Object> get props => [];
-// }
+/// SignIn Event
+abstract class SignInEvent extends Equatable {
+  final SignInFormModel form;
+  const SignInEvent(this.form) : super();
+  @override
+  List<Object> get props => [form];
+}
 
-// final class SignInEmailChanged extends SignInEvent {
-//   const SignInEmailChanged(this.email);
+// SignIn form changed event
+class SignInFormChangedEvent extends SignInEvent {
+  final SignInFormModel form;
+  const SignInFormChangedEvent({
+    required this.form,
+  }) : super(form);
+  @override
+  List<Object> get props => ['SignInFormChangedEvent', form];
+}
 
-//   final String email;
-//   @override
-//   List<Object> get props => [email];
-// }
+// SignIn submitted event
+class SignInSubmittedEvent extends SignInEvent {
+  final String email;
+  final String password;
+  const SignInSubmittedEvent({
+    required this.email,
+    required this.password,
+    required SignInFormModel form,
+  }) : super(form);
+  @override
+  List<Object> get props => ['SignInSubmittedEvent', email, password, form];
+}
 
-// final class SignInPasswordChanged extends SignInEvent {
-//   const SignInPasswordChanged(this.password);
+class TogglePasswordVisibility extends SignInEvent {
+  const TogglePasswordVisibility(super.form);
+}
 
-//   final String password;
-//   @override
-//   List<Object> get props => [password];
-// }
+class ChangeFocusedFieldEvent extends SignInEvent {
+  final FocusedField focusedField;
 
-// final class SignInSubmitted extends SignInEvent {
-//   const SignInSubmitted();
-// }
-
-// class AuthSignInEvent extends SignInEvent {
-//   final String email;
-//   final String password;
-
-//   const AuthSignInEvent({
-//     required this.email,
-//     required this.password,
-//   });
-// }
-
-// class UpdateFormEvent extends SignInEvent {
-//   final String email;
-//   final String password;
-
-//   const UpdateFormEvent({required this.email, required this.password});
-// }
-
-// class EmailEvent extends SignInEvent {
-//   final String email;
-
-//   EmailEvent({required this.email});
-// }
-
-// class PasswordEvent extends SignInEvent {
-//   final String password;
-
-//   PasswordEvent({required this.password});
-// }
+  const ChangeFocusedFieldEvent({
+    required SignInFormModel form,
+    required this.focusedField,
+  }) : super(form);
+  @override
+  List<Object> get props => ['ChangeFocusedFieldEvent', form, focusedField];
+}
