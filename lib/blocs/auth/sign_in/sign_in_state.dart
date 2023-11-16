@@ -1,85 +1,69 @@
 part of 'sign_in_bloc.dart';
 
-class SignInState extends Equatable {
-  final String email;
-  final String password;
-  final bool isButtonActive;
-  final AuthStatus status;
-  final bool showPassword;
-  final bool isEmailValidatorVisible;
-
+/// SignIn State
+abstract class SignInState extends Equatable {
+  final SignInFormModel form;
   const SignInState({
-    required this.email,
-    required this.password,
-    required this.isButtonActive,
-    required this.status,
-    required this.showPassword,
-    this.isEmailValidatorVisible = false,
-  });
-
-  SignInState copyWith({
-    String? email,
-    String? password,
-    bool? isButtonActive,
-    AuthStatus? status,
-    bool? showPassword,
-    bool? isEmailValidatorVisible,
-    bool? isPasswordValidatorVisible,
-  }) {
-    return SignInState(
-      email: email ?? this.email,
-      password: password ?? this.password,
-      isButtonActive: isButtonActive ?? this.isButtonActive,
-      status: status ?? this.status,
-      showPassword: showPassword ?? this.showPassword,
-      isEmailValidatorVisible:
-          isEmailValidatorVisible ?? this.isEmailValidatorVisible,
-    );
-  }
+    required this.form,
+  }) : super();
 
   @override
-  List<Object?> get props =>
-      [email, password, isButtonActive, status, showPassword];
+  List<Object> get props => (['SignInState', form]);
 }
 
-class SignInInitial extends SignInState {
-  const SignInInitial()
-      : super(
-            email: '',
-            password: '',
-            isButtonActive: false,
-            showPassword: false,
-            status: AuthStatus.initial);
+// Handle initial SignIn state
+class SignInInitialState extends SignInState {
+  const SignInInitialState(SignInFormModel form) : super(form: form);
+
+  @override
+  List<Object> get props => (['SignInInitialState ', form]);
 }
 
-class SignInLoading extends SignInState {
-  const SignInLoading()
-      : super(
-            email: '',
-            password: '',
-            isButtonActive: false,
-            showPassword: false,
-            status: AuthStatus.inProgress);
+// Handle SignIn changed state
+class SignInChangedState extends SignInState {
+  const SignInChangedState({required SignInFormModel form}) : super(form: form);
+
+  @override
+  List<Object> get props => (['SignInChangedState', form]);
 }
 
-class SignInSuccess extends SignInState {
-  const SignInSuccess()
-      : super(
-            email: '',
-            password: '',
-            isButtonActive: true,
-            showPassword: false,
-            status: AuthStatus.success);
+// Handle process SignIn state
+class SignInLoadingState extends SignInState {
+  const SignInLoadingState({required SignInFormModel form}) : super(form: form);
+
+  @override
+  List<Object> get props => (['SignInLoadingState', form]);
 }
 
-class SignInError extends SignInState {
-  final String errorMessage;
+// Handle success SignIn state
+class SignInSuccessState extends SignInState {
+  const SignInSuccessState({required SignInFormModel form}) : super(form: form);
 
-  const SignInError({required this.errorMessage})
-      : super(
-            email: '',
-            password: '',
-            isButtonActive: false,
-            showPassword: false,
-            status: AuthStatus.failure);
+  @override
+  List<Object> get props => (['SignInSuccessState', form]);
 }
+
+// Handle error SignIn state
+class SignInErrorState extends SignInState {
+  const SignInErrorState({
+    required SignInFormModel form,
+  }) : super(form: form);
+
+  @override
+  List<Object> get props => ([
+        'SignInErrorState',
+        form,
+      ]);
+}
+
+// SignIn form model
+SignInFormModel emptySignInState = SignInFormModel(
+  formValid: false,
+  password: '',
+  email: '',
+  focusedField: FocusedField.email,
+  processing: false,
+  goSignIn: false,
+  showPassword: false,
+  formKey: GlobalKey<FormState>(),
+);

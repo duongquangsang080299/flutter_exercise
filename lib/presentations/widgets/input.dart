@@ -141,7 +141,7 @@ class SCInput extends StatelessWidget with InputValidationMixin {
           SCText.displaySmall(
             context,
             text: labelText ?? '',
-            style: context.textTheme.displaySmall?.copyWith(
+            style: context.textTheme.bodyLarge?.copyWith(
               color: AppColor.graysuva,
               fontWeight: AppFontWeight.medium,
             ),

@@ -1,42 +1,54 @@
 part of 'sign_in_bloc.dart';
 
-@immutable
+/// SignIn Event
 abstract class SignInEvent extends Equatable {
-  const SignInEvent();
-  @override
-  List<Object> get props => [];
-}
+  final SignInFormModel form;
 
-class SignInEmailChanged extends SignInEvent {
-  final String email;
-
-  const SignInEmailChanged(this.email);
+  const SignInEvent(this.form) : super();
 
   @override
-  List<Object> get props => [email];
+  List<Object> get props => [form];
 }
 
-class SignInPasswordChanged extends SignInEvent {
-  final String password;
+// SignIn form changed event
+class SignInFormChangedEvent extends SignInEvent {
+  final SignInFormModel form;
 
-  const SignInPasswordChanged(this.password);
+  const SignInFormChangedEvent({
+    required this.form,
+  }) : super(form);
 
   @override
-  List<Object> get props => [password];
+  List<Object> get props => ['SignInFormChangedEvent', form];
 }
 
-class SignInSubmitted extends SignInEvent {
+// SignIn submitted event
+class SignInSubmittedEvent extends SignInEvent {
   final String email;
   final String password;
 
-  const SignInSubmitted({
+  const SignInSubmittedEvent({
     required this.email,
     required this.password,
-  });
+    required SignInFormModel form,
+  }) : super(form);
+
+  @override
+  List<Object> get props => ['SignInSubmittedEvent', email, password, form];
 }
 
 class TogglePasswordVisibility extends SignInEvent {
-  const TogglePasswordVisibility();
+  const TogglePasswordVisibility(super.form);
 }
 
-class ToggleValidatorEvent extends SignInEvent {}
+class ChangeFocusedFieldEvent extends SignInEvent {
+  final FocusedField focusedField;
+
+  const ChangeFocusedFieldEvent({
+    required SignInFormModel form,
+    required this.focusedField,
+  }) : super(form);
+
+  @override
+  List<Object> get props => ['ChangeFocusedFieldEvent', form, focusedField];
+}
