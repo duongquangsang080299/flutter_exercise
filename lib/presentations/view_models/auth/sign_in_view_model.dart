@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:soccer_club_app/presentations/view_models/auth/global_key_converter.dart';
+import 'package:soccer_club_app/presentations/view_models/sign_in/sign_in_view_model.dart';
 
 part 'sign_in_view_model.freezed.dart';
 part 'sign_in_view_model.g.dart';
@@ -11,6 +11,11 @@ part 'sign_in_view_model.g.dart';
 class SignInFormModel with _$SignInFormModel {
   @JsonSerializable(explicitToJson: true)
   const factory SignInFormModel({
+    bool? processing,
+    required String emailError,
+    required String passwordError,
+    required bool emailValid,
+    required bool passwordValid,
     required String email,
     required String password,
     required bool showPassword,
