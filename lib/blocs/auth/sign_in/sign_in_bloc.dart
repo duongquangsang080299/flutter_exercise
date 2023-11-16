@@ -1,14 +1,13 @@
 import 'package:equatable/equatable.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:soccer_club_app/data/models/sign_in/sign_in_model.dart';
+import 'package:soccer_club_app/core/utils/validator_utils.dart';
 import 'package:soccer_club_app/data/repositories/auth_repo.dart';
+import 'package:soccer_club_app/presentations/view_models/sign_in/sign_in_view_model.dart';
 
 part 'sign_in_event.dart';
 part 'sign_in_state.dart';
 
-/// SignIn Bloc
 class SignInBloc extends Bloc<SignInEvent, SignInState> {
   final SignInState initialState;
   final AuthRepo authRepo;
@@ -17,44 +16,88 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
     required this.initialState,
     required this.authRepo,
   }) : super(initialState) {
-    on<SignInFormChangedEvent>(_onSignInFormChanged);
+    on<SignInEmailChangedEvent>(_onEmailChanged);
+    on<SignInPasswordChangedEvent>(_onPasswordChanged);
     on<SignInSubmittedEvent>(_onSubmitted);
     on<TogglePasswordVisibility>(_onTogglePasswordVisibility);
   }
-  void _onSignInFormChanged(
-      SignInFormChangedEvent event, Emitter<SignInState> emit) {
-    // final formValid = event.form.formKey.currentState!.validate() || false;
-    /// Todo : Update
+
+  void _onEmailChanged(
+      SignInEmailChangedEvent event, Emitter<SignInState> emit) {
+    final emailError = InputValidationMixin.validEmail(event.form.email) ?? '';
+    final emailValid = emailError.isEmpty;
     emit(SignInChangedState(
-        form: event.form.copyWith(
-      formValid: formValid,
-    )));
+      form: event.form.copyWith(emailError: emailError, emailValid: emailValid),
+    ));
+  }
+
+  void _onPasswordChanged(
+      SignInPasswordChangedEvent event, Emitter<SignInState> emit) {
+    final passwordError =
+        InputValidationMixin.validPassword(event.form.password) ?? '';
+    final passwordValid = passwordError.isEmpty;
+    emit(SignInChangedState(
+      form: event.form
+          .copyWith(passwordError: passwordError, passwordValid: passwordValid),
+    ));
   }
 
   void _onSubmitted(
       SignInSubmittedEvent event, Emitter<SignInState> emit) async {
     try {
-      if (event.form.formValid) {
-        emit(SignInLoadingState(form: event.form.copyWith(processing: true)));
+      // Validate email and password
+      final emailError =
+          InputValidationMixin.validEmail(event.form.email) ?? '';
+      final passwordError =
+          InputValidationMixin.validPassword(event.form.password) ?? '';
+
+      final formValid = emailError.isEmpty && passwordError.isEmpty;
+
+      if (formValid) {
+        emit(SignInLoadingState(form: event.form));
+
+        // Perform sign-in logic
         await authRepo.signIn(
           email: event.email,
           password: event.password,
         );
+
+        // Save the login status to SharedPreferences
         final SharedPreferences prefs = await SharedPreferences.getInstance();
         prefs.setBool('isLoggedIn', true);
+
+        // Update the state on successful login
         emit(SignInSuccessState(
-          form: event.form.copyWith(goSignIn: true, processing: false),
+          form: event.form.copyWith(
+            processing: false,
+          ),
+        ));
+      } else {
+        // Update the state with validation errors
+        emit(SignInChangedState(
+          form: event.form.copyWith(
+            emailError: emailError,
+            passwordError: passwordError,
+            emailValid: emailError.isEmpty,
+            passwordValid: passwordError.isEmpty,
+            processing: false,
+          ),
         ));
       }
     } catch (e) {
+      // Handle errors during sign-in
       emit(SignInErrorState(
-        form: event.form.copyWith(processing: false),
+        form: event.form.copyWith(
+          processing: false,
+        ),
       ));
     }
   }
 
   void _onTogglePasswordVisibility(
-      TogglePasswordVisibility event, Emitter<SignInState> emit) {
+    TogglePasswordVisibility event,
+    Emitter<SignInState> emit,
+  ) {
     if (state is SignInChangedState) {
       final signInChangedState = state as SignInChangedState;
       emit(SignInChangedState(
