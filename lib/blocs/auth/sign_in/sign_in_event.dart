@@ -40,8 +40,10 @@ class ChangeFocusedFieldEvent extends SignInEvent {
 
   const ChangeFocusedFieldEvent({
     required SignInFormModel form,
-    required this.focusedField,
   }) : super(form);
   @override
-  List<Object> get props => ['ChangeFocusedFieldEvent', form, focusedField];
+  List<Object> get props => [
+        'ChangeFocusedFieldEvent',
+        form,
+      ];
 }

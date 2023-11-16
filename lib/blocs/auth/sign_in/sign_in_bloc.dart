@@ -20,11 +20,11 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
     on<SignInFormChangedEvent>(_onSignInFormChanged);
     on<SignInSubmittedEvent>(_onSubmitted);
     on<TogglePasswordVisibility>(_onTogglePasswordVisibility);
-    on<ChangeFocusedFieldEvent>(_onChangeFocusedField);
   }
   void _onSignInFormChanged(
       SignInFormChangedEvent event, Emitter<SignInState> emit) {
-    final formValid = event.form.formKey.currentState!.validate() || false;
+    // final formValid = event.form.formKey.currentState!.validate() || false;
+    /// Todo : Update
     emit(SignInChangedState(
         form: event.form.copyWith(
       formValid: formValid,
@@ -63,11 +63,5 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
         ),
       ));
     }
-  }
-
-  void _onChangeFocusedField(
-      ChangeFocusedFieldEvent event, Emitter<SignInState> emit) {
-    emit(SignInChangedState(
-        form: event.form.copyWith(focusedField: event.focusedField)));
   }
 }

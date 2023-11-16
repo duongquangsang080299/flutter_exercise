@@ -56,9 +56,6 @@ SignInFormModel emptySignInState = SignInFormModel(
   formValid: false,
   password: '',
   email: '',
-  focusedField: FocusedField.email,
   processing: false,
-  goSignIn: false,
   showPassword: false,
-  formKey: GlobalKey<FormState>(),
 );
