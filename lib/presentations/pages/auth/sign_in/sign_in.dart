@@ -167,9 +167,10 @@ class _EmailInput extends StatelessWidget {
             SCInput.email(
               labelText: context.l10n.lablelEmail,
               onChanged: (email) {
-                context.read<SignInBloc>().add(SignInFormChangedEvent(
+                context.read<SignInBloc>().add(SignInEmailChangedEvent(
                     form: state.form.copyWith(email: email)));
               },
+              errorText: state.form.emailError,
             ),
           ],
         );
@@ -189,14 +190,16 @@ class _PasswordInput extends StatelessWidget {
           fontSize: state.form.showPassword ? 24 : 12,
           labelText: context.l10n.lablelPassword,
           onChanged: (password) {
-            context.read<SignInBloc>().add(SignInFormChangedEvent(
-                form: state.form.copyWith(password: password)));
+            context.read<SignInBloc>().add(SignInPasswordChangedEvent(
+                  form: state.form.copyWith(password: password),
+                ));
           },
           showPassword: state.form.showPassword,
           obscureText: !state.form.showPassword,
           onTogglePassword: () => context
               .read<SignInBloc>()
               .add(TogglePasswordVisibility(state.form)),
+          errorText: state.form.passwordError,
         );
       },
     );
@@ -212,8 +215,8 @@ class _LoginButton extends StatelessWidget {
       builder: (context, state) {
         bool isButtonActive = false;
         if (state is SignInChangedState) {
-          final signInChangedState = state;
-          isButtonActive = signInChangedState.form.formValid;
+          isButtonActive =
+              state.form.emailValid && state.form.passwordError.isEmpty;
         }
         return SCButton(
           onPressed: isButtonActive

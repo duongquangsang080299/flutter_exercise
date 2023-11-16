@@ -25,6 +25,7 @@ class SCInput extends StatelessWidget with InputValidationMixin {
     this.onTogglePassword,
     this.onChanged,
     this.hiddenSufixIcon = false,
+    this.errorText,
   });
 
   factory SCInput.email({
@@ -36,6 +37,7 @@ class SCInput extends StatelessWidget with InputValidationMixin {
     Function(String)? onChanged,
     TextInputAction? textInputAction,
     TextStyle? labelStyle,
+    String? errorText,
     TextInputType keyboardType = TextInputType.emailAddress,
     EdgeInsetsGeometry? contentPadding,
   }) {
@@ -45,6 +47,7 @@ class SCInput extends StatelessWidget with InputValidationMixin {
       labelText: labelText,
       fontSize: fontSize,
       onChanged: onChanged,
+      errorText: errorText,
       keyboardType: keyboardType,
       contentPadding: contentPadding,
       textInputAction: textInputAction,
@@ -88,6 +91,7 @@ class SCInput extends StatelessWidget with InputValidationMixin {
     double? fontSize,
     Function(String)? onChanged,
     TextStyle? labelStyle,
+    String? errorText,
     bool? showPassword = false,
     Function()? onTogglePassword,
     bool? obscureText = true,
@@ -98,6 +102,7 @@ class SCInput extends StatelessWidget with InputValidationMixin {
       key: key,
       focusNode: focusNode,
       labelText: labelText,
+      errorText: errorText,
       obscureText: obscureText,
       fontSize: fontSize,
       suffixIcon: suffixIcon,
@@ -131,6 +136,7 @@ class SCInput extends StatelessWidget with InputValidationMixin {
   final bool? showPassword;
   final Function()? onTogglePassword;
   final bool? hiddenSufixIcon;
+  final String? errorText;
 
   @override
   Widget build(BuildContext context) {
@@ -175,6 +181,7 @@ class SCInput extends StatelessWidget with InputValidationMixin {
                   vertical: 15,
                   horizontal: 1,
                 ),
+            errorText: errorText,
           ),
           keyboardType: keyboardType,
           validator: validator,
