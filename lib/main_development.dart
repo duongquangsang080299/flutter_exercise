@@ -7,9 +7,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:soccer_club_app/blocs/auth/sign_in/sign_in_bloc.dart';
 import 'package:soccer_club_app/blocs/auth/sign_up/sign_up_bloc.dart';
-import 'package:soccer_club_app/core/theme/app_theme.dart';
 import 'package:soccer_club_app/core/router/router.dart';
+import 'package:soccer_club_app/core/theme/app_theme.dart';
 import 'package:soccer_club_app/data/repositories/auth_repo.dart';
 
 Future<void> main() async {
@@ -36,9 +37,6 @@ class MyApp extends StatelessWidget {
         RepositoryProvider(
           create: (context) => AuthRepo(),
         ),
-        RepositoryProvider(
-          create: (context) => AuthRepo(),
-        ),
       ],
       child: MultiBlocProvider(
         providers: [
@@ -46,10 +44,12 @@ class MyApp extends StatelessWidget {
             create: (context) =>
                 SignUpBloc(repo: RepositoryProvider.of<AuthRepo>(context)),
           ),
-          // BlocProvider<SignInBloc>(
-          //   create: (context) =>
-          //       SignInBloc(repo: RepositoryProvider.of<AuthRepo>(context)),
-          // ),
+          BlocProvider<SignInBloc>(
+            create: (context) => SignInBloc(
+              authRepo: RepositoryProvider.of<AuthRepo>(context),
+              initialState: SignInInitialState(emptySignInState),
+            ),
+          ),
         ],
         child: MaterialApp.router(
           debugShowCheckedModeBanner: false,

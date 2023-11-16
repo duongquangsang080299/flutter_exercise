@@ -32,5 +32,3 @@ mixin InputValidationMixin {
     return null;
   }
 }
-
-

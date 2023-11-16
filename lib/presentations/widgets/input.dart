@@ -3,20 +3,8 @@ import 'package:soccer_club_app/core/color/app_color.dart';
 import 'package:soccer_club_app/core/extention/builder_context_extension.dart';
 import 'package:soccer_club_app/core/typography/app_fontweight.dart';
 import 'package:soccer_club_app/core/utils/utils.dart';
+import 'package:soccer_club_app/presentations/widgets/icon.dart';
 import 'package:soccer_club_app/presentations/widgets/text.dart';
-
-// mixin EmailValidatorMixin {
-//   static String validEmail(String email) {
-//     if (email.isEmpty) {
-//       return 'Email is required';
-//     } else if (email.length < 6) {
-//       return 'Email 5-character minimun';
-//     } else if (!email.contains('@')) {
-//       return 'Email should contains @';
-//     }
-//     return 'Email is required';
-//   }
-// }
 
 class SCInput extends StatelessWidget with InputValidationMixin {
   const SCInput({
@@ -33,40 +21,46 @@ class SCInput extends StatelessWidget with InputValidationMixin {
     this.labelStyle,
     this.obscuringCharacter,
     this.fontSize,
+    this.showPassword = false,
+    this.onTogglePassword,
+    this.onChanged,
+    this.hiddenSufixIcon = false,
   });
 
-  /// Factory constructor for email input
   factory SCInput.email({
+    Key? key,
     FocusNode? focusNode,
-    TextInputType keyboardType = TextInputType.emailAddress,
-    String? labelText,
-    TextInputAction? textInputAction,
-    EdgeInsetsGeometry? contentPadding,
     TextEditingController? controller,
-    bool? obscureText = false,
+    String? labelText,
+    double? fontSize,
+    Function(String)? onChanged,
+    TextInputAction? textInputAction,
     TextStyle? labelStyle,
+    TextInputType keyboardType = TextInputType.emailAddress,
+    EdgeInsetsGeometry? contentPadding,
   }) {
     return SCInput(
+      key: key,
       focusNode: focusNode,
       labelText: labelText,
+      fontSize: fontSize,
+      onChanged: onChanged,
       keyboardType: keyboardType,
-      textInputAction: textInputAction,
-      obscureText: obscureText,
-      validator: (email) => InputValidationMixin.validEmail(email ?? ''),
       contentPadding: contentPadding,
+      textInputAction: textInputAction,
+      obscureText: false,
       controller: controller,
+      validator: (email) => InputValidationMixin.validEmail(email ?? ''),
       labelStyle: labelStyle,
     );
   }
 
-  /// Factory constructor for username input
   factory SCInput.username({
     FocusNode? focusNode,
     TextInputType keyboardType = TextInputType.name,
     TextInputAction? textInputAction,
     String? labelText,
     TextEditingController? controller,
-    bool? obscureText = false,
     TextStyle? labelStyle,
     EdgeInsetsGeometry? contentPadding,
   }) {
@@ -75,7 +69,7 @@ class SCInput extends StatelessWidget with InputValidationMixin {
       keyboardType: keyboardType,
       labelText: labelText,
       textInputAction: textInputAction,
-      obscureText: obscureText,
+      obscureText: false,
       controller: controller,
       validator: (username) =>
           InputValidationMixin.validUserName(username ?? ''),
@@ -84,7 +78,6 @@ class SCInput extends StatelessWidget with InputValidationMixin {
     );
   }
 
-  /// Factory constructor for password input
   factory SCInput.password({
     Key? key,
     FocusNode? focusNode,
@@ -93,8 +86,11 @@ class SCInput extends StatelessWidget with InputValidationMixin {
     String? labelText,
     String? obscuringCharacter,
     double? fontSize,
+    Function(String)? onChanged,
     TextStyle? labelStyle,
-    bool obscureText = false,
+    bool? showPassword = false,
+    Function()? onTogglePassword,
+    bool? obscureText = true,
     TextInputType keyboardType = TextInputType.visiblePassword,
     EdgeInsetsGeometry? contentPadding,
   }) {
@@ -105,7 +101,11 @@ class SCInput extends StatelessWidget with InputValidationMixin {
       obscureText: obscureText,
       fontSize: fontSize,
       suffixIcon: suffixIcon,
+      showPassword: showPassword,
+      onChanged: onChanged,
+      onTogglePassword: onTogglePassword,
       keyboardType: keyboardType,
+      hiddenSufixIcon: true,
       contentPadding: contentPadding,
       obscuringCharacter: obscuringCharacter,
       controller: controller,
@@ -114,8 +114,6 @@ class SCInput extends StatelessWidget with InputValidationMixin {
       labelStyle: labelStyle,
     );
   }
-
-  /// Properties
 
   final FocusNode? focusNode;
   final TextEditingController? controller;
@@ -129,9 +127,13 @@ class SCInput extends StatelessWidget with InputValidationMixin {
   final EdgeInsetsGeometry? contentPadding;
   final String? obscuringCharacter;
   final double? fontSize;
+  final Function(String)? onChanged;
+  final bool? showPassword;
+  final Function()? onTogglePassword;
+  final bool? hiddenSufixIcon;
+
   @override
   Widget build(BuildContext context) {
-    /// Build the TextFormField with provided properties
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -139,7 +141,7 @@ class SCInput extends StatelessWidget with InputValidationMixin {
           SCText.displaySmall(
             context,
             text: labelText ?? '',
-            style: context.textTheme.displaySmall?.copyWith(
+            style: context.textTheme.bodyLarge?.copyWith(
               color: AppColor.graysuva,
               fontWeight: AppFontWeight.medium,
             ),
@@ -147,13 +149,27 @@ class SCInput extends StatelessWidget with InputValidationMixin {
           const SizedBox(height: 10),
         ],
         TextFormField(
+          onChanged: (value) {
+            onChanged?.call(value);
+          },
+          obscureText: obscureText ?? true,
+          obscuringCharacter: '●',
           style: context.textTheme.displayMedium?.copyWith(
             fontSize: fontSize,
             color: AppColor.tertiary,
             fontWeight: AppFontWeight.regular,
           ),
           decoration: InputDecoration(
-            suffixIcon: suffixIcon ?? const SizedBox.shrink(),
+            suffixIcon: hiddenSufixIcon == true
+                ? IconButton(
+                    onPressed: onTogglePassword,
+                    icon: showPassword!
+                        ? SCIcon.hidden(
+                            color: AppColor.primary,
+                          )
+                        : SCIcon.suffix(),
+                  )
+                : const SizedBox.shrink(),
             contentPadding: contentPadding ??
                 const EdgeInsets.symmetric(
                   vertical: 15,
@@ -161,12 +177,7 @@ class SCInput extends StatelessWidget with InputValidationMixin {
                 ),
           ),
           keyboardType: keyboardType,
-          textInputAction: textInputAction,
-          focusNode: focusNode,
           validator: validator,
-          controller: controller,
-          obscureText: obscureText ?? false,
-          obscuringCharacter: '●',
         ),
       ],
     );
