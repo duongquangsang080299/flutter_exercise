@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:soccer_club_app/presentations/view_models/sign_in/sign_in_view_model.dart';
+import 'package:soccer_club_app/presentations/view_models/auth/global_key_converter.dart';
 
 part 'sign_in_view_model.freezed.dart';
 part 'sign_in_view_model.g.dart';

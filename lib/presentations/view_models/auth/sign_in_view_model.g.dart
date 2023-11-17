@@ -17,8 +17,8 @@ _$SignInFormModelImpl _$$SignInFormModelImplFromJson(
       email: json['email'] as String,
       password: json['password'] as String,
       showPassword: json['showPassword'] as bool,
-      formKey: const GlobalKeyConverter()
-          .fromJson(json['formKey'] as Map<String, dynamic>?),
+      formKey: _$JsonConverterFromJson<Object, GlobalKey<FormState>>(
+          json['formKey'], const GlobalKeyConverter().fromJson),
     );
 
 Map<String, dynamic> _$$SignInFormModelImplToJson(
@@ -32,5 +32,18 @@ Map<String, dynamic> _$$SignInFormModelImplToJson(
       'email': instance.email,
       'password': instance.password,
       'showPassword': instance.showPassword,
-      'formKey': const GlobalKeyConverter().toJson(instance.formKey),
+      'formKey': _$JsonConverterToJson<Object, GlobalKey<FormState>>(
+          instance.formKey, const GlobalKeyConverter().toJson),
     };
+
+Value? _$JsonConverterFromJson<Json, Value>(
+  Object? json,
+  Value? Function(Json json) fromJson,
+) =>
+    json == null ? null : fromJson(json as Json);
+
+Json? _$JsonConverterToJson<Json, Value>(
+  Value? value,
+  Json? Function(Value value) toJson,
+) =>
+    value == null ? null : toJson(value);
