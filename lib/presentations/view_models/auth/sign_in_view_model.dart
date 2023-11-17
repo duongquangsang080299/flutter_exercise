@@ -1,107 +1,27 @@
-import 'dart:convert';
-
-import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:soccer_club_app/presentations/view_models/auth/global_key_converter.dart';
 
-/// Define the FocusedField enum
-enum FocusedField {
-  email,
-  password,
-}
+part 'sign_in_view_model.freezed.dart';
+part 'sign_in_view_model.g.dart';
+
+@freezed
 
 /// SignIn form model
-class SignInFormModel extends Equatable {
-  final bool formValid;
-  final String email;
-  final String password;
-  final bool processing;
-  final bool showPassword;
-  final bool goSignIn;
-  final GlobalKey<FormState> formKey;
-  final FocusedField focusedField;
-
-  const SignInFormModel({
-    required this.formValid,
-    required this.email,
-    required this.password,
-    required this.processing,
-    required this.showPassword,
-    required this.goSignIn,
-    required this.formKey,
-    required this.focusedField,
-  });
-
-  SignInFormModel copyWith({
-    bool? formValid,
-    String? email,
-    String? password,
+class SignInFormModel with _$SignInFormModel {
+  @JsonSerializable(explicitToJson: true)
+  const factory SignInFormModel({
     bool? processing,
-    bool? showPassword,
-    bool? goSignIn,
-    GlobalKey<FormState>? formKey,
-    FocusedField? focusedField,
-  }) {
-    return SignInFormModel(
-      formValid: formValid ?? this.formValid,
-      email: email ?? this.email,
-      password: password ?? this.password,
-      showPassword: showPassword ?? this.showPassword,
-      processing: processing ?? this.processing,
-      goSignIn: goSignIn ?? this.goSignIn,
-      formKey: formKey ?? this.formKey,
-      focusedField: focusedField ?? this.focusedField,
-    );
-  }
+    required String emailError,
+    required String passwordError,
+    required bool emailValid,
+    required bool passwordValid,
+    required String email,
+    required String password,
+    required bool showPassword,
+    @GlobalKeyConverter() GlobalKey<FormState>? formKey,
+  }) = _SignInFormModel;
 
-  Map<String, dynamic> toMap() {
-    return {
-      'formValid': formValid,
-      'email': email,
-      'password': password,
-      'processing': processing,
-      'showPassword': showPassword,
-      'goSignIn': goSignIn,
-      'formKey': formKey,
-      'focusedField': focusedField,
-    };
-  }
-
-  factory SignInFormModel.fromMap(Map<String, dynamic> map) {
-    return SignInFormModel(
-      formValid: map['formValid'] ?? false,
-      email: map['email'] ?? '',
-      password: map['password'] ?? '',
-      processing: map['processing'] ?? false,
-      goSignIn: map['goSignIn'] ?? false,
-      showPassword: map['showPassword'] ?? false,
-      formKey: map['formKey'] ?? false,
-      focusedField: map['focusedField'] ?? FocusedField.email,
-    );
-  }
-
-  String toJson() => json.encode(toMap());
-
-  factory SignInFormModel.fromJson(String source) =>
-      SignInFormModel.fromMap(json.decode(source));
-
-  @override
-  String toString() {
-    return 'SignInFormModel( formValid: $formValid, email: $email, '
-        'password: $password, processing: $processing,showPassword:$showPassword, goSignIn: $goSignIn, '
-        'formKey: $formKey, focusedField: $focusedField)';
-  }
-
-  @override
-  List<Object> get props {
-    return [
-      formValid,
-      email,
-      password,
-      showPassword,
-      processing,
-      goSignIn,
-      formKey,
-      focusedField,
-    ];
-  }
+  factory SignInFormModel.fromJson(Map<String, dynamic> json) =>
+      _$SignInFormModelFromJson(json);
 }
