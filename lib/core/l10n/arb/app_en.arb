@@ -82,6 +82,7 @@
     "numbertheree":"3",
     "numberfour":"4",
     "dash":"-",
-    "dots":":"
+    "dots":":",
+    "loginfailed":"Login failed"
     
 }
