@@ -25,26 +25,26 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
   void _onEmailChanged(
       SignInEmailChangedEvent event, Emitter<SignInState> emit) {
     final emailError = InputValidationMixin.validEmail(event.form.email) ?? '';
-    emit(
-      SignInChangedState(
-        form: event.form.copyWith(
-          emailError: emailError,
-        ),
+    final emailValid = emailError.isEmpty;
+    emit(SignInChangedState(
+      form: event.form.copyWith(
+        emailError: emailError,
+        emailValid: emailValid,
       ),
-    );
+    ));
   }
 
   void _onPasswordChanged(
       SignInPasswordChangedEvent event, Emitter<SignInState> emit) {
     final passwordError =
         InputValidationMixin.validPassword(event.form.password) ?? '';
-    emit(
-      SignInChangedState(
-        form: event.form.copyWith(
-          passwordError: passwordError,
-        ),
+    final passwordValid = passwordError.isEmpty;
+    emit(SignInChangedState(
+      form: event.form.copyWith(
+        passwordError: passwordError,
+        passwordValid: passwordValid,
       ),
-    );
+    ));
   }
 
   void _onSubmitted(

@@ -7,7 +7,6 @@ import 'package:soccer_club_app/core/color/app_color.dart';
 import 'package:soccer_club_app/core/extention/builder_context_extension.dart';
 import 'package:soccer_club_app/core/l10n/l10n.dart';
 import 'package:soccer_club_app/core/router/router.dart';
-import 'package:soccer_club_app/core/typography/app_fontweight.dart';
 import 'package:soccer_club_app/core/utils/size_utils.dart';
 import 'package:soccer_club_app/data/repositories/auth_repo.dart';
 import 'package:soccer_club_app/presentations/layout/scaffold.dart';
@@ -82,7 +81,7 @@ class SignInForm extends StatelessWidget {
                   TextSpan(
                     text: context.l10n.resetHere,
                     style: context.textTheme.bodyLarge?.copyWith(
-                      fontWeight: AppFontWeight.bold,
+                      fontWeight: FontWeight.bold,
                       color: AppColor.primary,
                     ),
                     recognizer: TapGestureRecognizer()
@@ -103,24 +102,16 @@ class SignInForm extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 19),
-            BlocBuilder<SignInBloc, SignInState>(
-              builder: (context, state) {
-                bool isButtonActive = false;
-                if (state is SignInChangedState) {
-                  isButtonActive =
-                      state.form.emailValid && state.form.passwordValid;
-                }
-                return Column(
-                  children: [
-                    SCButton(
-                      text: context.l10n.btnCreateAnAccount,
-                      style: context.textTheme.headlineSmall,
-                      backgroundColor:
-                          isButtonActive ? AppColor.primary : AppColor.graysuva,
-                    ),
-                  ],
-                );
-              },
+            Column(
+              children: [
+                SCButton(
+                  text: SCText.headlineMedium(context,
+                      text: context.l10n.btnCreateAnAccount),
+                  style: context.textTheme.headlineSmall,
+                  backgroundColor: AppColor.graysuva,
+                  onPressed: () {},
+                ),
+              ],
             ),
           ],
         ),
@@ -223,7 +214,8 @@ class _LoginButton extends StatelessWidget {
       builder: (context, state) {
         bool isButtonActive = false;
         if (state is SignInChangedState) {
-          isButtonActive = state.form.emailValid && state.form.passwordValid;
+          isButtonActive =
+              state.form.emailValid && state.form.passwordError.isEmpty;
         }
         return SCButton(
           onPressed: isButtonActive
@@ -240,7 +232,9 @@ class _LoginButton extends StatelessWidget {
                   }
                 }
               : null,
-          text: context.l10n.btnLogin,
+          text: state is SignInLoadingState
+              ? const CircularProgressIndicator()
+              : SCText.bodySmall(context, text: context.l10n.btnLogin),
           style: context.textTheme.headlineSmall,
           backgroundColor:
               isButtonActive ? AppColor.primary : AppColor.graysuva,
