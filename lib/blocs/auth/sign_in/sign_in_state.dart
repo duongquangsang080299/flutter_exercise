@@ -1,6 +1,17 @@
 // sign_in_state.dart
 part of 'sign_in_bloc.dart';
 
+SignInFormModel emptySignInState = const SignInFormModel(
+  password: '',
+  email: '',
+  processing: false,
+  showPassword: false,
+  emailError: '',
+  passwordError: '',
+  emailValid: false,
+  passwordValid: false,
+);
+
 abstract class SignInState extends Equatable {
   final SignInFormModel form;
   const SignInState({
@@ -49,14 +60,3 @@ class SignInErrorState extends SignInState {
   @override
   List<Object> get props => (['SignInErrorState', form]);
 }
-
-SignInFormModel emptySignInState = const SignInFormModel(
-  password: '',
-  email: '',
-  processing: false,
-  showPassword: false,
-  emailError: '',
-  passwordError: '',
-  emailValid: false,
-  passwordValid: false,
-);

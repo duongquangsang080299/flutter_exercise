@@ -7,8 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:soccer_club_app/blocs/auth/sign_in/sign_in_bloc.dart';
-import 'package:soccer_club_app/blocs/auth/sign_up/sign_up_bloc.dart';
 import 'package:soccer_club_app/core/router/router.dart';
 import 'package:soccer_club_app/core/theme/app_theme.dart';
 import 'package:soccer_club_app/data/repositories/auth_repo.dart';
@@ -32,45 +30,27 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiRepositoryProvider(
-      providers: [
-        RepositoryProvider(
-          create: (context) => AuthRepo(),
-        ),
-      ],
-      child: MultiBlocProvider(
-        providers: [
-          BlocProvider<SignUpBloc>(
-            create: (context) =>
-                SignUpBloc(repo: RepositoryProvider.of<AuthRepo>(context)),
-          ),
-          BlocProvider<SignInBloc>(
-            create: (context) => SignInBloc(
-              authRepo: RepositoryProvider.of<AuthRepo>(context),
-              initialState: SignInInitialState(emptySignInState),
-            ),
-          ),
+    return RepositoryProvider(
+      create: (context) => AuthRepo(),
+      child: MaterialApp.router(
+        debugShowCheckedModeBanner: false,
+        theme: const AppTheme().themeData,
+        darkTheme: const AppTheme().darkTheme,
+        locale: DevicePreview.locale(context),
+        builder: DevicePreview.appBuilder,
+        localizationsDelegates: const [
+          AppLocalizations.delegate,
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
         ],
-        child: MaterialApp.router(
-          debugShowCheckedModeBanner: false,
-          theme: const AppTheme().themeData,
-          darkTheme: const AppTheme().darkTheme,
-          locale: DevicePreview.locale(context),
-          builder: DevicePreview.appBuilder,
-          localizationsDelegates: const [
-            AppLocalizations.delegate,
-            GlobalMaterialLocalizations.delegate,
-            GlobalWidgetsLocalizations.delegate,
-            GlobalCupertinoLocalizations.delegate,
-          ],
-          supportedLocales: const [
-            Locale('en'), // English
-            Locale('es'), // Spanish
-          ],
-          routeInformationProvider: appRouter.routeInformationProvider,
-          routeInformationParser: appRouter.routeInformationParser,
-          routerDelegate: appRouter.routerDelegate,
-        ),
+        supportedLocales: const [
+          Locale('en'), // English
+          Locale('es'), // Spanish
+        ],
+        routeInformationProvider: appRouter.routeInformationProvider,
+        routeInformationParser: appRouter.routeInformationParser,
+        routerDelegate: appRouter.routerDelegate,
       ),
     );
   }

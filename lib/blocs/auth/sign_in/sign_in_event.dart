@@ -1,4 +1,3 @@
-// sign_in_event.dart
 part of 'sign_in_bloc.dart';
 
 abstract class SignInEvent extends Equatable {

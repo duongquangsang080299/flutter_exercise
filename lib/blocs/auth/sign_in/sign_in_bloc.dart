@@ -25,71 +25,50 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
   void _onEmailChanged(
       SignInEmailChangedEvent event, Emitter<SignInState> emit) {
     final emailError = InputValidationMixin.validEmail(event.form.email) ?? '';
-    final emailValid = emailError.isEmpty;
-    emit(SignInChangedState(
-      form: event.form.copyWith(emailError: emailError, emailValid: emailValid),
-    ));
+    emit(
+      SignInChangedState(
+        form: event.form.copyWith(
+          emailError: emailError,
+        ),
+      ),
+    );
   }
 
   void _onPasswordChanged(
       SignInPasswordChangedEvent event, Emitter<SignInState> emit) {
     final passwordError =
         InputValidationMixin.validPassword(event.form.password) ?? '';
-    final passwordValid = passwordError.isEmpty;
-    emit(SignInChangedState(
-      form: event.form
-          .copyWith(passwordError: passwordError, passwordValid: passwordValid),
-    ));
+    emit(
+      SignInChangedState(
+        form: event.form.copyWith(
+          passwordError: passwordError,
+        ),
+      ),
+    );
   }
 
   void _onSubmitted(
       SignInSubmittedEvent event, Emitter<SignInState> emit) async {
     try {
-      // Validate email and password
-      final emailError =
-          InputValidationMixin.validEmail(event.form.email) ?? '';
-      final passwordError =
-          InputValidationMixin.validPassword(event.form.password) ?? '';
+      emit(SignInLoadingState(form: event.form));
+      // Perform sign-in logic
+      await authRepo.signIn(
+        email: event.email,
+        password: event.password,
+      );
 
-      final formValid = emailError.isEmpty && passwordError.isEmpty;
+      // Save the login status to SharedPreferences
+      final SharedPreferences prefs = await SharedPreferences.getInstance();
+      prefs.setBool('isLoggedIn', true);
 
-      if (formValid) {
-        emit(SignInLoadingState(form: event.form));
-
-        // Perform sign-in logic
-        await authRepo.signIn(
-          email: event.email,
-          password: event.password,
-        );
-
-        // Save the login status to SharedPreferences
-        final SharedPreferences prefs = await SharedPreferences.getInstance();
-        prefs.setBool('isLoggedIn', true);
-
-        // Update the state on successful login
-        emit(SignInSuccessState(
-          form: event.form.copyWith(
-            processing: false,
-          ),
-        ));
-      } else {
-        // Update the state with validation errors
-        emit(SignInChangedState(
-          form: event.form.copyWith(
-            emailError: emailError,
-            passwordError: passwordError,
-            emailValid: emailError.isEmpty,
-            passwordValid: passwordError.isEmpty,
-            processing: false,
-          ),
-        ));
-      }
+      // Update the state on successful login
+      emit(SignInSuccessState(
+        form: event.form.copyWith(),
+      ));
     } catch (e) {
       // Handle errors during sign-in
       emit(SignInErrorState(
-        form: event.form.copyWith(
-          processing: false,
-        ),
+        form: event.form.copyWith(processing: false),
       ));
     }
   }
