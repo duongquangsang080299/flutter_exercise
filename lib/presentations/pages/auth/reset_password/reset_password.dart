@@ -1,7 +1,9 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
+import 'package:soccer_club_app/blocs/auth/reset_password/reset_password_bloc.dart';
 import 'package:soccer_club_app/core/color/app_color.dart';
 import 'package:soccer_club_app/core/constant/icons.dart';
 import 'package:soccer_club_app/core/extention/builder_context_extension.dart';
@@ -9,34 +11,43 @@ import 'package:soccer_club_app/core/l10n/l10n.dart';
 import 'package:soccer_club_app/core/router/router.dart';
 import 'package:soccer_club_app/core/typography/app_fontweight.dart';
 import 'package:soccer_club_app/core/utils/size_utils.dart';
+import 'package:soccer_club_app/data/repositories/auth_repo.dart';
 import 'package:soccer_club_app/presentations/layout/scaffold.dart';
 import 'package:soccer_club_app/presentations/widgets/button.dart';
 import 'package:soccer_club_app/presentations/widgets/input.dart';
 import 'package:soccer_club_app/presentations/widgets/text.dart';
 
-class ForgotPasswordPage extends StatefulWidget {
+class ForgotPasswordPage extends StatelessWidget {
   const ForgotPasswordPage({super.key});
-
   @override
-  State<ForgotPasswordPage> createState() => _ForgotPasswordPageState();
+  Widget build(BuildContext context) {
+    return RepositoryProvider(
+      create: (context) => AuthRepo(),
+      child: BlocProvider<ResetPasswordBloc>(
+        create: (context) {
+          return ResetPasswordBloc(
+            authRepo: RepositoryProvider.of<AuthRepo>(context),
+            initialState: ResetPasswordInitialState(emptyResetPasswordState),
+          );
+        },
+        child: const SCScaffold(
+          body: ResetPasswordBody(),
+        ),
+      ),
+    );
+  }
 }
 
-class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
-  /// Create a GlobalKey for the form to access its state
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  bool showPassword = false;
+class ResetPasswordBody extends StatelessWidget {
+  const ResetPasswordBody({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return SCScaffold(
-      body: Form(
-        // Associate the form with a GlobalKey
-        key: _formKey,
-        autovalidateMode: AutovalidateMode.onUserInteraction,
+    return Form(
+        key: context.read<ResetPasswordBloc>().state.form.formKey,
         child: Padding(
-          padding: const EdgeInsets.all(28),
-          child: Column(
-            children: [
+            padding: const EdgeInsets.all(28),
+            child: Column(children: [
               SizedBox(height: context.getVerticalSize(40)),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -53,6 +64,9 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
               SCText.displayLarge(
                 context,
                 text: context.l10n.forgotPassword,
+                style: context.textTheme.displaySmall?.copyWith(
+                  color: AppColor.primary,
+                ),
               ),
               SizedBox(
                 height: context.getVerticalSize(30),
@@ -65,37 +79,23 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
               SizedBox(
                 height: context.getVerticalSize(50),
               ),
-              SCInput.email(),
-              const Spacer(),
-              SCButton(
-                onPressed: () {
-                  final form = _formKey.currentState ?? FormState();
-                  if (form.validate()) {
-                    debugPrint('Form is valid');
-                    context.go(AppRoutes.signIn.path);
-                  } else {
-                    debugPrint('Form is invalid');
-                  }
-                },
-                text: SCText.headlineMedium(context,
-                    text: context.l10n.btnResetPassword),
-                backgroundColor: AppColor.primary,
-                height: context.getVerticalSize(60),
+              const ResetPasswordForm(),
+              const SizedBox(
+                height: 16,
               ),
-              const SizedBox(height: 20),
               Text.rich(
                 TextSpan(
                   children: [
                     TextSpan(
                       text: context.l10n.rememberyourpassword,
-                      style: context.textTheme.displaySmall?.copyWith(
+                      style: context.textTheme.bodyLarge?.copyWith(
                         color: AppColor.dimGray,
                       ),
                     ),
                     TextSpan(
                       text: context.l10n.loginhere,
-                      style: context.textTheme.displaySmall?.copyWith(
-                        fontWeight: AppFontWeight.medium,
+                      style: context.textTheme.bodyLarge?.copyWith(
+                        fontWeight: AppFontWeight.bold,
                         color: AppColor.primary,
                       ),
                       recognizer: TapGestureRecognizer()
@@ -106,10 +106,90 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                   ],
                 ),
               ),
-            ],
-          ),
-        ),
+            ])));
+  }
+}
+
+class ResetPasswordForm extends StatelessWidget {
+  const ResetPasswordForm({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocListener<ResetPasswordBloc, ResetPasswordState>(
+      listener: (context, state) {
+        if (state is ResetPasswordLoadingState) {}
+        if (state is ResetPasswordSuccessState) {
+          context.go(AppRoutes.signIn.path);
+        }
+      },
+      child: const Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          _EmailInput(),
+          SizedBox(height: 20),
+          _ResetPasswordButton(),
+        ],
       ),
+    );
+  }
+}
+
+class _EmailInput extends StatelessWidget {
+  const _EmailInput();
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<ResetPasswordBloc, ResetPasswordState>(
+      builder: (context, state) {
+        return Column(
+          children: [
+            SCInput.email(
+              labelText: context.l10n.lablelEmail,
+              onChanged: (email) {
+                context.read<ResetPasswordBloc>().add(
+                    ResetPasswordEmaildChangedEvent(
+                        form: state.form.copyWith(email: email)));
+              },
+              errorText: state.form.emailError,
+            ),
+          ],
+        );
+      },
+    );
+  }
+}
+
+class _ResetPasswordButton extends StatelessWidget {
+  const _ResetPasswordButton();
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<ResetPasswordBloc, ResetPasswordState>(
+      buildWhen: (previous, current) => current is ResetPasswordChangedState,
+      builder: (context, state) {
+        final isEmailValid =
+            state is ResetPasswordChangedState && state.form.emailValid;
+
+        return SCButton(
+          onPressed: () {
+            if (isEmailValid) {
+              BlocProvider.of<ResetPasswordBloc>(context).add(
+                ResetPasswordSubmittedEvent(
+                  email: state.form.email,
+                  form: state.form,
+                ),
+              );
+            }
+          },
+          text: state is ResetPasswordLoadingState
+              ? const CircularProgressIndicator()
+              : SCText.headlineSmall(context,
+                  text: context.l10n.btnResetPassword),
+          style: context.textTheme.headlineSmall,
+          backgroundColor:
+              isEmailValid ? AppColor.primary : AppColor.whiteFlash,
+        );
+      },
     );
   }
 }

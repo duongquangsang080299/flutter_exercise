@@ -63,6 +63,8 @@ class SCInput extends StatelessWidget with InputValidationMixin {
     TextInputType keyboardType = TextInputType.name,
     TextInputAction? textInputAction,
     String? labelText,
+    Function(String)? onChanged,
+    String? errorText,
     TextEditingController? controller,
     TextStyle? labelStyle,
     EdgeInsetsGeometry? contentPadding,
@@ -70,7 +72,9 @@ class SCInput extends StatelessWidget with InputValidationMixin {
     return SCInput(
       focusNode: focusNode,
       keyboardType: keyboardType,
+      onChanged: onChanged,
       labelText: labelText,
+      errorText: errorText,
       textInputAction: textInputAction,
       obscureText: false,
       controller: controller,
