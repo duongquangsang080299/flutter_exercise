@@ -23,7 +23,9 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
   }
 
   void _onEmailChanged(
-      SignInEmailChangedEvent event, Emitter<SignInState> emit) {
+    SignInEmailChangedEvent event,
+    Emitter<SignInState> emit,
+  ) {
     final emailError = InputValidationMixin.validEmail(event.form.email) ?? '';
     final emailValid = emailError.isEmpty;
     emit(SignInChangedState(
@@ -35,7 +37,9 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
   }
 
   void _onPasswordChanged(
-      SignInPasswordChangedEvent event, Emitter<SignInState> emit) {
+    SignInPasswordChangedEvent event,
+    Emitter<SignInState> emit,
+  ) {
     final passwordError =
         InputValidationMixin.validPassword(event.form.password) ?? '';
     final passwordValid = passwordError.isEmpty;
@@ -62,14 +66,10 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
       prefs.setBool('isLoggedIn', true);
 
       // Update the state on successful login
-      emit(SignInSuccessState(
-        form: event.form.copyWith(),
-      ));
+      emit(SignInSuccessState(form: event.form));
     } catch (e) {
       // Handle errors during sign-in
-      emit(SignInErrorState(
-        form: event.form.copyWith(processing: false),
-      ));
+      emit(SignInErrorState(form: event.form));
     }
   }
 
@@ -77,13 +77,7 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
     TogglePasswordVisibility event,
     Emitter<SignInState> emit,
   ) {
-    if (state is SignInChangedState) {
-      final signInChangedState = state as SignInChangedState;
-      emit(SignInChangedState(
-        form: signInChangedState.form.copyWith(
-          showPassword: !signInChangedState.form.showPassword,
-        ),
-      ));
-    }
+    emit(SignInHiddenPasswordState(
+        form: state.form, showPassword: !event.showPassword));
   }
 }

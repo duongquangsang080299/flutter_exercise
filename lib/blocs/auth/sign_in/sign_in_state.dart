@@ -4,17 +4,18 @@ part of 'sign_in_bloc.dart';
 SignInFormModel emptySignInState = const SignInFormModel(
   password: '',
   email: '',
-  processing: false,
-  showPassword: false,
   emailError: '',
   passwordError: '',
   emailValid: false,
   passwordValid: false,
+  isValid: false,
 );
 
 abstract class SignInState extends Equatable {
   final SignInFormModel form;
+  final bool showPassword;
   const SignInState({
+    this.showPassword = false,
     required this.form,
   }) : super();
 
@@ -32,10 +33,22 @@ class SignInInitialState extends SignInState {
 class SignInChangedState extends SignInState {
   const SignInChangedState({
     required SignInFormModel form,
-  }) : super(form: form);
+  }) : super(
+          form: form,
+        );
 
   @override
   List<Object> get props => (['SignInChangedState', form]);
+}
+
+class SignInHiddenPasswordState extends SignInState {
+  const SignInHiddenPasswordState({
+    required bool showPassword,
+    required SignInFormModel form,
+  }) : super(showPassword: showPassword, form: form);
+
+  @override
+  List<Object> get props => ([showPassword, form]);
 }
 
 class SignInLoadingState extends SignInState {

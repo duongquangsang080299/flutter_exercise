@@ -24,19 +24,18 @@ class SignInPage extends StatefulWidget {
 class _SignInPageState extends State<SignInPage> {
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<SignInBloc>(
-      create: (context) {
-        return SignInBloc(
-          authRepo: RepositoryProvider.of<AuthRepo>(context),
-          initialState: SignInInitialState(emptySignInState),
-        );
-      },
-      child: BlocBuilder<SignInBloc, SignInState>(
-        builder: (context, state) {
-          return const SCScaffold(
-            body: SignInForm(),
+    return RepositoryProvider(
+      create: (context) => AuthRepo(),
+      child: BlocProvider<SignInBloc>(
+        create: (context) {
+          return SignInBloc(
+            authRepo: RepositoryProvider.of<AuthRepo>(context),
+            initialState: SignInInitialState(emptySignInState),
           );
         },
+        child: const SCScaffold(
+          body: SignInForm(),
+        ),
       ),
     );
   }
@@ -47,6 +46,7 @@ class SignInForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    const sizedBox16 = SizedBox(height: 16);
     return Form(
       key: context.read<SignInBloc>().state.form.formKey,
       child: Padding(
@@ -55,20 +55,17 @@ class SignInForm extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(height: context.getVerticalSize(87)),
-            SCText.displaySmall(
-              context,
-              text: context.l10n.signIn,
-              style: context.textTheme.displaySmall?.copyWith(
-                color: AppColor.primary,
-              ),
-            ),
-            SizedBox(height: getVerticalSize(16)),
+            SCText.displaySmall(context,
+                text: context.l10n.signIn,
+                style: context.textTheme.displaySmall),
+            sizedBox16,
             SCText.bodyLarge(
               context,
               text: context.l10n.description,
             ),
             SizedBox(height: getVerticalSize(30)),
             const LoginForm(),
+            sizedBox16,
             Text.rich(
               TextSpan(
                 children: [
@@ -105,11 +102,13 @@ class SignInForm extends StatelessWidget {
             Column(
               children: [
                 SCButton(
-                  text: SCText.headlineMedium(context,
+                  text: SCText.headlineSmall(context,
                       text: context.l10n.btnCreateAnAccount),
                   style: context.textTheme.headlineSmall,
-                  backgroundColor: AppColor.graysuva,
-                  onPressed: () {},
+                  backgroundColor: AppColor.onTertiary,
+                  onPressed: () {
+                    context.go(AppRoutes.signUp.path);
+                  },
                 ),
               ],
             ),
@@ -132,23 +131,19 @@ class LoginForm extends StatelessWidget {
           context.go(AppRoutes.homePage.path);
         }
         if (state is SignInErrorState) {
-          Navigator.of(context).pop();
           ScaffoldMessenger.of(context)
               .showSnackBar(SnackBar(content: Text(context.l10n.loginfailed)));
         }
       },
-      child: const Align(
-        alignment: Alignment(0, -1 / 3),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            _EmailInput(),
-            SizedBox(height: 20),
-            _PasswordInput(),
-            SizedBox(height: 20),
-            _LoginButton(),
-          ],
-        ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const _EmailInput(),
+          const SizedBox(height: 20),
+          const _PasswordInput(),
+          SizedBox(height: getVerticalSize(30)),
+          const _LoginButton(),
+        ],
       ),
     );
   }
@@ -186,18 +181,18 @@ class _PasswordInput extends StatelessWidget {
     return BlocBuilder<SignInBloc, SignInState>(
       builder: (context, state) {
         return SCInput.password(
-          fontSize: state.form.showPassword ? 24 : 12,
+          fontSize: state.showPassword ? 16 : 12,
           labelText: context.l10n.lablelPassword,
           onChanged: (password) {
             context.read<SignInBloc>().add(SignInPasswordChangedEvent(
                   form: state.form.copyWith(password: password),
                 ));
           },
-          showPassword: state.form.showPassword,
-          obscureText: !state.form.showPassword,
+          showPassword: state.showPassword,
+          obscureText: !state.showPassword,
           onTogglePassword: () => context
               .read<SignInBloc>()
-              .add(TogglePasswordVisibility(state.form)),
+              .add(TogglePasswordVisibility(showPassword: state.showPassword)),
           errorText: state.form.passwordError,
         );
       },
@@ -211,33 +206,28 @@ class _LoginButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<SignInBloc, SignInState>(
+      buildWhen: (previous, current) => current is SignInChangedState,
       builder: (context, state) {
-        bool isButtonActive = false;
-        if (state is SignInChangedState) {
-          isButtonActive =
-              state.form.emailValid && state.form.passwordError.isEmpty;
-        }
         return SCButton(
-          onPressed: isButtonActive
-              ? () {
-                  if (state is SignInChangedState) {
-                    final signInChangedState = state;
-                    BlocProvider.of<SignInBloc>(context).add(
-                      SignInSubmittedEvent(
-                        email: signInChangedState.form.email,
-                        password: signInChangedState.form.password,
-                        form: signInChangedState.form,
-                      ),
-                    );
-                  }
-                }
-              : null,
+          onPressed: () {
+            if (state is SignInChangedState && state.form.passwordValid) {
+              BlocProvider.of<SignInBloc>(context).add(
+                SignInSubmittedEvent(
+                  email: state.form.email,
+                  password: state.form.password,
+                  form: state.form,
+                ),
+              );
+            }
+          },
           text: state is SignInLoadingState
               ? const CircularProgressIndicator()
-              : SCText.bodySmall(context, text: context.l10n.btnLogin),
+              : SCText.headlineSmall(context, text: context.l10n.btnLogin),
           style: context.textTheme.headlineSmall,
           backgroundColor:
-              isButtonActive ? AppColor.primary : AppColor.graysuva,
+              state is SignInChangedState && state.form.passwordValid
+                  ? AppColor.primary
+                  : AppColor.whiteFlash,
         );
       },
     );

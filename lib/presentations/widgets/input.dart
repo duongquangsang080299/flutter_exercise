@@ -160,7 +160,7 @@ class SCInput extends StatelessWidget with InputValidationMixin {
           },
           obscureText: obscureText ?? true,
           obscuringCharacter: '●',
-          style: context.textTheme.displayMedium?.copyWith(
+          style: context.textTheme.headlineSmall?.copyWith(
             fontSize: fontSize,
             color: AppColor.tertiary,
             fontWeight: AppFontWeight.regular,

@@ -87,7 +87,7 @@ class SCText extends StatelessWidget {
       text: text,
       style: style ??
           context.textThemeData.headlineSmall
-              ?.copyWith(color: context.colorScheme.tertiary),
+              ?.copyWith(color: context.colorScheme.secondary),
       textAlign: textAlign,
     );
   }

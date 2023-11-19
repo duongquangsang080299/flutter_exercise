@@ -1,12 +1,10 @@
 part of 'sign_in_bloc.dart';
 
 abstract class SignInEvent extends Equatable {
-  final SignInFormModel form;
-
-  const SignInEvent(this.form) : super();
+  const SignInEvent();
 
   @override
-  List<Object> get props => [form];
+  List<Object> get props => [];
 }
 
 class SignInEmailChangedEvent extends SignInEvent {
@@ -14,8 +12,7 @@ class SignInEmailChangedEvent extends SignInEvent {
 
   const SignInEmailChangedEvent({
     required this.form,
-  }) : super(form);
-
+  });
   @override
   List<Object> get props => ['SignInEmailChangeEvent', form];
 }
@@ -25,7 +22,7 @@ class SignInPasswordChangedEvent extends SignInEvent {
 
   const SignInPasswordChangedEvent({
     required this.form,
-  }) : super(form);
+  });
 
   @override
   List<Object> get props => ['SignInPasswordChangeEvent', form];
@@ -34,17 +31,23 @@ class SignInPasswordChangedEvent extends SignInEvent {
 class SignInSubmittedEvent extends SignInEvent {
   final String email;
   final String password;
+  final SignInFormModel form;
 
   const SignInSubmittedEvent({
     required this.email,
     required this.password,
-    required SignInFormModel form,
-  }) : super(form);
+    required this.form,
+  });
 
   @override
   List<Object> get props => ['SignInSubmittedEvent', email, password, form];
 }
 
 class TogglePasswordVisibility extends SignInEvent {
-  const TogglePasswordVisibility(SignInFormModel form) : super(form);
+  const TogglePasswordVisibility({required this.showPassword});
+
+  final bool showPassword;
+
+  @override
+  List<Object> get props => [showPassword];
 }
