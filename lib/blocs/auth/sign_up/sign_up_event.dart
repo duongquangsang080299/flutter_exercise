@@ -1,14 +1,60 @@
 part of 'sign_up_bloc.dart';
 
 @immutable
-abstract class SignUpEvent {}
+abstract class SignUpEvent extends Equatable {
+  const SignUpEvent();
+  @override
+  List<Object> get props => [];
+}
 
-class AuthSignUpEvent extends SignUpEvent {
-  final String email;
-  final String password;
+class SignUpUsernameChangedEvent extends SignUpEvent {
+  final SignUpFormModel form;
 
-  AuthSignUpEvent({
-    required this.email,
-    required this.password,
+  const SignUpUsernameChangedEvent({
+    required this.form,
   });
+
+  @override
+  List<Object> get props => ['SignUpUsernameChangedEvent', form];
+}
+
+class SignUpEmailChangedEvent extends SignUpEvent {
+  final SignUpFormModel form;
+
+  const SignUpEmailChangedEvent({
+    required this.form,
+  });
+  @override
+  List<Object> get props => ['SignUpEmailChangeEvent', form];
+}
+
+class SignUpPasswordChangedEvent extends SignUpEvent {
+  final SignUpFormModel form;
+
+  const SignUpPasswordChangedEvent({
+    required this.form,
+  });
+
+  @override
+  List<Object> get props => ['SignUpPasswordChangeEvent', form];
+}
+
+class SignUpSubmittedEvent extends SignUpEvent {
+  final SignUpFormModel form;
+
+  const SignUpSubmittedEvent({
+    required this.form,
+  });
+
+  @override
+  List<Object> get props => ['SignUpSubmittedEvent', form];
+}
+
+class TogglePasswordVisibility extends SignUpEvent {
+  const TogglePasswordVisibility({required this.showPassword});
+
+  final bool showPassword;
+
+  @override
+  List<Object> get props => [showPassword];
 }

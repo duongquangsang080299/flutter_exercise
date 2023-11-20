@@ -1,22 +1,96 @@
+import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:soccer_club_app/core/utils/validator_utils.dart';
 import 'package:soccer_club_app/data/repositories/auth_repo.dart';
+import 'package:soccer_club_app/presentations/view_models/auth/sign_up/sign_up_view_model.dart';
+
 part 'sign_up_event.dart';
 part 'sign_up_state.dart';
 
 class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
-  SignUpBloc({required this.repo}) : super(SignUpInitial()) {
-    on<AuthSignUpEvent>((event, emit) async {
-      try {
-        await repo.signUp(email: event.email, password: event.password);
-        final SharedPreferences prefs = await SharedPreferences.getInstance();
-        prefs.setBool('isLoggedIn', true);
-        emit(SignUpSucces());
-      } catch (e) {
-        emit(SignUpError());
-      }
-    });
+  final SignUpState initialState;
+  final AuthRepo authRepo;
+
+  SignUpBloc({
+    required this.initialState,
+    required this.authRepo,
+  }) : super(initialState) {
+    on<SignUpUsernameChangedEvent>(_onUsernameChanged);
+    on<SignUpEmailChangedEvent>(_onEmailChanged);
+    on<SignUpPasswordChangedEvent>(_onPasswordChanged);
+    on<SignUpSubmittedEvent>(_onSubmitted);
+    on<TogglePasswordVisibility>(_onTogglePasswordVisibility);
   }
-  final AuthRepo repo;
+  void _onUsernameChanged(
+    SignUpUsernameChangedEvent event,
+    Emitter<SignUpState> emit,
+  ) {
+    final usernameError =
+        InputValidationMixin.validUserName(event.form.username) ?? '';
+    final usernameValid = usernameError.isEmpty;
+    emit(SignUpChangedState(
+      form: event.form.copyWith(
+        usernameError: usernameError,
+        usernameValid: usernameValid,
+      ),
+    ));
+  }
+
+  void _onEmailChanged(
+    SignUpEmailChangedEvent event,
+    Emitter<SignUpState> emit,
+  ) {
+    final emailError = InputValidationMixin.validEmail(event.form.email) ?? '';
+    final emailValid = emailError.isEmpty;
+    emit(SignUpChangedState(
+      form: event.form.copyWith(
+        emailError: emailError,
+        emailValid: emailValid,
+      ),
+    ));
+  }
+
+  void _onPasswordChanged(
+    SignUpPasswordChangedEvent event,
+    Emitter<SignUpState> emit,
+  ) {
+    final passwordError =
+        InputValidationMixin.validPassword(event.form.password) ?? '';
+    final passwordValid = passwordError.isEmpty;
+    emit(SignUpChangedState(
+      form: event.form.copyWith(
+          passwordError: passwordError,
+          formValid: passwordValid && state.form.emailValid),
+    ));
+  }
+
+  void _onSubmitted(
+      SignUpSubmittedEvent event, Emitter<SignUpState> emit) async {
+    try {
+      emit(SignUpLoadingState(form: event.form));
+      // Perform sign-up logic
+      await authRepo.signUp(
+        email: event.form.email,
+        password: event.form.password,
+      );
+      // Update the state on successful login
+      emit(SignUpSuccessState(
+          form: event.form.copyWith(
+              formValid: state.form.usernameValid &&
+                  state.form.emailValid &&
+                  state.form.passwordValid)));
+    } catch (e) {
+      // Handle errors during sign-up
+      emit(SignUpErrorState(form: event.form));
+    }
+  }
+
+  void _onTogglePasswordVisibility(
+    TogglePasswordVisibility event,
+    Emitter<SignUpState> emit,
+  ) {
+    emit(SignUpHiddenPasswordState(
+        form: state.form.copyWith(showPassword: !event.showPassword)));
+  }
 }
