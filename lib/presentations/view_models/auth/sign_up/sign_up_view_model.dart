@@ -11,16 +11,17 @@ part 'sign_up_view_model.g.dart';
 class SignUpFormModel with _$SignUpFormModel {
   @JsonSerializable(explicitToJson: true)
   const factory SignUpFormModel({
+    bool? formValid,
     required String usernameError,
     required String emailError,
     required String passwordError,
     required bool usernameValid,
     required bool emailValid,
     required bool passwordValid,
-    required bool isValid,
     required String username,
     required String email,
     required String password,
+    required bool showPassword,
     @GlobalKeyConverter() GlobalKey<FormState>? formKey,
   }) = _SignUpFormModel;
 

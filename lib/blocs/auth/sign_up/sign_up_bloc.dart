@@ -1,7 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:soccer_club_app/core/utils/validator_utils.dart';
 import 'package:soccer_club_app/data/repositories/auth_repo.dart';
 import 'package:soccer_club_app/presentations/view_models/auth/sign_up/sign_up_view_model.dart';
@@ -27,7 +26,6 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
     SignUpUsernameChangedEvent event,
     Emitter<SignUpState> emit,
   ) {
-    // Add your validation logic for the username
     final usernameError =
         InputValidationMixin.validUserName(event.form.username) ?? '';
     final usernameValid = usernameError.isEmpty;
@@ -62,9 +60,8 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
     final passwordValid = passwordError.isEmpty;
     emit(SignUpChangedState(
       form: event.form.copyWith(
-        passwordError: passwordError,
-        passwordValid: passwordValid,
-      ),
+          passwordError: passwordError,
+          formValid: passwordValid && state.form.emailValid),
     ));
   }
 
@@ -72,20 +69,19 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
       SignUpSubmittedEvent event, Emitter<SignUpState> emit) async {
     try {
       emit(SignUpLoadingState(form: event.form));
-      // Perform sign-in logic
+      // Perform sign-up logic
       await authRepo.signUp(
-        email: event.email,
-        password: event.password,
+        email: event.form.email,
+        password: event.form.password,
       );
-
-      // Save the login status to SharedPreferences
-      final SharedPreferences prefs = await SharedPreferences.getInstance();
-      prefs.setBool('isLoggedIn', true);
-
       // Update the state on successful login
-      emit(SignUpSuccessState(form: event.form));
+      emit(SignUpSuccessState(
+          form: event.form.copyWith(
+              formValid: state.form.usernameValid &&
+                  state.form.emailValid &&
+                  state.form.passwordValid)));
     } catch (e) {
-      // Handle errors during sign-in
+      // Handle errors during sign-up
       emit(SignUpErrorState(form: event.form));
     }
   }
@@ -95,6 +91,6 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
     Emitter<SignUpState> emit,
   ) {
     emit(SignUpHiddenPasswordState(
-        form: state.form, showPassword: !event.showPassword));
+        form: state.form.copyWith(showPassword: !event.showPassword)));
   }
 }
