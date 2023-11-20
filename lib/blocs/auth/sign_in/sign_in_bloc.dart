@@ -45,9 +45,8 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
     final passwordValid = passwordError.isEmpty;
     emit(SignInChangedState(
       form: event.form.copyWith(
-        passwordError: passwordError,
-        passwordValid: passwordValid,
-      ),
+          passwordError: passwordError,
+          formValid: passwordValid && state.form.emailValid),
     ));
   }
 
@@ -57,8 +56,8 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
       emit(SignInLoadingState(form: event.form));
       // Perform sign-in logic
       await authRepo.signIn(
-        email: event.email,
-        password: event.password,
+        email: event.form.email,
+        password: event.form.password,
       );
 
       // Save the login status to SharedPreferences
@@ -66,7 +65,9 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
       prefs.setBool('isLoggedIn', true);
 
       // Update the state on successful login
-      emit(SignInSuccessState(form: event.form));
+      emit(SignInSuccessState(
+          form: event.form.copyWith(
+              formValid: state.form.emailValid && state.form.passwordValid)));
     } catch (e) {
       // Handle errors during sign-in
       emit(SignInErrorState(form: event.form));
@@ -78,6 +79,6 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
     Emitter<SignInState> emit,
   ) {
     emit(SignInHiddenPasswordState(
-        form: state.form, showPassword: !event.showPassword));
+        form: state.form.copyWith(showPassword: !event.showPassword)));
   }
 }

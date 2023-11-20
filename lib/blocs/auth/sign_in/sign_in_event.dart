@@ -29,18 +29,14 @@ class SignInPasswordChangedEvent extends SignInEvent {
 }
 
 class SignInSubmittedEvent extends SignInEvent {
-  final String email;
-  final String password;
   final SignInFormModel form;
 
   const SignInSubmittedEvent({
-    required this.email,
-    required this.password,
     required this.form,
   });
 
   @override
-  List<Object> get props => ['SignInSubmittedEvent', email, password, form];
+  List<Object> get props => ['SignInSubmittedEvent', form];
 }
 
 class TogglePasswordVisibility extends SignInEvent {

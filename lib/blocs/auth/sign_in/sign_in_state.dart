@@ -6,63 +6,58 @@ SignInFormModel emptySignInState = const SignInFormModel(
   email: '',
   emailError: '',
   passwordError: '',
+  formValid: false,
+  showPassword: false,
   emailValid: false,
   passwordValid: false,
-  isValid: false,
 );
 
 abstract class SignInState extends Equatable {
   final SignInFormModel form;
-  final bool showPassword;
+
   const SignInState({
-    this.showPassword = false,
     required this.form,
   }) : super();
 
   @override
-  List<Object> get props => (['SignInState', form]);
+  List<Object> get props => ['SignInState', form];
 }
 
 class SignInInitialState extends SignInState {
   const SignInInitialState(SignInFormModel form) : super(form: form);
 
   @override
-  List<Object> get props => (['SignInInitialState ', form]);
+  List<Object> get props => ['SignInInitialState ', form];
 }
 
 class SignInChangedState extends SignInState {
-  const SignInChangedState({
-    required SignInFormModel form,
-  }) : super(
-          form: form,
-        );
+  const SignInChangedState({required SignInFormModel form}) : super(form: form);
 
   @override
-  List<Object> get props => (['SignInChangedState', form]);
+  List<Object> get props => ['SignInChangedState', form];
 }
 
 class SignInHiddenPasswordState extends SignInState {
   const SignInHiddenPasswordState({
-    required bool showPassword,
     required SignInFormModel form,
-  }) : super(showPassword: showPassword, form: form);
+  }) : super(form: form);
 
   @override
-  List<Object> get props => ([showPassword, form]);
+  List<Object> get props => [form];
 }
 
 class SignInLoadingState extends SignInState {
   const SignInLoadingState({required SignInFormModel form}) : super(form: form);
 
   @override
-  List<Object> get props => (['SignInLoadingState', form]);
+  List<Object> get props => ['SignInLoadingState', form];
 }
 
 class SignInSuccessState extends SignInState {
   const SignInSuccessState({required SignInFormModel form}) : super(form: form);
 
   @override
-  List<Object> get props => (['SignInSuccessState', form]);
+  List<Object> get props => ['SignInSuccessState', form];
 }
 
 class SignInErrorState extends SignInState {
@@ -71,5 +66,5 @@ class SignInErrorState extends SignInState {
   }) : super(form: form);
 
   @override
-  List<Object> get props => (['SignInErrorState', form]);
+  List<Object> get props => ['SignInErrorState', form];
 }

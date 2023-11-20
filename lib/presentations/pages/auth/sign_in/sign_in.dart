@@ -34,21 +34,20 @@ class _SignInPageState extends State<SignInPage> {
           );
         },
         child: const SCScaffold(
-          body: SignInForm(),
+          body: SignInBody(),
         ),
       ),
     );
   }
 }
 
-class SignInForm extends StatelessWidget {
-  const SignInForm({Key? key}) : super(key: key);
+class SignInBody extends StatelessWidget {
+  const SignInBody({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     const sizedBox16 = SizedBox(height: 16);
-    return Form(
-      key: context.read<SignInBloc>().state.form.formKey,
+    return SingleChildScrollView(
       child: Padding(
         padding: const EdgeInsets.all(28),
         child: Column(
@@ -126,7 +125,6 @@ class LoginForm extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocListener<SignInBloc, SignInState>(
       listener: (context, state) {
-        if (state is SignInLoadingState) {}
         if (state is SignInSuccessState) {
           context.go(AppRoutes.homePage.path);
         }
@@ -135,15 +133,18 @@ class LoginForm extends StatelessWidget {
               .showSnackBar(SnackBar(content: Text(context.l10n.loginfailed)));
         }
       },
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const _EmailInput(),
-          const SizedBox(height: 20),
-          const _PasswordInput(),
-          SizedBox(height: getVerticalSize(30)),
-          const _LoginButton(),
-        ],
+      child: Form(
+        key: context.read<SignInBloc>().state.form.formKey,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const _EmailInput(),
+            const SizedBox(height: 20),
+            const _PasswordInput(),
+            SizedBox(height: getVerticalSize(30)),
+            const _LoginButton(),
+          ],
+        ),
       ),
     );
   }
@@ -155,18 +156,15 @@ class _EmailInput extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<SignInBloc, SignInState>(
+      buildWhen: (previous, current) => current is SignInChangedState,
       builder: (context, state) {
-        return Column(
-          children: [
-            SCInput.email(
-              labelText: context.l10n.lablelEmail,
-              onChanged: (email) {
-                context.read<SignInBloc>().add(SignInEmailChangedEvent(
-                    form: state.form.copyWith(email: email)));
-              },
-              errorText: state.form.emailError,
-            ),
-          ],
+        return SCInput.email(
+          labelText: context.l10n.lablelEmail,
+          onChanged: (email) {
+            context.read<SignInBloc>().add(SignInEmailChangedEvent(
+                form: state.form.copyWith(email: email)));
+          },
+          errorText: state.form.emailError,
         );
       },
     );
@@ -179,20 +177,21 @@ class _PasswordInput extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<SignInBloc, SignInState>(
+      buildWhen: (previous, current) =>
+          current is SignInChangedState || current is SignInHiddenPasswordState,
       builder: (context, state) {
         return SCInput.password(
-          fontSize: state.showPassword ? 16 : 12,
+          fontSize: state.form.showPassword ? 16 : 12,
           labelText: context.l10n.lablelPassword,
           onChanged: (password) {
             context.read<SignInBloc>().add(SignInPasswordChangedEvent(
                   form: state.form.copyWith(password: password),
                 ));
           },
-          showPassword: state.showPassword,
-          obscureText: !state.showPassword,
-          onTogglePassword: () => context
-              .read<SignInBloc>()
-              .add(TogglePasswordVisibility(showPassword: state.showPassword)),
+          showPassword: state.form.showPassword,
+          obscureText: !state.form.showPassword,
+          onTogglePassword: () => context.read<SignInBloc>().add(
+              TogglePasswordVisibility(showPassword: state.form.showPassword)),
           errorText: state.form.passwordError,
         );
       },
@@ -206,28 +205,24 @@ class _LoginButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<SignInBloc, SignInState>(
-      buildWhen: (previous, current) => current is SignInChangedState,
       builder: (context, state) {
         return SCButton(
           onPressed: () {
-            if (state is SignInChangedState && state.form.passwordValid) {
-              BlocProvider.of<SignInBloc>(context).add(
-                SignInSubmittedEvent(
-                  email: state.form.email,
-                  password: state.form.password,
-                  form: state.form,
-                ),
-              );
+            if (state.form.formValid ?? false) {
+              context.read<SignInBloc>().add(
+                    SignInSubmittedEvent(
+                      form: state.form,
+                    ),
+                  );
             }
           },
           text: state is SignInLoadingState
               ? const CircularProgressIndicator()
               : SCText.headlineSmall(context, text: context.l10n.btnLogin),
           style: context.textTheme.headlineSmall,
-          backgroundColor:
-              state is SignInChangedState && state.form.passwordValid
-                  ? AppColor.primary
-                  : AppColor.whiteFlash,
+          backgroundColor: (state.form.formValid ?? false)
+              ? AppColor.primary
+              : AppColor.whiteFlash,
         );
       },
     );

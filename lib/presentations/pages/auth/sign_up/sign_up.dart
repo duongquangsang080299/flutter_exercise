@@ -197,22 +197,17 @@ class _SignUpPageState extends State<SignUpPage> with InputValidationMixin {
                 SizedBox(
                   height: getVerticalSize(30),
                 ),
-                SCInput.username(
-                  focusNode: _usernameFocusNode,
-                  controller: _usernameController,
-                ),
+                SCInput.username(),
                 sizedBox20,
                 SCInput.email(
-                  focusNode: _emailFocusNode,
-                  // validator: (email) {
-                  //   // Validate email input if focus is on the field
-                  //   if (showEmailValidation) {
-                  //     return isValidUserName(email ?? '');
-                  //   }
-                  //   return null;
-                  // },
-                  controller: _emailController,
-                ),
+                    // validator: (email) {
+                    //   // Validate email input if focus is on the field
+                    //   if (showEmailValidation) {
+                    //     return isValidUserName(email ?? '');
+                    //   }
+                    //   return null;
+                    // },
+                    ),
                 sizedBox20,
                 SCInput.password(
                   focusNode: _passwordFocusNode,

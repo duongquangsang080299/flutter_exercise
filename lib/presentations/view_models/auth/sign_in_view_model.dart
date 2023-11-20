@@ -11,13 +11,14 @@ part 'sign_in_view_model.g.dart';
 class SignInFormModel with _$SignInFormModel {
   @JsonSerializable(explicitToJson: true)
   const factory SignInFormModel({
+    bool? formValid,
+    required bool emailValid,
     required String emailError,
     required String passwordError,
-    required bool emailValid,
     required bool passwordValid,
-    required bool isValid,
     required String email,
     required String password,
+    required bool showPassword,
     @GlobalKeyConverter() GlobalKey<FormState>? formKey,
   }) = _SignInFormModel;
 

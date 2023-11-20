@@ -9,13 +9,14 @@ part of 'sign_in_view_model.dart';
 _$SignInFormModelImpl _$$SignInFormModelImplFromJson(
         Map<String, dynamic> json) =>
     _$SignInFormModelImpl(
+      formValid: json['formValid'] as bool?,
+      emailValid: json['emailValid'] as bool,
       emailError: json['emailError'] as String,
       passwordError: json['passwordError'] as String,
-      emailValid: json['emailValid'] as bool,
       passwordValid: json['passwordValid'] as bool,
-      isValid: json['isValid'] as bool,
       email: json['email'] as String,
       password: json['password'] as String,
+      showPassword: json['showPassword'] as bool,
       formKey: _$JsonConverterFromJson<Object, GlobalKey<FormState>>(
           json['formKey'], const GlobalKeyConverter().fromJson),
     );
@@ -23,13 +24,14 @@ _$SignInFormModelImpl _$$SignInFormModelImplFromJson(
 Map<String, dynamic> _$$SignInFormModelImplToJson(
         _$SignInFormModelImpl instance) =>
     <String, dynamic>{
+      'formValid': instance.formValid,
+      'emailValid': instance.emailValid,
       'emailError': instance.emailError,
       'passwordError': instance.passwordError,
-      'emailValid': instance.emailValid,
       'passwordValid': instance.passwordValid,
-      'isValid': instance.isValid,
       'email': instance.email,
       'password': instance.password,
+      'showPassword': instance.showPassword,
       'formKey': _$JsonConverterToJson<Object, GlobalKey<FormState>>(
           instance.formKey, const GlobalKeyConverter().toJson),
     };
