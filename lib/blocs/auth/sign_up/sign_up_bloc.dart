@@ -61,7 +61,9 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
     emit(SignUpChangedState(
       form: event.form.copyWith(
           passwordError: passwordError,
-          formValid: passwordValid && state.form.emailValid),
+          formValid: passwordValid &&
+              state.form.emailValid &&
+              state.form.usernameValid),
     ));
   }
 
@@ -74,7 +76,7 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
         email: event.form.email,
         password: event.form.password,
       );
-      // Update the state on successful login
+      // Update the state on successful create acccount
       emit(SignUpSuccessState(
           form: event.form.copyWith(
               formValid: state.form.usernameValid &&

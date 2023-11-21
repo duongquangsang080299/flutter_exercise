@@ -33,20 +33,15 @@ class SignUpInitialState extends SignUpState {
 }
 
 class SignUpChangedState extends SignUpState {
-  const SignUpChangedState({
-    required SignUpFormModel form,
-  }) : super(
-          form: form,
-        );
+  const SignUpChangedState({required SignUpFormModel form}) : super(form: form);
 
   @override
   List<Object> get props => ['SignUpChangedState', form];
 }
 
 class SignUpHiddenPasswordState extends SignUpState {
-  const SignUpHiddenPasswordState({
-    required SignUpFormModel form,
-  }) : super(form: form);
+  const SignUpHiddenPasswordState({required SignUpFormModel form})
+      : super(form: form);
 
   @override
   List<Object> get props => [form];
@@ -67,9 +62,7 @@ class SignUpSuccessState extends SignUpState {
 }
 
 class SignUpErrorState extends SignUpState {
-  const SignUpErrorState({
-    required SignUpFormModel form,
-  }) : super(form: form);
+  const SignUpErrorState({required SignUpFormModel form}) : super(form: form);
 
   @override
   List<Object> get props => ['SignUpErrorState', form];
