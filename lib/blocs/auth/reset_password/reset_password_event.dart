@@ -19,7 +19,6 @@ class ResetPasswordEmaildChangedEvent extends ResetPasswordEvent {
 
 class ResetPasswordSubmittedEvent extends ResetPasswordEvent {
   final ResetPasswordFormModel form;
-
   const ResetPasswordSubmittedEvent({
     required this.form,
   });

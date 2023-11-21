@@ -24,11 +24,9 @@ class ResetPasswordBloc extends Bloc<ResetPasswordEvent, ResetPasswordState> {
     Emitter<ResetPasswordState> emit,
   ) {
     final emailError = InputValidationMixin.validEmail(event.form.email) ?? '';
-    final emailValid = emailError.isEmpty;
     emit(ResetPasswordChangedState(
       form: event.form.copyWith(
         emailError: emailError,
-        emailValid: emailValid,
       ),
     ));
   }
@@ -44,8 +42,9 @@ class ResetPasswordBloc extends Bloc<ResetPasswordEvent, ResetPasswordState> {
       // Update the state on successful reset
       emit(ResetPasswordSuccessState(form: event.form));
     } catch (e) {
-      // Handle errors during reset
-      emit(ResetPasswordErrorState(form: event.form));
+      // Handle errors
+      emit(ResetPasswordErrorState(
+          form: event.form, errorMessage: event.form.errorMessage ?? ''));
     }
   }
 }
