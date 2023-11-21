@@ -12,6 +12,7 @@ _$ResetPasswordFormModelImpl _$$ResetPasswordFormModelImplFromJson(
       emailError: json['emailError'] as String,
       emailValid: json['emailValid'] as bool,
       email: json['email'] as String,
+      errorMessage: json['errorMessage'] as String?,
       formKey: _$JsonConverterFromJson<Object, GlobalKey<FormState>>(
           json['formKey'], const GlobalKeyConverter().fromJson),
     );
@@ -22,6 +23,7 @@ Map<String, dynamic> _$$ResetPasswordFormModelImplToJson(
       'emailError': instance.emailError,
       'emailValid': instance.emailValid,
       'email': instance.email,
+      'errorMessage': instance.errorMessage,
       'formKey': _$JsonConverterToJson<Object, GlobalKey<FormState>>(
           instance.formKey, const GlobalKeyConverter().toJson),
     };
