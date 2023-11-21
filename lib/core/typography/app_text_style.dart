@@ -36,7 +36,7 @@ class AppTextStyles {
     fontFamily: 'Poppins',
     fontSize: 24,
     fontWeight: AppFontWeight.semiBold,
-    color: AppColor.tertiary,
+    color: AppColor.primary,
   );
 
   static TextStyle headlineLarge = _baseTextStyle(

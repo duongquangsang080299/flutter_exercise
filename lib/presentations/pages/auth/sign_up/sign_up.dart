@@ -8,15 +8,15 @@ import 'package:soccer_club_app/core/color/app_color.dart';
 import 'package:soccer_club_app/core/constant/icons.dart';
 import 'package:soccer_club_app/core/extention/builder_context_extension.dart';
 import 'package:soccer_club_app/core/l10n/l10n.dart';
+import 'package:soccer_club_app/core/router/router.dart';
 import 'package:soccer_club_app/core/typography/app_fontweight.dart';
 import 'package:soccer_club_app/core/utils/size_utils.dart';
 import 'package:soccer_club_app/core/utils/validator_utils.dart';
+import 'package:soccer_club_app/presentations/layout/scaffold.dart';
 import 'package:soccer_club_app/presentations/widgets/button.dart';
 import 'package:soccer_club_app/presentations/widgets/icon.dart';
 import 'package:soccer_club_app/presentations/widgets/input.dart';
 import 'package:soccer_club_app/presentations/widgets/text.dart';
-import 'package:soccer_club_app/core/router/router.dart';
-import 'package:soccer_club_app/presentations/layout/scaffold.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});
@@ -197,22 +197,17 @@ class _SignUpPageState extends State<SignUpPage> with InputValidationMixin {
                 SizedBox(
                   height: getVerticalSize(30),
                 ),
-                SCInput.username(
-                  focusNode: _usernameFocusNode,
-                  controller: _usernameController,
-                ),
+                SCInput.username(),
                 sizedBox20,
                 SCInput.email(
-                  focusNode: _emailFocusNode,
-                  // validator: (email) {
-                  //   // Validate email input if focus is on the field
-                  //   if (showEmailValidation) {
-                  //     return isValidUserName(email ?? '');
-                  //   }
-                  //   return null;
-                  // },
-                  controller: _emailController,
-                ),
+                    // validator: (email) {
+                    //   // Validate email input if focus is on the field
+                    //   if (showEmailValidation) {
+                    //     return isValidUserName(email ?? '');
+                    //   }
+                    //   return null;
+                    // },
+                    ),
                 sizedBox20,
                 SCInput.password(
                   focusNode: _passwordFocusNode,
@@ -258,7 +253,8 @@ class _SignUpPageState extends State<SignUpPage> with InputValidationMixin {
                             }
                           }
                         : null,
-                    text: context.l10n.btnSignUp,
+                    text: SCText.headlineMedium(context,
+                        text: context.l10n.btnSignUp),
                     style: context.textTheme.headlineSmall,
                     backgroundColor: _isButtonActive
                         ? AppColor.onTertiary

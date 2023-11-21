@@ -11,7 +11,7 @@ class SCButton extends StatelessWidget {
     this.height = 60,
     this.style,
   });
-  final String text;
+  final Widget text;
   final Color? backgroundColor;
   final VoidCallback? onPressed;
   final double height;
@@ -32,11 +32,7 @@ class SCButton extends StatelessWidget {
             ),
           ),
         ),
-        child: SCText.headlineSmall(
-          context,
-          text: text,
-          style: style,
-        ),
+        child: text,
       ),
     );
   }
