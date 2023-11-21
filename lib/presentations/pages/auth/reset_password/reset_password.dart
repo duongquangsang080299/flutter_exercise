@@ -43,70 +43,68 @@ class ResetPasswordBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Padding(
-          padding: const EdgeInsets.all(28),
-          child: Column(children: [
-            SizedBox(height: context.getVerticalSize(40)),
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
+    return Padding(
+        padding: const EdgeInsets.all(28),
+        child: Column(children: [
+          SizedBox(height: context.getVerticalSize(40)),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              IconButton(
+                onPressed: () {
+                  context.go(AppRoutes.signIn.path);
+                },
+                icon: SvgPicture.asset(SCIcons.back),
+              ),
+            ],
+          ),
+          SizedBox(height: context.getVerticalSize(50)),
+          SCText.displayLarge(
+            context,
+            text: context.l10n.forgotPassword,
+            style: context.textTheme.displaySmall?.copyWith(
+              color: AppColor.primary,
+            ),
+          ),
+          SizedBox(
+            height: context.getVerticalSize(30),
+          ),
+          SCText.bodyMedium(
+            context,
+            text: context.l10n.enteryouremaihere,
+            textAlign: TextAlign.center,
+          ),
+          SizedBox(
+            height: context.getVerticalSize(50),
+          ),
+          const ResetPasswordForm(),
+          const SizedBox(
+            height: 16,
+          ),
+          Text.rich(
+            TextSpan(
               children: [
-                IconButton(
-                  onPressed: () {
-                    context.go(AppRoutes.signIn.path);
-                  },
-                  icon: SvgPicture.asset(SCIcons.back),
+                TextSpan(
+                  text: context.l10n.rememberyourpassword,
+                  style: context.textTheme.bodyLarge?.copyWith(
+                    color: AppColor.dimGray,
+                  ),
+                ),
+                TextSpan(
+                  text: context.l10n.loginhere,
+                  style: context.textTheme.bodyLarge?.copyWith(
+                    fontWeight: AppFontWeight.bold,
+                    color: AppColor.primary,
+                  ),
+                  recognizer: TapGestureRecognizer()
+                    ..onTap = () {
+                      context.go(AppRoutes.signIn.path);
+                    },
                 ),
               ],
             ),
-            SizedBox(height: context.getVerticalSize(50)),
-            SCText.displayLarge(
-              context,
-              text: context.l10n.forgotPassword,
-              style: context.textTheme.displaySmall?.copyWith(
-                color: AppColor.primary,
-              ),
-            ),
-            SizedBox(
-              height: context.getVerticalSize(30),
-            ),
-            SCText.bodyMedium(
-              context,
-              text: context.l10n.enteryouremaihere,
-              textAlign: TextAlign.center,
-            ),
-            SizedBox(
-              height: context.getVerticalSize(50),
-            ),
-            const ResetPasswordForm(),
-            const SizedBox(
-              height: 16,
-            ),
-            Text.rich(
-              TextSpan(
-                children: [
-                  TextSpan(
-                    text: context.l10n.rememberyourpassword,
-                    style: context.textTheme.bodyLarge?.copyWith(
-                      color: AppColor.dimGray,
-                    ),
-                  ),
-                  TextSpan(
-                    text: context.l10n.loginhere,
-                    style: context.textTheme.bodyLarge?.copyWith(
-                      fontWeight: AppFontWeight.bold,
-                      color: AppColor.primary,
-                    ),
-                    recognizer: TapGestureRecognizer()
-                      ..onTap = () {
-                        context.go(AppRoutes.signIn.path);
-                      },
-                  ),
-                ],
-              ),
-            ),
-          ])),
-    );
+          ),
+        ]));
   }
 }
 
@@ -142,7 +140,7 @@ class _EmailInput extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<ResetPasswordBloc, ResetPasswordState>(
-      buildWhen: (previous, current) => current is ResetPasswordChangedState,
+      buildWhen: (_, current) => current is ResetPasswordChangedState,
       builder: (context, state) {
         return Column(
           children: [
@@ -172,7 +170,7 @@ class _ResetPasswordButton extends StatelessWidget {
       builder: (context, state) {
         return SCButton(
           onPressed: () {
-            if (state.form.emailValid) {
+            if (state.form.emailError) {
               context.read<ResetPasswordBloc>().add(
                     ResetPasswordSubmittedEvent(
                       form: state.form,
@@ -186,7 +184,7 @@ class _ResetPasswordButton extends StatelessWidget {
                   text: context.l10n.btnResetPassword),
           style: context.textTheme.headlineSmall,
           backgroundColor:
-              (state.form.emailValid) ? AppColor.primary : AppColor.whiteFlash,
+              (state.form.emailError) ? AppColor.primary : AppColor.whiteFlash,
         );
       },
     );
