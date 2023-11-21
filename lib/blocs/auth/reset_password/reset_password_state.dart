@@ -4,7 +4,6 @@ part of 'reset_password_bloc.dart';
 ResetPasswordFormModel emptyResetPasswordState = const ResetPasswordFormModel(
   email: '',
   emailError: '',
-  emailValid: false,
   errorMessage: '',
 );
 
