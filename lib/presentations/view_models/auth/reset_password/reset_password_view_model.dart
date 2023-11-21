@@ -10,8 +10,7 @@ part 'reset_password_view_model.g.dart';
 class ResetPasswordFormModel with _$ResetPasswordFormModel {
   @JsonSerializable(explicitToJson: true)
   const factory ResetPasswordFormModel({
-    required String emailError,
-    required bool emailValid,
+    String? emailError,
     required String email,
     @GlobalKeyConverter() GlobalKey<FormState>? formKey,
   }) = _ResetPasswordFormModel;
