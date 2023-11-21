@@ -24,6 +24,30 @@ class SCInput extends StatelessWidget with InputValidationMixin {
     this.errorText,
   });
 
+  /// Input of username
+  factory SCInput.username({
+    Key? key,
+    TextInputType keyboardType = TextInputType.name,
+    String? labelText,
+    Function(String)? onChanged,
+    TextStyle? labelStyle,
+    String? errorText,
+    EdgeInsetsGeometry? contentPadding,
+  }) {
+    return SCInput(
+      key: key,
+      keyboardType: keyboardType,
+      labelText: labelText,
+      onChanged: onChanged,
+      errorText: errorText,
+      validator: (username) =>
+          InputValidationMixin.validUserName(username ?? ''),
+      contentPadding: contentPadding,
+      labelStyle: labelStyle,
+    );
+  }
+
+  /// Input of email
   factory SCInput.email({
     Key? key,
     String? labelText,
@@ -42,38 +66,15 @@ class SCInput extends StatelessWidget with InputValidationMixin {
       errorText: errorText,
       keyboardType: keyboardType,
       contentPadding: contentPadding,
-      obscureText: false,
       validator: (email) => InputValidationMixin.validEmail(email ?? ''),
       labelStyle: labelStyle,
     );
   }
 
-  factory SCInput.username({
-    TextInputType keyboardType = TextInputType.name,
-    String? labelText,
-    Function(String)? onChanged,
-    TextStyle? labelStyle,
-    String? errorText,
-    EdgeInsetsGeometry? contentPadding,
-  }) {
-    return SCInput(
-      keyboardType: keyboardType,
-      labelText: labelText,
-      onChanged: onChanged,
-      errorText: errorText,
-      obscureText: false,
-      validator: (username) =>
-          InputValidationMixin.validUserName(username ?? ''),
-      contentPadding: contentPadding,
-      labelStyle: labelStyle,
-    );
-  }
-
+  /// Input of password
   factory SCInput.password({
     Key? key,
-    FocusNode? focusNode,
     Widget? suffixIcon,
-    TextEditingController? controller,
     String? labelText,
     String? obscuringCharacter,
     double? fontSize,

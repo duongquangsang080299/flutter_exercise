@@ -47,72 +47,74 @@ class SignInBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const sizedBox16 = SizedBox(height: 16);
-    return SingleChildScrollView(
-      child: Padding(
-        padding: const EdgeInsets.all(28),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SizedBox(height: context.getVerticalSize(87)),
-            SCText.displaySmall(context,
-                text: context.l10n.signIn,
-                style: context.textTheme.displaySmall),
-            sizedBox16,
-            SCText.bodyLarge(
-              context,
-              text: context.l10n.description,
-            ),
-            SizedBox(height: getVerticalSize(30)),
-            const LoginForm(),
-            sizedBox16,
-            Text.rich(
-              TextSpan(
-                children: [
-                  TextSpan(
-                    text: context.l10n.forgotPassword,
-                    style: context.textTheme.bodyLarge?.copyWith(
-                      color: AppColor.dimGray,
+    return Padding(
+      padding: const EdgeInsets.all(28),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          SizedBox(height: context.getVerticalSize(87)),
+          SCText.displaySmall(context,
+              text: context.l10n.signIn, style: context.textTheme.displaySmall),
+          sizedBox16,
+          SCText.bodyLarge(
+            context,
+            text: context.l10n.description,
+          ),
+          SizedBox(height: getVerticalSize(30)),
+          const LoginForm(),
+          const Spacer(),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const _LoginButton(),
+              sizedBox16,
+              Text.rich(
+                TextSpan(
+                  children: [
+                    TextSpan(
+                      text: context.l10n.forgotPassword,
+                      style: context.textTheme.bodyLarge?.copyWith(
+                        color: AppColor.dimGray,
+                      ),
                     ),
-                  ),
-                  TextSpan(
-                    text: context.l10n.resetHere,
-                    style: context.textTheme.bodyLarge?.copyWith(
-                      fontWeight: FontWeight.bold,
-                      color: AppColor.primary,
+                    TextSpan(
+                      text: context.l10n.resetHere,
+                      style: context.textTheme.bodyLarge?.copyWith(
+                        fontWeight: FontWeight.bold,
+                        color: AppColor.primary,
+                      ),
+                      recognizer: TapGestureRecognizer()
+                        ..onTap = () {
+                          context.go(AppRoutes.forgotPasswordPage.path);
+                        },
                     ),
-                    recognizer: TapGestureRecognizer()
-                      ..onTap = () {
-                        context.go(AppRoutes.forgotPasswordPage.path);
-                      },
-                  ),
-                ],
-              ),
-            ),
-            SizedBox(height: getVerticalSize(30)),
-            Align(
-              child: SCText.bodyLarge(
-                context,
-                text: context.l10n.donthaveaccount,
-                style: context.textTheme.bodyLarge
-                    ?.copyWith(color: AppColor.graysuva),
-              ),
-            ),
-            const SizedBox(height: 19),
-            Column(
-              children: [
-                SCButton(
-                  text: SCText.headlineSmall(context,
-                      text: context.l10n.btnCreateAnAccount),
-                  style: context.textTheme.headlineSmall,
-                  backgroundColor: AppColor.onTertiary,
-                  onPressed: () {
-                    context.go(AppRoutes.signUp.path);
-                  },
+                  ],
                 ),
-              ],
-            ),
-          ],
-        ),
+              ),
+              SizedBox(height: getVerticalSize(30)),
+              Align(
+                child: SCText.bodyLarge(
+                  context,
+                  text: context.l10n.donthaveaccount,
+                  style: context.textTheme.bodyLarge
+                      ?.copyWith(color: AppColor.graysuva),
+                ),
+              ),
+              const SizedBox(
+                height: 19,
+              ),
+              SCButton(
+                text: SCText.headlineSmall(context,
+                    text: context.l10n.btnCreateAnAccount),
+                style: context.textTheme.headlineSmall,
+                backgroundColor: AppColor.onTertiary,
+                onPressed: () {
+                  context.go(AppRoutes.signUp.path);
+                },
+              ),
+            ],
+          ),
+        ],
       ),
     );
   }
@@ -123,18 +125,19 @@ class LoginForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final _context = context;
     return BlocListener<SignInBloc, SignInState>(
       listener: (context, state) {
         if (state is SignInSuccessState) {
-          context.go(AppRoutes.homePage.path);
+          _context.go(AppRoutes.homePage.path);
         }
         if (state is SignInErrorState) {
-          ScaffoldMessenger.of(context)
-              .showSnackBar(SnackBar(content: Text(context.l10n.loginfailed)));
+          ScaffoldMessenger.of(_context)
+              .showSnackBar(SnackBar(content: Text(_context.l10n.loginfailed)));
         }
       },
       child: Form(
-        key: context.read<SignInBloc>().state.form.formKey,
+        key: _context.read<SignInBloc>().state.form.formKey,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -142,7 +145,6 @@ class LoginForm extends StatelessWidget {
             const SizedBox(height: 20),
             const _PasswordInput(),
             SizedBox(height: getVerticalSize(30)),
-            const _LoginButton(),
           ],
         ),
       ),
@@ -155,13 +157,14 @@ class _EmailInput extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final _context = context;
     return BlocBuilder<SignInBloc, SignInState>(
-      buildWhen: (previous, current) => current is SignInChangedState,
+      buildWhen: (_, current) => current is SignInChangedState,
       builder: (context, state) {
         return SCInput.email(
-          labelText: context.l10n.lablelEmail,
+          labelText: _context.l10n.lablelEmail,
           onChanged: (email) {
-            context.read<SignInBloc>().add(SignInEmailChangedEvent(
+            _context.read<SignInBloc>().add(SignInEmailChangedEvent(
                 form: state.form.copyWith(email: email)));
           },
           errorText: state.form.emailError,
@@ -176,21 +179,22 @@ class _PasswordInput extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final _context = context;
     return BlocBuilder<SignInBloc, SignInState>(
-      buildWhen: (previous, current) =>
+      buildWhen: (_, current) =>
           current is SignInChangedState || current is SignInHiddenPasswordState,
       builder: (context, state) {
         return SCInput.password(
           fontSize: state.form.showPassword ? 16 : 12,
-          labelText: context.l10n.lablelPassword,
+          labelText: _context.l10n.lablelPassword,
           onChanged: (password) {
-            context.read<SignInBloc>().add(SignInPasswordChangedEvent(
+            _context.read<SignInBloc>().add(SignInPasswordChangedEvent(
                   form: state.form.copyWith(password: password),
                 ));
           },
           showPassword: state.form.showPassword,
           obscureText: !state.form.showPassword,
-          onTogglePassword: () => context.read<SignInBloc>().add(
+          onTogglePassword: () => _context.read<SignInBloc>().add(
               TogglePasswordVisibility(showPassword: state.form.showPassword)),
           errorText: state.form.passwordError,
         );
