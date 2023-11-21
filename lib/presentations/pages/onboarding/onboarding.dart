@@ -4,14 +4,14 @@ import 'package:soccer_club_app/core/color/app_color.dart';
 import 'package:soccer_club_app/core/constant/assets.dart';
 import 'package:soccer_club_app/core/extention/builder_context_extension.dart';
 import 'package:soccer_club_app/core/l10n/l10n.dart';
+import 'package:soccer_club_app/core/router/router.dart';
 import 'package:soccer_club_app/core/typography/app_fontweight.dart';
 import 'package:soccer_club_app/core/utils/utils.dart';
+import 'package:soccer_club_app/presentations/layout/scaffold.dart';
 import 'package:soccer_club_app/presentations/pages/onboarding/view/onboarding_model.dart';
 import 'package:soccer_club_app/presentations/widgets/button.dart';
 import 'package:soccer_club_app/presentations/widgets/dots_indicator.dart';
 import 'package:soccer_club_app/presentations/widgets/text.dart';
-import 'package:soccer_club_app/core/router/router.dart';
-import 'package:soccer_club_app/presentations/layout/scaffold.dart';
 
 /// Define the OnBoardingPage widget
 class OnBoardingPage extends StatefulWidget {
@@ -123,7 +123,8 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
                               context.go(AppRoutes.welcomeScreen.path);
                             }
                           : null,
-                      text: context.l10n.btnCampaigns,
+                      text: SCText.headlineSmall(context,
+                          text: context.l10n.btnCampaigns),
                       backgroundColor: _isButtonEnabled
                           ? AppColor.primary
                           : AppColor.whiteFlash,
