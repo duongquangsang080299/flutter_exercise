@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:soccer_club_app/core/utils/validator_utils.dart';
 import 'package:soccer_club_app/data/repositories/auth_repo.dart';
-import 'package:soccer_club_app/presentations/view_models/auth/sign_in_view_model.dart';
+import 'package:soccer_club_app/presentations/view_models/auth/sign_in/sign_in_view_model.dart';
 
 part 'sign_in_event.dart';
 part 'sign_in_state.dart';
@@ -46,7 +46,7 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
     emit(SignInChangedState(
       form: event.form.copyWith(
           passwordError: passwordError,
-          formValid: passwordValid && state.form.emailValid),
+          formValid: passwordValid && event.form.emailValid),
     ));
   }
 

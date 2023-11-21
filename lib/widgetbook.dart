@@ -5,17 +5,18 @@ import 'package:soccer_club_app/core/color/app_color.dart';
 import 'package:soccer_club_app/core/constant/assets.dart';
 import 'package:soccer_club_app/core/constant/icons.dart';
 import 'package:soccer_club_app/core/extention/builder_context_extension.dart';
+import 'package:soccer_club_app/core/l10n/l10n.dart';
 import 'package:soccer_club_app/core/typography/app_fontweight.dart';
 import 'package:soccer_club_app/core/utils/size_utils.dart';
+import 'package:soccer_club_app/presentations/layout/bottom_navigation_bar.dart';
 import 'package:soccer_club_app/presentations/widgets/app_bar.dart';
 import 'package:soccer_club_app/presentations/widgets/button.dart';
 import 'package:soccer_club_app/presentations/widgets/card.dart';
+import 'package:soccer_club_app/presentations/widgets/dots_indicator.dart';
 import 'package:soccer_club_app/presentations/widgets/text.dart';
 import 'package:soccer_club_app/widgetbook.directories.g.dart';
-import 'package:soccer_club_app/presentations/layout/bottom_navigation_bar.dart';
 import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
-import 'package:soccer_club_app/presentations/widgets/dots_indicator.dart';
 
 void main() => runApp(const WidgetbookApp());
 
@@ -70,7 +71,6 @@ class WidgetbookApp extends StatelessWidget {
           ],
         ),
       ],
-      
     );
   }
 }
@@ -99,7 +99,10 @@ Widget goshtButton(BuildContext context) {
           ),
           Expanded(
             child: SCButton(
-              text: 'CAMPAIGNS',
+              text: SCText.headlineSmall(
+                context,
+                text: context.l10n.btnCampaigns,
+              ),
               onPressed: () {},
               backgroundColor: AppColor.primary,
               style: context.textTheme.displayMedium?.copyWith(
@@ -127,7 +130,7 @@ Padding welcomeButton(BuildContext context) {
       children: [
         SCButton(
           onPressed: () {},
-          text: 'Login With Email ',
+          text: SCText.headlineSmall(context, text: context.l10n.btnLogin),
           backgroundColor: AppColor.primary,
           style: context.textTheme.displayMedium?.copyWith(
             fontWeight: AppFontWeight.semiBold,
@@ -140,7 +143,7 @@ Padding welcomeButton(BuildContext context) {
         ),
         SCButton(
           onPressed: () {},
-          text: 'Create an account',
+          text: SCText.headlineSmall(context, text: context.l10n.btnLogin),
           backgroundColor: AppColor.onTertiary,
           style: context.textTheme.displayMedium?.copyWith(
             fontWeight: AppFontWeight.semiBold,
@@ -165,7 +168,7 @@ Padding signInButton(BuildContext context) {
       children: [
         SCButton(
           onPressed: () {},
-          text: 'LOGIN ',
+          text: SCText.headlineSmall(context, text: context.l10n.btnLogin),
           backgroundColor: AppColor.primary,
           style: context.textTheme.displayMedium?.copyWith(
             fontWeight: AppFontWeight.semiBold,
@@ -178,7 +181,8 @@ Padding signInButton(BuildContext context) {
         ),
         SCButton(
           onPressed: () {},
-          text: 'CREATE AN ACCOUNT',
+          text:
+              SCText.headlineSmall(context, text: context.l10n.createanAccount),
           backgroundColor: AppColor.onTertiary,
           style: context.textTheme.displayMedium?.copyWith(
             fontWeight: AppFontWeight.semiBold,

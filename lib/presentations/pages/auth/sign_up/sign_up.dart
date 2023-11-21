@@ -42,71 +42,73 @@ class SignUpBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(28),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          IconButton(
-            onPressed: () {
-              context.go(AppRoutes.signUp.path);
-            },
-            icon: SvgPicture.asset(SCIcons.back),
-          ),
-          SizedBox(height: context.getVerticalSize(44)),
-          SCText.displaySmall(
-            context,
-            text: context.l10n.createanAccount,
-            style: context.textTheme.displaySmall
-                ?.copyWith(color: AppColor.primary),
-          ),
-          const SizedBox(height: 16),
-          SCText.bodyLarge(
-            context,
-            text: context.l10n.description,
-          ),
-          SizedBox(
-            height: context.getVerticalSize(30),
-          ),
-          const SignUpForm(),
-          SizedBox(height: context.getVerticalSize(30)),
-          Text.rich(
-            TextSpan(
-              children: [
-                TextSpan(
-                  text: context.l10n.byTappingSignUpYouAcceptOur,
-                  style: context.textTheme.bodyLarge
-                      ?.copyWith(color: AppColor.dimGray),
-                ),
-                TextSpan(
-                  text: context.l10n.terms,
-                  style: context.textTheme.bodyLarge?.copyWith(
-                    fontWeight: AppFontWeight.bold,
-                    color: AppColor.primary,
-                  ),
-                  recognizer: TapGestureRecognizer()..onTap = () {},
-                ),
-                TextSpan(
-                  text: context.l10n.and,
-                  style: context.textTheme.bodyLarge
-                      ?.copyWith(color: AppColor.dimGray),
-                ),
-                TextSpan(
-                  text: context.l10n.condition,
-                  style: context.textTheme.bodyLarge?.copyWith(
-                    fontWeight: AppFontWeight.bold,
-                    color: AppColor.primary,
-                  ),
-                  recognizer: TapGestureRecognizer()
-                    ..onTap = () {
-                      _showTermsAndConditionsDialog(context);
-                    },
-                ),
-              ],
+    return SingleChildScrollView(
+      child: Padding(
+        padding: const EdgeInsets.all(28),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            IconButton(
+              onPressed: () {
+                context.go(AppRoutes.signUp.path);
+              },
+              icon: SvgPicture.asset(SCIcons.back),
             ),
-            textAlign: TextAlign.center,
-          ),
-        ],
+            SizedBox(height: context.getVerticalSize(44)),
+            SCText.displaySmall(
+              context,
+              text: context.l10n.createanAccount,
+              style: context.textTheme.displaySmall
+                  ?.copyWith(color: AppColor.primary),
+            ),
+            const SizedBox(height: 16),
+            SCText.bodyLarge(
+              context,
+              text: context.l10n.description,
+            ),
+            SizedBox(
+              height: context.getVerticalSize(30),
+            ),
+            const SignUpForm(),
+            SizedBox(height: context.getVerticalSize(30)),
+            Text.rich(
+              TextSpan(
+                children: [
+                  TextSpan(
+                    text: context.l10n.byTappingSignUpYouAcceptOur,
+                    style: context.textTheme.bodyLarge
+                        ?.copyWith(color: AppColor.dimGray),
+                  ),
+                  TextSpan(
+                    text: context.l10n.terms,
+                    style: context.textTheme.bodyLarge?.copyWith(
+                      fontWeight: AppFontWeight.bold,
+                      color: AppColor.primary,
+                    ),
+                    recognizer: TapGestureRecognizer()..onTap = () {},
+                  ),
+                  TextSpan(
+                    text: context.l10n.and,
+                    style: context.textTheme.bodyLarge
+                        ?.copyWith(color: AppColor.dimGray),
+                  ),
+                  TextSpan(
+                    text: context.l10n.condition,
+                    style: context.textTheme.bodyLarge?.copyWith(
+                      fontWeight: AppFontWeight.bold,
+                      color: AppColor.primary,
+                    ),
+                    recognizer: TapGestureRecognizer()
+                      ..onTap = () {
+                        _showTermsAndConditionsDialog(context);
+                      },
+                  ),
+                ],
+              ),
+              textAlign: TextAlign.center,
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -198,11 +200,11 @@ class _UsernameInput extends StatelessWidget {
           children: [
             SCInput.username(
               labelText: context.l10n.labelUsername,
-              // onChanged: (username) {
-              //   context.read<SignUpBloc>().add(SignUpUsernameChangedEvent(
-              //       form: state.form.copyWith(username: username)));
-              // },
-              // errorText: state.form.usernameError,
+              onChanged: (username) {
+                context.read<SignUpBloc>().add(SignUpUsernameChangedEvent(
+                    form: state.form.copyWith(username: username)));
+              },
+              errorText: state.form.usernameError,
             ),
           ],
         );

@@ -51,12 +51,16 @@ class SCInput extends StatelessWidget with InputValidationMixin {
   factory SCInput.username({
     TextInputType keyboardType = TextInputType.name,
     String? labelText,
+    Function(String)? onChanged,
     TextStyle? labelStyle,
+    String? errorText,
     EdgeInsetsGeometry? contentPadding,
   }) {
     return SCInput(
       keyboardType: keyboardType,
       labelText: labelText,
+      onChanged: onChanged,
+      errorText: errorText,
       obscureText: false,
       validator: (username) =>
           InputValidationMixin.validUserName(username ?? ''),
