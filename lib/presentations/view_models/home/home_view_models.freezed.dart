@@ -20,10 +20,9 @@ HomeViewModel _$HomeViewModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$HomeViewModel {
-  UserModel get nameUser => throw _privateConstructorUsedError;
-  MatchModel get match => throw _privateConstructorUsedError;
-  TeamModel get team => throw _privateConstructorUsedError;
-  GoalModel get goal => throw _privateConstructorUsedError;
+  UserModel get userName => throw _privateConstructorUsedError;
+  MatchModel get nextMatch => throw _privateConstructorUsedError;
+  List<MatchModel> get news => throw _privateConstructorUsedError;
   TicketModel get ticket => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -39,16 +38,13 @@ abstract class $HomeViewModelCopyWith<$Res> {
       _$HomeViewModelCopyWithImpl<$Res, HomeViewModel>;
   @useResult
   $Res call(
-      {UserModel nameUser,
-      MatchModel match,
-      TeamModel team,
-      GoalModel goal,
+      {UserModel userName,
+      MatchModel nextMatch,
+      List<MatchModel> news,
       TicketModel ticket});
 
-  $UserModelCopyWith<$Res> get nameUser;
-  $MatchModelCopyWith<$Res> get match;
-  $TeamModelCopyWith<$Res> get team;
-  $GoalModelCopyWith<$Res> get goal;
+  $UserModelCopyWith<$Res> get userName;
+  $MatchModelCopyWith<$Res> get nextMatch;
   $TicketModelCopyWith<$Res> get ticket;
 }
 
@@ -65,29 +61,24 @@ class _$HomeViewModelCopyWithImpl<$Res, $Val extends HomeViewModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? nameUser = null,
-    Object? match = null,
-    Object? team = null,
-    Object? goal = null,
+    Object? userName = null,
+    Object? nextMatch = null,
+    Object? news = null,
     Object? ticket = null,
   }) {
     return _then(_value.copyWith(
-      nameUser: null == nameUser
-          ? _value.nameUser
-          : nameUser // ignore: cast_nullable_to_non_nullable
+      userName: null == userName
+          ? _value.userName
+          : userName // ignore: cast_nullable_to_non_nullable
               as UserModel,
-      match: null == match
-          ? _value.match
-          : match // ignore: cast_nullable_to_non_nullable
+      nextMatch: null == nextMatch
+          ? _value.nextMatch
+          : nextMatch // ignore: cast_nullable_to_non_nullable
               as MatchModel,
-      team: null == team
-          ? _value.team
-          : team // ignore: cast_nullable_to_non_nullable
-              as TeamModel,
-      goal: null == goal
-          ? _value.goal
-          : goal // ignore: cast_nullable_to_non_nullable
-              as GoalModel,
+      news: null == news
+          ? _value.news
+          : news // ignore: cast_nullable_to_non_nullable
+              as List<MatchModel>,
       ticket: null == ticket
           ? _value.ticket
           : ticket // ignore: cast_nullable_to_non_nullable
@@ -97,33 +88,17 @@ class _$HomeViewModelCopyWithImpl<$Res, $Val extends HomeViewModel>
 
   @override
   @pragma('vm:prefer-inline')
-  $UserModelCopyWith<$Res> get nameUser {
-    return $UserModelCopyWith<$Res>(_value.nameUser, (value) {
-      return _then(_value.copyWith(nameUser: value) as $Val);
+  $UserModelCopyWith<$Res> get userName {
+    return $UserModelCopyWith<$Res>(_value.userName, (value) {
+      return _then(_value.copyWith(userName: value) as $Val);
     });
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $MatchModelCopyWith<$Res> get match {
-    return $MatchModelCopyWith<$Res>(_value.match, (value) {
-      return _then(_value.copyWith(match: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $TeamModelCopyWith<$Res> get team {
-    return $TeamModelCopyWith<$Res>(_value.team, (value) {
-      return _then(_value.copyWith(team: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $GoalModelCopyWith<$Res> get goal {
-    return $GoalModelCopyWith<$Res>(_value.goal, (value) {
-      return _then(_value.copyWith(goal: value) as $Val);
+  $MatchModelCopyWith<$Res> get nextMatch {
+    return $MatchModelCopyWith<$Res>(_value.nextMatch, (value) {
+      return _then(_value.copyWith(nextMatch: value) as $Val);
     });
   }
 
@@ -145,20 +120,15 @@ abstract class _$$HomeViewModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {UserModel nameUser,
-      MatchModel match,
-      TeamModel team,
-      GoalModel goal,
+      {UserModel userName,
+      MatchModel nextMatch,
+      List<MatchModel> news,
       TicketModel ticket});
 
   @override
-  $UserModelCopyWith<$Res> get nameUser;
+  $UserModelCopyWith<$Res> get userName;
   @override
-  $MatchModelCopyWith<$Res> get match;
-  @override
-  $TeamModelCopyWith<$Res> get team;
-  @override
-  $GoalModelCopyWith<$Res> get goal;
+  $MatchModelCopyWith<$Res> get nextMatch;
   @override
   $TicketModelCopyWith<$Res> get ticket;
 }
@@ -174,29 +144,24 @@ class __$$HomeViewModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? nameUser = null,
-    Object? match = null,
-    Object? team = null,
-    Object? goal = null,
+    Object? userName = null,
+    Object? nextMatch = null,
+    Object? news = null,
     Object? ticket = null,
   }) {
     return _then(_$HomeViewModelImpl(
-      nameUser: null == nameUser
-          ? _value.nameUser
-          : nameUser // ignore: cast_nullable_to_non_nullable
+      userName: null == userName
+          ? _value.userName
+          : userName // ignore: cast_nullable_to_non_nullable
               as UserModel,
-      match: null == match
-          ? _value.match
-          : match // ignore: cast_nullable_to_non_nullable
+      nextMatch: null == nextMatch
+          ? _value.nextMatch
+          : nextMatch // ignore: cast_nullable_to_non_nullable
               as MatchModel,
-      team: null == team
-          ? _value.team
-          : team // ignore: cast_nullable_to_non_nullable
-              as TeamModel,
-      goal: null == goal
-          ? _value.goal
-          : goal // ignore: cast_nullable_to_non_nullable
-              as GoalModel,
+      news: null == news
+          ? _value._news
+          : news // ignore: cast_nullable_to_non_nullable
+              as List<MatchModel>,
       ticket: null == ticket
           ? _value.ticket
           : ticket // ignore: cast_nullable_to_non_nullable
@@ -209,29 +174,33 @@ class __$$HomeViewModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$HomeViewModelImpl implements _HomeViewModel {
   const _$HomeViewModelImpl(
-      {required this.nameUser,
-      required this.match,
-      required this.team,
-      required this.goal,
-      required this.ticket});
+      {required this.userName,
+      required this.nextMatch,
+      required final List<MatchModel> news,
+      required this.ticket})
+      : _news = news;
 
   factory _$HomeViewModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$HomeViewModelImplFromJson(json);
 
   @override
-  final UserModel nameUser;
+  final UserModel userName;
   @override
-  final MatchModel match;
+  final MatchModel nextMatch;
+  final List<MatchModel> _news;
   @override
-  final TeamModel team;
-  @override
-  final GoalModel goal;
+  List<MatchModel> get news {
+    if (_news is EqualUnmodifiableListView) return _news;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_news);
+  }
+
   @override
   final TicketModel ticket;
 
   @override
   String toString() {
-    return 'HomeViewModel(nameUser: $nameUser, match: $match, team: $team, goal: $goal, ticket: $ticket)';
+    return 'HomeViewModel(userName: $userName, nextMatch: $nextMatch, news: $news, ticket: $ticket)';
   }
 
   @override
@@ -239,18 +208,18 @@ class _$HomeViewModelImpl implements _HomeViewModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$HomeViewModelImpl &&
-            (identical(other.nameUser, nameUser) ||
-                other.nameUser == nameUser) &&
-            (identical(other.match, match) || other.match == match) &&
-            (identical(other.team, team) || other.team == team) &&
-            (identical(other.goal, goal) || other.goal == goal) &&
+            (identical(other.userName, userName) ||
+                other.userName == userName) &&
+            (identical(other.nextMatch, nextMatch) ||
+                other.nextMatch == nextMatch) &&
+            const DeepCollectionEquality().equals(other._news, _news) &&
             (identical(other.ticket, ticket) || other.ticket == ticket));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, nameUser, match, team, goal, ticket);
+  int get hashCode => Object.hash(runtimeType, userName, nextMatch,
+      const DeepCollectionEquality().hash(_news), ticket);
 
   @JsonKey(ignore: true)
   @override
@@ -268,23 +237,20 @@ class _$HomeViewModelImpl implements _HomeViewModel {
 
 abstract class _HomeViewModel implements HomeViewModel {
   const factory _HomeViewModel(
-      {required final UserModel nameUser,
-      required final MatchModel match,
-      required final TeamModel team,
-      required final GoalModel goal,
+      {required final UserModel userName,
+      required final MatchModel nextMatch,
+      required final List<MatchModel> news,
       required final TicketModel ticket}) = _$HomeViewModelImpl;
 
   factory _HomeViewModel.fromJson(Map<String, dynamic> json) =
       _$HomeViewModelImpl.fromJson;
 
   @override
-  UserModel get nameUser;
+  UserModel get userName;
   @override
-  MatchModel get match;
+  MatchModel get nextMatch;
   @override
-  TeamModel get team;
-  @override
-  GoalModel get goal;
+  List<MatchModel> get news;
   @override
   TicketModel get ticket;
   @override
