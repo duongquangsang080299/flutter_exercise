@@ -6,8 +6,8 @@ part 'ticket_model.g.dart';
 @freezed
 class TicketModel with _$TicketModel {
   const factory TicketModel({
-    required String image,
-    required String title,
+    required String id,
+    required double sale,
   }) = _TicketModel;
 
   factory TicketModel.fromJson(Map<String, Object?> json) =>
