@@ -11,9 +11,8 @@ _$HomeViewModelImpl _$$HomeViewModelImplFromJson(Map<String, dynamic> json) =>
       nameUser: UserModel.fromJson(json['nameUser'] as Map<String, dynamic>),
       match: MatchModel.fromJson(json['match'] as Map<String, dynamic>),
       team: TeamModel.fromJson(json['team'] as Map<String, dynamic>),
-      reulstOfMatch:
-          ResultModel.fromJson(json['reulstOfMatch'] as Map<String, dynamic>),
-      tickets: TicketModel.fromJson(json['tickets'] as Map<String, dynamic>),
+      goal: GoalModel.fromJson(json['goal'] as Map<String, dynamic>),
+      ticket: TicketModel.fromJson(json['ticket'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$HomeViewModelImplToJson(_$HomeViewModelImpl instance) =>
@@ -21,6 +20,6 @@ Map<String, dynamic> _$$HomeViewModelImplToJson(_$HomeViewModelImpl instance) =>
       'nameUser': instance.nameUser,
       'match': instance.match,
       'team': instance.team,
-      'reulstOfMatch': instance.reulstOfMatch,
-      'tickets': instance.tickets,
+      'goal': instance.goal,
+      'ticket': instance.ticket,
     };

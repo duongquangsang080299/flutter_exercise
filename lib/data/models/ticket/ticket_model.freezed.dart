@@ -20,8 +20,8 @@ TicketModel _$TicketModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$TicketModel {
-  String get image => throw _privateConstructorUsedError;
-  String get title => throw _privateConstructorUsedError;
+  String get id => throw _privateConstructorUsedError;
+  double get sale => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -35,7 +35,7 @@ abstract class $TicketModelCopyWith<$Res> {
           TicketModel value, $Res Function(TicketModel) then) =
       _$TicketModelCopyWithImpl<$Res, TicketModel>;
   @useResult
-  $Res call({String image, String title});
+  $Res call({String id, double sale});
 }
 
 /// @nodoc
@@ -51,18 +51,18 @@ class _$TicketModelCopyWithImpl<$Res, $Val extends TicketModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? image = null,
-    Object? title = null,
+    Object? id = null,
+    Object? sale = null,
   }) {
     return _then(_value.copyWith(
-      image: null == image
-          ? _value.image
-          : image // ignore: cast_nullable_to_non_nullable
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as String,
-      title: null == title
-          ? _value.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String,
+      sale: null == sale
+          ? _value.sale
+          : sale // ignore: cast_nullable_to_non_nullable
+              as double,
     ) as $Val);
   }
 }
@@ -75,7 +75,7 @@ abstract class _$$TicketModelImplCopyWith<$Res>
       __$$TicketModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String image, String title});
+  $Res call({String id, double sale});
 }
 
 /// @nodoc
@@ -89,18 +89,18 @@ class __$$TicketModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? image = null,
-    Object? title = null,
+    Object? id = null,
+    Object? sale = null,
   }) {
     return _then(_$TicketModelImpl(
-      image: null == image
-          ? _value.image
-          : image // ignore: cast_nullable_to_non_nullable
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as String,
-      title: null == title
-          ? _value.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String,
+      sale: null == sale
+          ? _value.sale
+          : sale // ignore: cast_nullable_to_non_nullable
+              as double,
     ));
   }
 }
@@ -108,19 +108,19 @@ class __$$TicketModelImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$TicketModelImpl implements _TicketModel {
-  const _$TicketModelImpl({required this.image, required this.title});
+  const _$TicketModelImpl({required this.id, required this.sale});
 
   factory _$TicketModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$TicketModelImplFromJson(json);
 
   @override
-  final String image;
+  final String id;
   @override
-  final String title;
+  final double sale;
 
   @override
   String toString() {
-    return 'TicketModel(image: $image, title: $title)';
+    return 'TicketModel(id: $id, sale: $sale)';
   }
 
   @override
@@ -128,13 +128,13 @@ class _$TicketModelImpl implements _TicketModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$TicketModelImpl &&
-            (identical(other.image, image) || other.image == image) &&
-            (identical(other.title, title) || other.title == title));
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.sale, sale) || other.sale == sale));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, image, title);
+  int get hashCode => Object.hash(runtimeType, id, sale);
 
   @JsonKey(ignore: true)
   @override
@@ -152,16 +152,16 @@ class _$TicketModelImpl implements _TicketModel {
 
 abstract class _TicketModel implements TicketModel {
   const factory _TicketModel(
-      {required final String image,
-      required final String title}) = _$TicketModelImpl;
+      {required final String id,
+      required final double sale}) = _$TicketModelImpl;
 
   factory _TicketModel.fromJson(Map<String, dynamic> json) =
       _$TicketModelImpl.fromJson;
 
   @override
-  String get image;
+  String get id;
   @override
-  String get title;
+  double get sale;
   @override
   @JsonKey(ignore: true)
   _$$TicketModelImplCopyWith<_$TicketModelImpl> get copyWith =>

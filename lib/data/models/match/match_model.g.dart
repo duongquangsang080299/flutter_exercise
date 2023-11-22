@@ -9,22 +9,19 @@ part of 'match_model.dart';
 _$MatchModelImpl _$$MatchModelImplFromJson(Map<String, dynamic> json) =>
     _$MatchModelImpl(
       id: json['id'] as String,
-      location: json['location'] as String,
-      dayofMatch: DateTime.parse(json['dayofMatch'] as String),
-      leagueTitle: json['leagueTitle'] as String,
-      resultOfMatch:
-          ResultModel.fromJson(json['resultOfMatch'] as Map<String, dynamic>),
-      video: json['video'] as String?,
-      image: json['image'] as String?,
+      place: json['place'] as String,
+      datetime: DateTime.parse(json['datetime'] as String),
+      league: json['league'] as String,
+      goal: GoalModel.fromJson(json['goal'] as Map<String, dynamic>),
+      video: json['video'] as String? ?? ' ',
     );
 
 Map<String, dynamic> _$$MatchModelImplToJson(_$MatchModelImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'location': instance.location,
-      'dayofMatch': instance.dayofMatch.toIso8601String(),
-      'leagueTitle': instance.leagueTitle,
-      'resultOfMatch': instance.resultOfMatch,
+      'place': instance.place,
+      'datetime': instance.datetime.toIso8601String(),
+      'league': instance.league,
+      'goal': instance.goal,
       'video': instance.video,
-      'image': instance.image,
     };

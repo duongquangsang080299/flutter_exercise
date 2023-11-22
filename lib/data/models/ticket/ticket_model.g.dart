@@ -8,12 +8,12 @@ part of 'ticket_model.dart';
 
 _$TicketModelImpl _$$TicketModelImplFromJson(Map<String, dynamic> json) =>
     _$TicketModelImpl(
-      image: json['image'] as String,
-      title: json['title'] as String,
+      id: json['id'] as String,
+      sale: (json['sale'] as num).toDouble(),
     );
 
 Map<String, dynamic> _$$TicketModelImplToJson(_$TicketModelImpl instance) =>
     <String, dynamic>{
-      'image': instance.image,
-      'title': instance.title,
+      'id': instance.id,
+      'sale': instance.sale,
     };

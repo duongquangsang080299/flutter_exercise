@@ -1,6 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:soccer_club_app/data/models/goal/goal_model.dart';
 import 'package:soccer_club_app/data/models/match/match_model.dart';
-import 'package:soccer_club_app/data/models/result_model.dart/result_model.dart';
 import 'package:soccer_club_app/data/models/team/team_model.dart';
 import 'package:soccer_club_app/data/models/ticket/ticket_model.dart';
 import 'package:soccer_club_app/data/models/user/user_model.dart';
@@ -16,8 +16,8 @@ class HomeViewModel with _$HomeViewModel {
     required UserModel nameUser,
     required MatchModel match,
     required TeamModel team,
-    required ResultModel reulstOfMatch,
-    required TicketModel tickets,
+    required GoalModel goal,
+    required TicketModel ticket,
   }) = _HomeViewModel;
 
   factory HomeViewModel.fromJson(Map<String, dynamic> json) =>
