@@ -12,10 +12,17 @@ class AuthRepo {
     }
   }
 
-  Future<void> signUp({required String email, required String password}) async {
+  Future<void> signUp(
+      {required String email,
+      required String password,
+      required String username}) async {
     try {
       await _auth.createUserWithEmailAndPassword(
           email: email, password: password);
+
+      // Store user information in Shared Preferences
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      prefs.setString('username', username);
     } catch (e) {
       throw Exception('Failed to sign up: $e');
     }

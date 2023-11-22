@@ -24,7 +24,6 @@ mixin _$UserModel {
   String get username => throw _privateConstructorUsedError;
   String get email => throw _privateConstructorUsedError;
   String get password => throw _privateConstructorUsedError;
-  PlayerModel get playerFavorite => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -37,14 +36,7 @@ abstract class $UserModelCopyWith<$Res> {
   factory $UserModelCopyWith(UserModel value, $Res Function(UserModel) then) =
       _$UserModelCopyWithImpl<$Res, UserModel>;
   @useResult
-  $Res call(
-      {String id,
-      String username,
-      String email,
-      String password,
-      PlayerModel playerFavorite});
-
-  $PlayerModelCopyWith<$Res> get playerFavorite;
+  $Res call({String id, String username, String email, String password});
 }
 
 /// @nodoc
@@ -64,7 +56,6 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
     Object? username = null,
     Object? email = null,
     Object? password = null,
-    Object? playerFavorite = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -83,19 +74,7 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
               as String,
-      playerFavorite: null == playerFavorite
-          ? _value.playerFavorite
-          : playerFavorite // ignore: cast_nullable_to_non_nullable
-              as PlayerModel,
     ) as $Val);
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $PlayerModelCopyWith<$Res> get playerFavorite {
-    return $PlayerModelCopyWith<$Res>(_value.playerFavorite, (value) {
-      return _then(_value.copyWith(playerFavorite: value) as $Val);
-    });
   }
 }
 
@@ -107,15 +86,7 @@ abstract class _$$UserModelImplCopyWith<$Res>
       __$$UserModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {String id,
-      String username,
-      String email,
-      String password,
-      PlayerModel playerFavorite});
-
-  @override
-  $PlayerModelCopyWith<$Res> get playerFavorite;
+  $Res call({String id, String username, String email, String password});
 }
 
 /// @nodoc
@@ -133,7 +104,6 @@ class __$$UserModelImplCopyWithImpl<$Res>
     Object? username = null,
     Object? email = null,
     Object? password = null,
-    Object? playerFavorite = null,
   }) {
     return _then(_$UserModelImpl(
       id: null == id
@@ -152,10 +122,6 @@ class __$$UserModelImplCopyWithImpl<$Res>
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
               as String,
-      playerFavorite: null == playerFavorite
-          ? _value.playerFavorite
-          : playerFavorite // ignore: cast_nullable_to_non_nullable
-              as PlayerModel,
     ));
   }
 }
@@ -167,8 +133,7 @@ class _$UserModelImpl with DiagnosticableTreeMixin implements _UserModel {
       {required this.id,
       required this.username,
       required this.email,
-      required this.password,
-      required this.playerFavorite});
+      required this.password});
 
   factory _$UserModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$UserModelImplFromJson(json);
@@ -181,12 +146,10 @@ class _$UserModelImpl with DiagnosticableTreeMixin implements _UserModel {
   final String email;
   @override
   final String password;
-  @override
-  final PlayerModel playerFavorite;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'UserModel(id: $id, username: $username, email: $email, password: $password, playerFavorite: $playerFavorite)';
+    return 'UserModel(id: $id, username: $username, email: $email, password: $password)';
   }
 
   @override
@@ -197,8 +160,7 @@ class _$UserModelImpl with DiagnosticableTreeMixin implements _UserModel {
       ..add(DiagnosticsProperty('id', id))
       ..add(DiagnosticsProperty('username', username))
       ..add(DiagnosticsProperty('email', email))
-      ..add(DiagnosticsProperty('password', password))
-      ..add(DiagnosticsProperty('playerFavorite', playerFavorite));
+      ..add(DiagnosticsProperty('password', password));
   }
 
   @override
@@ -211,15 +173,12 @@ class _$UserModelImpl with DiagnosticableTreeMixin implements _UserModel {
                 other.username == username) &&
             (identical(other.email, email) || other.email == email) &&
             (identical(other.password, password) ||
-                other.password == password) &&
-            (identical(other.playerFavorite, playerFavorite) ||
-                other.playerFavorite == playerFavorite));
+                other.password == password));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, id, username, email, password, playerFavorite);
+  int get hashCode => Object.hash(runtimeType, id, username, email, password);
 
   @JsonKey(ignore: true)
   @override
@@ -240,8 +199,7 @@ abstract class _UserModel implements UserModel {
       {required final String id,
       required final String username,
       required final String email,
-      required final String password,
-      required final PlayerModel playerFavorite}) = _$UserModelImpl;
+      required final String password}) = _$UserModelImpl;
 
   factory _UserModel.fromJson(Map<String, dynamic> json) =
       _$UserModelImpl.fromJson;
@@ -254,8 +212,6 @@ abstract class _UserModel implements UserModel {
   String get email;
   @override
   String get password;
-  @override
-  PlayerModel get playerFavorite;
   @override
   @JsonKey(ignore: true)
   _$$UserModelImplCopyWith<_$UserModelImpl> get copyWith =>

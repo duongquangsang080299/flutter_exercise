@@ -1,23 +1,19 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'tickets_view_model.dart';
+part of 'ticket_model.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$TicketsViewModelImpl _$$TicketsViewModelImplFromJson(
-        Map<String, dynamic> json) =>
-    _$TicketsViewModelImpl(
-      id: json['id'] as String?,
+_$TicketModelImpl _$$TicketModelImplFromJson(Map<String, dynamic> json) =>
+    _$TicketModelImpl(
       image: json['image'] as String,
       title: json['title'] as String,
     );
 
-Map<String, dynamic> _$$TicketsViewModelImplToJson(
-        _$TicketsViewModelImpl instance) =>
+Map<String, dynamic> _$$TicketModelImplToJson(_$TicketModelImpl instance) =>
     <String, dynamic>{
-      'id': instance.id,
       'image': instance.image,
       'title': instance.title,
     };

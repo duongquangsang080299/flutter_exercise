@@ -1,8 +1,9 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:soccer_club_app/presentations/view_models/home/live_match/live_match_view_model.dart';
-import 'package:soccer_club_app/presentations/view_models/home/news/news_view_model.dart';
-import 'package:soccer_club_app/presentations/view_models/home/next_match/next_match_view_model.dart';
-import 'package:soccer_club_app/presentations/view_models/home/tickets/tickets_view_model.dart';
+import 'package:soccer_club_app/data/models/match/match_model.dart';
+import 'package:soccer_club_app/data/models/result_model.dart/result_model.dart';
+import 'package:soccer_club_app/data/models/team/team_model.dart';
+import 'package:soccer_club_app/data/models/ticket/ticket_model.dart';
+import 'package:soccer_club_app/data/models/user/user_model.dart';
 
 part 'home_view_models.freezed.dart';
 part 'home_view_models.g.dart';
@@ -12,12 +13,11 @@ part 'home_view_models.g.dart';
 /// HomeView model
 class HomeViewModel with _$HomeViewModel {
   const factory HomeViewModel({
-    String? id,
-    required String userId,
-    required NextMatchViewModel nextMatch,
-    required NewsViewModel news,
-    required LiveMatchViewModel liveMatch,
-    required TicketsViewModel tickets,
+    required UserModel nameUser,
+    required MatchModel match,
+    required TeamModel team,
+    required ResultModel reulstOfMatch,
+    required TicketModel tickets,
   }) = _HomeViewModel;
 
   factory HomeViewModel.fromJson(Map<String, dynamic> json) =>

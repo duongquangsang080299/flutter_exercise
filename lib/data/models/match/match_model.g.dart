@@ -10,20 +10,21 @@ _$MatchModelImpl _$$MatchModelImplFromJson(Map<String, dynamic> json) =>
     _$MatchModelImpl(
       id: json['id'] as String,
       location: json['location'] as String,
-      dateTime: DateTime.parse(json['dateTime'] as String),
-      teamHome: TeamModel.fromJson(json['teamHome'] as Map<String, dynamic>),
-      teamAway: TeamModel.fromJson(json['teamAway'] as Map<String, dynamic>),
-      result: json['result'] as String,
-      history: HistoryModel.fromJson(json['history'] as Map<String, dynamic>),
+      dayofMatch: DateTime.parse(json['dayofMatch'] as String),
+      leagueTitle: json['leagueTitle'] as String,
+      resultOfMatch:
+          ResultModel.fromJson(json['resultOfMatch'] as Map<String, dynamic>),
+      video: json['video'] as String?,
+      image: json['image'] as String?,
     );
 
 Map<String, dynamic> _$$MatchModelImplToJson(_$MatchModelImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'location': instance.location,
-      'dateTime': instance.dateTime.toIso8601String(),
-      'teamHome': instance.teamHome,
-      'teamAway': instance.teamAway,
-      'result': instance.result,
-      'history': instance.history,
+      'dayofMatch': instance.dayofMatch.toIso8601String(),
+      'leagueTitle': instance.leagueTitle,
+      'resultOfMatch': instance.resultOfMatch,
+      'video': instance.video,
+      'image': instance.image,
     };
