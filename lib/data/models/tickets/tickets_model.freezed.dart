@@ -14,35 +14,35 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-MatchModel _$MatchModelFromJson(Map<String, dynamic> json) {
-  return _MatchModel.fromJson(json);
+TicketsModel _$TicketsModelFromJson(Map<String, dynamic> json) {
+  return _TicketsModel.fromJson(json);
 }
 
 /// @nodoc
-mixin _$MatchModel {
+mixin _$TicketsModel {
   String get id => throw _privateConstructorUsedError;
   String get image => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $MatchModelCopyWith<MatchModel> get copyWith =>
+  $TicketsModelCopyWith<TicketsModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $MatchModelCopyWith<$Res> {
-  factory $MatchModelCopyWith(
-          MatchModel value, $Res Function(MatchModel) then) =
-      _$MatchModelCopyWithImpl<$Res, MatchModel>;
+abstract class $TicketsModelCopyWith<$Res> {
+  factory $TicketsModelCopyWith(
+          TicketsModel value, $Res Function(TicketsModel) then) =
+      _$TicketsModelCopyWithImpl<$Res, TicketsModel>;
   @useResult
   $Res call({String id, String image, String title});
 }
 
 /// @nodoc
-class _$MatchModelCopyWithImpl<$Res, $Val extends MatchModel>
-    implements $MatchModelCopyWith<$Res> {
-  _$MatchModelCopyWithImpl(this._value, this._then);
+class _$TicketsModelCopyWithImpl<$Res, $Val extends TicketsModel>
+    implements $TicketsModelCopyWith<$Res> {
+  _$TicketsModelCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -74,22 +74,22 @@ class _$MatchModelCopyWithImpl<$Res, $Val extends MatchModel>
 }
 
 /// @nodoc
-abstract class _$$MatchModelImplCopyWith<$Res>
-    implements $MatchModelCopyWith<$Res> {
-  factory _$$MatchModelImplCopyWith(
-          _$MatchModelImpl value, $Res Function(_$MatchModelImpl) then) =
-      __$$MatchModelImplCopyWithImpl<$Res>;
+abstract class _$$TicketsModelImplCopyWith<$Res>
+    implements $TicketsModelCopyWith<$Res> {
+  factory _$$TicketsModelImplCopyWith(
+          _$TicketsModelImpl value, $Res Function(_$TicketsModelImpl) then) =
+      __$$TicketsModelImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String id, String image, String title});
 }
 
 /// @nodoc
-class __$$MatchModelImplCopyWithImpl<$Res>
-    extends _$MatchModelCopyWithImpl<$Res, _$MatchModelImpl>
-    implements _$$MatchModelImplCopyWith<$Res> {
-  __$$MatchModelImplCopyWithImpl(
-      _$MatchModelImpl _value, $Res Function(_$MatchModelImpl) _then)
+class __$$TicketsModelImplCopyWithImpl<$Res>
+    extends _$TicketsModelCopyWithImpl<$Res, _$TicketsModelImpl>
+    implements _$$TicketsModelImplCopyWith<$Res> {
+  __$$TicketsModelImplCopyWithImpl(
+      _$TicketsModelImpl _value, $Res Function(_$TicketsModelImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -99,7 +99,7 @@ class __$$MatchModelImplCopyWithImpl<$Res>
     Object? image = null,
     Object? title = null,
   }) {
-    return _then(_$MatchModelImpl(
+    return _then(_$TicketsModelImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -118,12 +118,12 @@ class __$$MatchModelImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$MatchModelImpl implements _MatchModel {
-  const _$MatchModelImpl(
+class _$TicketsModelImpl implements _TicketsModel {
+  const _$TicketsModelImpl(
       {required this.id, required this.image, required this.title});
 
-  factory _$MatchModelImpl.fromJson(Map<String, dynamic> json) =>
-      _$$MatchModelImplFromJson(json);
+  factory _$TicketsModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$TicketsModelImplFromJson(json);
 
   @override
   final String id;
@@ -134,14 +134,14 @@ class _$MatchModelImpl implements _MatchModel {
 
   @override
   String toString() {
-    return 'MatchModel(id: $id, image: $image, title: $title)';
+    return 'TicketsModel(id: $id, image: $image, title: $title)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$MatchModelImpl &&
+            other is _$TicketsModelImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.image, image) || other.image == image) &&
             (identical(other.title, title) || other.title == title));
@@ -154,25 +154,25 @@ class _$MatchModelImpl implements _MatchModel {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$MatchModelImplCopyWith<_$MatchModelImpl> get copyWith =>
-      __$$MatchModelImplCopyWithImpl<_$MatchModelImpl>(this, _$identity);
+  _$$TicketsModelImplCopyWith<_$TicketsModelImpl> get copyWith =>
+      __$$TicketsModelImplCopyWithImpl<_$TicketsModelImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$MatchModelImplToJson(
+    return _$$TicketsModelImplToJson(
       this,
     );
   }
 }
 
-abstract class _MatchModel implements MatchModel {
-  const factory _MatchModel(
+abstract class _TicketsModel implements TicketsModel {
+  const factory _TicketsModel(
       {required final String id,
       required final String image,
-      required final String title}) = _$MatchModelImpl;
+      required final String title}) = _$TicketsModelImpl;
 
-  factory _MatchModel.fromJson(Map<String, dynamic> json) =
-      _$MatchModelImpl.fromJson;
+  factory _TicketsModel.fromJson(Map<String, dynamic> json) =
+      _$TicketsModelImpl.fromJson;
 
   @override
   String get id;
@@ -182,6 +182,6 @@ abstract class _MatchModel implements MatchModel {
   String get title;
   @override
   @JsonKey(ignore: true)
-  _$$MatchModelImplCopyWith<_$MatchModelImpl> get copyWith =>
+  _$$TicketsModelImplCopyWith<_$TicketsModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

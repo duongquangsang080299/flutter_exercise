@@ -4,13 +4,13 @@ part 'tickets_model.freezed.dart';
 part 'tickets_model.g.dart';
 
 @freezed
-class MatchModel with _$MatchModel {
-  const factory MatchModel({
+class TicketsModel with _$TicketsModel {
+  const factory TicketsModel({
     required String id,
     required String image,
     required String title,
-  }) = _MatchModel;
+  }) = _TicketsModel;
 
-  factory MatchModel.fromJson(Map<String, Object?> json) =>
-      _$MatchModelFromJson(json);
+  factory TicketsModel.fromJson(Map<String, Object?> json) =>
+      _$TicketsModelFromJson(json);
 }
