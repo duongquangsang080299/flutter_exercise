@@ -21,6 +21,14 @@ class AuthRepo {
     }
   }
 
+  Future<void> resetPassword({required String email}) async {
+    try {
+      await _auth.sendPasswordResetEmail(email: email);
+    } catch (e) {
+      throw Exception('Failed to reset password: $e');
+    }
+  }
+
   Future<void> signOut() async {
     try {
       await _auth.signOut();
