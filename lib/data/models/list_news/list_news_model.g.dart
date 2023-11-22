@@ -1,33 +1,31 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'match_model.dart';
+part of 'list_news_model.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$MatchModelImpl _$$MatchModelImplFromJson(Map<String, dynamic> json) =>
-    _$MatchModelImpl(
+_$ListNewsModelImpl _$$ListNewsModelImplFromJson(Map<String, dynamic> json) =>
+    _$ListNewsModelImpl(
       id: json['id'] as String,
-      location: json['location'] as String,
+      title: json['title'] as String,
       dateTime: DateTime.parse(json['dateTime'] as String),
       teamHome: TeamModel.fromJson(json['teamHome'] as Map<String, dynamic>),
       teamAway: TeamModel.fromJson(json['teamAway'] as Map<String, dynamic>),
-      description: json['description'] as String,
-      video: json['video'] as String,
       result: json['result'] as String,
-      history: HistoryModel.fromJson(json['history'] as Map<String, dynamic>),
+      image: json['image'] as String,
+      video: json['video'] as String,
     );
 
-Map<String, dynamic> _$$MatchModelImplToJson(_$MatchModelImpl instance) =>
+Map<String, dynamic> _$$ListNewsModelImplToJson(_$ListNewsModelImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'location': instance.location,
+      'title': instance.title,
       'dateTime': instance.dateTime.toIso8601String(),
       'teamHome': instance.teamHome,
       'teamAway': instance.teamAway,
-      'description': instance.description,
-      'video': instance.video,
       'result': instance.result,
-      'history': instance.history,
+      'image': instance.image,
+      'video': instance.video,
     };
