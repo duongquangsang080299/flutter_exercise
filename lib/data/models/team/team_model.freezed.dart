@@ -20,11 +20,9 @@ TeamModel _$TeamModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$TeamModel {
-  String get teamId => throw _privateConstructorUsedError;
-  String get teamName => throw _privateConstructorUsedError;
-  String get matchId => throw _privateConstructorUsedError;
-  String get avatar => throw _privateConstructorUsedError;
-  String get result => throw _privateConstructorUsedError;
+  String get id => throw _privateConstructorUsedError;
+  String get name => throw _privateConstructorUsedError;
+  String get logo => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -37,12 +35,7 @@ abstract class $TeamModelCopyWith<$Res> {
   factory $TeamModelCopyWith(TeamModel value, $Res Function(TeamModel) then) =
       _$TeamModelCopyWithImpl<$Res, TeamModel>;
   @useResult
-  $Res call(
-      {String teamId,
-      String teamName,
-      String matchId,
-      String avatar,
-      String result});
+  $Res call({String id, String name, String logo});
 }
 
 /// @nodoc
@@ -58,32 +51,22 @@ class _$TeamModelCopyWithImpl<$Res, $Val extends TeamModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? teamId = null,
-    Object? teamName = null,
-    Object? matchId = null,
-    Object? avatar = null,
-    Object? result = null,
+    Object? id = null,
+    Object? name = null,
+    Object? logo = null,
   }) {
     return _then(_value.copyWith(
-      teamId: null == teamId
-          ? _value.teamId
-          : teamId // ignore: cast_nullable_to_non_nullable
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as String,
-      teamName: null == teamName
-          ? _value.teamName
-          : teamName // ignore: cast_nullable_to_non_nullable
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
               as String,
-      matchId: null == matchId
-          ? _value.matchId
-          : matchId // ignore: cast_nullable_to_non_nullable
-              as String,
-      avatar: null == avatar
-          ? _value.avatar
-          : avatar // ignore: cast_nullable_to_non_nullable
-              as String,
-      result: null == result
-          ? _value.result
-          : result // ignore: cast_nullable_to_non_nullable
+      logo: null == logo
+          ? _value.logo
+          : logo // ignore: cast_nullable_to_non_nullable
               as String,
     ) as $Val);
   }
@@ -97,12 +80,7 @@ abstract class _$$TeamModelImplCopyWith<$Res>
       __$$TeamModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {String teamId,
-      String teamName,
-      String matchId,
-      String avatar,
-      String result});
+  $Res call({String id, String name, String logo});
 }
 
 /// @nodoc
@@ -116,32 +94,22 @@ class __$$TeamModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? teamId = null,
-    Object? teamName = null,
-    Object? matchId = null,
-    Object? avatar = null,
-    Object? result = null,
+    Object? id = null,
+    Object? name = null,
+    Object? logo = null,
   }) {
     return _then(_$TeamModelImpl(
-      teamId: null == teamId
-          ? _value.teamId
-          : teamId // ignore: cast_nullable_to_non_nullable
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as String,
-      teamName: null == teamName
-          ? _value.teamName
-          : teamName // ignore: cast_nullable_to_non_nullable
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
               as String,
-      matchId: null == matchId
-          ? _value.matchId
-          : matchId // ignore: cast_nullable_to_non_nullable
-              as String,
-      avatar: null == avatar
-          ? _value.avatar
-          : avatar // ignore: cast_nullable_to_non_nullable
-              as String,
-      result: null == result
-          ? _value.result
-          : result // ignore: cast_nullable_to_non_nullable
+      logo: null == logo
+          ? _value.logo
+          : logo // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -151,29 +119,21 @@ class __$$TeamModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$TeamModelImpl with DiagnosticableTreeMixin implements _TeamModel {
   const _$TeamModelImpl(
-      {required this.teamId,
-      required this.teamName,
-      required this.matchId,
-      required this.avatar,
-      required this.result});
+      {required this.id, required this.name, required this.logo});
 
   factory _$TeamModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$TeamModelImplFromJson(json);
 
   @override
-  final String teamId;
+  final String id;
   @override
-  final String teamName;
+  final String name;
   @override
-  final String matchId;
-  @override
-  final String avatar;
-  @override
-  final String result;
+  final String logo;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'TeamModel(teamId: $teamId, teamName: $teamName, matchId: $matchId, avatar: $avatar, result: $result)';
+    return 'TeamModel(id: $id, name: $name, logo: $logo)';
   }
 
   @override
@@ -181,11 +141,9 @@ class _$TeamModelImpl with DiagnosticableTreeMixin implements _TeamModel {
     super.debugFillProperties(properties);
     properties
       ..add(DiagnosticsProperty('type', 'TeamModel'))
-      ..add(DiagnosticsProperty('teamId', teamId))
-      ..add(DiagnosticsProperty('teamName', teamName))
-      ..add(DiagnosticsProperty('matchId', matchId))
-      ..add(DiagnosticsProperty('avatar', avatar))
-      ..add(DiagnosticsProperty('result', result));
+      ..add(DiagnosticsProperty('id', id))
+      ..add(DiagnosticsProperty('name', name))
+      ..add(DiagnosticsProperty('logo', logo));
   }
 
   @override
@@ -193,18 +151,14 @@ class _$TeamModelImpl with DiagnosticableTreeMixin implements _TeamModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$TeamModelImpl &&
-            (identical(other.teamId, teamId) || other.teamId == teamId) &&
-            (identical(other.teamName, teamName) ||
-                other.teamName == teamName) &&
-            (identical(other.matchId, matchId) || other.matchId == matchId) &&
-            (identical(other.avatar, avatar) || other.avatar == avatar) &&
-            (identical(other.result, result) || other.result == result));
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.logo, logo) || other.logo == logo));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, teamId, teamName, matchId, avatar, result);
+  int get hashCode => Object.hash(runtimeType, id, name, logo);
 
   @JsonKey(ignore: true)
   @override
@@ -222,25 +176,19 @@ class _$TeamModelImpl with DiagnosticableTreeMixin implements _TeamModel {
 
 abstract class _TeamModel implements TeamModel {
   const factory _TeamModel(
-      {required final String teamId,
-      required final String teamName,
-      required final String matchId,
-      required final String avatar,
-      required final String result}) = _$TeamModelImpl;
+      {required final String id,
+      required final String name,
+      required final String logo}) = _$TeamModelImpl;
 
   factory _TeamModel.fromJson(Map<String, dynamic> json) =
       _$TeamModelImpl.fromJson;
 
   @override
-  String get teamId;
+  String get id;
   @override
-  String get teamName;
+  String get name;
   @override
-  String get matchId;
-  @override
-  String get avatar;
-  @override
-  String get result;
+  String get logo;
   @override
   @JsonKey(ignore: true)
   _$$TeamModelImplCopyWith<_$TeamModelImpl> get copyWith =>

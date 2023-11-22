@@ -8,18 +8,14 @@ part of 'team_model.dart';
 
 _$TeamModelImpl _$$TeamModelImplFromJson(Map<String, dynamic> json) =>
     _$TeamModelImpl(
-      teamId: json['teamId'] as String,
-      teamName: json['teamName'] as String,
-      matchId: json['matchId'] as String,
-      avatar: json['avatar'] as String,
-      result: json['result'] as String,
+      id: json['id'] as String,
+      name: json['name'] as String,
+      logo: json['logo'] as String,
     );
 
 Map<String, dynamic> _$$TeamModelImplToJson(_$TeamModelImpl instance) =>
     <String, dynamic>{
-      'teamId': instance.teamId,
-      'teamName': instance.teamName,
-      'matchId': instance.matchId,
-      'avatar': instance.avatar,
-      'result': instance.result,
+      'id': instance.id,
+      'name': instance.name,
+      'logo': instance.logo,
     };
