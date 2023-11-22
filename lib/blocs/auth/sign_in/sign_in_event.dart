@@ -1,57 +1,49 @@
-// part of 'sign_in_bloc.dart';
+part of 'sign_in_bloc.dart';
 
-// @immutable
-// abstract class SignInEvent extends Equatable {
-//   const SignInEvent();
-//   @override
-//   List<Object> get props => [];
-// }
+abstract class SignInEvent extends Equatable {
+  const SignInEvent();
 
-// final class SignInEmailChanged extends SignInEvent {
-//   const SignInEmailChanged(this.email);
+  @override
+  List<Object> get props => [];
+}
 
-//   final String email;
-//   @override
-//   List<Object> get props => [email];
-// }
+class SignInEmailChangedEvent extends SignInEvent {
+  final SignInFormModel form;
 
-// final class SignInPasswordChanged extends SignInEvent {
-//   const SignInPasswordChanged(this.password);
+  const SignInEmailChangedEvent({
+    required this.form,
+  });
+  @override
+  List<Object> get props => ['SignInEmailChangeEvent', form];
+}
 
-//   final String password;
-//   @override
-//   List<Object> get props => [password];
-// }
+class SignInPasswordChangedEvent extends SignInEvent {
+  final SignInFormModel form;
 
-// final class SignInSubmitted extends SignInEvent {
-//   const SignInSubmitted();
-// }
+  const SignInPasswordChangedEvent({
+    required this.form,
+  });
 
-// class AuthSignInEvent extends SignInEvent {
-//   final String email;
-//   final String password;
+  @override
+  List<Object> get props => ['SignInPasswordChangeEvent', form];
+}
 
-//   const AuthSignInEvent({
-//     required this.email,
-//     required this.password,
-//   });
-// }
+class SignInSubmittedEvent extends SignInEvent {
+  final SignInFormModel form;
 
-// class UpdateFormEvent extends SignInEvent {
-//   final String email;
-//   final String password;
+  const SignInSubmittedEvent({
+    required this.form,
+  });
 
-//   const UpdateFormEvent({required this.email, required this.password});
-// }
+  @override
+  List<Object> get props => ['SignInSubmittedEvent', form];
+}
 
-// class EmailEvent extends SignInEvent {
-//   final String email;
+class TogglePasswordVisibility extends SignInEvent {
+  const TogglePasswordVisibility({required this.showPassword});
 
-//   EmailEvent({required this.email});
-// }
+  final bool showPassword;
 
-// class PasswordEvent extends SignInEvent {
-//   final String password;
-
-//   PasswordEvent({required this.password});
-// }
+  @override
+  List<Object> get props => [showPassword];
+}

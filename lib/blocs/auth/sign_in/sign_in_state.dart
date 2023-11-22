@@ -1,66 +1,70 @@
-// part of 'sign_in_bloc.dart';
+// sign_in_state.dart
+part of 'sign_in_bloc.dart';
 
-// final class SignInState extends Equatable {
-//   const SignInState({
-//     this.status = FormzSubmissionStatus.initial,
-//     this.email = const Email.pure(),
-//     this.password = const Password.pure(),
-//     this.isValid = false,
-//   });
-  
-//   final FormzSubmissionStatus status;
-//   final Email email;
-//   final Password password;
-//   final bool isValid;
+SignInFormModel emptySignInState = const SignInFormModel(
+  password: '',
+  email: '',
+  emailError: '',
+  passwordError: '',
+  formValid: false,
+  showPassword: false,
+  emailValid: false,
+  passwordValid: false,
+);
 
-//   SignInState copyWith({
-//     FormzSubmissionStatus? status,
-//     Email? email,
-//     Password? password,
-//     bool? isValid,
-//   }) {
-//     return SignInState(
-//       status: status ?? this.status,
-//       email: email ?? this.email,
-//       password: password ?? this.password,
-//       isValid: isValid ?? this.isValid,
-//     );
-//   }
+abstract class SignInState extends Equatable {
+  final SignInFormModel form;
 
-//   @override
-//   List<Object> get props => [status, email, password];
-// }
-// @immutable
-// abstract class SignInState {
-//   final String email;
-//   final String password;
-//   final bool isButtonActive;
+  const SignInState({
+    required this.form,
+  }) : super();
 
-//   const SignInState({
-//     required this.email,
-//     required this.password,
-//     required this.isButtonActive,
-//   });
-// }
+  @override
+  List<Object> get props => ['SignInState', form];
+}
 
-// class SignInInitial extends SignInState {
-//   const SignInInitial()
-//       : super(email: '', password: '', isButtonActive: false);
-// }
+class SignInInitialState extends SignInState {
+  const SignInInitialState(SignInFormModel form) : super(form: form);
 
-// class SignInLoading extends SignInState {
-//   const SignInLoading()
-//       : super(email: '', password: '', isButtonActive: false);
-// }
+  @override
+  List<Object> get props => ['SignInInitialState ', form];
+}
 
-// class SignInSuccess extends SignInState {
-//   const SignInSuccess()
-//       : super(email: '', password: '', isButtonActive: true);
-// }
+class SignInChangedState extends SignInState {
+  const SignInChangedState({required SignInFormModel form}) : super(form: form);
 
-// class SignInError extends SignInState {
-//   final String errorMessage;
+  @override
+  List<Object> get props => ['SignInChangedState', form];
+}
 
-//   const SignInError({required this.errorMessage})
-//       : super(email: '', password: '', isButtonActive: false);
-// }
+class SignInHiddenPasswordState extends SignInState {
+  const SignInHiddenPasswordState({
+    required SignInFormModel form,
+  }) : super(form: form);
+
+  @override
+  List<Object> get props => [form];
+}
+
+class SignInLoadingState extends SignInState {
+  const SignInLoadingState({required SignInFormModel form}) : super(form: form);
+
+  @override
+  List<Object> get props => ['SignInLoadingState', form];
+}
+
+class SignInSuccessState extends SignInState {
+  const SignInSuccessState({required SignInFormModel form}) : super(form: form);
+
+  @override
+  List<Object> get props => ['SignInSuccessState', form];
+}
+
+class SignInErrorState extends SignInState {
+  const SignInErrorState({
+    required SignInFormModel form,
+  }) : super(form: form);
+
+  @override
+  List<Object> get props => ['SignInErrorState', form];
+}

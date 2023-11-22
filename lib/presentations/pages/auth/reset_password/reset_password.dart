@@ -170,21 +170,21 @@ class _ResetPasswordButton extends StatelessWidget {
       builder: (context, state) {
         return SCButton(
           onPressed: () {
-            if (state.form.emailError) {
-              context.read<ResetPasswordBloc>().add(
-                    ResetPasswordSubmittedEvent(
-                      form: state.form,
-                    ),
-                  );
-            }
+            // if (state.form.emailError) {
+            //   context.read<ResetPasswordBloc>().add(
+            //         ResetPasswordSubmittedEvent(
+            //           form: state.form,
+            //         ),
+            //       );
+            // }
           },
           text: state is ResetPasswordLoadingState
               ? const CircularProgressIndicator()
               : SCText.headlineSmall(context,
                   text: context.l10n.btnResetPassword),
           style: context.textTheme.headlineSmall,
-          backgroundColor:
-              (state.form.emailError) ? AppColor.primary : AppColor.whiteFlash,
+          // backgroundColor:
+          // (state.form.emailError) ? AppColor.primary : AppColor.whiteFlash,
         );
       },
     );

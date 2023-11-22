@@ -4,13 +4,10 @@ import 'dart:async';
 import 'package:device_preview/device_preview.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:soccer_club_app/blocs/auth/sign_up/sign_up_bloc.dart';
-import 'package:soccer_club_app/core/theme/app_theme.dart';
 import 'package:soccer_club_app/core/router/router.dart';
-import 'package:soccer_club_app/data/repositories/auth_repo.dart';
+import 'package:soccer_club_app/core/theme/app_theme.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -31,47 +28,25 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiRepositoryProvider(
-      providers: [
-        RepositoryProvider(
-          create: (context) => AuthRepo(),
-        ),
-        RepositoryProvider(
-          create: (context) => AuthRepo(),
-        ),
+    return MaterialApp.router(
+      debugShowCheckedModeBanner: false,
+      theme: const AppTheme().themeData,
+      darkTheme: const AppTheme().darkTheme,
+      locale: DevicePreview.locale(context),
+      builder: DevicePreview.appBuilder,
+      localizationsDelegates: const [
+        AppLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
       ],
-      child: MultiBlocProvider(
-        providers: [
-          BlocProvider<SignUpBloc>(
-            create: (context) =>
-                SignUpBloc(repo: RepositoryProvider.of<AuthRepo>(context)),
-          ),
-          // BlocProvider<SignInBloc>(
-          //   create: (context) =>
-          //       SignInBloc(repo: RepositoryProvider.of<AuthRepo>(context)),
-          // ),
-        ],
-        child: MaterialApp.router(
-          debugShowCheckedModeBanner: false,
-          theme: const AppTheme().themeData,
-          darkTheme: const AppTheme().darkTheme,
-          locale: DevicePreview.locale(context),
-          builder: DevicePreview.appBuilder,
-          localizationsDelegates: const [
-            AppLocalizations.delegate,
-            GlobalMaterialLocalizations.delegate,
-            GlobalWidgetsLocalizations.delegate,
-            GlobalCupertinoLocalizations.delegate,
-          ],
-          supportedLocales: const [
-            Locale('en'), // English
-            Locale('es'), // Spanish
-          ],
-          routeInformationProvider: appRouter.routeInformationProvider,
-          routeInformationParser: appRouter.routeInformationParser,
-          routerDelegate: appRouter.routerDelegate,
-        ),
-      ),
+      supportedLocales: const [
+        Locale('en'), // English
+        Locale('es'), // Spanish
+      ],
+      routeInformationProvider: appRouter.routeInformationProvider,
+      routeInformationParser: appRouter.routeInformationParser,
+      routerDelegate: appRouter.routerDelegate,
     );
   }
 }

@@ -1,19 +1,22 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'sign_in_view_model.dart';
+part of 'sign_up_view_model.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$SignInFormModelImpl _$$SignInFormModelImplFromJson(
+_$SignUpFormModelImpl _$$SignUpFormModelImplFromJson(
         Map<String, dynamic> json) =>
-    _$SignInFormModelImpl(
+    _$SignUpFormModelImpl(
       formValid: json['formValid'] as bool?,
-      emailValid: json['emailValid'] as bool,
+      usernameError: json['usernameError'] as String,
       emailError: json['emailError'] as String,
       passwordError: json['passwordError'] as String,
+      usernameValid: json['usernameValid'] as bool,
+      emailValid: json['emailValid'] as bool,
       passwordValid: json['passwordValid'] as bool,
+      username: json['username'] as String,
       email: json['email'] as String,
       password: json['password'] as String,
       showPassword: json['showPassword'] as bool,
@@ -21,14 +24,17 @@ _$SignInFormModelImpl _$$SignInFormModelImplFromJson(
           json['formKey'], const GlobalKeyConverter().fromJson),
     );
 
-Map<String, dynamic> _$$SignInFormModelImplToJson(
-        _$SignInFormModelImpl instance) =>
+Map<String, dynamic> _$$SignUpFormModelImplToJson(
+        _$SignUpFormModelImpl instance) =>
     <String, dynamic>{
       'formValid': instance.formValid,
-      'emailValid': instance.emailValid,
+      'usernameError': instance.usernameError,
       'emailError': instance.emailError,
       'passwordError': instance.passwordError,
+      'usernameValid': instance.usernameValid,
+      'emailValid': instance.emailValid,
       'passwordValid': instance.passwordValid,
+      'username': instance.username,
       'email': instance.email,
       'password': instance.password,
       'showPassword': instance.showPassword,

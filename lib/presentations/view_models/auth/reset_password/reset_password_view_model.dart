@@ -22,8 +22,7 @@ class GlobalKeyConverter
 class ResetPasswordFormModel with _$ResetPasswordFormModel {
   @JsonSerializable(explicitToJson: true)
   const factory ResetPasswordFormModel({
-    required String emailError,
-    required bool emailValid,
+    String? emailError,
     required String email,
     String? errorMessage,
     @GlobalKeyConverter() GlobalKey<FormState>? formKey,
