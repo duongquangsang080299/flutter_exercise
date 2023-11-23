@@ -24,7 +24,8 @@ mixin _$MatchModel {
   String get place => throw _privateConstructorUsedError;
   DateTime get datetime => throw _privateConstructorUsedError;
   String get league => throw _privateConstructorUsedError;
-  GoalModel get goal => throw _privateConstructorUsedError;
+  @JsonKey(name: 'goals_id')
+  String get goal => throw _privateConstructorUsedError;
   String? get video => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -44,10 +45,8 @@ abstract class $MatchModelCopyWith<$Res> {
       String place,
       DateTime datetime,
       String league,
-      GoalModel goal,
+      @JsonKey(name: 'goals_id') String goal,
       String? video});
-
-  $GoalModelCopyWith<$Res> get goal;
 }
 
 /// @nodoc
@@ -90,20 +89,12 @@ class _$MatchModelCopyWithImpl<$Res, $Val extends MatchModel>
       goal: null == goal
           ? _value.goal
           : goal // ignore: cast_nullable_to_non_nullable
-              as GoalModel,
+              as String,
       video: freezed == video
           ? _value.video
           : video // ignore: cast_nullable_to_non_nullable
               as String?,
     ) as $Val);
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $GoalModelCopyWith<$Res> get goal {
-    return $GoalModelCopyWith<$Res>(_value.goal, (value) {
-      return _then(_value.copyWith(goal: value) as $Val);
-    });
   }
 }
 
@@ -120,11 +111,8 @@ abstract class _$$MatchModelImplCopyWith<$Res>
       String place,
       DateTime datetime,
       String league,
-      GoalModel goal,
+      @JsonKey(name: 'goals_id') String goal,
       String? video});
-
-  @override
-  $GoalModelCopyWith<$Res> get goal;
 }
 
 /// @nodoc
@@ -165,7 +153,7 @@ class __$$MatchModelImplCopyWithImpl<$Res>
       goal: null == goal
           ? _value.goal
           : goal // ignore: cast_nullable_to_non_nullable
-              as GoalModel,
+              as String,
       video: freezed == video
           ? _value.video
           : video // ignore: cast_nullable_to_non_nullable
@@ -182,7 +170,7 @@ class _$MatchModelImpl implements _MatchModel {
       required this.place,
       required this.datetime,
       required this.league,
-      required this.goal,
+      @JsonKey(name: 'goals_id') required this.goal,
       this.video = ' '});
 
   factory _$MatchModelImpl.fromJson(Map<String, dynamic> json) =>
@@ -197,7 +185,8 @@ class _$MatchModelImpl implements _MatchModel {
   @override
   final String league;
   @override
-  final GoalModel goal;
+  @JsonKey(name: 'goals_id')
+  final String goal;
   @override
   @JsonKey()
   final String? video;
@@ -246,7 +235,7 @@ abstract class _MatchModel implements MatchModel {
       required final String place,
       required final DateTime datetime,
       required final String league,
-      required final GoalModel goal,
+      @JsonKey(name: 'goals_id') required final String goal,
       final String? video}) = _$MatchModelImpl;
 
   factory _MatchModel.fromJson(Map<String, dynamic> json) =
@@ -261,7 +250,8 @@ abstract class _MatchModel implements MatchModel {
   @override
   String get league;
   @override
-  GoalModel get goal;
+  @JsonKey(name: 'goals_id')
+  String get goal;
   @override
   String? get video;
   @override

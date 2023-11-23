@@ -12,7 +12,7 @@ _$MatchModelImpl _$$MatchModelImplFromJson(Map<String, dynamic> json) =>
       place: json['place'] as String,
       datetime: DateTime.parse(json['datetime'] as String),
       league: json['league'] as String,
-      goal: GoalModel.fromJson(json['goal'] as Map<String, dynamic>),
+      goal: json['goals_id'] as String,
       video: json['video'] as String? ?? ' ',
     );
 
@@ -22,6 +22,6 @@ Map<String, dynamic> _$$MatchModelImplToJson(_$MatchModelImpl instance) =>
       'place': instance.place,
       'datetime': instance.datetime.toIso8601String(),
       'league': instance.league,
-      'goal': instance.goal,
+      'goals_id': instance.goal,
       'video': instance.video,
     };

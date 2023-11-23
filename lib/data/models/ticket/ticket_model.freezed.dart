@@ -22,7 +22,7 @@ TicketModel _$TicketModelFromJson(Map<String, dynamic> json) {
 mixin _$TicketModel {
   String get id => throw _privateConstructorUsedError;
   double get sale => throw _privateConstructorUsedError;
-  String get description => throw _privateConstructorUsedError;
+  String get desc => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -36,7 +36,7 @@ abstract class $TicketModelCopyWith<$Res> {
           TicketModel value, $Res Function(TicketModel) then) =
       _$TicketModelCopyWithImpl<$Res, TicketModel>;
   @useResult
-  $Res call({String id, double sale, String description});
+  $Res call({String id, double sale, String desc});
 }
 
 /// @nodoc
@@ -54,7 +54,7 @@ class _$TicketModelCopyWithImpl<$Res, $Val extends TicketModel>
   $Res call({
     Object? id = null,
     Object? sale = null,
-    Object? description = null,
+    Object? desc = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -65,9 +65,9 @@ class _$TicketModelCopyWithImpl<$Res, $Val extends TicketModel>
           ? _value.sale
           : sale // ignore: cast_nullable_to_non_nullable
               as double,
-      description: null == description
-          ? _value.description
-          : description // ignore: cast_nullable_to_non_nullable
+      desc: null == desc
+          ? _value.desc
+          : desc // ignore: cast_nullable_to_non_nullable
               as String,
     ) as $Val);
   }
@@ -81,7 +81,7 @@ abstract class _$$TicketModelImplCopyWith<$Res>
       __$$TicketModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String id, double sale, String description});
+  $Res call({String id, double sale, String desc});
 }
 
 /// @nodoc
@@ -97,7 +97,7 @@ class __$$TicketModelImplCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? sale = null,
-    Object? description = null,
+    Object? desc = null,
   }) {
     return _then(_$TicketModelImpl(
       id: null == id
@@ -108,9 +108,9 @@ class __$$TicketModelImplCopyWithImpl<$Res>
           ? _value.sale
           : sale // ignore: cast_nullable_to_non_nullable
               as double,
-      description: null == description
-          ? _value.description
-          : description // ignore: cast_nullable_to_non_nullable
+      desc: null == desc
+          ? _value.desc
+          : desc // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -120,7 +120,7 @@ class __$$TicketModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$TicketModelImpl implements _TicketModel {
   const _$TicketModelImpl(
-      {required this.id, required this.sale, required this.description});
+      {required this.id, required this.sale, required this.desc});
 
   factory _$TicketModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$TicketModelImplFromJson(json);
@@ -130,11 +130,11 @@ class _$TicketModelImpl implements _TicketModel {
   @override
   final double sale;
   @override
-  final String description;
+  final String desc;
 
   @override
   String toString() {
-    return 'TicketModel(id: $id, sale: $sale, description: $description)';
+    return 'TicketModel(id: $id, sale: $sale, desc: $desc)';
   }
 
   @override
@@ -144,13 +144,12 @@ class _$TicketModelImpl implements _TicketModel {
             other is _$TicketModelImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.sale, sale) || other.sale == sale) &&
-            (identical(other.description, description) ||
-                other.description == description));
+            (identical(other.desc, desc) || other.desc == desc));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, sale, description);
+  int get hashCode => Object.hash(runtimeType, id, sale, desc);
 
   @JsonKey(ignore: true)
   @override
@@ -170,7 +169,7 @@ abstract class _TicketModel implements TicketModel {
   const factory _TicketModel(
       {required final String id,
       required final double sale,
-      required final String description}) = _$TicketModelImpl;
+      required final String desc}) = _$TicketModelImpl;
 
   factory _TicketModel.fromJson(Map<String, dynamic> json) =
       _$TicketModelImpl.fromJson;
@@ -180,7 +179,7 @@ abstract class _TicketModel implements TicketModel {
   @override
   double get sale;
   @override
-  String get description;
+  String get desc;
   @override
   @JsonKey(ignore: true)
   _$$TicketModelImplCopyWith<_$TicketModelImpl> get copyWith =>

@@ -6,21 +6,20 @@ part of 'goal_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$GoalModelImpl _$$GoalModelImplFromJson(Map<String, dynamic> json) =>
-    _$GoalModelImpl(
+_$GoalsModelImpl _$$GoalsModelImplFromJson(Map<String, dynamic> json) =>
+    _$GoalsModelImpl(
       id: json['id'] as String,
-      teamRed: TeamModel.fromJson(json['teamRed'] as Map<String, dynamic>),
-      teamVictory:
-          TeamModel.fromJson(json['teamVictory'] as Map<String, dynamic>),
-      scoreRed: json['scoreRed'] as int,
-      scoreVictory: json['scoreVictory'] as int,
+      teamRed: json['team_red'] as String,
+      teamVictory: json['team_victory'] as String,
+      scoreRed: json['score_Red'] as int,
+      scoreVictory: json['score_Victory'] as int,
     );
 
-Map<String, dynamic> _$$GoalModelImplToJson(_$GoalModelImpl instance) =>
+Map<String, dynamic> _$$GoalsModelImplToJson(_$GoalsModelImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'teamRed': instance.teamRed,
-      'teamVictory': instance.teamVictory,
-      'scoreRed': instance.scoreRed,
-      'scoreVictory': instance.scoreVictory,
+      'team_red': instance.teamRed,
+      'team_victory': instance.teamVictory,
+      'score_Red': instance.scoreRed,
+      'score_Victory': instance.scoreVictory,
     };

@@ -1,6 +1,5 @@
 import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:soccer_club_app/data/models/player/player_model.dart';
 
 part 'user_model.freezed.dart';
 part 'user_model.g.dart';

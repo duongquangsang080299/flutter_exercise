@@ -11,7 +11,7 @@ class MatchModel with _$MatchModel {
     required String place,
     required DateTime datetime,
     required String league,
-    required GoalModel goal,
+    @JsonKey(name: 'goals_id') required String goal,
     @Default(' ') String? video,
   }) = _MatchModel;
 
