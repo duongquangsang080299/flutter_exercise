@@ -8,7 +8,7 @@ part of 'home_view_models.dart';
 
 _$HomeViewModelImpl _$$HomeViewModelImplFromJson(Map<String, dynamic> json) =>
     _$HomeViewModelImpl(
-      userName: UserModel.fromJson(json['userName'] as Map<String, dynamic>),
+      user: UserModel.fromJson(json['user'] as Map<String, dynamic>),
       nextMatch: MatchModel.fromJson(json['nextMatch'] as Map<String, dynamic>),
       news: (json['news'] as List<dynamic>)
           .map((e) => MatchModel.fromJson(e as Map<String, dynamic>))
@@ -18,7 +18,7 @@ _$HomeViewModelImpl _$$HomeViewModelImplFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$$HomeViewModelImplToJson(_$HomeViewModelImpl instance) =>
     <String, dynamic>{
-      'userName': instance.userName,
+      'user': instance.user,
       'nextMatch': instance.nextMatch,
       'news': instance.news,
       'ticket': instance.ticket,

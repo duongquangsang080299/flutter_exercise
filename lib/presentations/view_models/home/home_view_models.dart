@@ -11,7 +11,7 @@ part 'home_view_models.g.dart';
 /// HomeView model
 class HomeViewModel with _$HomeViewModel {
   const factory HomeViewModel({
-    required UserModel userName,
+    required UserModel user,
     required MatchModel nextMatch,
     required List<MatchModel> news,
     required TicketModel ticket,

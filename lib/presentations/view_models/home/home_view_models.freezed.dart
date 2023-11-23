@@ -20,7 +20,7 @@ HomeViewModel _$HomeViewModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$HomeViewModel {
-  UserModel get userName => throw _privateConstructorUsedError;
+  UserModel get user => throw _privateConstructorUsedError;
   MatchModel get nextMatch => throw _privateConstructorUsedError;
   List<MatchModel> get news => throw _privateConstructorUsedError;
   TicketModel get ticket => throw _privateConstructorUsedError;
@@ -38,12 +38,12 @@ abstract class $HomeViewModelCopyWith<$Res> {
       _$HomeViewModelCopyWithImpl<$Res, HomeViewModel>;
   @useResult
   $Res call(
-      {UserModel userName,
+      {UserModel user,
       MatchModel nextMatch,
       List<MatchModel> news,
       TicketModel ticket});
 
-  $UserModelCopyWith<$Res> get userName;
+  $UserModelCopyWith<$Res> get user;
   $MatchModelCopyWith<$Res> get nextMatch;
   $TicketModelCopyWith<$Res> get ticket;
 }
@@ -61,15 +61,15 @@ class _$HomeViewModelCopyWithImpl<$Res, $Val extends HomeViewModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? userName = null,
+    Object? user = null,
     Object? nextMatch = null,
     Object? news = null,
     Object? ticket = null,
   }) {
     return _then(_value.copyWith(
-      userName: null == userName
-          ? _value.userName
-          : userName // ignore: cast_nullable_to_non_nullable
+      user: null == user
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
               as UserModel,
       nextMatch: null == nextMatch
           ? _value.nextMatch
@@ -88,9 +88,9 @@ class _$HomeViewModelCopyWithImpl<$Res, $Val extends HomeViewModel>
 
   @override
   @pragma('vm:prefer-inline')
-  $UserModelCopyWith<$Res> get userName {
-    return $UserModelCopyWith<$Res>(_value.userName, (value) {
-      return _then(_value.copyWith(userName: value) as $Val);
+  $UserModelCopyWith<$Res> get user {
+    return $UserModelCopyWith<$Res>(_value.user, (value) {
+      return _then(_value.copyWith(user: value) as $Val);
     });
   }
 
@@ -120,13 +120,13 @@ abstract class _$$HomeViewModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {UserModel userName,
+      {UserModel user,
       MatchModel nextMatch,
       List<MatchModel> news,
       TicketModel ticket});
 
   @override
-  $UserModelCopyWith<$Res> get userName;
+  $UserModelCopyWith<$Res> get user;
   @override
   $MatchModelCopyWith<$Res> get nextMatch;
   @override
@@ -144,15 +144,15 @@ class __$$HomeViewModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? userName = null,
+    Object? user = null,
     Object? nextMatch = null,
     Object? news = null,
     Object? ticket = null,
   }) {
     return _then(_$HomeViewModelImpl(
-      userName: null == userName
-          ? _value.userName
-          : userName // ignore: cast_nullable_to_non_nullable
+      user: null == user
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
               as UserModel,
       nextMatch: null == nextMatch
           ? _value.nextMatch
@@ -174,7 +174,7 @@ class __$$HomeViewModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$HomeViewModelImpl implements _HomeViewModel {
   const _$HomeViewModelImpl(
-      {required this.userName,
+      {required this.user,
       required this.nextMatch,
       required final List<MatchModel> news,
       required this.ticket})
@@ -184,7 +184,7 @@ class _$HomeViewModelImpl implements _HomeViewModel {
       _$$HomeViewModelImplFromJson(json);
 
   @override
-  final UserModel userName;
+  final UserModel user;
   @override
   final MatchModel nextMatch;
   final List<MatchModel> _news;
@@ -200,7 +200,7 @@ class _$HomeViewModelImpl implements _HomeViewModel {
 
   @override
   String toString() {
-    return 'HomeViewModel(userName: $userName, nextMatch: $nextMatch, news: $news, ticket: $ticket)';
+    return 'HomeViewModel(user: $user, nextMatch: $nextMatch, news: $news, ticket: $ticket)';
   }
 
   @override
@@ -208,8 +208,7 @@ class _$HomeViewModelImpl implements _HomeViewModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$HomeViewModelImpl &&
-            (identical(other.userName, userName) ||
-                other.userName == userName) &&
+            (identical(other.user, user) || other.user == user) &&
             (identical(other.nextMatch, nextMatch) ||
                 other.nextMatch == nextMatch) &&
             const DeepCollectionEquality().equals(other._news, _news) &&
@@ -218,7 +217,7 @@ class _$HomeViewModelImpl implements _HomeViewModel {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, userName, nextMatch,
+  int get hashCode => Object.hash(runtimeType, user, nextMatch,
       const DeepCollectionEquality().hash(_news), ticket);
 
   @JsonKey(ignore: true)
@@ -237,7 +236,7 @@ class _$HomeViewModelImpl implements _HomeViewModel {
 
 abstract class _HomeViewModel implements HomeViewModel {
   const factory _HomeViewModel(
-      {required final UserModel userName,
+      {required final UserModel user,
       required final MatchModel nextMatch,
       required final List<MatchModel> news,
       required final TicketModel ticket}) = _$HomeViewModelImpl;
@@ -246,7 +245,7 @@ abstract class _HomeViewModel implements HomeViewModel {
       _$HomeViewModelImpl.fromJson;
 
   @override
-  UserModel get userName;
+  UserModel get user;
   @override
   MatchModel get nextMatch;
   @override
