@@ -24,7 +24,7 @@ mixin _$MatchModel {
   String get place => throw _privateConstructorUsedError;
   DateTime get datetime => throw _privateConstructorUsedError;
   String get league => throw _privateConstructorUsedError;
-  GoalModel get goal => throw _privateConstructorUsedError;
+  GoalsModel get goal => throw _privateConstructorUsedError;
   String? get video => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -44,10 +44,10 @@ abstract class $MatchModelCopyWith<$Res> {
       String place,
       DateTime datetime,
       String league,
-      GoalModel goal,
+      GoalsModel goal,
       String? video});
 
-  $GoalModelCopyWith<$Res> get goal;
+  $GoalsModelCopyWith<$Res> get goal;
 }
 
 /// @nodoc
@@ -90,7 +90,7 @@ class _$MatchModelCopyWithImpl<$Res, $Val extends MatchModel>
       goal: null == goal
           ? _value.goal
           : goal // ignore: cast_nullable_to_non_nullable
-              as GoalModel,
+              as GoalsModel,
       video: freezed == video
           ? _value.video
           : video // ignore: cast_nullable_to_non_nullable
@@ -100,8 +100,8 @@ class _$MatchModelCopyWithImpl<$Res, $Val extends MatchModel>
 
   @override
   @pragma('vm:prefer-inline')
-  $GoalModelCopyWith<$Res> get goal {
-    return $GoalModelCopyWith<$Res>(_value.goal, (value) {
+  $GoalsModelCopyWith<$Res> get goal {
+    return $GoalsModelCopyWith<$Res>(_value.goal, (value) {
       return _then(_value.copyWith(goal: value) as $Val);
     });
   }
@@ -120,11 +120,11 @@ abstract class _$$MatchModelImplCopyWith<$Res>
       String place,
       DateTime datetime,
       String league,
-      GoalModel goal,
+      GoalsModel goal,
       String? video});
 
   @override
-  $GoalModelCopyWith<$Res> get goal;
+  $GoalsModelCopyWith<$Res> get goal;
 }
 
 /// @nodoc
@@ -165,7 +165,7 @@ class __$$MatchModelImplCopyWithImpl<$Res>
       goal: null == goal
           ? _value.goal
           : goal // ignore: cast_nullable_to_non_nullable
-              as GoalModel,
+              as GoalsModel,
       video: freezed == video
           ? _value.video
           : video // ignore: cast_nullable_to_non_nullable
@@ -197,7 +197,7 @@ class _$MatchModelImpl implements _MatchModel {
   @override
   final String league;
   @override
-  final GoalModel goal;
+  final GoalsModel goal;
   @override
   @JsonKey()
   final String? video;
@@ -246,7 +246,7 @@ abstract class _MatchModel implements MatchModel {
       required final String place,
       required final DateTime datetime,
       required final String league,
-      required final GoalModel goal,
+      required final GoalsModel goal,
       final String? video}) = _$MatchModelImpl;
 
   factory _MatchModel.fromJson(Map<String, dynamic> json) =
@@ -261,7 +261,7 @@ abstract class _MatchModel implements MatchModel {
   @override
   String get league;
   @override
-  GoalModel get goal;
+  GoalsModel get goal;
   @override
   String? get video;
   @override

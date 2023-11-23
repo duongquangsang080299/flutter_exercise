@@ -12,7 +12,7 @@ _$MatchModelImpl _$$MatchModelImplFromJson(Map<String, dynamic> json) =>
       place: json['place'] as String,
       datetime: DateTime.parse(json['datetime'] as String),
       league: json['league'] as String,
-      goal: GoalModel.fromJson(json['goal'] as Map<String, dynamic>),
+      goal: GoalsModel.fromJson(json['goal'] as Map<String, dynamic>),
       video: json['video'] as String? ?? ' ',
     );
 

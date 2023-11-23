@@ -5,14 +5,14 @@ part 'goal_model.freezed.dart';
 part 'goal_model.g.dart';
 
 @freezed
-class GoalModel with _$GoalModel {
-  const factory GoalModel({
+class GoalsModel with _$GoalsModel {
+  const factory GoalsModel({
     required String id,
     required TeamModel teamRed,
     required TeamModel teamVictory,
     required String score,
-  }) = _GoalModel;
+  }) = _GoalsModel;
 
-  factory GoalModel.fromJson(Map<String, Object?> json) =>
-      _$GoalModelFromJson(json);
+  factory GoalsModel.fromJson(Map<String, Object?> json) =>
+      _$GoalsModelFromJson(json);
 }

@@ -14,12 +14,12 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-GoalModel _$GoalModelFromJson(Map<String, dynamic> json) {
-  return _GoalModel.fromJson(json);
+GoalsModel _$GoalsModelFromJson(Map<String, dynamic> json) {
+  return _GoalsModel.fromJson(json);
 }
 
 /// @nodoc
-mixin _$GoalModel {
+mixin _$GoalsModel {
   String get id => throw _privateConstructorUsedError;
   TeamModel get teamRed => throw _privateConstructorUsedError;
   TeamModel get teamVictory => throw _privateConstructorUsedError;
@@ -27,14 +27,15 @@ mixin _$GoalModel {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $GoalModelCopyWith<GoalModel> get copyWith =>
+  $GoalsModelCopyWith<GoalsModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $GoalModelCopyWith<$Res> {
-  factory $GoalModelCopyWith(GoalModel value, $Res Function(GoalModel) then) =
-      _$GoalModelCopyWithImpl<$Res, GoalModel>;
+abstract class $GoalsModelCopyWith<$Res> {
+  factory $GoalsModelCopyWith(
+          GoalsModel value, $Res Function(GoalsModel) then) =
+      _$GoalsModelCopyWithImpl<$Res, GoalsModel>;
   @useResult
   $Res call(
       {String id, TeamModel teamRed, TeamModel teamVictory, String score});
@@ -44,9 +45,9 @@ abstract class $GoalModelCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$GoalModelCopyWithImpl<$Res, $Val extends GoalModel>
-    implements $GoalModelCopyWith<$Res> {
-  _$GoalModelCopyWithImpl(this._value, this._then);
+class _$GoalsModelCopyWithImpl<$Res, $Val extends GoalsModel>
+    implements $GoalsModelCopyWith<$Res> {
+  _$GoalsModelCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -99,11 +100,11 @@ class _$GoalModelCopyWithImpl<$Res, $Val extends GoalModel>
 }
 
 /// @nodoc
-abstract class _$$GoalModelImplCopyWith<$Res>
-    implements $GoalModelCopyWith<$Res> {
-  factory _$$GoalModelImplCopyWith(
-          _$GoalModelImpl value, $Res Function(_$GoalModelImpl) then) =
-      __$$GoalModelImplCopyWithImpl<$Res>;
+abstract class _$$GoalsModelImplCopyWith<$Res>
+    implements $GoalsModelCopyWith<$Res> {
+  factory _$$GoalsModelImplCopyWith(
+          _$GoalsModelImpl value, $Res Function(_$GoalsModelImpl) then) =
+      __$$GoalsModelImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -116,11 +117,11 @@ abstract class _$$GoalModelImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$GoalModelImplCopyWithImpl<$Res>
-    extends _$GoalModelCopyWithImpl<$Res, _$GoalModelImpl>
-    implements _$$GoalModelImplCopyWith<$Res> {
-  __$$GoalModelImplCopyWithImpl(
-      _$GoalModelImpl _value, $Res Function(_$GoalModelImpl) _then)
+class __$$GoalsModelImplCopyWithImpl<$Res>
+    extends _$GoalsModelCopyWithImpl<$Res, _$GoalsModelImpl>
+    implements _$$GoalsModelImplCopyWith<$Res> {
+  __$$GoalsModelImplCopyWithImpl(
+      _$GoalsModelImpl _value, $Res Function(_$GoalsModelImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -131,7 +132,7 @@ class __$$GoalModelImplCopyWithImpl<$Res>
     Object? teamVictory = null,
     Object? score = null,
   }) {
-    return _then(_$GoalModelImpl(
+    return _then(_$GoalsModelImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -154,15 +155,15 @@ class __$$GoalModelImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$GoalModelImpl implements _GoalModel {
-  const _$GoalModelImpl(
+class _$GoalsModelImpl implements _GoalsModel {
+  const _$GoalsModelImpl(
       {required this.id,
       required this.teamRed,
       required this.teamVictory,
       required this.score});
 
-  factory _$GoalModelImpl.fromJson(Map<String, dynamic> json) =>
-      _$$GoalModelImplFromJson(json);
+  factory _$GoalsModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$GoalsModelImplFromJson(json);
 
   @override
   final String id;
@@ -175,14 +176,14 @@ class _$GoalModelImpl implements _GoalModel {
 
   @override
   String toString() {
-    return 'GoalModel(id: $id, teamRed: $teamRed, teamVictory: $teamVictory, score: $score)';
+    return 'GoalsModel(id: $id, teamRed: $teamRed, teamVictory: $teamVictory, score: $score)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$GoalModelImpl &&
+            other is _$GoalsModelImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.teamRed, teamRed) || other.teamRed == teamRed) &&
             (identical(other.teamVictory, teamVictory) ||
@@ -197,26 +198,26 @@ class _$GoalModelImpl implements _GoalModel {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$GoalModelImplCopyWith<_$GoalModelImpl> get copyWith =>
-      __$$GoalModelImplCopyWithImpl<_$GoalModelImpl>(this, _$identity);
+  _$$GoalsModelImplCopyWith<_$GoalsModelImpl> get copyWith =>
+      __$$GoalsModelImplCopyWithImpl<_$GoalsModelImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$GoalModelImplToJson(
+    return _$$GoalsModelImplToJson(
       this,
     );
   }
 }
 
-abstract class _GoalModel implements GoalModel {
-  const factory _GoalModel(
+abstract class _GoalsModel implements GoalsModel {
+  const factory _GoalsModel(
       {required final String id,
       required final TeamModel teamRed,
       required final TeamModel teamVictory,
-      required final String score}) = _$GoalModelImpl;
+      required final String score}) = _$GoalsModelImpl;
 
-  factory _GoalModel.fromJson(Map<String, dynamic> json) =
-      _$GoalModelImpl.fromJson;
+  factory _GoalsModel.fromJson(Map<String, dynamic> json) =
+      _$GoalsModelImpl.fromJson;
 
   @override
   String get id;
@@ -228,6 +229,6 @@ abstract class _GoalModel implements GoalModel {
   String get score;
   @override
   @JsonKey(ignore: true)
-  _$$GoalModelImplCopyWith<_$GoalModelImpl> get copyWith =>
+  _$$GoalsModelImplCopyWith<_$GoalsModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
