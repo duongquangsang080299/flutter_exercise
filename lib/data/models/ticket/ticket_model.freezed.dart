@@ -22,6 +22,7 @@ TicketModel _$TicketModelFromJson(Map<String, dynamic> json) {
 mixin _$TicketModel {
   String get id => throw _privateConstructorUsedError;
   double get sale => throw _privateConstructorUsedError;
+  String get description => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -35,7 +36,7 @@ abstract class $TicketModelCopyWith<$Res> {
           TicketModel value, $Res Function(TicketModel) then) =
       _$TicketModelCopyWithImpl<$Res, TicketModel>;
   @useResult
-  $Res call({String id, double sale});
+  $Res call({String id, double sale, String description});
 }
 
 /// @nodoc
@@ -53,6 +54,7 @@ class _$TicketModelCopyWithImpl<$Res, $Val extends TicketModel>
   $Res call({
     Object? id = null,
     Object? sale = null,
+    Object? description = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -63,6 +65,10 @@ class _$TicketModelCopyWithImpl<$Res, $Val extends TicketModel>
           ? _value.sale
           : sale // ignore: cast_nullable_to_non_nullable
               as double,
+      description: null == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -75,7 +81,7 @@ abstract class _$$TicketModelImplCopyWith<$Res>
       __$$TicketModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String id, double sale});
+  $Res call({String id, double sale, String description});
 }
 
 /// @nodoc
@@ -91,6 +97,7 @@ class __$$TicketModelImplCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? sale = null,
+    Object? description = null,
   }) {
     return _then(_$TicketModelImpl(
       id: null == id
@@ -101,6 +108,10 @@ class __$$TicketModelImplCopyWithImpl<$Res>
           ? _value.sale
           : sale // ignore: cast_nullable_to_non_nullable
               as double,
+      description: null == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -108,7 +119,8 @@ class __$$TicketModelImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$TicketModelImpl implements _TicketModel {
-  const _$TicketModelImpl({required this.id, required this.sale});
+  const _$TicketModelImpl(
+      {required this.id, required this.sale, required this.description});
 
   factory _$TicketModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$TicketModelImplFromJson(json);
@@ -117,10 +129,12 @@ class _$TicketModelImpl implements _TicketModel {
   final String id;
   @override
   final double sale;
+  @override
+  final String description;
 
   @override
   String toString() {
-    return 'TicketModel(id: $id, sale: $sale)';
+    return 'TicketModel(id: $id, sale: $sale, description: $description)';
   }
 
   @override
@@ -129,12 +143,14 @@ class _$TicketModelImpl implements _TicketModel {
         (other.runtimeType == runtimeType &&
             other is _$TicketModelImpl &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.sale, sale) || other.sale == sale));
+            (identical(other.sale, sale) || other.sale == sale) &&
+            (identical(other.description, description) ||
+                other.description == description));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, sale);
+  int get hashCode => Object.hash(runtimeType, id, sale, description);
 
   @JsonKey(ignore: true)
   @override
@@ -153,7 +169,8 @@ class _$TicketModelImpl implements _TicketModel {
 abstract class _TicketModel implements TicketModel {
   const factory _TicketModel(
       {required final String id,
-      required final double sale}) = _$TicketModelImpl;
+      required final double sale,
+      required final String description}) = _$TicketModelImpl;
 
   factory _TicketModel.fromJson(Map<String, dynamic> json) =
       _$TicketModelImpl.fromJson;
@@ -162,6 +179,8 @@ abstract class _TicketModel implements TicketModel {
   String get id;
   @override
   double get sale;
+  @override
+  String get description;
   @override
   @JsonKey(ignore: true)
   _$$TicketModelImplCopyWith<_$TicketModelImpl> get copyWith =>

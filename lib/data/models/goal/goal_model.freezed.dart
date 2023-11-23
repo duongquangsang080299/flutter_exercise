@@ -23,7 +23,8 @@ mixin _$GoalModel {
   String get id => throw _privateConstructorUsedError;
   TeamModel get teamRed => throw _privateConstructorUsedError;
   TeamModel get teamVictory => throw _privateConstructorUsedError;
-  String get score => throw _privateConstructorUsedError;
+  int get scoreRed => throw _privateConstructorUsedError;
+  int get scoreVictory => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -37,7 +38,11 @@ abstract class $GoalModelCopyWith<$Res> {
       _$GoalModelCopyWithImpl<$Res, GoalModel>;
   @useResult
   $Res call(
-      {String id, TeamModel teamRed, TeamModel teamVictory, String score});
+      {String id,
+      TeamModel teamRed,
+      TeamModel teamVictory,
+      int scoreRed,
+      int scoreVictory});
 
   $TeamModelCopyWith<$Res> get teamRed;
   $TeamModelCopyWith<$Res> get teamVictory;
@@ -59,7 +64,8 @@ class _$GoalModelCopyWithImpl<$Res, $Val extends GoalModel>
     Object? id = null,
     Object? teamRed = null,
     Object? teamVictory = null,
-    Object? score = null,
+    Object? scoreRed = null,
+    Object? scoreVictory = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -74,10 +80,14 @@ class _$GoalModelCopyWithImpl<$Res, $Val extends GoalModel>
           ? _value.teamVictory
           : teamVictory // ignore: cast_nullable_to_non_nullable
               as TeamModel,
-      score: null == score
-          ? _value.score
-          : score // ignore: cast_nullable_to_non_nullable
-              as String,
+      scoreRed: null == scoreRed
+          ? _value.scoreRed
+          : scoreRed // ignore: cast_nullable_to_non_nullable
+              as int,
+      scoreVictory: null == scoreVictory
+          ? _value.scoreVictory
+          : scoreVictory // ignore: cast_nullable_to_non_nullable
+              as int,
     ) as $Val);
   }
 
@@ -107,7 +117,11 @@ abstract class _$$GoalModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String id, TeamModel teamRed, TeamModel teamVictory, String score});
+      {String id,
+      TeamModel teamRed,
+      TeamModel teamVictory,
+      int scoreRed,
+      int scoreVictory});
 
   @override
   $TeamModelCopyWith<$Res> get teamRed;
@@ -129,7 +143,8 @@ class __$$GoalModelImplCopyWithImpl<$Res>
     Object? id = null,
     Object? teamRed = null,
     Object? teamVictory = null,
-    Object? score = null,
+    Object? scoreRed = null,
+    Object? scoreVictory = null,
   }) {
     return _then(_$GoalModelImpl(
       id: null == id
@@ -144,10 +159,14 @@ class __$$GoalModelImplCopyWithImpl<$Res>
           ? _value.teamVictory
           : teamVictory // ignore: cast_nullable_to_non_nullable
               as TeamModel,
-      score: null == score
-          ? _value.score
-          : score // ignore: cast_nullable_to_non_nullable
-              as String,
+      scoreRed: null == scoreRed
+          ? _value.scoreRed
+          : scoreRed // ignore: cast_nullable_to_non_nullable
+              as int,
+      scoreVictory: null == scoreVictory
+          ? _value.scoreVictory
+          : scoreVictory // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -159,7 +178,8 @@ class _$GoalModelImpl implements _GoalModel {
       {required this.id,
       required this.teamRed,
       required this.teamVictory,
-      required this.score});
+      required this.scoreRed,
+      required this.scoreVictory});
 
   factory _$GoalModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$GoalModelImplFromJson(json);
@@ -171,11 +191,13 @@ class _$GoalModelImpl implements _GoalModel {
   @override
   final TeamModel teamVictory;
   @override
-  final String score;
+  final int scoreRed;
+  @override
+  final int scoreVictory;
 
   @override
   String toString() {
-    return 'GoalModel(id: $id, teamRed: $teamRed, teamVictory: $teamVictory, score: $score)';
+    return 'GoalModel(id: $id, teamRed: $teamRed, teamVictory: $teamVictory, scoreRed: $scoreRed, scoreVictory: $scoreVictory)';
   }
 
   @override
@@ -187,12 +209,16 @@ class _$GoalModelImpl implements _GoalModel {
             (identical(other.teamRed, teamRed) || other.teamRed == teamRed) &&
             (identical(other.teamVictory, teamVictory) ||
                 other.teamVictory == teamVictory) &&
-            (identical(other.score, score) || other.score == score));
+            (identical(other.scoreRed, scoreRed) ||
+                other.scoreRed == scoreRed) &&
+            (identical(other.scoreVictory, scoreVictory) ||
+                other.scoreVictory == scoreVictory));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, teamRed, teamVictory, score);
+  int get hashCode => Object.hash(
+      runtimeType, id, teamRed, teamVictory, scoreRed, scoreVictory);
 
   @JsonKey(ignore: true)
   @override
@@ -213,7 +239,8 @@ abstract class _GoalModel implements GoalModel {
       {required final String id,
       required final TeamModel teamRed,
       required final TeamModel teamVictory,
-      required final String score}) = _$GoalModelImpl;
+      required final int scoreRed,
+      required final int scoreVictory}) = _$GoalModelImpl;
 
   factory _GoalModel.fromJson(Map<String, dynamic> json) =
       _$GoalModelImpl.fromJson;
@@ -225,7 +252,9 @@ abstract class _GoalModel implements GoalModel {
   @override
   TeamModel get teamVictory;
   @override
-  String get score;
+  int get scoreRed;
+  @override
+  int get scoreVictory;
   @override
   @JsonKey(ignore: true)
   _$$GoalModelImplCopyWith<_$GoalModelImpl> get copyWith =>

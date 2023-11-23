@@ -10,7 +10,8 @@ class GoalModel with _$GoalModel {
     required String id,
     required TeamModel teamRed,
     required TeamModel teamVictory,
-    required String score,
+    required int scoreRed,
+    required int scoreVictory,
   }) = _GoalModel;
 
   factory GoalModel.fromJson(Map<String, Object?> json) =>

@@ -8,6 +8,7 @@ class TicketModel with _$TicketModel {
   const factory TicketModel({
     required String id,
     required double sale,
+    required String description,
   }) = _TicketModel;
 
   factory TicketModel.fromJson(Map<String, Object?> json) =>

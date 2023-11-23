@@ -12,7 +12,8 @@ _$GoalModelImpl _$$GoalModelImplFromJson(Map<String, dynamic> json) =>
       teamRed: TeamModel.fromJson(json['teamRed'] as Map<String, dynamic>),
       teamVictory:
           TeamModel.fromJson(json['teamVictory'] as Map<String, dynamic>),
-      score: json['score'] as String,
+      scoreRed: json['scoreRed'] as int,
+      scoreVictory: json['scoreVictory'] as int,
     );
 
 Map<String, dynamic> _$$GoalModelImplToJson(_$GoalModelImpl instance) =>
@@ -20,5 +21,6 @@ Map<String, dynamic> _$$GoalModelImplToJson(_$GoalModelImpl instance) =>
       'id': instance.id,
       'teamRed': instance.teamRed,
       'teamVictory': instance.teamVictory,
-      'score': instance.score,
+      'scoreRed': instance.scoreRed,
+      'scoreVictory': instance.scoreVictory,
     };
