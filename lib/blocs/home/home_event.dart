@@ -9,7 +9,7 @@ class HomeLoadDataEvent extends HomeEvent {
   List<Object?> get props => [];
 }
 
-class NewLoadDataEvent extends HomeEvent {
+class NewsLoadDataEvent extends HomeEvent {
   @override
   List<Object?> get props => [];
 }
@@ -19,7 +19,7 @@ class MatchLoadDataEvent extends HomeEvent {
   List<Object?> get props => [];
 }
 
-class TicketLoadDataEvent extends HomeEvent {
+class TicketsLoadDataEvent extends HomeEvent {
   @override
   List<Object?> get props => [];
 }

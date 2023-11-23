@@ -14,10 +14,10 @@ class HomeLoadingState extends HomeState {
   List<Object?> get props => [];
 }
 
-class HomeLoadedState extends HomeState {
+class HomeLoadedSucesssState extends HomeState {
   final HomeViewModel homeViewModel;
 
-  const HomeLoadedState(this.homeViewModel);
+  const HomeLoadedSucesssState(this.homeViewModel);
 
   @override
   List<Object?> get props => [homeViewModel];
