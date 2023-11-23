@@ -10,8 +10,8 @@ part 'next_match_view_model.g.dart';
 /// MatchDetailView model
 class MatchDetailViewModel with _$MatchDetailViewModel {
   const factory MatchDetailViewModel({
-    required MatchModel matchDetail,
-    required GoalsModel goalMatch,
+    required MatchModel match,
+    required List<GoalsModel> goalsMatch,
   }) = _MatchDetailViewModel;
 
   factory MatchDetailViewModel.fromJson(Map<String, dynamic> json) =>

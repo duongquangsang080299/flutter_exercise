@@ -9,14 +9,15 @@ part of 'next_match_view_model.dart';
 _$MatchDetailViewModelImpl _$$MatchDetailViewModelImplFromJson(
         Map<String, dynamic> json) =>
     _$MatchDetailViewModelImpl(
-      matchDetail:
-          MatchModel.fromJson(json['matchDetail'] as Map<String, dynamic>),
-      goalMatch: GoalsModel.fromJson(json['goalMatch'] as Map<String, dynamic>),
+      match: MatchModel.fromJson(json['match'] as Map<String, dynamic>),
+      goalsMatch: (json['goalsMatch'] as List<dynamic>)
+          .map((e) => GoalsModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
 Map<String, dynamic> _$$MatchDetailViewModelImplToJson(
         _$MatchDetailViewModelImpl instance) =>
     <String, dynamic>{
-      'matchDetail': instance.matchDetail,
-      'goalMatch': instance.goalMatch,
+      'match': instance.match,
+      'goalsMatch': instance.goalsMatch,
     };
