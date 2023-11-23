@@ -4,22 +4,22 @@ abstract class HomeEvent extends Equatable {
   const HomeEvent();
 }
 
-class HomeLoadData extends HomeEvent {
+class HomeLoadDataEvent extends HomeEvent {
   @override
   List<Object?> get props => [];
 }
 
-class NewLoadData extends HomeEvent {
+class NewLoadDataEvent extends HomeEvent {
   @override
   List<Object?> get props => [];
 }
 
-class MatchLoadData extends HomeEvent {
+class MatchLoadDataEvent extends HomeEvent {
   @override
   List<Object?> get props => [];
 }
 
-class TicketLoadData extends HomeEvent {
+class TicketLoadDataEvent extends HomeEvent {
   @override
   List<Object?> get props => [];
 }

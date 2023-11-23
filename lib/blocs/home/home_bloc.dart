@@ -9,31 +9,31 @@ part 'home_state.dart';
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
   final HomeRepository homeRepository;
 
-  HomeBloc(this.homeRepository) : super(HomeInitial()) {
-    on<HomeLoadData>(_mapHomeLoadDataState);
-    on<NewLoadData>(_mapNewsLoadDataState);
-    on<MatchLoadData>(_mapMatchLoadDataState);
-    on<TicketLoadData>(_mapTicketLoadDataState);
+  HomeBloc(this.homeRepository) : super(HomeInitialState()) {
+    on<HomeLoadDataEvent>(_mapHomeLoadDataState);
+    on<NewLoadDataEvent>(_mapNewsLoadDataState);
+    on<MatchLoadDataEvent>(_mapMatchLoadDataState);
+    on<TicketLoadDataEvent>(_mapTicketLoadDataState);
   }
 
   Future<void> _mapHomeLoadDataState(
-      HomeLoadData event, Emitter<HomeState> emit) async {
-    emit(HomeLoading());
+      HomeLoadDataEvent event, Emitter<HomeState> emit) async {
+    emit(HomeLoadingState());
 
     try {
       final homeViewModel = await homeRepository.fetchHomeData();
-      emit(HomeLoaded(homeViewModel));
+      emit(HomeLoadedState(homeViewModel));
     } catch (e) {
-      emit(const HomeError('Error loading home data'));
+      emit(const HomeErrorState('Error loading home data'));
     }
   }
 
   Future<void> _mapNewsLoadDataState(
-      NewLoadData event, Emitter<HomeState> emit) async {}
+      NewLoadDataEvent event, Emitter<HomeState> emit) async {}
 
   Future<void> _mapMatchLoadDataState(
-      MatchLoadData event, Emitter<HomeState> emit) async {}
+      MatchLoadDataEvent event, Emitter<HomeState> emit) async {}
 
   Future<void> _mapTicketLoadDataState(
-      TicketLoadData event, Emitter<HomeState> emit) async {}
+      TicketLoadDataEvent event, Emitter<HomeState> emit) async {}
 }

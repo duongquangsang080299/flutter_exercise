@@ -4,29 +4,29 @@ abstract class HomeState extends Equatable {
   const HomeState();
 }
 
-class HomeInitial extends HomeState {
+class HomeInitialState extends HomeState {
   @override
   List<Object?> get props => [];
 }
 
-class HomeLoading extends HomeState {
+class HomeLoadingState extends HomeState {
   @override
   List<Object?> get props => [];
 }
 
-class HomeLoaded extends HomeState {
+class HomeLoadedState extends HomeState {
   final HomeViewModel homeViewModel;
 
-  const HomeLoaded(this.homeViewModel);
+  const HomeLoadedState(this.homeViewModel);
 
   @override
   List<Object?> get props => [homeViewModel];
 }
 
-class HomeError extends HomeState {
+class HomeErrorState extends HomeState {
   final String errorMessage;
 
-  const HomeError(this.errorMessage);
+  const HomeErrorState(this.errorMessage);
 
   @override
   List<Object?> get props => [errorMessage];
