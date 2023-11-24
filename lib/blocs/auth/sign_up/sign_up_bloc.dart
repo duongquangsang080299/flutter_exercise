@@ -75,6 +75,7 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
       await authRepo.signUp(
         email: event.form.email,
         password: event.form.password,
+        username: event.form.username,
       );
       // Update the state on successful create acccount
       emit(SignUpSuccessState(

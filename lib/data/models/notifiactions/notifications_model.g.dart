@@ -12,7 +12,7 @@ _$NotificationModelImpl _$$NotificationModelImplFromJson(
       id: json['id'] as String,
       title: json['title'] as String,
       description: json['description'] as String,
-      dateTime: DateTime.parse(json['dateTime'] as String),
+      datetime: DateTime.parse(json['datetime'] as String),
     );
 
 Map<String, dynamic> _$$NotificationModelImplToJson(
@@ -21,5 +21,5 @@ Map<String, dynamic> _$$NotificationModelImplToJson(
       'id': instance.id,
       'title': instance.title,
       'description': instance.description,
-      'dateTime': instance.dateTime.toIso8601String(),
+      'datetime': instance.datetime.toIso8601String(),
     };

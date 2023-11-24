@@ -23,7 +23,7 @@ mixin _$NotificationModel {
   String get id => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
-  DateTime get dateTime => throw _privateConstructorUsedError;
+  DateTime get datetime => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -37,7 +37,7 @@ abstract class $NotificationModelCopyWith<$Res> {
           NotificationModel value, $Res Function(NotificationModel) then) =
       _$NotificationModelCopyWithImpl<$Res, NotificationModel>;
   @useResult
-  $Res call({String id, String title, String description, DateTime dateTime});
+  $Res call({String id, String title, String description, DateTime datetime});
 }
 
 /// @nodoc
@@ -56,7 +56,7 @@ class _$NotificationModelCopyWithImpl<$Res, $Val extends NotificationModel>
     Object? id = null,
     Object? title = null,
     Object? description = null,
-    Object? dateTime = null,
+    Object? datetime = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -71,9 +71,9 @@ class _$NotificationModelCopyWithImpl<$Res, $Val extends NotificationModel>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
-      dateTime: null == dateTime
-          ? _value.dateTime
-          : dateTime // ignore: cast_nullable_to_non_nullable
+      datetime: null == datetime
+          ? _value.datetime
+          : datetime // ignore: cast_nullable_to_non_nullable
               as DateTime,
     ) as $Val);
   }
@@ -87,7 +87,7 @@ abstract class _$$NotificationModelImplCopyWith<$Res>
       __$$NotificationModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String id, String title, String description, DateTime dateTime});
+  $Res call({String id, String title, String description, DateTime datetime});
 }
 
 /// @nodoc
@@ -104,7 +104,7 @@ class __$$NotificationModelImplCopyWithImpl<$Res>
     Object? id = null,
     Object? title = null,
     Object? description = null,
-    Object? dateTime = null,
+    Object? datetime = null,
   }) {
     return _then(_$NotificationModelImpl(
       id: null == id
@@ -119,9 +119,9 @@ class __$$NotificationModelImplCopyWithImpl<$Res>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
-      dateTime: null == dateTime
-          ? _value.dateTime
-          : dateTime // ignore: cast_nullable_to_non_nullable
+      datetime: null == datetime
+          ? _value.datetime
+          : datetime // ignore: cast_nullable_to_non_nullable
               as DateTime,
     ));
   }
@@ -136,7 +136,7 @@ class _$NotificationModelImpl
       {required this.id,
       required this.title,
       required this.description,
-      required this.dateTime});
+      required this.datetime});
 
   factory _$NotificationModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$NotificationModelImplFromJson(json);
@@ -148,11 +148,11 @@ class _$NotificationModelImpl
   @override
   final String description;
   @override
-  final DateTime dateTime;
+  final DateTime datetime;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'NotificationModel(id: $id, title: $title, description: $description, dateTime: $dateTime)';
+    return 'NotificationModel(id: $id, title: $title, description: $description, datetime: $datetime)';
   }
 
   @override
@@ -163,7 +163,7 @@ class _$NotificationModelImpl
       ..add(DiagnosticsProperty('id', id))
       ..add(DiagnosticsProperty('title', title))
       ..add(DiagnosticsProperty('description', description))
-      ..add(DiagnosticsProperty('dateTime', dateTime));
+      ..add(DiagnosticsProperty('datetime', datetime));
   }
 
   @override
@@ -175,14 +175,14 @@ class _$NotificationModelImpl
             (identical(other.title, title) || other.title == title) &&
             (identical(other.description, description) ||
                 other.description == description) &&
-            (identical(other.dateTime, dateTime) ||
-                other.dateTime == dateTime));
+            (identical(other.datetime, datetime) ||
+                other.datetime == datetime));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode =>
-      Object.hash(runtimeType, id, title, description, dateTime);
+      Object.hash(runtimeType, id, title, description, datetime);
 
   @JsonKey(ignore: true)
   @override
@@ -204,7 +204,7 @@ abstract class _NotificationModel implements NotificationModel {
       {required final String id,
       required final String title,
       required final String description,
-      required final DateTime dateTime}) = _$NotificationModelImpl;
+      required final DateTime datetime}) = _$NotificationModelImpl;
 
   factory _NotificationModel.fromJson(Map<String, dynamic> json) =
       _$NotificationModelImpl.fromJson;
@@ -216,7 +216,7 @@ abstract class _NotificationModel implements NotificationModel {
   @override
   String get description;
   @override
-  DateTime get dateTime;
+  DateTime get datetime;
   @override
   @JsonKey(ignore: true)
   _$$NotificationModelImplCopyWith<_$NotificationModelImpl> get copyWith =>
