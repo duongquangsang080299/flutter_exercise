@@ -1,24 +1,25 @@
 import 'package:soccer_club_app/core/api/main_api.dart';
-import 'package:soccer_club_app/core/constant/api_key.dart';
+import 'package:soccer_club_app/core/constant/api.dart';
+import 'package:soccer_club_app/core/error/error_exception.dart';
 import 'package:soccer_club_app/data/models/goal/goal_model.dart';
 
 class GoalsRepository {
-  final ApiConsumer apiConsumer;
+  final MainApi mainApi;
 
-  GoalsRepository({required this.apiConsumer});
+  GoalsRepository({required this.mainApi});
 
-  Future<List<GoalsModel>> fetchGoalsData() async {
+  Future<List<GoalsModel>> getListGoals(
+      {Map<String, dynamic>? queryParams}) async {
     try {
-      const String apiUrl =
-          'https://olttmjkegsnbhrupogiu.supabase.co/rest/v1/goal';
-      final responseData = await apiConsumer.get(apiUrl, apiKey: ApiKey.apiKey);
+      const String apiUrl = '${Apis.basedUrl}/goal';
+      final responseData = await mainApi.get(apiUrl, queryParams: queryParams);
 
       final List<GoalsModel> goals =
           responseData.map((e) => GoalsModel.fromJson(e)).toList();
 
       return goals;
     } catch (e) {
-      throw Exception('Failed to fetch goals data: $e');
+      throw ErrorException(message: 'Failed to fetch match data: $e');
     }
   }
 }

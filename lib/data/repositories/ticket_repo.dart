@@ -1,23 +1,21 @@
 import 'package:soccer_club_app/core/api/main_api.dart';
-import 'package:soccer_club_app/core/constant/api_key.dart';
+import 'package:soccer_club_app/core/constant/api.dart';
+import 'package:soccer_club_app/core/error/error_exception.dart';
 import 'package:soccer_club_app/data/models/ticket/ticket_model.dart';
 
 class TicketsRepository {
-  final ApiConsumer apiConsumer = ApiConsumer();
+  final MainApi mainApi = MainApi();
 
-  Future<List<TicketModel>> fetchTicketData(
-      {String apiKey = ApiKey.apiKey}) async {
+  Future<TicketModel> getTicket({Map<String, dynamic>? queryParams}) async {
     try {
-      const String apiUrl =
-          'https://olttmjkegsnbhrupogiu.supabase.co/rest/v1/ticket';
-      final response = await apiConsumer.get(apiUrl, apiKey: ApiKey.apiKey);
+      const String apiUrl = '${Apis.basedUrl}/ticket';
+      final response = await mainApi.get(apiUrl, queryParams: queryParams);
 
-      final List<TicketModel> ticket = (response.data as List<dynamic>)
-          .map((e) => TicketModel.fromJson(e))
-          .toList();
-      return ticket;
+      final TicketModel tickets =
+          (response.data).map((e) => TicketModel.fromJson(e)).toList();
+      return tickets;
     } catch (e) {
-      throw Exception('Failed to fetch ticket data: $e');
+      throw ErrorException(message: 'Failed to fetch match data: $e');
     }
   }
 }
