@@ -1,49 +1,54 @@
 import 'package:bloc/bloc.dart';
-import 'package:equatable/equatable.dart';
-import 'package:soccer_club_app/data/repositories/home_repo.dart';
-import 'package:soccer_club_app/presentations/view_models/home/home_view_models.dart';
-
-part 'home_event.dart';
-part 'home_state.dart';
+import 'package:soccer_club_app/blocs/home/home_event.dart';
+import 'package:soccer_club_app/blocs/home/home_state.dart';
+import 'package:soccer_club_app/data/models/match/match_model.dart';
+import 'package:soccer_club_app/data/models/ticket/ticket_model.dart';
+import 'package:soccer_club_app/data/repositories/match_repo.dart';
+import 'package:soccer_club_app/data/repositories/ticket_repo.dart';
+import 'package:soccer_club_app/data/repositories/user_repo.dart';
 
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
-  final HomeRepository homeRepository;
+  final UserRepository userRepository = UserRepository();
+  final MatchRepository matchRepository = MatchRepository();
+  final TicketsRepository ticketsRepository = TicketsRepository();
 
-  HomeBloc(this.homeRepository) : super(HomeInitialState()) {
-    on<HomeLoadDataEvent>(_mapHomeLoadDataState);
-    on<NewsLoadDataEvent>(_mapNewsLoadDataState);
-    on<MatchLoadDataEvent>(_mapMatchLoadDataState);
-    on<TicketsLoadDataEvent>(_mapTicketLoadDataState);
+  HomeBloc() : super(HomeInitial()) {
+    on<NewsLoadDataEvent>(_onNewsLoadData);
+    on<MatchLoadDataEvent>(_onMatchLoadData);
+    on<TicketsLoadDataEvent>(_onTicketsLoadData);
   }
 
-  Future<void> _mapHomeLoadDataState(
-      HomeLoadDataEvent event, Emitter<HomeState> emit) async {
-    emit(HomeLoadingState());
-
+  Future<void> _onNewsLoadData(
+      NewsLoadDataEvent event, Emitter<HomeState> emit) async {
     try {
-      final homeViewModel = await homeRepository.fetchHomeData();
-      emit(HomeLoadedSucesssState(homeViewModel));
+      emit(const HomeLoading(dataNews: []));
+      final List<MatchModel> newsData = await matchRepository.fetchMatchData();
+      emit(HomeLoaded(dataNews: newsData));
     } catch (e) {
-      // TODO: Handle the error state appropriately
-      emit(const HomeErrorState('Error loading home data'));
+      emit(HomeError(errorMessage: 'Failed to load news data: $e'));
     }
   }
 
-  Future<void> _mapNewsLoadDataState(
-      NewsLoadDataEvent event, Emitter<HomeState> emit) async {
-    // TODO: Implement logic to fetch news data
-    // TODO: Update the state accordingly (loading, loaded, error)
-  }
-
-  Future<void> _mapMatchLoadDataState(
+  Future<void> _onMatchLoadData(
       MatchLoadDataEvent event, Emitter<HomeState> emit) async {
-    // TODO: Implement logic to fetch match data
-    // TODO: Update the state accordingly (loading, loaded, error)
+    try {
+      emit(const HomeLoading(dataMatch: []));
+      final List<MatchModel> matches = await matchRepository.fetchMatchData();
+      emit(HomeLoaded(dataMatch: matches));
+    } catch (e) {
+      emit(HomeError(errorMessage: 'Failed to load match data: $e'));
+    }
   }
 
-  Future<void> _mapTicketLoadDataState(
+  Future<void> _onTicketsLoadData(
       TicketsLoadDataEvent event, Emitter<HomeState> emit) async {
-    // TODO: Implement logic to fetch ticket data
-    // TODO: Update the state accordingly (loading, loaded, error)
+    try {
+      emit(const HomeLoading(dataTickets: []));
+      final List<TicketModel> tickets =
+          await ticketsRepository.fetchTicketData();
+      emit(HomeLoaded(dataTickets: tickets));
+    } catch (e) {
+      emit(HomeError(errorMessage: 'Failed to load ticket data: $e'));
+    }
   }
 }

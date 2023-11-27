@@ -1,32 +1,49 @@
-part of 'home_bloc.dart';
+import 'package:equatable/equatable.dart';
+import 'package:soccer_club_app/data/models/match/match_model.dart';
+import 'package:soccer_club_app/data/models/ticket/ticket_model.dart';
 
 abstract class HomeState extends Equatable {
   const HomeState();
-}
 
-class HomeInitialState extends HomeState {
   @override
   List<Object?> get props => [];
 }
 
-class HomeLoadingState extends HomeState {
+class HomeInitial extends HomeState {}
+
+class HomeLoading extends HomeState {
+  final List<MatchModel>? dataNews;
+  final List<TicketModel>? dataTickets;
+  final List<MatchModel>? dataMatch;
+
+  const HomeLoading({
+    this.dataNews,
+    this.dataTickets,
+    this.dataMatch,
+  });
   @override
-  List<Object?> get props => [];
+  List<Object?> get props => [dataNews, dataTickets, dataMatch];
 }
 
-class HomeLoadedSucesssState extends HomeState {
-  final HomeViewModel homeViewModel;
+class HomeLoaded extends HomeState {
+  final List<MatchModel>? dataNews;
+  final List<TicketModel>? dataTickets;
+  final List<MatchModel>? dataMatch;
 
-  const HomeLoadedSucesssState(this.homeViewModel);
+  const HomeLoaded({
+    this.dataNews,
+    this.dataTickets,
+    this.dataMatch,
+  });
 
   @override
-  List<Object?> get props => [homeViewModel];
+  List<Object?> get props => [dataNews, dataTickets, dataMatch];
 }
 
-class HomeErrorState extends HomeState {
+class HomeError extends HomeState {
   final String errorMessage;
 
-  const HomeErrorState(this.errorMessage);
+  const HomeError({required this.errorMessage});
 
   @override
   List<Object?> get props => [errorMessage];
