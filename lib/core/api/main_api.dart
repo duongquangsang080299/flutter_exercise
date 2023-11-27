@@ -24,7 +24,7 @@ class MainApi {
             message: 'Failed to load data. Status code ${response.statusCode}');
       }
     } catch (e) {
-      throw ErrorException(message: 'Failed to make the request: $e');
+      AppException(AppExceptionType.badResponse);
     }
   }
 }
