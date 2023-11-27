@@ -1,5 +1,6 @@
 import 'package:soccer_club_app/core/api/main_api.dart';
 import 'package:soccer_club_app/core/constant/api.dart';
+import 'package:soccer_club_app/core/constant/apis.dart';
 import 'package:soccer_club_app/core/error/error_exception.dart';
 import 'package:soccer_club_app/data/models/ticket/ticket_model.dart';
 
@@ -15,7 +16,7 @@ class TicketsRepository {
           (response.data).map((e) => TicketModel.fromJson(e)).toList();
       return tickets;
     } catch (e) {
-      throw ErrorException(message: 'Failed to fetch match data: $e');
+      throw AppException(AppExceptionType.badResponse);
     }
   }
 }

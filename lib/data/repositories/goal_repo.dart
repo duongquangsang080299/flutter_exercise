@@ -19,7 +19,7 @@ class GoalsRepository {
 
       return goals;
     } catch (e) {
-      throw ErrorException(message: 'Failed to fetch match data: $e');
+      throw AppException(AppExceptionType.badResponse);
     }
   }
 }

@@ -1,5 +1,6 @@
 import 'package:soccer_club_app/core/api/main_api.dart';
 import 'package:soccer_club_app/core/constant/api.dart';
+import 'package:soccer_club_app/core/constant/apis.dart';
 import 'package:soccer_club_app/core/error/error_exception.dart';
 import 'package:soccer_club_app/data/models/match/match_model.dart';
 
@@ -17,7 +18,7 @@ class MatchRepository {
           .toList();
       return matchModels;
     } catch (e) {
-      throw ErrorException(message: 'Failed to fetch match data: $e');
+      throw AppException(AppExceptionType.badResponse);
     }
   }
 
@@ -29,7 +30,7 @@ class MatchRepository {
       final MatchModel matchModel = MatchModel.fromJson(response.data);
       return matchModel;
     } catch (e) {
-      throw ErrorException(message: 'Failed to fetch match details: $e');
+      throw AppException(AppExceptionType.badResponse);
     }
   }
 }
