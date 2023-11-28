@@ -1,50 +1,63 @@
+// ignore_for_file: overridden_fields
+
 import 'package:equatable/equatable.dart';
-import 'package:soccer_club_app/data/models/match/match_model.dart';
-import 'package:soccer_club_app/data/models/ticket/ticket_model.dart';
+import 'package:soccer_club_app/presentations/view_models/home/home_view_models.dart';
+
+HomeViewModel homeEmpty = const HomeViewModel();
 
 abstract class HomeState extends Equatable {
-  const HomeState();
+  final HomeViewModel data;
+
+  const HomeState(
+    this.data,
+  ) : super();
 
   @override
-  List<Object?> get props => [];
+  List<Object?> get props => [data];
 }
 
-class HomeInitial extends HomeState {}
+class HomeInitial extends HomeState {
+  const HomeInitial(this.data) : super(data);
 
-class HomeLoading extends HomeState {
-  final List<MatchModel>? dataNews;
-  final List<TicketModel>? dataTickets;
-  final List<MatchModel>? dataMatch;
-
-  const HomeLoading({
-    this.dataNews,
-    this.dataTickets,
-    this.dataMatch,
-  });
   @override
-  List<Object?> get props => [dataNews, dataTickets, dataMatch];
+  final HomeViewModel data;
 }
 
-class HomeLoaded extends HomeState {
-  final List<MatchModel>? dataNews;
-  final List<TicketModel>? dataTickets;
-  final List<MatchModel>? dataMatch;
-
-  const HomeLoaded({
-    this.dataNews,
-    this.dataTickets,
-    this.dataMatch,
-  });
+class GetMatchSuccess extends HomeState {
+  const GetMatchSuccess(this.data) : super(data);
 
   @override
-  List<Object?> get props => [dataNews, dataTickets, dataMatch];
+  final HomeViewModel data;
+}
+
+class GetMatchLoading extends HomeState {
+  const GetMatchLoading(this.data) : super(data);
+
+  @override
+  final HomeViewModel data;
 }
 
 class HomeError extends HomeState {
   final String errorMessage;
 
-  const HomeError({required this.errorMessage});
+  const HomeError({
+    required this.errorMessage,
+    required this.data,
+  }) : super(data);
 
   @override
-  List<Object?> get props => [errorMessage];
+  final HomeViewModel data;
+
+  @override
+  List<Object?> get props => [errorMessage, data];
+}
+
+class HomeVideoHandler extends HomeState {
+  const HomeVideoHandler({required this.data}) : super(data);
+
+  @override
+  final HomeViewModel data;
+
+  @override
+  List<Object?> get props => [data];
 }

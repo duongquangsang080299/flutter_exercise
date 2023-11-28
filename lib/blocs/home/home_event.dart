@@ -14,12 +14,27 @@ class NewsLoadDataEvent extends HomeEvent {
   List<Object?> get props => [];
 }
 
-class MatchLoadDataEvent extends HomeEvent {
+class GetMatchsEvent extends HomeEvent {
   @override
   List<Object?> get props => [];
 }
 
 class TicketsLoadDataEvent extends HomeEvent {
+  @override
+  List<Object?> get props => [];
+}
+
+class PlayVideoEvent extends HomeEvent {
+  @override
+  List<Object?> get props => [];
+}
+
+class PauseVideoEvent extends HomeEvent {
+  @override
+  List<Object?> get props => [];
+}
+
+class VideoLoadingEvent extends HomeEvent {
   @override
   List<Object?> get props => [];
 }
