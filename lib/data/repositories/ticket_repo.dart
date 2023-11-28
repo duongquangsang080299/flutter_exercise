@@ -1,10 +1,7 @@
-import 'package:soccer_club_app/core/api/main_api.dart';
-import 'package:soccer_club_app/core/constant/api.dart';
-import 'package:soccer_club_app/core/constant/apis.dart';
 import 'package:soccer_club_app/core/error/error_exception.dart';
 import 'package:soccer_club_app/data/models/ticket/ticket_model.dart';
 
-class TicketsRepository {
+class TicketRepository {
   final MainApi mainApi = MainApi();
 
   Future<TicketModel> getTicket({Map<String, dynamic>? queryParams}) async {
