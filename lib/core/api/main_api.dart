@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:soccer_club_app/core/constant/apis.dart';
+import 'package:soccer_club_app/core/constant/api.dart';
 import 'package:soccer_club_app/core/error/error_exception.dart';
 
 class MainApi {
@@ -17,14 +17,9 @@ class MainApi {
       );
 
       // Check if the response is successful
-      if (response.statusCode == 200) {
-        return response;
-      } else {
-        throw ErrorException(
-            message: 'Failed to load data. Status code ${response.statusCode}');
-      }
+      if (response.statusCode == 200) return response.data;
     } catch (e) {
-      throw AppException(AppExceptionType.badResponse);
+      throw ErrorException(message: 'Failed to make the request: $e');
     }
   }
 }
