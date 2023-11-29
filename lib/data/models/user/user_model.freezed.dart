@@ -20,7 +20,7 @@ UserModel _$UserModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$UserModel {
-  String get id => throw _privateConstructorUsedError;
+  int get id => throw _privateConstructorUsedError;
   String get username => throw _privateConstructorUsedError;
   String get email => throw _privateConstructorUsedError;
   String get password => throw _privateConstructorUsedError;
@@ -36,7 +36,7 @@ abstract class $UserModelCopyWith<$Res> {
   factory $UserModelCopyWith(UserModel value, $Res Function(UserModel) then) =
       _$UserModelCopyWithImpl<$Res, UserModel>;
   @useResult
-  $Res call({String id, String username, String email, String password});
+  $Res call({int id, String username, String email, String password});
 }
 
 /// @nodoc
@@ -61,7 +61,7 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       username: null == username
           ? _value.username
           : username // ignore: cast_nullable_to_non_nullable
@@ -86,7 +86,7 @@ abstract class _$$UserModelImplCopyWith<$Res>
       __$$UserModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String id, String username, String email, String password});
+  $Res call({int id, String username, String email, String password});
 }
 
 /// @nodoc
@@ -109,7 +109,7 @@ class __$$UserModelImplCopyWithImpl<$Res>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       username: null == username
           ? _value.username
           : username // ignore: cast_nullable_to_non_nullable
@@ -128,7 +128,7 @@ class __$$UserModelImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$UserModelImpl with DiagnosticableTreeMixin implements _UserModel {
+class _$UserModelImpl implements _UserModel {
   const _$UserModelImpl(
       {required this.id,
       required this.username,
@@ -139,7 +139,7 @@ class _$UserModelImpl with DiagnosticableTreeMixin implements _UserModel {
       _$$UserModelImplFromJson(json);
 
   @override
-  final String id;
+  final int id;
   @override
   final String username;
   @override
@@ -148,19 +148,8 @@ class _$UserModelImpl with DiagnosticableTreeMixin implements _UserModel {
   final String password;
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'UserModel(id: $id, username: $username, email: $email, password: $password)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'UserModel'))
-      ..add(DiagnosticsProperty('id', id))
-      ..add(DiagnosticsProperty('username', username))
-      ..add(DiagnosticsProperty('email', email))
-      ..add(DiagnosticsProperty('password', password));
   }
 
   @override
@@ -196,7 +185,7 @@ class _$UserModelImpl with DiagnosticableTreeMixin implements _UserModel {
 
 abstract class _UserModel implements UserModel {
   const factory _UserModel(
-      {required final String id,
+      {required final int id,
       required final String username,
       required final String email,
       required final String password}) = _$UserModelImpl;
@@ -205,7 +194,7 @@ abstract class _UserModel implements UserModel {
       _$UserModelImpl.fromJson;
 
   @override
-  String get id;
+  int get id;
   @override
   String get username;
   @override

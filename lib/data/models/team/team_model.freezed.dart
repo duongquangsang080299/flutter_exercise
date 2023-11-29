@@ -20,7 +20,7 @@ TeamModel _$TeamModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$TeamModel {
-  String get id => throw _privateConstructorUsedError;
+  int get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get logo => throw _privateConstructorUsedError;
 
@@ -35,7 +35,7 @@ abstract class $TeamModelCopyWith<$Res> {
   factory $TeamModelCopyWith(TeamModel value, $Res Function(TeamModel) then) =
       _$TeamModelCopyWithImpl<$Res, TeamModel>;
   @useResult
-  $Res call({String id, String name, String logo});
+  $Res call({int id, String name, String logo});
 }
 
 /// @nodoc
@@ -59,7 +59,7 @@ class _$TeamModelCopyWithImpl<$Res, $Val extends TeamModel>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -80,7 +80,7 @@ abstract class _$$TeamModelImplCopyWith<$Res>
       __$$TeamModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String id, String name, String logo});
+  $Res call({int id, String name, String logo});
 }
 
 /// @nodoc
@@ -102,7 +102,7 @@ class __$$TeamModelImplCopyWithImpl<$Res>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -125,7 +125,7 @@ class _$TeamModelImpl implements _TeamModel {
       _$$TeamModelImplFromJson(json);
 
   @override
-  final String id;
+  final int id;
   @override
   final String name;
   @override
@@ -166,7 +166,7 @@ class _$TeamModelImpl implements _TeamModel {
 
 abstract class _TeamModel implements TeamModel {
   const factory _TeamModel(
-      {required final String id,
+      {required final int id,
       required final String name,
       required final String logo}) = _$TeamModelImpl;
 
@@ -174,7 +174,7 @@ abstract class _TeamModel implements TeamModel {
       _$TeamModelImpl.fromJson;
 
   @override
-  String get id;
+  int get id;
   @override
   String get name;
   @override

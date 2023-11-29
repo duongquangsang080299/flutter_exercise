@@ -6,7 +6,7 @@ part 'team_model.g.dart';
 @freezed
 class TeamModel with _$TeamModel {
   const factory TeamModel({
-    required String id,
+    required int id,
     required String name,
     required String logo,
   }) = _TeamModel;

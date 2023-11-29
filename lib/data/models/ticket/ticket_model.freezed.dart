@@ -20,7 +20,7 @@ TicketModel _$TicketModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$TicketModel {
-  String get id => throw _privateConstructorUsedError;
+  int get id => throw _privateConstructorUsedError;
   double get sale => throw _privateConstructorUsedError;
   String get desc => throw _privateConstructorUsedError;
 
@@ -36,7 +36,7 @@ abstract class $TicketModelCopyWith<$Res> {
           TicketModel value, $Res Function(TicketModel) then) =
       _$TicketModelCopyWithImpl<$Res, TicketModel>;
   @useResult
-  $Res call({String id, double sale, String desc});
+  $Res call({int id, double sale, String desc});
 }
 
 /// @nodoc
@@ -60,7 +60,7 @@ class _$TicketModelCopyWithImpl<$Res, $Val extends TicketModel>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       sale: null == sale
           ? _value.sale
           : sale // ignore: cast_nullable_to_non_nullable
@@ -81,7 +81,7 @@ abstract class _$$TicketModelImplCopyWith<$Res>
       __$$TicketModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String id, double sale, String desc});
+  $Res call({int id, double sale, String desc});
 }
 
 /// @nodoc
@@ -103,7 +103,7 @@ class __$$TicketModelImplCopyWithImpl<$Res>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       sale: null == sale
           ? _value.sale
           : sale // ignore: cast_nullable_to_non_nullable
@@ -126,7 +126,7 @@ class _$TicketModelImpl implements _TicketModel {
       _$$TicketModelImplFromJson(json);
 
   @override
-  final String id;
+  final int id;
   @override
   final double sale;
   @override
@@ -167,7 +167,7 @@ class _$TicketModelImpl implements _TicketModel {
 
 abstract class _TicketModel implements TicketModel {
   const factory _TicketModel(
-      {required final String id,
+      {required final int id,
       required final double sale,
       required final String desc}) = _$TicketModelImpl;
 
@@ -175,7 +175,7 @@ abstract class _TicketModel implements TicketModel {
       _$TicketModelImpl.fromJson;
 
   @override
-  String get id;
+  int get id;
   @override
   double get sale;
   @override

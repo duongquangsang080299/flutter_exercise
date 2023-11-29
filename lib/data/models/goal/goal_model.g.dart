@@ -8,11 +8,11 @@ part of 'goal_model.dart';
 
 _$GoalsModelImpl _$$GoalsModelImplFromJson(Map<String, dynamic> json) =>
     _$GoalsModelImpl(
-      id: json['id'] as String,
-      teamRed: json['team_red'] as String,
-      teamVictory: json['team_victory'] as String,
-      scoreRed: json['score_Red'] as int,
-      scoreVictory: json['score_Victory'] as int,
+      id: json['id'] as int,
+      teamRed: json['team_red'] as int,
+      teamVictory: json['team_victory'] as int,
+      scoreRed: json['score_red'] as int,
+      scoreVictory: json['score_victory'] as int,
     );
 
 Map<String, dynamic> _$$GoalsModelImplToJson(_$GoalsModelImpl instance) =>
@@ -20,6 +20,6 @@ Map<String, dynamic> _$$GoalsModelImplToJson(_$GoalsModelImpl instance) =>
       'id': instance.id,
       'team_red': instance.teamRed,
       'team_victory': instance.teamVictory,
-      'score_Red': instance.scoreRed,
-      'score_Victory': instance.scoreVictory,
+      'score_red': instance.scoreRed,
+      'score_victory': instance.scoreVictory,
     };

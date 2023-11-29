@@ -6,11 +6,11 @@ part 'goal_model.g.dart';
 @freezed
 class GoalsModel with _$GoalsModel {
   const factory GoalsModel({
-    required String id,
-    @JsonKey(name: 'team_red') required String teamRed,
-    @JsonKey(name: 'team_victory') required String teamVictory,
-    @JsonKey(name: 'score_Red') required int scoreRed,
-    @JsonKey(name: 'score_Victory') required int scoreVictory,
+    required int id,
+    @JsonKey(name: 'team_red') required int teamRed,
+    @JsonKey(name: 'team_victory') required int teamVictory,
+    @JsonKey(name: 'score_red') required int scoreRed,
+    @JsonKey(name: 'score_victory') required int scoreVictory,
   }) = _GoalsModel;
 
   factory GoalsModel.fromJson(Map<String, Object?> json) =>
