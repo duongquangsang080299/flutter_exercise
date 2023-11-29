@@ -3,35 +3,39 @@ import 'package:soccer_club_app/core/constant/api.dart';
 import 'package:soccer_club_app/core/error/error_exception.dart';
 import 'package:soccer_club_app/data/models/match/match_model.dart';
 
+/// Handler Match Repository related data
 class MatchRepository {
+  // Making API calls related to match
   final MainApi mainApi = MainApi();
-
-  Future<List<MatchModel>> getMatchs(
-      {Map<String, dynamic>? queryParams}) async {
+  // Takes an optional map of query parameters
+  Future<List<MatchModel>> getMatches() async {
     try {
+      // Construct the API endpoint URL for match
       const String apiUrl = '${Apis.basedUrl}match';
+      // Make a GET request to the API using the MainApi instance
       final List<dynamic> response = await mainApi.get(
         apiUrl,
         queryParams: {'select': '*,goals(*)'},
       );
-      print(response);
-      final List<MatchModel> matchs =
+      // Convert the dynamic response into a list of MatchModel objects.
+      final List<MatchModel> matches =
           response.map((e) => MatchModel.fromJson(e)).toList();
-      return matchs;
+      return matches;
     } catch (e) {
       throw AppException(AppExceptionType.badResponse);
     }
   }
 
-  Future<MatchModel> getMatch({Map<String, dynamic>? queryParams}) async {
+  Future<MatchModel> getMatch() async {
     try {
+      // Construct the API endpoint URL for match
       const String apiUrl = '${Apis.basedUrl}match';
+      // Make a GET request to the API using the MainApi instance
       final List<dynamic> response = await mainApi.get(
         apiUrl,
         queryParams: {'select': '*', 'limit': '1'},
       );
-      print('Here is $response');
-
+      // Convert the dynamic response into a list of MatchModel objects.
       final List<MatchModel> match =
           response.map((e) => MatchModel.fromJson(e)).toList();
       return match.first;
