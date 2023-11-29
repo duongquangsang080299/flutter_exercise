@@ -13,11 +13,25 @@ abstract class HomeState extends Equatable {
   ) : super();
 
   @override
-  List<Object?> get props => [data];
+  List<Object> get props => [];
 }
 
-class HomeInitial extends HomeState {
-  const HomeInitial(this.data) : super(data);
+class HomeInitialState extends HomeState {
+  const HomeInitialState(this.data) : super(data);
+
+  @override
+  final HomeViewModel data;
+}
+
+class GetNewsSuccess extends HomeState {
+  const GetNewsSuccess(this.data) : super(data);
+
+  @override
+  final HomeViewModel data;
+}
+
+class GetNewsLoading extends HomeState {
+  const GetNewsLoading(this.data) : super(data);
 
   @override
   final HomeViewModel data;
@@ -37,6 +51,20 @@ class GetMatchLoading extends HomeState {
   final HomeViewModel data;
 }
 
+class GetTicketSuccess extends HomeState {
+  const GetTicketSuccess(this.data) : super(data);
+
+  @override
+  final HomeViewModel data;
+}
+
+class GetTicketLoading extends HomeState {
+  const GetTicketLoading(this.data) : super(data);
+
+  @override
+  final HomeViewModel data;
+}
+
 class HomeError extends HomeState {
   final String errorMessage;
 
@@ -49,7 +77,7 @@ class HomeError extends HomeState {
   final HomeViewModel data;
 
   @override
-  List<Object?> get props => [errorMessage, data];
+  List<Object> get props => [errorMessage, data];
 }
 
 class HomeVideoHandler extends HomeState {
@@ -59,5 +87,5 @@ class HomeVideoHandler extends HomeState {
   final HomeViewModel data;
 
   @override
-  List<Object?> get props => [data];
+  List<Object> get props => [];
 }

@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:bloc/bloc.dart';
 import 'package:soccer_club_app/blocs/home/home_event.dart';
 import 'package:soccer_club_app/blocs/home/home_state.dart';
@@ -11,11 +9,11 @@ import 'package:soccer_club_app/data/repositories/ticket_repo.dart';
 
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
   final MatchRepository matchRepository = MatchRepository();
-  final TicketRepository ticketsRepository = TicketRepository();
+  final TicketRepository ticketRepository = TicketRepository();
 
-  HomeBloc() : super(HomeInitial(homeEmpty)) {
+  HomeBloc() : super(HomeInitialState(homeEmpty)) {
     on<GetNewsEvent>(_onGetNews);
-    on<GetMatchsEvent>(_onGetMatch);
+    on<GetMatchEvent>(_onGetMatch);
     on<GetTicketEvent>(_onGetTicket);
     on<VideoLoadingEvent>(_onVideoLoadingData);
     on<PlayVideoEvent>(_onIsPlayVideo);
@@ -25,23 +23,24 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   Future<void> _onGetNews(GetNewsEvent event, Emitter<HomeState> emit) async {
     try {
       emit(GetNewsLoading(state.data));
-      final MatchModel news = await matchRepository.getMatch();
-      emit(GetNewsSuccess(state.data.copyWith(nextMatch: news)));
+      final List<MatchModel> matches = await matchRepository.getMatches();
+      emit(GetNewsSuccess(state.data.copyWith(news: matches)));
     } catch (e) {
       emit(HomeError(
         data: state.data,
         errorMessage: AppExceptionMessages.badRequest,
+
+        /// FIXME:we should correct error here
       ));
     }
   }
 
-  Future<void> _onGetMatch(
-      GetMatchsEvent event, Emitter<HomeState> emit) async {
+  Future<void> _onGetMatch(GetMatchEvent event, Emitter<HomeState> emit) async {
     try {
       emit(GetMatchLoading(state.data));
-      final List<MatchModel> matches = await matchRepository.getMatchs();
+      final MatchModel news = await matchRepository.getMatch();
 
-      emit(GetMatchSuccess(state.data.copyWith(news: matches)));
+      emit(GetMatchSuccess(state.data.copyWith(nextMatch: news)));
     } catch (e) {
       emit(HomeError(
         data: state.data,
@@ -56,13 +55,15 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       GetTicketEvent event, Emitter<HomeState> emit) async {
     try {
       emit(GetTicketLoading(state.data));
-      final TicketModel tickets = await ticketsRepository.getTicket();
-      log('dat123122aticket: $tickets');
+      final TicketModel tickets = await ticketRepository.getTicket();
+
       emit(GetTicketSuccess(state.data.copyWith(ticket: tickets)));
     } catch (e) {
       emit(HomeError(
         data: state.data,
         errorMessage: AppExceptionMessages.badRequest,
+
+        /// FIXME:we should correct error here
       ));
     }
   }
