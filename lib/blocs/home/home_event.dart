@@ -1,18 +1,45 @@
-part of 'home_bloc.dart';
+import 'package:equatable/equatable.dart';
 
 abstract class HomeEvent extends Equatable {
   const HomeEvent();
-
-  @override
-  List<Object> get props => [];
 }
 
-class FetchDataEvent extends HomeEvent {}
+class HomeLoadDataEvent extends HomeEvent {
+  @override
+  List<Object?> get props => [];
+}
 
-class NextMatchEvent extends HomeEvent {}
+class NewsLoadDataEvent extends HomeEvent {
+  @override
+  List<Object?> get props => [];
+}
 
-class NewsEvent extends HomeEvent {}
+class GetMatchEvent extends HomeEvent {
+  @override
+  List<Object?> get props => [];
+}
 
-class LatestResultsEvent extends HomeEvent {}
+class GetTicketEvent extends HomeEvent {
+  @override
+  List<Object?> get props => [];
+}
 
-class LiveMatchEvent extends HomeEvent {}
+class GetNewsEvent extends HomeEvent {
+  @override
+  List<Object?> get props => [];
+}
+
+class PlayVideoEvent extends HomeEvent {
+  @override
+  List<Object?> get props => [];
+}
+
+class PauseVideoEvent extends HomeEvent {
+  @override
+  List<Object?> get props => [];
+}
+
+class VideoLoadingEvent extends HomeEvent {
+  @override
+  List<Object?> get props => [];
+}
