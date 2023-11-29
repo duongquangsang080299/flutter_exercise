@@ -10,8 +10,10 @@ class MatchRepository {
       {Map<String, dynamic>? queryParams}) async {
     try {
       const String apiUrl = '${Apis.basedUrl}match';
-      final List<dynamic> response =
-          await mainApi.get(apiUrl, queryParams: {'select': '*,goals(*)'});
+      final List<dynamic> response = await mainApi.get(
+        apiUrl,
+        queryParams: {'select': '*,goals(*)'},
+      );
       print(response);
       final List<MatchModel> matchs =
           response.map((e) => MatchModel.fromJson(e)).toList();
@@ -24,12 +26,15 @@ class MatchRepository {
   Future<MatchModel> getMatch({Map<String, dynamic>? queryParams}) async {
     try {
       const String apiUrl = '${Apis.basedUrl}match';
-      final response =
-          await mainApi.get(apiUrl, queryParams: {'select': '*,limit(*)'});
-      print(response);
+      final List<dynamic> response = await mainApi.get(
+        apiUrl,
+        queryParams: {'select': '*', 'limit': '1'},
+      );
+      print('Here is $response');
 
-      final MatchModel match = MatchModel.fromJson(response);
-      return match;
+      final List<MatchModel> match =
+          response.map((e) => MatchModel.fromJson(e)).toList();
+      return match.first;
     } catch (e) {
       throw AppException(AppExceptionType.badResponse);
     }

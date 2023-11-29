@@ -1,20 +1,22 @@
 import 'package:soccer_club_app/core/api/main_api.dart';
-import 'package:soccer_club_app/core/constant/apis.dart';
+import 'package:soccer_club_app/core/constant/api.dart';
 import 'package:soccer_club_app/core/error/error_exception.dart';
 import 'package:soccer_club_app/data/models/team/team_model.dart';
 
 class TeamRepository {
   final MainApi mainApi = MainApi();
 
-  Future<List<TeamModel>> getTeams({Map<String, dynamic>? queryParams}) async {
+  Future<TeamModel> getTeams({Map<String, dynamic>? queryParams}) async {
     try {
-      const String apiUrl = '${Apis.basedUrl}/team';
-      final response = await mainApi.get(apiUrl, queryParams: queryParams);
+      const String apiUrl = '${Apis.basedUrl}team';
+      final List<dynamic> response = await mainApi.get(
+        apiUrl,
+        queryParams: queryParams,
+      );
 
-      final List<TeamModel> teamsModel = (response.data as List<dynamic>)
-          .map((e) => TeamModel.fromJson(e))
-          .toList();
-      return teamsModel;
+      final List<TeamModel> teams =
+          response.map((e) => TeamModel.fromJson(e)).toList();
+      return teams.first;
     } catch (e) {
       throw AppException(AppExceptionType.badResponse);
     }

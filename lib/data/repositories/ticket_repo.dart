@@ -9,12 +9,15 @@ class TicketRepository {
   Future<TicketModel> getTicket({Map<String, dynamic>? queryParams}) async {
     try {
       const String apiUrl = '${Apis.basedUrl}ticket';
-      final response = await mainApi.get(apiUrl, queryParams: queryParams);
-      print(response);
+      final List<dynamic> response = await mainApi.get(
+        apiUrl,
+        queryParams: queryParams,
+      );
 
-      final TicketModel tickets = TicketModel.fromJson(response);
+      final List<TicketModel> tickets =
+          response.map((e) => TicketModel.fromJson(e)).toList();
 
-      return tickets;
+      return tickets.first;
     } catch (e) {
       throw AppException(AppExceptionType.badResponse);
     }
