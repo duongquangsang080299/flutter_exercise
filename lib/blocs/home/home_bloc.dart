@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:bloc/bloc.dart';
 import 'package:soccer_club_app/blocs/home/home_event.dart';
 import 'package:soccer_club_app/blocs/home/home_state.dart';
@@ -38,6 +40,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     try {
       emit(GetMatchLoading(state.data));
       final List<MatchModel> matches = await matchRepository.getMatchs();
+
       emit(GetMatchSuccess(state.data.copyWith(news: matches)));
     } catch (e) {
       emit(HomeError(
@@ -54,6 +57,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     try {
       emit(GetTicketLoading(state.data));
       final TicketModel tickets = await ticketsRepository.getTicket();
+      log('dat123122aticket: $tickets');
       emit(GetTicketSuccess(state.data.copyWith(ticket: tickets)));
     } catch (e) {
       emit(HomeError(
