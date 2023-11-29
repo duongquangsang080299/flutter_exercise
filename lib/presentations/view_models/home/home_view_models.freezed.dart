@@ -20,10 +20,13 @@ HomeViewModel _$HomeViewModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$HomeViewModel {
-  UserModel get user => throw _privateConstructorUsedError;
-  MatchModel get nextMatch => throw _privateConstructorUsedError;
-  List<MatchModel> get news => throw _privateConstructorUsedError;
-  TicketModel get ticket => throw _privateConstructorUsedError;
+  UserModel? get userName => throw _privateConstructorUsedError;
+  MatchModel? get nextMatch => throw _privateConstructorUsedError;
+  List<MatchModel>? get news => throw _privateConstructorUsedError;
+  TicketModel? get ticket => throw _privateConstructorUsedError;
+  bool? get isPlaying => throw _privateConstructorUsedError;
+  bool? get isPause => throw _privateConstructorUsedError;
+  bool? get isLoading => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -38,14 +41,17 @@ abstract class $HomeViewModelCopyWith<$Res> {
       _$HomeViewModelCopyWithImpl<$Res, HomeViewModel>;
   @useResult
   $Res call(
-      {UserModel user,
-      MatchModel nextMatch,
-      List<MatchModel> news,
-      TicketModel ticket});
+      {UserModel? userName,
+      MatchModel? nextMatch,
+      List<MatchModel>? news,
+      TicketModel? ticket,
+      bool? isPlaying,
+      bool? isPause,
+      bool? isLoading});
 
-  $UserModelCopyWith<$Res> get user;
-  $MatchModelCopyWith<$Res> get nextMatch;
-  $TicketModelCopyWith<$Res> get ticket;
+  $UserModelCopyWith<$Res>? get userName;
+  $MatchModelCopyWith<$Res>? get nextMatch;
+  $TicketModelCopyWith<$Res>? get ticket;
 }
 
 /// @nodoc
@@ -61,51 +67,78 @@ class _$HomeViewModelCopyWithImpl<$Res, $Val extends HomeViewModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? user = null,
-    Object? nextMatch = null,
-    Object? news = null,
-    Object? ticket = null,
+    Object? userName = freezed,
+    Object? nextMatch = freezed,
+    Object? news = freezed,
+    Object? ticket = freezed,
+    Object? isPlaying = freezed,
+    Object? isPause = freezed,
+    Object? isLoading = freezed,
   }) {
     return _then(_value.copyWith(
-      user: null == user
-          ? _value.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as UserModel,
-      nextMatch: null == nextMatch
+      userName: freezed == userName
+          ? _value.userName
+          : userName // ignore: cast_nullable_to_non_nullable
+              as UserModel?,
+      nextMatch: freezed == nextMatch
           ? _value.nextMatch
           : nextMatch // ignore: cast_nullable_to_non_nullable
-              as MatchModel,
-      news: null == news
+              as MatchModel?,
+      news: freezed == news
           ? _value.news
           : news // ignore: cast_nullable_to_non_nullable
-              as List<MatchModel>,
-      ticket: null == ticket
+              as List<MatchModel>?,
+      ticket: freezed == ticket
           ? _value.ticket
           : ticket // ignore: cast_nullable_to_non_nullable
-              as TicketModel,
+              as TicketModel?,
+      isPlaying: freezed == isPlaying
+          ? _value.isPlaying
+          : isPlaying // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      isPause: freezed == isPause
+          ? _value.isPause
+          : isPause // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      isLoading: freezed == isLoading
+          ? _value.isLoading
+          : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ) as $Val);
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $UserModelCopyWith<$Res> get user {
-    return $UserModelCopyWith<$Res>(_value.user, (value) {
-      return _then(_value.copyWith(user: value) as $Val);
+  $UserModelCopyWith<$Res>? get userName {
+    if (_value.userName == null) {
+      return null;
+    }
+
+    return $UserModelCopyWith<$Res>(_value.userName!, (value) {
+      return _then(_value.copyWith(userName: value) as $Val);
     });
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $MatchModelCopyWith<$Res> get nextMatch {
-    return $MatchModelCopyWith<$Res>(_value.nextMatch, (value) {
+  $MatchModelCopyWith<$Res>? get nextMatch {
+    if (_value.nextMatch == null) {
+      return null;
+    }
+
+    return $MatchModelCopyWith<$Res>(_value.nextMatch!, (value) {
       return _then(_value.copyWith(nextMatch: value) as $Val);
     });
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $TicketModelCopyWith<$Res> get ticket {
-    return $TicketModelCopyWith<$Res>(_value.ticket, (value) {
+  $TicketModelCopyWith<$Res>? get ticket {
+    if (_value.ticket == null) {
+      return null;
+    }
+
+    return $TicketModelCopyWith<$Res>(_value.ticket!, (value) {
       return _then(_value.copyWith(ticket: value) as $Val);
     });
   }
@@ -120,17 +153,20 @@ abstract class _$$HomeViewModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {UserModel user,
-      MatchModel nextMatch,
-      List<MatchModel> news,
-      TicketModel ticket});
+      {UserModel? userName,
+      MatchModel? nextMatch,
+      List<MatchModel>? news,
+      TicketModel? ticket,
+      bool? isPlaying,
+      bool? isPause,
+      bool? isLoading});
 
   @override
-  $UserModelCopyWith<$Res> get user;
+  $UserModelCopyWith<$Res>? get userName;
   @override
-  $MatchModelCopyWith<$Res> get nextMatch;
+  $MatchModelCopyWith<$Res>? get nextMatch;
   @override
-  $TicketModelCopyWith<$Res> get ticket;
+  $TicketModelCopyWith<$Res>? get ticket;
 }
 
 /// @nodoc
@@ -144,28 +180,43 @@ class __$$HomeViewModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? user = null,
-    Object? nextMatch = null,
-    Object? news = null,
-    Object? ticket = null,
+    Object? userName = freezed,
+    Object? nextMatch = freezed,
+    Object? news = freezed,
+    Object? ticket = freezed,
+    Object? isPlaying = freezed,
+    Object? isPause = freezed,
+    Object? isLoading = freezed,
   }) {
     return _then(_$HomeViewModelImpl(
-      user: null == user
-          ? _value.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as UserModel,
-      nextMatch: null == nextMatch
+      userName: freezed == userName
+          ? _value.userName
+          : userName // ignore: cast_nullable_to_non_nullable
+              as UserModel?,
+      nextMatch: freezed == nextMatch
           ? _value.nextMatch
           : nextMatch // ignore: cast_nullable_to_non_nullable
-              as MatchModel,
-      news: null == news
+              as MatchModel?,
+      news: freezed == news
           ? _value._news
           : news // ignore: cast_nullable_to_non_nullable
-              as List<MatchModel>,
-      ticket: null == ticket
+              as List<MatchModel>?,
+      ticket: freezed == ticket
           ? _value.ticket
           : ticket // ignore: cast_nullable_to_non_nullable
-              as TicketModel,
+              as TicketModel?,
+      isPlaying: freezed == isPlaying
+          ? _value.isPlaying
+          : isPlaying // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      isPause: freezed == isPause
+          ? _value.isPause
+          : isPause // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      isLoading: freezed == isLoading
+          ? _value.isLoading
+          : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ));
   }
 }
@@ -174,33 +225,44 @@ class __$$HomeViewModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$HomeViewModelImpl implements _HomeViewModel {
   const _$HomeViewModelImpl(
-      {required this.user,
-      required this.nextMatch,
-      required final List<MatchModel> news,
-      required this.ticket})
+      {this.userName,
+      this.nextMatch,
+      final List<MatchModel>? news,
+      this.ticket,
+      this.isPlaying,
+      this.isPause,
+      this.isLoading})
       : _news = news;
 
   factory _$HomeViewModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$HomeViewModelImplFromJson(json);
 
   @override
-  final UserModel user;
+  final UserModel? userName;
   @override
-  final MatchModel nextMatch;
-  final List<MatchModel> _news;
+  final MatchModel? nextMatch;
+  final List<MatchModel>? _news;
   @override
-  List<MatchModel> get news {
+  List<MatchModel>? get news {
+    final value = _news;
+    if (value == null) return null;
     if (_news is EqualUnmodifiableListView) return _news;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_news);
+    return EqualUnmodifiableListView(value);
   }
 
   @override
-  final TicketModel ticket;
+  final TicketModel? ticket;
+  @override
+  final bool? isPlaying;
+  @override
+  final bool? isPause;
+  @override
+  final bool? isLoading;
 
   @override
   String toString() {
-    return 'HomeViewModel(user: $user, nextMatch: $nextMatch, news: $news, ticket: $ticket)';
+    return 'HomeViewModel(userName: $userName, nextMatch: $nextMatch, news: $news, ticket: $ticket, isPlaying: $isPlaying, isPause: $isPause, isLoading: $isLoading)';
   }
 
   @override
@@ -208,17 +270,30 @@ class _$HomeViewModelImpl implements _HomeViewModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$HomeViewModelImpl &&
-            (identical(other.user, user) || other.user == user) &&
+            (identical(other.userName, userName) ||
+                other.userName == userName) &&
             (identical(other.nextMatch, nextMatch) ||
                 other.nextMatch == nextMatch) &&
             const DeepCollectionEquality().equals(other._news, _news) &&
-            (identical(other.ticket, ticket) || other.ticket == ticket));
+            (identical(other.ticket, ticket) || other.ticket == ticket) &&
+            (identical(other.isPlaying, isPlaying) ||
+                other.isPlaying == isPlaying) &&
+            (identical(other.isPause, isPause) || other.isPause == isPause) &&
+            (identical(other.isLoading, isLoading) ||
+                other.isLoading == isLoading));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, user, nextMatch,
-      const DeepCollectionEquality().hash(_news), ticket);
+  int get hashCode => Object.hash(
+      runtimeType,
+      userName,
+      nextMatch,
+      const DeepCollectionEquality().hash(_news),
+      ticket,
+      isPlaying,
+      isPause,
+      isLoading);
 
   @JsonKey(ignore: true)
   @override
@@ -236,22 +311,31 @@ class _$HomeViewModelImpl implements _HomeViewModel {
 
 abstract class _HomeViewModel implements HomeViewModel {
   const factory _HomeViewModel(
-      {required final UserModel user,
-      required final MatchModel nextMatch,
-      required final List<MatchModel> news,
-      required final TicketModel ticket}) = _$HomeViewModelImpl;
+      {final UserModel? userName,
+      final MatchModel? nextMatch,
+      final List<MatchModel>? news,
+      final TicketModel? ticket,
+      final bool? isPlaying,
+      final bool? isPause,
+      final bool? isLoading}) = _$HomeViewModelImpl;
 
   factory _HomeViewModel.fromJson(Map<String, dynamic> json) =
       _$HomeViewModelImpl.fromJson;
 
   @override
-  UserModel get user;
+  UserModel? get userName;
   @override
-  MatchModel get nextMatch;
+  MatchModel? get nextMatch;
   @override
-  List<MatchModel> get news;
+  List<MatchModel>? get news;
   @override
-  TicketModel get ticket;
+  TicketModel? get ticket;
+  @override
+  bool? get isPlaying;
+  @override
+  bool? get isPause;
+  @override
+  bool? get isLoading;
   @override
   @JsonKey(ignore: true)
   _$$HomeViewModelImplCopyWith<_$HomeViewModelImpl> get copyWith =>

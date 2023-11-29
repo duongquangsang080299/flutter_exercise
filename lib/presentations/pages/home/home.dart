@@ -7,7 +7,7 @@ import 'package:soccer_club_app/blocs/home/home_event.dart';
 import 'package:soccer_club_app/blocs/home/home_state.dart';
 import 'package:soccer_club_app/core/color/app_color.dart';
 import 'package:soccer_club_app/core/constant/assets.dart';
-import 'package:soccer_club_app/core/constant/data_time.dart';
+import 'package:soccer_club_app/core/constant/data_time_format.dart';
 import 'package:soccer_club_app/core/constant/icons.dart';
 import 'package:soccer_club_app/core/extention/builder_context_extension.dart';
 import 'package:soccer_club_app/core/l10n/l10n.dart';
@@ -39,7 +39,7 @@ class _HomePageState extends State<HomePage> {
     return BlocProvider(
       create: (context) => HomeBloc()
         ..add(GetNewsEvent())
-        ..add(GetMatchsEvent())
+        ..add(GetMatchEvent())
         ..add(GetTicketEvent())
         ..add(VideoLoadingEvent()),
       child: BlocListener<HomeBloc, HomeState>(
@@ -408,7 +408,7 @@ class _MatchNews extends StatelessWidget {
           height: 175,
           child: state is GetMatchLoading
               ? const CircularProgressIndicator()
-              : _News(matchs: state.data.news ?? []),
+              : _News(matches: state.data.news ?? []),
         );
       },
     );
@@ -416,22 +416,22 @@ class _MatchNews extends StatelessWidget {
 }
 
 class _News extends StatelessWidget {
-  final List<MatchModel>? matchs;
-  const _News({this.matchs});
+  final List<MatchModel>? matches;
+  const _News({this.matches});
 
   @override
   Widget build(BuildContext context) {
-    return (matchs?.isEmpty ?? false)
+    return (matches?.isEmpty ?? false)
         ? const SizedBox.shrink()
         : ListView.builder(
             scrollDirection: Axis.horizontal,
             shrinkWrap: true,
-            itemCount: (matchs!.length / 4).ceil() * 4 - 1,
+            itemCount: (matches!.length / 4).ceil() * 4 - 1,
             itemBuilder: (context, index) {
               if (index % 4 == 0) {
-                return _MatchItem(match: matchs![1]);
+                return _MatchItem(match: matches![1]);
               } else {
-                return _VideoHighlight(match: matchs![1]);
+                return _VideoHighlight(match: matches![1]);
               }
             },
           );

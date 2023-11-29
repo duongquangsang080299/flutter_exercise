@@ -20,12 +20,13 @@ MatchModel _$MatchModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$MatchModel {
-  String get id => throw _privateConstructorUsedError;
+  int get id => throw _privateConstructorUsedError;
   String get place => throw _privateConstructorUsedError;
   DateTime get datetime => throw _privateConstructorUsedError;
   String get league => throw _privateConstructorUsedError;
   @JsonKey(name: 'goals_id')
-  String get goal => throw _privateConstructorUsedError;
+  int get goalsID => throw _privateConstructorUsedError;
+  GoalsModel? get goals => throw _privateConstructorUsedError;
   String? get video => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -41,12 +42,15 @@ abstract class $MatchModelCopyWith<$Res> {
       _$MatchModelCopyWithImpl<$Res, MatchModel>;
   @useResult
   $Res call(
-      {String id,
+      {int id,
       String place,
       DateTime datetime,
       String league,
-      @JsonKey(name: 'goals_id') String goal,
+      @JsonKey(name: 'goals_id') int goalsID,
+      GoalsModel? goals,
       String? video});
+
+  $GoalsModelCopyWith<$Res>? get goals;
 }
 
 /// @nodoc
@@ -66,14 +70,15 @@ class _$MatchModelCopyWithImpl<$Res, $Val extends MatchModel>
     Object? place = null,
     Object? datetime = null,
     Object? league = null,
-    Object? goal = null,
+    Object? goalsID = null,
+    Object? goals = freezed,
     Object? video = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       place: null == place
           ? _value.place
           : place // ignore: cast_nullable_to_non_nullable
@@ -86,15 +91,31 @@ class _$MatchModelCopyWithImpl<$Res, $Val extends MatchModel>
           ? _value.league
           : league // ignore: cast_nullable_to_non_nullable
               as String,
-      goal: null == goal
-          ? _value.goal
-          : goal // ignore: cast_nullable_to_non_nullable
-              as String,
+      goalsID: null == goalsID
+          ? _value.goalsID
+          : goalsID // ignore: cast_nullable_to_non_nullable
+              as int,
+      goals: freezed == goals
+          ? _value.goals
+          : goals // ignore: cast_nullable_to_non_nullable
+              as GoalsModel?,
       video: freezed == video
           ? _value.video
           : video // ignore: cast_nullable_to_non_nullable
               as String?,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $GoalsModelCopyWith<$Res>? get goals {
+    if (_value.goals == null) {
+      return null;
+    }
+
+    return $GoalsModelCopyWith<$Res>(_value.goals!, (value) {
+      return _then(_value.copyWith(goals: value) as $Val);
+    });
   }
 }
 
@@ -107,12 +128,16 @@ abstract class _$$MatchModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String id,
+      {int id,
       String place,
       DateTime datetime,
       String league,
-      @JsonKey(name: 'goals_id') String goal,
+      @JsonKey(name: 'goals_id') int goalsID,
+      GoalsModel? goals,
       String? video});
+
+  @override
+  $GoalsModelCopyWith<$Res>? get goals;
 }
 
 /// @nodoc
@@ -130,14 +155,15 @@ class __$$MatchModelImplCopyWithImpl<$Res>
     Object? place = null,
     Object? datetime = null,
     Object? league = null,
-    Object? goal = null,
+    Object? goalsID = null,
+    Object? goals = freezed,
     Object? video = freezed,
   }) {
     return _then(_$MatchModelImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       place: null == place
           ? _value.place
           : place // ignore: cast_nullable_to_non_nullable
@@ -150,10 +176,14 @@ class __$$MatchModelImplCopyWithImpl<$Res>
           ? _value.league
           : league // ignore: cast_nullable_to_non_nullable
               as String,
-      goal: null == goal
-          ? _value.goal
-          : goal // ignore: cast_nullable_to_non_nullable
-              as String,
+      goalsID: null == goalsID
+          ? _value.goalsID
+          : goalsID // ignore: cast_nullable_to_non_nullable
+              as int,
+      goals: freezed == goals
+          ? _value.goals
+          : goals // ignore: cast_nullable_to_non_nullable
+              as GoalsModel?,
       video: freezed == video
           ? _value.video
           : video // ignore: cast_nullable_to_non_nullable
@@ -170,14 +200,15 @@ class _$MatchModelImpl implements _MatchModel {
       required this.place,
       required this.datetime,
       required this.league,
-      @JsonKey(name: 'goals_id') required this.goal,
-      this.video = ' '});
+      @JsonKey(name: 'goals_id') required this.goalsID,
+      this.goals,
+      this.video = ''});
 
   factory _$MatchModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$MatchModelImplFromJson(json);
 
   @override
-  final String id;
+  final int id;
   @override
   final String place;
   @override
@@ -186,14 +217,16 @@ class _$MatchModelImpl implements _MatchModel {
   final String league;
   @override
   @JsonKey(name: 'goals_id')
-  final String goal;
+  final int goalsID;
+  @override
+  final GoalsModel? goals;
   @override
   @JsonKey()
   final String? video;
 
   @override
   String toString() {
-    return 'MatchModel(id: $id, place: $place, datetime: $datetime, league: $league, goal: $goal, video: $video)';
+    return 'MatchModel(id: $id, place: $place, datetime: $datetime, league: $league, goalsID: $goalsID, goals: $goals, video: $video)';
   }
 
   @override
@@ -206,14 +239,15 @@ class _$MatchModelImpl implements _MatchModel {
             (identical(other.datetime, datetime) ||
                 other.datetime == datetime) &&
             (identical(other.league, league) || other.league == league) &&
-            (identical(other.goal, goal) || other.goal == goal) &&
+            (identical(other.goalsID, goalsID) || other.goalsID == goalsID) &&
+            (identical(other.goals, goals) || other.goals == goals) &&
             (identical(other.video, video) || other.video == video));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, id, place, datetime, league, goal, video);
+  int get hashCode => Object.hash(
+      runtimeType, id, place, datetime, league, goalsID, goals, video);
 
   @JsonKey(ignore: true)
   @override
@@ -231,18 +265,19 @@ class _$MatchModelImpl implements _MatchModel {
 
 abstract class _MatchModel implements MatchModel {
   const factory _MatchModel(
-      {required final String id,
+      {required final int id,
       required final String place,
       required final DateTime datetime,
       required final String league,
-      @JsonKey(name: 'goals_id') required final String goal,
+      @JsonKey(name: 'goals_id') required final int goalsID,
+      final GoalsModel? goals,
       final String? video}) = _$MatchModelImpl;
 
   factory _MatchModel.fromJson(Map<String, dynamic> json) =
       _$MatchModelImpl.fromJson;
 
   @override
-  String get id;
+  int get id;
   @override
   String get place;
   @override
@@ -251,7 +286,9 @@ abstract class _MatchModel implements MatchModel {
   String get league;
   @override
   @JsonKey(name: 'goals_id')
-  String get goal;
+  int get goalsID;
+  @override
+  GoalsModel? get goals;
   @override
   String? get video;
   @override

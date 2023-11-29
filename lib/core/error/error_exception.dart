@@ -1,5 +1,5 @@
+import 'package:dio/dio.dart';
 import 'package:equatable/equatable.dart';
-import 'package:http/http.dart' as http;
 import 'package:soccer_club_app/core/constant/app_exceptions.dart';
 
 class ErrorException extends Equatable implements Exception {
@@ -117,12 +117,13 @@ class AppException implements Exception {
 }
 
 class AppBaseResponse {
-  final http.Response response;
+  final Response response;
 
   AppBaseResponse(this.response);
 
-  int get statusCode => response.statusCode;
-  dynamic get data => response.body;
+  int get statusCode =>
+      response.statusCode ?? 0; // Default value or handle accordingly
+  dynamic get data => response.data;
 }
 
 enum AppExceptionType {

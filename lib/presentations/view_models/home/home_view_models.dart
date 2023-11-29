@@ -11,10 +11,13 @@ part 'home_view_models.g.dart';
 /// HomeView model
 class HomeViewModel with _$HomeViewModel {
   const factory HomeViewModel({
-    required UserModel user,
-    required MatchModel nextMatch,
-    required List<MatchModel> news,
-    required TicketModel ticket,
+    UserModel? userName,
+    MatchModel? nextMatch,
+    List<MatchModel>? news,
+    TicketModel? ticket,
+    bool? isPlaying,
+    bool? isPause,
+    bool? isLoading,
   }) = _HomeViewModel;
 
   factory HomeViewModel.fromJson(Map<String, dynamic> json) =>

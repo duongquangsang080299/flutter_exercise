@@ -8,12 +8,15 @@ part of 'match_model.dart';
 
 _$MatchModelImpl _$$MatchModelImplFromJson(Map<String, dynamic> json) =>
     _$MatchModelImpl(
-      id: json['id'] as String,
+      id: json['id'] as int,
       place: json['place'] as String,
       datetime: DateTime.parse(json['datetime'] as String),
       league: json['league'] as String,
-      goal: json['goals_id'] as String,
-      video: json['video'] as String? ?? ' ',
+      goalsID: json['goals_id'] as int,
+      goals: json['goals'] == null
+          ? null
+          : GoalsModel.fromJson(json['goals'] as Map<String, dynamic>),
+      video: json['video'] as String? ?? '',
     );
 
 Map<String, dynamic> _$$MatchModelImplToJson(_$MatchModelImpl instance) =>
@@ -22,6 +25,7 @@ Map<String, dynamic> _$$MatchModelImplToJson(_$MatchModelImpl instance) =>
       'place': instance.place,
       'datetime': instance.datetime.toIso8601String(),
       'league': instance.league,
-      'goals_id': instance.goal,
+      'goals_id': instance.goalsID,
+      'goals': instance.goals,
       'video': instance.video,
     };

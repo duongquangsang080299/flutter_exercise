@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:soccer_club_app/core/constant/api.dart';
+import 'package:soccer_club_app/core/constant/apis.dart';
 import 'package:soccer_club_app/core/error/error_exception.dart';
 
 class MainApi {
