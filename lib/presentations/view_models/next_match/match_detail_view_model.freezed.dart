@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'next_match_view_model.dart';
+part of 'match_detail_view_model.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -20,8 +20,8 @@ MatchDetailViewModel _$MatchDetailViewModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$MatchDetailViewModel {
-  MatchModel get match => throw _privateConstructorUsedError;
-  List<GoalsModel> get goalsMatch => throw _privateConstructorUsedError;
+  MatchModel? get match => throw _privateConstructorUsedError;
+  List<GoalsModel>? get goalsMatch => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -35,9 +35,9 @@ abstract class $MatchDetailViewModelCopyWith<$Res> {
           $Res Function(MatchDetailViewModel) then) =
       _$MatchDetailViewModelCopyWithImpl<$Res, MatchDetailViewModel>;
   @useResult
-  $Res call({MatchModel match, List<GoalsModel> goalsMatch});
+  $Res call({MatchModel? match, List<GoalsModel>? goalsMatch});
 
-  $MatchModelCopyWith<$Res> get match;
+  $MatchModelCopyWith<$Res>? get match;
 }
 
 /// @nodoc
@@ -54,25 +54,29 @@ class _$MatchDetailViewModelCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? match = null,
-    Object? goalsMatch = null,
+    Object? match = freezed,
+    Object? goalsMatch = freezed,
   }) {
     return _then(_value.copyWith(
-      match: null == match
+      match: freezed == match
           ? _value.match
           : match // ignore: cast_nullable_to_non_nullable
-              as MatchModel,
-      goalsMatch: null == goalsMatch
+              as MatchModel?,
+      goalsMatch: freezed == goalsMatch
           ? _value.goalsMatch
           : goalsMatch // ignore: cast_nullable_to_non_nullable
-              as List<GoalsModel>,
+              as List<GoalsModel>?,
     ) as $Val);
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $MatchModelCopyWith<$Res> get match {
-    return $MatchModelCopyWith<$Res>(_value.match, (value) {
+  $MatchModelCopyWith<$Res>? get match {
+    if (_value.match == null) {
+      return null;
+    }
+
+    return $MatchModelCopyWith<$Res>(_value.match!, (value) {
       return _then(_value.copyWith(match: value) as $Val);
     });
   }
@@ -86,10 +90,10 @@ abstract class _$$MatchDetailViewModelImplCopyWith<$Res>
       __$$MatchDetailViewModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({MatchModel match, List<GoalsModel> goalsMatch});
+  $Res call({MatchModel? match, List<GoalsModel>? goalsMatch});
 
   @override
-  $MatchModelCopyWith<$Res> get match;
+  $MatchModelCopyWith<$Res>? get match;
 }
 
 /// @nodoc
@@ -103,18 +107,18 @@ class __$$MatchDetailViewModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? match = null,
-    Object? goalsMatch = null,
+    Object? match = freezed,
+    Object? goalsMatch = freezed,
   }) {
     return _then(_$MatchDetailViewModelImpl(
-      match: null == match
+      match: freezed == match
           ? _value.match
           : match // ignore: cast_nullable_to_non_nullable
-              as MatchModel,
-      goalsMatch: null == goalsMatch
+              as MatchModel?,
+      goalsMatch: freezed == goalsMatch
           ? _value._goalsMatch
           : goalsMatch // ignore: cast_nullable_to_non_nullable
-              as List<GoalsModel>,
+              as List<GoalsModel>?,
     ));
   }
 }
@@ -123,20 +127,22 @@ class __$$MatchDetailViewModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$MatchDetailViewModelImpl implements _MatchDetailViewModel {
   const _$MatchDetailViewModelImpl(
-      {required this.match, required final List<GoalsModel> goalsMatch})
+      {this.match, final List<GoalsModel>? goalsMatch})
       : _goalsMatch = goalsMatch;
 
   factory _$MatchDetailViewModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$MatchDetailViewModelImplFromJson(json);
 
   @override
-  final MatchModel match;
-  final List<GoalsModel> _goalsMatch;
+  final MatchModel? match;
+  final List<GoalsModel>? _goalsMatch;
   @override
-  List<GoalsModel> get goalsMatch {
+  List<GoalsModel>? get goalsMatch {
+    final value = _goalsMatch;
+    if (value == null) return null;
     if (_goalsMatch is EqualUnmodifiableListView) return _goalsMatch;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_goalsMatch);
+    return EqualUnmodifiableListView(value);
   }
 
   @override
@@ -177,16 +183,16 @@ class _$MatchDetailViewModelImpl implements _MatchDetailViewModel {
 
 abstract class _MatchDetailViewModel implements MatchDetailViewModel {
   const factory _MatchDetailViewModel(
-      {required final MatchModel match,
-      required final List<GoalsModel> goalsMatch}) = _$MatchDetailViewModelImpl;
+      {final MatchModel? match,
+      final List<GoalsModel>? goalsMatch}) = _$MatchDetailViewModelImpl;
 
   factory _MatchDetailViewModel.fromJson(Map<String, dynamic> json) =
       _$MatchDetailViewModelImpl.fromJson;
 
   @override
-  MatchModel get match;
+  MatchModel? get match;
   @override
-  List<GoalsModel> get goalsMatch;
+  List<GoalsModel>? get goalsMatch;
   @override
   @JsonKey(ignore: true)
   _$$MatchDetailViewModelImplCopyWith<_$MatchDetailViewModelImpl>
