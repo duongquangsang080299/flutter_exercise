@@ -12,7 +12,7 @@ class GetMatchDetailEvent extends MatchDetailEvent {
   List<Object> get props => [];
 }
 
-class GetGoalEvent extends MatchDetailEvent {
+class GetListMatchEvent extends MatchDetailEvent {
   @override
   List<Object> get props => [];
 }

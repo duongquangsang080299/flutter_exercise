@@ -34,15 +34,15 @@ class GetMatchDetailSuccess extends MatchDetailState {
   final MatchDetailViewModel data;
 }
 
-class GetGoalLoading extends MatchDetailState {
-  const GetGoalLoading(this.data) : super(data);
+class GetListMatchLoading extends MatchDetailState {
+  const GetListMatchLoading(this.data) : super(data);
 
   @override
   final MatchDetailViewModel data;
 }
 
-class GetGoalSuccess extends MatchDetailState {
-  const GetGoalSuccess(this.data) : super(data);
+class GetListMatchSuccess extends MatchDetailState {
+  const GetListMatchSuccess(this.data) : super(data);
 
   @override
   final MatchDetailViewModel data;
