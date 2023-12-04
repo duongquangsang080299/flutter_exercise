@@ -15,8 +15,11 @@ class MatchRepository {
       // Make a GET request to the API using the MainApi instance
       final List<dynamic> response = await mainApi.get(
         apiUrl,
-        queryParams: {'select': '*,goals(*)'},
+        queryParams: {
+          'select': '*,goals(*)',
+        },
       );
+      print(response);
       // Convert the dynamic response into a list of MatchModel objects.
       final List<MatchModel> matches =
           response.map((e) => MatchModel.fromJson(e)).toList();

@@ -5,6 +5,7 @@ ResetPasswordFormModel emptyResetPasswordState = const ResetPasswordFormModel(
   email: '',
   emailError: '',
   errorMessage: '',
+  emailValid: false,
 );
 
 abstract class ResetPasswordState extends Equatable {

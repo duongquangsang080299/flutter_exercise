@@ -29,6 +29,8 @@ mixin _$GoalsModel {
   int get scoreRed => throw _privateConstructorUsedError;
   @JsonKey(name: 'score_victory')
   int get scoreVictory => throw _privateConstructorUsedError;
+  String? get logo => throw _privateConstructorUsedError;
+  TeamModel? get team => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -47,7 +49,11 @@ abstract class $GoalsModelCopyWith<$Res> {
       @JsonKey(name: 'team_red') int teamRed,
       @JsonKey(name: 'team_victory') int teamVictory,
       @JsonKey(name: 'score_red') int scoreRed,
-      @JsonKey(name: 'score_victory') int scoreVictory});
+      @JsonKey(name: 'score_victory') int scoreVictory,
+      String? logo,
+      TeamModel? team});
+
+  $TeamModelCopyWith<$Res>? get team;
 }
 
 /// @nodoc
@@ -68,6 +74,8 @@ class _$GoalsModelCopyWithImpl<$Res, $Val extends GoalsModel>
     Object? teamVictory = null,
     Object? scoreRed = null,
     Object? scoreVictory = null,
+    Object? logo = freezed,
+    Object? team = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -90,7 +98,27 @@ class _$GoalsModelCopyWithImpl<$Res, $Val extends GoalsModel>
           ? _value.scoreVictory
           : scoreVictory // ignore: cast_nullable_to_non_nullable
               as int,
+      logo: freezed == logo
+          ? _value.logo
+          : logo // ignore: cast_nullable_to_non_nullable
+              as String?,
+      team: freezed == team
+          ? _value.team
+          : team // ignore: cast_nullable_to_non_nullable
+              as TeamModel?,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $TeamModelCopyWith<$Res>? get team {
+    if (_value.team == null) {
+      return null;
+    }
+
+    return $TeamModelCopyWith<$Res>(_value.team!, (value) {
+      return _then(_value.copyWith(team: value) as $Val);
+    });
   }
 }
 
@@ -107,7 +135,12 @@ abstract class _$$GoalsModelImplCopyWith<$Res>
       @JsonKey(name: 'team_red') int teamRed,
       @JsonKey(name: 'team_victory') int teamVictory,
       @JsonKey(name: 'score_red') int scoreRed,
-      @JsonKey(name: 'score_victory') int scoreVictory});
+      @JsonKey(name: 'score_victory') int scoreVictory,
+      String? logo,
+      TeamModel? team});
+
+  @override
+  $TeamModelCopyWith<$Res>? get team;
 }
 
 /// @nodoc
@@ -126,6 +159,8 @@ class __$$GoalsModelImplCopyWithImpl<$Res>
     Object? teamVictory = null,
     Object? scoreRed = null,
     Object? scoreVictory = null,
+    Object? logo = freezed,
+    Object? team = freezed,
   }) {
     return _then(_$GoalsModelImpl(
       id: null == id
@@ -148,6 +183,14 @@ class __$$GoalsModelImplCopyWithImpl<$Res>
           ? _value.scoreVictory
           : scoreVictory // ignore: cast_nullable_to_non_nullable
               as int,
+      logo: freezed == logo
+          ? _value.logo
+          : logo // ignore: cast_nullable_to_non_nullable
+              as String?,
+      team: freezed == team
+          ? _value.team
+          : team // ignore: cast_nullable_to_non_nullable
+              as TeamModel?,
     ));
   }
 }
@@ -160,7 +203,9 @@ class _$GoalsModelImpl implements _GoalsModel {
       @JsonKey(name: 'team_red') required this.teamRed,
       @JsonKey(name: 'team_victory') required this.teamVictory,
       @JsonKey(name: 'score_red') required this.scoreRed,
-      @JsonKey(name: 'score_victory') required this.scoreVictory});
+      @JsonKey(name: 'score_victory') required this.scoreVictory,
+      this.logo = '',
+      this.team});
 
   factory _$GoalsModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$GoalsModelImplFromJson(json);
@@ -179,10 +224,15 @@ class _$GoalsModelImpl implements _GoalsModel {
   @override
   @JsonKey(name: 'score_victory')
   final int scoreVictory;
+  @override
+  @JsonKey()
+  final String? logo;
+  @override
+  final TeamModel? team;
 
   @override
   String toString() {
-    return 'GoalsModel(id: $id, teamRed: $teamRed, teamVictory: $teamVictory, scoreRed: $scoreRed, scoreVictory: $scoreVictory)';
+    return 'GoalsModel(id: $id, teamRed: $teamRed, teamVictory: $teamVictory, scoreRed: $scoreRed, scoreVictory: $scoreVictory, logo: $logo, team: $team)';
   }
 
   @override
@@ -197,13 +247,15 @@ class _$GoalsModelImpl implements _GoalsModel {
             (identical(other.scoreRed, scoreRed) ||
                 other.scoreRed == scoreRed) &&
             (identical(other.scoreVictory, scoreVictory) ||
-                other.scoreVictory == scoreVictory));
+                other.scoreVictory == scoreVictory) &&
+            (identical(other.logo, logo) || other.logo == logo) &&
+            (identical(other.team, team) || other.team == team));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, id, teamRed, teamVictory, scoreRed, scoreVictory);
+  int get hashCode => Object.hash(runtimeType, id, teamRed, teamVictory,
+      scoreRed, scoreVictory, logo, team);
 
   @JsonKey(ignore: true)
   @override
@@ -221,12 +273,13 @@ class _$GoalsModelImpl implements _GoalsModel {
 
 abstract class _GoalsModel implements GoalsModel {
   const factory _GoalsModel(
-          {required final int id,
-          @JsonKey(name: 'team_red') required final int teamRed,
-          @JsonKey(name: 'team_victory') required final int teamVictory,
-          @JsonKey(name: 'score_red') required final int scoreRed,
-          @JsonKey(name: 'score_victory') required final int scoreVictory}) =
-      _$GoalsModelImpl;
+      {required final int id,
+      @JsonKey(name: 'team_red') required final int teamRed,
+      @JsonKey(name: 'team_victory') required final int teamVictory,
+      @JsonKey(name: 'score_red') required final int scoreRed,
+      @JsonKey(name: 'score_victory') required final int scoreVictory,
+      final String? logo,
+      final TeamModel? team}) = _$GoalsModelImpl;
 
   factory _GoalsModel.fromJson(Map<String, dynamic> json) =
       _$GoalsModelImpl.fromJson;
@@ -245,6 +298,10 @@ abstract class _GoalsModel implements GoalsModel {
   @override
   @JsonKey(name: 'score_victory')
   int get scoreVictory;
+  @override
+  String? get logo;
+  @override
+  TeamModel? get team;
   @override
   @JsonKey(ignore: true)
   _$$GoalsModelImplCopyWith<_$GoalsModelImpl> get copyWith =>

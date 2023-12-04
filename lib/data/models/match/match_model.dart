@@ -9,6 +9,7 @@ class MatchModel with _$MatchModel {
   const factory MatchModel({
     required int id,
     required String place,
+    required String start,
     required DateTime datetime,
     required String league,
     @JsonKey(name: 'goals_id') required int goalsID,

@@ -32,6 +32,7 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
       form: event.form.copyWith(
         emailError: emailError,
         emailValid: emailValid,
+        formValid: emailValid && event.form.passwordValid,
       ),
     ));
   }
@@ -45,8 +46,10 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
     final passwordValid = passwordError.isEmpty;
     emit(SignInChangedState(
       form: event.form.copyWith(
-          passwordError: passwordError,
-          formValid: passwordValid && event.form.emailValid),
+        passwordError: passwordError,
+        passwordValid: passwordValid,
+        formValid: passwordValid && event.form.emailValid,
+      ),
     ));
   }
 

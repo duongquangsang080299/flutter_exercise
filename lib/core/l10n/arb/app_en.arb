@@ -40,7 +40,6 @@
     "superLiga": "Super Liga",
     "sun01May": "Sun 01 May",
     "greatestGamsvVictoryGreatWinner": "Greatest Gams, v Victory \nGreat Winner!",
-    "getOFF": "Get 54% OFF",
     "upcomingSchedule": "Upcoming Schedule",
     "league": "League",
     "redDevils": " Red Devils",
@@ -58,7 +57,6 @@
     "loginhere": "Login here",
     "matchDetails": "Match Details",
     "devilsArenaStadium": "Devils Arena Stadium",
-    "may92021": "9 May 2021",
     "kickoff": "Kick Off (GMT+3)",
     "time": "19.45",
     "matchcountdown": "Match Countdown",
@@ -83,6 +81,14 @@
     "numberfour":"4",
     "dash":"-",
     "dots":":",
-    "loginfailed":"Login failed"
-    
+    "loginfailed":"Login Failed",
+    "resetfailed":"Reset Password Failed",
+    "signupfailed":"Sign Up Failed",
+    "may":"9 May",
+    "year": "2021",
+    "percent":"54",
+    "loadingfailed":"Loading failed",
+    "get":"Get",
+    "off":"% Off"
+
 }

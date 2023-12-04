@@ -165,11 +165,12 @@ class SignUpForm extends StatelessWidget {
     return BlocListener<SignUpBloc, SignUpState>(
       listener: (context, state) {
         if (state is SignUpSuccessState) {
-          _context.go(AppRoutes.signUp.path);
+          _context.go(AppRoutes.signIn.path);
         }
         if (state is SignUpErrorState) {
-          ScaffoldMessenger.of(context)
-              .showSnackBar(SnackBar(content: Text(_context.l10n.signIn)));
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+              content: Text(_context.l10n.signupfailed),
+              duration: const Duration(microseconds: 800)));
         }
       },
       child: Form(
@@ -272,20 +273,28 @@ class _LoginButton extends StatelessWidget {
     final _context = context;
     return BlocBuilder<SignUpBloc, SignUpState>(
       builder: (context, state) {
+        bool isFormValid = state.form.formValid ?? false;
         return SCButton(
-          onPressed: () {
-            if (state.form.formValid ?? false) {
-              _context.read<SignUpBloc>().add(
-                    SignUpSubmittedEvent(
-                      form: state.form,
-                    ),
-                  );
-            }
-          },
+          onPressed: isFormValid
+              ? () {
+                  context.read<SignUpBloc>().add(
+                        SignUpSubmittedEvent(
+                          form: state.form,
+                        ),
+                      );
+                }
+              : null,
           text: state is SignUpLoadingState
-              ? const CircularProgressIndicator()
-              : SCText.headlineSmall(_context,
-                  text: _context.l10n.btnCreateAnAccount),
+              ? const CircularProgressIndicator(
+                  color: AppColor.secondary,
+                )
+              : SCText.headlineSmall(
+                  _context,
+                  text: _context.l10n.btnCreateAnAccount,
+                  style: TextStyle(
+                    color: isFormValid ? AppColor.secondary : AppColor.dimGray,
+                  ),
+                ),
           style: _context.textTheme.headlineSmall,
           backgroundColor: (state.form.formValid ?? false)
               ? AppColor.onTertiary

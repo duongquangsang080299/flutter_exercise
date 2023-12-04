@@ -22,8 +22,9 @@ ResetPasswordFormModel _$ResetPasswordFormModelFromJson(
 /// @nodoc
 mixin _$ResetPasswordFormModel {
   String? get emailError => throw _privateConstructorUsedError;
-  String get email => throw _privateConstructorUsedError;
   String? get errorMessage => throw _privateConstructorUsedError;
+  bool get emailValid => throw _privateConstructorUsedError;
+  String get email => throw _privateConstructorUsedError;
   @GlobalKeyConverter()
   GlobalKey<FormState>? get formKey => throw _privateConstructorUsedError;
 
@@ -41,8 +42,9 @@ abstract class $ResetPasswordFormModelCopyWith<$Res> {
   @useResult
   $Res call(
       {String? emailError,
-      String email,
       String? errorMessage,
+      bool emailValid,
+      String email,
       @GlobalKeyConverter() GlobalKey<FormState>? formKey});
 }
 
@@ -61,8 +63,9 @@ class _$ResetPasswordFormModelCopyWithImpl<$Res,
   @override
   $Res call({
     Object? emailError = freezed,
-    Object? email = null,
     Object? errorMessage = freezed,
+    Object? emailValid = null,
+    Object? email = null,
     Object? formKey = freezed,
   }) {
     return _then(_value.copyWith(
@@ -70,14 +73,18 @@ class _$ResetPasswordFormModelCopyWithImpl<$Res,
           ? _value.emailError
           : emailError // ignore: cast_nullable_to_non_nullable
               as String?,
-      email: null == email
-          ? _value.email
-          : email // ignore: cast_nullable_to_non_nullable
-              as String,
       errorMessage: freezed == errorMessage
           ? _value.errorMessage
           : errorMessage // ignore: cast_nullable_to_non_nullable
               as String?,
+      emailValid: null == emailValid
+          ? _value.emailValid
+          : emailValid // ignore: cast_nullable_to_non_nullable
+              as bool,
+      email: null == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String,
       formKey: freezed == formKey
           ? _value.formKey
           : formKey // ignore: cast_nullable_to_non_nullable
@@ -97,8 +104,9 @@ abstract class _$$ResetPasswordFormModelImplCopyWith<$Res>
   @useResult
   $Res call(
       {String? emailError,
-      String email,
       String? errorMessage,
+      bool emailValid,
+      String email,
       @GlobalKeyConverter() GlobalKey<FormState>? formKey});
 }
 
@@ -116,8 +124,9 @@ class __$$ResetPasswordFormModelImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? emailError = freezed,
-    Object? email = null,
     Object? errorMessage = freezed,
+    Object? emailValid = null,
+    Object? email = null,
     Object? formKey = freezed,
   }) {
     return _then(_$ResetPasswordFormModelImpl(
@@ -125,14 +134,18 @@ class __$$ResetPasswordFormModelImplCopyWithImpl<$Res>
           ? _value.emailError
           : emailError // ignore: cast_nullable_to_non_nullable
               as String?,
-      email: null == email
-          ? _value.email
-          : email // ignore: cast_nullable_to_non_nullable
-              as String,
       errorMessage: freezed == errorMessage
           ? _value.errorMessage
           : errorMessage // ignore: cast_nullable_to_non_nullable
               as String?,
+      emailValid: null == emailValid
+          ? _value.emailValid
+          : emailValid // ignore: cast_nullable_to_non_nullable
+              as bool,
+      email: null == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String,
       formKey: freezed == formKey
           ? _value.formKey
           : formKey // ignore: cast_nullable_to_non_nullable
@@ -147,8 +160,9 @@ class __$$ResetPasswordFormModelImplCopyWithImpl<$Res>
 class _$ResetPasswordFormModelImpl implements _ResetPasswordFormModel {
   const _$ResetPasswordFormModelImpl(
       {this.emailError,
-      required this.email,
       this.errorMessage,
+      required this.emailValid,
+      required this.email,
       @GlobalKeyConverter() this.formKey});
 
   factory _$ResetPasswordFormModelImpl.fromJson(Map<String, dynamic> json) =>
@@ -157,16 +171,18 @@ class _$ResetPasswordFormModelImpl implements _ResetPasswordFormModel {
   @override
   final String? emailError;
   @override
-  final String email;
-  @override
   final String? errorMessage;
+  @override
+  final bool emailValid;
+  @override
+  final String email;
   @override
   @GlobalKeyConverter()
   final GlobalKey<FormState>? formKey;
 
   @override
   String toString() {
-    return 'ResetPasswordFormModel(emailError: $emailError, email: $email, errorMessage: $errorMessage, formKey: $formKey)';
+    return 'ResetPasswordFormModel(emailError: $emailError, errorMessage: $errorMessage, emailValid: $emailValid, email: $email, formKey: $formKey)';
   }
 
   @override
@@ -176,16 +192,18 @@ class _$ResetPasswordFormModelImpl implements _ResetPasswordFormModel {
             other is _$ResetPasswordFormModelImpl &&
             (identical(other.emailError, emailError) ||
                 other.emailError == emailError) &&
-            (identical(other.email, email) || other.email == email) &&
             (identical(other.errorMessage, errorMessage) ||
                 other.errorMessage == errorMessage) &&
+            (identical(other.emailValid, emailValid) ||
+                other.emailValid == emailValid) &&
+            (identical(other.email, email) || other.email == email) &&
             (identical(other.formKey, formKey) || other.formKey == formKey));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, emailError, email, errorMessage, formKey);
+  int get hashCode => Object.hash(
+      runtimeType, emailError, errorMessage, emailValid, email, formKey);
 
   @JsonKey(ignore: true)
   @override
@@ -205,8 +223,9 @@ class _$ResetPasswordFormModelImpl implements _ResetPasswordFormModel {
 abstract class _ResetPasswordFormModel implements ResetPasswordFormModel {
   const factory _ResetPasswordFormModel(
           {final String? emailError,
-          required final String email,
           final String? errorMessage,
+          required final bool emailValid,
+          required final String email,
           @GlobalKeyConverter() final GlobalKey<FormState>? formKey}) =
       _$ResetPasswordFormModelImpl;
 
@@ -216,9 +235,11 @@ abstract class _ResetPasswordFormModel implements ResetPasswordFormModel {
   @override
   String? get emailError;
   @override
-  String get email;
-  @override
   String? get errorMessage;
+  @override
+  bool get emailValid;
+  @override
+  String get email;
   @override
   @GlobalKeyConverter()
   GlobalKey<FormState>? get formKey;

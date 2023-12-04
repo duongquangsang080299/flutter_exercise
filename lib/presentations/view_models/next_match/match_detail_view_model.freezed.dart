@@ -21,7 +21,7 @@ MatchDetailViewModel _$MatchDetailViewModelFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$MatchDetailViewModel {
   MatchModel? get match => throw _privateConstructorUsedError;
-  List<GoalsModel>? get goalsMatch => throw _privateConstructorUsedError;
+  List<MatchModel>? get listHistory => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -35,7 +35,7 @@ abstract class $MatchDetailViewModelCopyWith<$Res> {
           $Res Function(MatchDetailViewModel) then) =
       _$MatchDetailViewModelCopyWithImpl<$Res, MatchDetailViewModel>;
   @useResult
-  $Res call({MatchModel? match, List<GoalsModel>? goalsMatch});
+  $Res call({MatchModel? match, List<MatchModel>? listHistory});
 
   $MatchModelCopyWith<$Res>? get match;
 }
@@ -55,17 +55,17 @@ class _$MatchDetailViewModelCopyWithImpl<$Res,
   @override
   $Res call({
     Object? match = freezed,
-    Object? goalsMatch = freezed,
+    Object? listHistory = freezed,
   }) {
     return _then(_value.copyWith(
       match: freezed == match
           ? _value.match
           : match // ignore: cast_nullable_to_non_nullable
               as MatchModel?,
-      goalsMatch: freezed == goalsMatch
-          ? _value.goalsMatch
-          : goalsMatch // ignore: cast_nullable_to_non_nullable
-              as List<GoalsModel>?,
+      listHistory: freezed == listHistory
+          ? _value.listHistory
+          : listHistory // ignore: cast_nullable_to_non_nullable
+              as List<MatchModel>?,
     ) as $Val);
   }
 
@@ -90,7 +90,7 @@ abstract class _$$MatchDetailViewModelImplCopyWith<$Res>
       __$$MatchDetailViewModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({MatchModel? match, List<GoalsModel>? goalsMatch});
+  $Res call({MatchModel? match, List<MatchModel>? listHistory});
 
   @override
   $MatchModelCopyWith<$Res>? get match;
@@ -108,17 +108,17 @@ class __$$MatchDetailViewModelImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? match = freezed,
-    Object? goalsMatch = freezed,
+    Object? listHistory = freezed,
   }) {
     return _then(_$MatchDetailViewModelImpl(
       match: freezed == match
           ? _value.match
           : match // ignore: cast_nullable_to_non_nullable
               as MatchModel?,
-      goalsMatch: freezed == goalsMatch
-          ? _value._goalsMatch
-          : goalsMatch // ignore: cast_nullable_to_non_nullable
-              as List<GoalsModel>?,
+      listHistory: freezed == listHistory
+          ? _value._listHistory
+          : listHistory // ignore: cast_nullable_to_non_nullable
+              as List<MatchModel>?,
     ));
   }
 }
@@ -127,27 +127,27 @@ class __$$MatchDetailViewModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$MatchDetailViewModelImpl implements _MatchDetailViewModel {
   const _$MatchDetailViewModelImpl(
-      {this.match, final List<GoalsModel>? goalsMatch})
-      : _goalsMatch = goalsMatch;
+      {this.match, final List<MatchModel>? listHistory})
+      : _listHistory = listHistory;
 
   factory _$MatchDetailViewModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$MatchDetailViewModelImplFromJson(json);
 
   @override
   final MatchModel? match;
-  final List<GoalsModel>? _goalsMatch;
+  final List<MatchModel>? _listHistory;
   @override
-  List<GoalsModel>? get goalsMatch {
-    final value = _goalsMatch;
+  List<MatchModel>? get listHistory {
+    final value = _listHistory;
     if (value == null) return null;
-    if (_goalsMatch is EqualUnmodifiableListView) return _goalsMatch;
+    if (_listHistory is EqualUnmodifiableListView) return _listHistory;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(value);
   }
 
   @override
   String toString() {
-    return 'MatchDetailViewModel(match: $match, goalsMatch: $goalsMatch)';
+    return 'MatchDetailViewModel(match: $match, listHistory: $listHistory)';
   }
 
   @override
@@ -157,13 +157,13 @@ class _$MatchDetailViewModelImpl implements _MatchDetailViewModel {
             other is _$MatchDetailViewModelImpl &&
             (identical(other.match, match) || other.match == match) &&
             const DeepCollectionEquality()
-                .equals(other._goalsMatch, _goalsMatch));
+                .equals(other._listHistory, _listHistory));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
-      runtimeType, match, const DeepCollectionEquality().hash(_goalsMatch));
+      runtimeType, match, const DeepCollectionEquality().hash(_listHistory));
 
   @JsonKey(ignore: true)
   @override
@@ -184,7 +184,7 @@ class _$MatchDetailViewModelImpl implements _MatchDetailViewModel {
 abstract class _MatchDetailViewModel implements MatchDetailViewModel {
   const factory _MatchDetailViewModel(
       {final MatchModel? match,
-      final List<GoalsModel>? goalsMatch}) = _$MatchDetailViewModelImpl;
+      final List<MatchModel>? listHistory}) = _$MatchDetailViewModelImpl;
 
   factory _MatchDetailViewModel.fromJson(Map<String, dynamic> json) =
       _$MatchDetailViewModelImpl.fromJson;
@@ -192,7 +192,7 @@ abstract class _MatchDetailViewModel implements MatchDetailViewModel {
   @override
   MatchModel? get match;
   @override
-  List<GoalsModel>? get goalsMatch;
+  List<MatchModel>? get listHistory;
   @override
   @JsonKey(ignore: true)
   _$$MatchDetailViewModelImplCopyWith<_$MatchDetailViewModelImpl>

@@ -132,8 +132,12 @@ class LoginForm extends StatelessWidget {
           _context.go(AppRoutes.homePage.path);
         }
         if (state is SignInErrorState) {
-          ScaffoldMessenger.of(_context)
-              .showSnackBar(SnackBar(content: Text(_context.l10n.loginfailed)));
+          ScaffoldMessenger.of(_context).showSnackBar(
+            SnackBar(
+              content: Text(_context.l10n.loginfailed),
+              duration: const Duration(microseconds: 800),
+            ),
+          );
         }
       },
       child: Form(
@@ -210,23 +214,31 @@ class _LoginButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<SignInBloc, SignInState>(
       builder: (context, state) {
+        bool isFormValid = state.form.formValid ?? false;
+
         return SCButton(
-          onPressed: () {
-            if (state.form.formValid ?? false) {
-              context.read<SignInBloc>().add(
-                    SignInSubmittedEvent(
-                      form: state.form,
-                    ),
-                  );
-            }
-          },
+          onPressed: isFormValid
+              ? () {
+                  context.read<SignInBloc>().add(
+                        SignInSubmittedEvent(
+                          form: state.form,
+                        ),
+                      );
+                }
+              : null,
           text: state is SignInLoadingState
-              ? const CircularProgressIndicator()
-              : SCText.headlineSmall(context, text: context.l10n.btnLogin),
+              ? const CircularProgressIndicator(
+                  color: AppColor.secondary,
+                )
+              : SCText.headlineSmall(
+                  context,
+                  text: context.l10n.btnLogin,
+                  style: TextStyle(
+                    color: isFormValid ? AppColor.secondary : AppColor.dimGray,
+                  ),
+                ),
           style: context.textTheme.headlineSmall,
-          backgroundColor: (state.form.formValid ?? false)
-              ? AppColor.primary
-              : AppColor.whiteFlash,
+          backgroundColor: isFormValid ? AppColor.primary : AppColor.whiteFlash,
         );
       },
     );

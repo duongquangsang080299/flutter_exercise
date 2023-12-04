@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:flutter_timer_countdown/flutter_timer_countdown.dart';
 import 'package:go_router/go_router.dart';
+import 'package:shimmer/shimmer.dart';
 import 'package:soccer_club_app/blocs/next_match/next_match_bloc.dart';
 import 'package:soccer_club_app/blocs/next_match/next_match_event.dart';
 import 'package:soccer_club_app/blocs/next_match/next_match_state.dart';
@@ -25,12 +27,10 @@ class NextMatchPage extends StatefulWidget {
   const NextMatchPage({Key? key}) : super(key: key);
 
   @override
-  State<NextMatchPage> createState() => _MatchDetailState();
+  State<NextMatchPage> createState() => _NextMatchPage();
 }
 
-class _MatchDetailState extends State<NextMatchPage> {
-  int _currentIndex = 0;
-
+class _NextMatchPage extends State<NextMatchPage> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -40,7 +40,12 @@ class _MatchDetailState extends State<NextMatchPage> {
       child: BlocListener<MatchDetailBloc, MatchDetailState>(
         listener: (context, state) {
           if (state is MatchDetailError) {
-            /// TODO: show snackbar here
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Text(context.l10n.loadingfailed),
+                duration: const Duration(microseconds: 800),
+              ),
+            );
           }
         },
         child: SCScaffold(
@@ -54,26 +59,31 @@ class _MatchDetailState extends State<NextMatchPage> {
                 delegate: SliverChildBuilderDelegate(
                   (BuildContext context, int index) {
                     if (index == 0) {
-                      return SizedBox(height: context.getVerticalSize(450));
+                      return SizedBox(height: context.getVerticalSize(410));
+                    } else if (index == 1) {
+                      return Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 35),
+                        child: SCText.headlineMedium(
+                          text: context.l10n.matchs,
+                          context,
+                        ),
+                      );
+                    } else if (index == 2) {
+                      return const SizedBox(
+                        height: 15,
+                      );
                     } else {
                       return sliverListWidget();
                     }
                   },
-                  childCount: 9,
+                  childCount: 10,
                 ),
               ),
             ],
           ),
-          bottomNavigationBar: SCBottomNavigationBar(
-            // Set the current selected index.
-            currentIndex: _currentIndex,
-            onTap: (int index) {
-              setState(() {
-                // Update the current index when tapped.
-                _currentIndex = index;
-              });
-            },
-          ),
+          bottomNavigationBar: const SCBottomNavigationBar(
+              // Set the current selected index.
+              ),
 
           /// Define the location of the floating action button.
           floatingActionButtonLocation:
@@ -95,16 +105,102 @@ class _MatchDetailState extends State<NextMatchPage> {
     return BlocBuilder<MatchDetailBloc, MatchDetailState>(
       builder: (context, state) {
         return state is GetListMatchLoading
-            ? const Center(child: CircularProgressIndicator())
+            ? _ShimmerCardMatchs()
             : _CardMatchs(matches: state.data.listHistory ?? []);
       },
     );
   }
 }
 
+class _ShimmerCardMatchs extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(
+        horizontal: 30,
+      ),
+      child: Shimmer.fromColors(
+        baseColor: Colors.grey[300]!,
+        highlightColor: Colors.grey[100]!,
+        child: Column(
+          children: [
+            SizedBox(
+              height: context.getVerticalSize(50),
+              child: SCCard.match(
+                color: AppColor.whiteSmoke,
+                shape: const RoundedRectangleBorder(
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(20),
+                    topRight: Radius.circular(20),
+                  ),
+                ),
+                child: Container(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 20,
+                  ),
+                  decoration: const BoxDecoration(
+                    boxShadow: [
+                      BoxShadow(
+                        color: AppColor.whiteSmoke,
+                        offset: Offset(0, 9),
+                        blurRadius: 8,
+                      ),
+                    ],
+                  ),
+                  child: const Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      CircleAvatar(
+                        backgroundColor: AppColor.primary,
+                        radius: 20,
+                      ),
+                      CircleAvatar(
+                        backgroundColor: AppColor.onError,
+                        radius: 20,
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                IconButton(
+                  icon: SvgPicture.asset(
+                    SCIcons.calender,
+                  ),
+                  onPressed: () {},
+                ),
+                const SizedBox(
+                  width: 5,
+                ),
+                Container(
+                  width: 80,
+                  height: 12,
+                  color: Colors.grey[300],
+                ),
+                const SizedBox(width: 10),
+                Container(
+                  width: 50,
+                  height: 12,
+                  color: Colors.grey[300],
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
 class _CardMatchs extends StatelessWidget {
   final List<MatchModel>? matches;
-  const _CardMatchs({this.matches});
+  const _CardMatchs({
+    this.matches,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -117,7 +213,7 @@ class _CardMatchs extends StatelessWidget {
             child: Column(
               children: [
                 SizedBox(
-                  height: context.getVerticalSize(49),
+                  height: context.getVerticalSize(50),
                   child: SCCard.match(
                     color: AppColor.whiteSmoke,
                     shape: const RoundedRectangleBorder(
@@ -141,25 +237,27 @@ class _CardMatchs extends StatelessWidget {
                       ),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
                           CircleAvatar(
-                            backgroundColor: AppColor.onError,
+                            backgroundColor: AppColor.primary,
                             child: Center(
                               child: SCText.headlineLarge(
                                 context,
-                                text: matches?[0].goals!.scoreRed.toString() ??
-                                    context.l10n.numbertwo,
+                                text:
+                                    matches?.first.goals?.scoreRed.toString() ??
+                                        context.l10n.numbertwo,
                               ),
                             ),
                           ),
                           CircleAvatar(
-                            backgroundColor: AppColor.primary,
+                            backgroundColor: AppColor.onError,
                             child: Center(
                                 child: SCText.headlineLarge(
                               context,
-                              text:
-                                  matches?[0].goals!.scoreVictory.toString() ??
-                                      context.l10n.numberone,
+                              text: matches?.first.goals?.scoreVictory
+                                      .toString() ??
+                                  context.l10n.numberone,
                             )),
                           )
                         ],
@@ -177,11 +275,16 @@ class _CardMatchs extends StatelessWidget {
                       onPressed: () {},
                     ),
                     const SizedBox(
-                      width: 10,
+                      width: 5,
                     ),
                     SCText.bodySmall(
                       context,
                       text: (dateTimeFormat(matches!.first.datetime)),
+                    ),
+                    const SizedBox(width: 10),
+                    SCText.bodySmall(
+                      context,
+                      text: (formattedTime(matches!.first.datetime)),
                     ),
                   ],
                 ),
@@ -274,27 +377,24 @@ class _CardDetail extends StatelessWidget {
                 text: match?.place ?? context.l10n.devilsArenaStadium,
                 style: context.textTheme.bodyLarge?.copyWith(
                   color: AppColor.onTertiaryContainer,
+                  fontWeight: AppFontWeight.medium,
                 ),
               ),
-              const SizedBox(
-                height: 9,
-              ),
+              const SizedBox(height: 9),
               SCText.bodySmall(
                 context,
                 text: (dateTimeFormat(match!.datetime)),
-                style: context.textTheme.labelLarge?.copyWith(
+                style: context.textTheme.bodySmall?.copyWith(
                   fontWeight: AppFontWeight.medium,
                   color: AppColor.onTertiaryContainer,
                 ),
               ),
-              const SizedBox(
-                height: 18,
-              ),
+              const SizedBox(height: 18),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Image.asset(
-                    SCAssets.logoMatchDetail,
+                    SCAssets.logoRed,
                     height: getSize(67),
                   ),
                   const SizedBox(width: 30),
@@ -310,7 +410,7 @@ class _CardDetail extends StatelessWidget {
                       ),
                       SCText.displayLarge(
                         context,
-                        text: (dateTime(match!.datetime)),
+                        text: (formattedTime(match!.datetime)),
                         style: context.textTheme.displayLarge?.copyWith(
                           color: AppColor.blueMainly,
                         ),
@@ -319,7 +419,7 @@ class _CardDetail extends StatelessWidget {
                   ),
                   const SizedBox(width: 30),
                   Image.asset(
-                    SCAssets.logoMatchDetail,
+                    SCAssets.logoVictory,
                     height: getSize(67),
                   ),
                   const SizedBox(width: 8),
@@ -362,8 +462,10 @@ class _MatchCountDown extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+      padding: const EdgeInsets.symmetric(horizontal: 20),
       child: SizedBox(
+        width: double.infinity,
+        height: 127,
         child: SCCard.avatar(
           child: Container(
             decoration: const BoxDecoration(
@@ -385,81 +487,35 @@ class _MatchCountDown extends StatelessWidget {
                   context,
                   text: context.l10n.matchcountdown,
                 ),
-                SizedBox(
-                  height: context.getVerticalSize(25),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    SCText.displayLarge(
-                      context,
-                      text: context.l10n.timetwo,
-                    ),
-                    SCText.displayLarge(
-                      context,
-                      text: context.l10n.dots,
-                    ),
-                    SCText.displayLarge(
-                      context,
-                      text: context.l10n.timeeight,
-                    ),
-                    SCText.displayLarge(
-                      context,
-                      text: context.l10n.dots,
-                    ),
-                    SCText.displayLarge(
-                      context,
-                      text: context.l10n.fourseven,
-                    ),
-                    SCText.displayLarge(
-                      context,
-                      text: context.l10n.dots,
-                    ),
-                    SCText.displayLarge(
-                      context,
-                      text: context.l10n.one,
-                    ),
-                  ],
-                ),
                 const SizedBox(
-                  height: 2,
+                  height: 17,
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    SCText.bodyLarge(
-                      context,
-                      text: context.l10n.days,
-                      style: context.textTheme.bodyLarge?.copyWith(
-                        fontWeight: AppFontWeight.medium,
-                        color: AppColor.secondary,
-                      ),
+                TimerCountdown(
+                  format: CountDownTimerFormat.daysHoursMinutesSeconds,
+                  endTime: DateTime.now().add(
+                    const Duration(
+                      days: 2,
+                      hours: 08,
+                      minutes: 47,
+                      seconds: 01,
                     ),
-                    SCText.bodyLarge(
-                      context,
-                      text: context.l10n.hours,
-                      style: context.textTheme.bodyLarge?.copyWith(
-                        fontWeight: AppFontWeight.medium,
-                        color: AppColor.secondary,
-                      ),
-                    ),
-                    SCText.bodyLarge(
-                      context,
-                      text: context.l10n.mins,
-                      style: context.textTheme.bodyLarge?.copyWith(
-                        fontWeight: AppFontWeight.medium,
-                        color: AppColor.secondary,
-                      ),
-                    ),
-                    SCText.bodyLarge(
-                      context,
-                      text: context.l10n.secs,
-                      style: context.textTheme.bodyLarge?.copyWith(
-                        fontWeight: AppFontWeight.medium,
-                        color: AppColor.secondary,
-                      ),
-                    ),
-                  ],
+                  ),
+                  timeTextStyle: const TextStyle(
+                    fontSize: 25,
+                    color: AppColor.secondary,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  colonsTextStyle: const TextStyle(
+                    fontSize: 25,
+                    color: AppColor.secondary,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  descriptionTextStyle: const TextStyle(
+                    fontSize: 12,
+                    color: AppColor.secondary,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  onEnd: () {},
                 ),
               ],
             ),
