@@ -3,7 +3,7 @@ import 'package:mockito/mockito.dart';
 import 'package:soccer_club_app/blocs/auth/sign_in/sign_in_bloc.dart';
 import 'package:soccer_club_app/data/repositories/auth_repo.dart';
 
-// Mock implementation of AuthRepo for testing
+/// Mock implementation of AuthRepo for testing
 class MockAuthRepo extends Mock implements AuthRepo {
   @override
   Future<void> signIn({required String email, required String password}) async {
@@ -12,7 +12,7 @@ class MockAuthRepo extends Mock implements AuthRepo {
 }
 
 void main() {
-  // Helper functions for common assertions
+  // Helper functions for common
   Future<void> expectSignInBlocEmits(
       SignInBloc signInBloc, dynamic matcher) async {
     await expectLater(
@@ -30,7 +30,7 @@ void main() {
     );
   }
 
-  // Test Successful Sign In
+  /// Test Successful Sign In
   group('SignInBloc', () {
     // Test case: Emits SignInSuccessState when provided valid email and password
     test('emits SignInSuccessState when provided valid email and password',
@@ -84,7 +84,7 @@ void main() {
       signInBloc.close();
     });
 
-    // Test case: Emits SignInChangedState with valid email
+    /// Test case: Emits SignInChangedState with valid email
     test('emits SignInChangedState with valid email', () async {
       // Arrange
       final signInBloc = setupSignInBloc();
@@ -184,7 +184,8 @@ void main() {
       signInBloc.close();
     });
 
-    // Test Form Validation
+    /// Test form validation
+    // Test case: Emits SignInChangedState with valid form
     test('emits SignInChangedState with form validation', () async {
       // Arrange
       final signInBloc = setupSignInBloc();
@@ -207,36 +208,6 @@ void main() {
         isA<SignInChangedState>().having(
           (state) => state.form.formValid,
           'emitted form validation',
-          true,
-        ),
-      );
-
-      signInBloc.close();
-    });
-
-    // Test Button State
-    test('emits SignInChangedState with valid form', () async {
-      // Arrange
-      final signInBloc = setupSignInBloc();
-
-      // Act
-      signInBloc.add(SignInEmailChangedEvent(
-        form: emptySignInState.copyWith(
-          email: 'test@example.com',
-        ),
-      ));
-      signInBloc.add(SignInPasswordChangedEvent(
-        form: emptySignInState.copyWith(
-          password: 'ValidPassword@123',
-        ),
-      ));
-
-      // Assert
-      await expectSignInBlocEmits(
-        signInBloc,
-        isA<SignInChangedState>().having(
-          (state) => state.form.formValid,
-          'emitted valid form',
           true,
         ),
       );
@@ -268,6 +239,36 @@ void main() {
           (state) => state.form.formValid,
           'emitted invalid form',
           false,
+        ),
+      );
+
+      signInBloc.close();
+    });
+
+    // Test button state
+    test('emits SignInChangedState with valid form', () async {
+      // Arrange
+      final signInBloc = setupSignInBloc();
+
+      // Act
+      signInBloc.add(SignInEmailChangedEvent(
+        form: emptySignInState.copyWith(
+          email: 'test@example.com',
+        ),
+      ));
+      signInBloc.add(SignInPasswordChangedEvent(
+        form: emptySignInState.copyWith(
+          password: 'ValidPassword@123',
+        ),
+      ));
+
+      // Assert
+      await expectSignInBlocEmits(
+        signInBloc,
+        isA<SignInChangedState>().having(
+          (state) => state.form.formValid,
+          'emitted valid form',
+          true,
         ),
       );
 
