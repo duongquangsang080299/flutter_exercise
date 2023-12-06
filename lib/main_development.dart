@@ -20,12 +20,12 @@ Future<void> main() async {
     authDomain: 'sporrt-club-app.firebaseapp.com',
     storageBucket: 'sporrt-club-app.appspot.com',
   ));
-  // runApp(const MyApp());
-  runApp(
-    DevicePreview(
-      builder: (context) => const MyApp(),
-    ),
-  );
+  runApp(const MyApp());
+  // runApp(
+  //   DevicePreview(
+  //     builder: (context) => const MyApp(),
+  //   ),
+  // );
 }
 
 class MyApp extends StatelessWidget {

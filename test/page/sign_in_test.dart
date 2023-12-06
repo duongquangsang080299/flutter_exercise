@@ -185,6 +185,7 @@ void main() {
     });
 
     /// Test form validation
+
     // Test case: Emits SignInChangedState with valid form
     test('emits SignInChangedState with form validation', () async {
       // Arrange
