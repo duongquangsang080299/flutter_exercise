@@ -175,7 +175,7 @@ class SCInput extends StatelessWidget with InputValidationMixin {
                           )
                         : SCIcon.suffix(),
                   )
-                : const SizedBox.shrink(),
+                : null,
             contentPadding: contentPadding ??
                 const EdgeInsets.symmetric(
                   vertical: 15,

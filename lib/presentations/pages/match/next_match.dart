@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:flutter_timer_countdown/flutter_timer_countdown.dart';
 import 'package:go_router/go_router.dart';
-import 'package:shimmer/shimmer.dart';
 import 'package:soccer_club_app/blocs/next_match/next_match_bloc.dart';
 import 'package:soccer_club_app/blocs/next_match/next_match_event.dart';
 import 'package:soccer_club_app/blocs/next_match/next_match_state.dart';
@@ -21,6 +20,7 @@ import 'package:soccer_club_app/presentations/layout/bottom_navigation_bar.dart'
 import 'package:soccer_club_app/presentations/layout/scaffold.dart';
 import 'package:soccer_club_app/presentations/widgets/app_bar.dart';
 import 'package:soccer_club_app/presentations/widgets/card.dart';
+import 'package:soccer_club_app/presentations/widgets/shimmer.dart';
 import 'package:soccer_club_app/presentations/widgets/text.dart';
 
 class NextMatchPage extends StatefulWidget {
@@ -59,7 +59,7 @@ class _NextMatchPage extends State<NextMatchPage> {
                 delegate: SliverChildBuilderDelegate(
                   (BuildContext context, int index) {
                     if (index == 0) {
-                      return SizedBox(height: context.getVerticalSize(410));
+                      return SizedBox(height: context.getVerticalSize(420));
                     } else if (index == 1) {
                       return Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 35),
@@ -68,20 +68,24 @@ class _NextMatchPage extends State<NextMatchPage> {
                           context,
                         ),
                       );
-                    } else if (index == 2) {
-                      return const SizedBox(height: 15);
                     } else {
                       return sliverListWidget();
                     }
                   },
-                  childCount: 10,
+                  childCount: 3,
                 ),
               ),
             ],
           ),
-          bottomNavigationBar: const SCBottomNavigationBar(),
+          bottomNavigationBar: const SCBottomNavigationBar(
+              // Set the current selected index.
+              ),
+
+          /// Define the location of the floating action button.
           floatingActionButtonLocation:
               FloatingActionButtonLocation.centerDocked,
+
+          /// Define the floating action button.
           floatingActionButton: FloatingActionButton(
             elevation: 0,
             onPressed: () {},
@@ -97,190 +101,123 @@ class _NextMatchPage extends State<NextMatchPage> {
     return BlocBuilder<MatchDetailBloc, MatchDetailState>(
       builder: (context, state) {
         return state is GetListMatchLoading
-            ? _ShimmerCardMatchs()
-            : _CardMatchs(matches: state.data.listHistory ?? []);
+            ? const ShimmerCardMatchs()
+            : _CardMatchs(listHistory: state.data.listHistory ?? []);
       },
     );
   }
 }
 
-class _ShimmerCardMatchs extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 30),
-      child: Shimmer.fromColors(
-        baseColor: AppColor.graysuva,
-        highlightColor: AppColor.secondary,
-        child: Column(
-          children: [
-            SizedBox(
-              height: context.getVerticalSize(50),
-              child: SCCard.match(
-                color: AppColor.whiteSmoke,
-                shape: const RoundedRectangleBorder(
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(20),
-                    topRight: Radius.circular(20),
-                  ),
-                ),
-                child: Container(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 20,
-                  ),
-                  decoration: const BoxDecoration(
-                    boxShadow: [
-                      BoxShadow(
-                        color: AppColor.whiteSmoke,
-                        offset: Offset(0, 9),
-                        blurRadius: 8,
-                      ),
-                    ],
-                  ),
-                  child: const Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: [
-                      CircleAvatar(
-                        backgroundColor: AppColor.primary,
-                        radius: 20,
-                      ),
-                      CircleAvatar(
-                        backgroundColor: AppColor.onError,
-                        radius: 20,
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                IconButton(
-                  icon: SvgPicture.asset(
-                    SCIcons.calender,
-                  ),
-                  onPressed: () {},
-                ),
-                const SizedBox(
-                  width: 5,
-                ),
-                Container(
-                  width: 80,
-                  height: 12,
-                  color: AppColor.graysuva,
-                ),
-                const SizedBox(width: 10),
-                Container(
-                  width: 50,
-                  height: 12,
-                  color: AppColor.graysuva,
-                ),
-              ],
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
 class _CardMatchs extends StatelessWidget {
-  final List<MatchModel>? matches;
+  final List<MatchModel>? listHistory;
   const _CardMatchs({
-    this.matches,
+    this.listHistory,
   });
 
   @override
   Widget build(BuildContext context) {
-    return (matches?.isEmpty ?? false)
+    return (listHistory?.isEmpty ?? false)
         ? const SizedBox.shrink()
-        : Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 30,
-            ),
-            child: Column(
-              children: [
-                SizedBox(
-                  height: context.getVerticalSize(50),
-                  child: SCCard.match(
-                    color: AppColor.whiteSmoke,
-                    shape: const RoundedRectangleBorder(
-                      borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(20),
-                        topRight: Radius.circular(20),
-                      ),
-                    ),
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 20,
-                      ),
-                      decoration: const BoxDecoration(
-                        boxShadow: [
-                          BoxShadow(
-                            color: AppColor.whiteSmoke,
-                            offset: Offset(0, 9),
-                            blurRadius: 8,
-                          ),
-                        ],
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        children: [
-                          CircleAvatar(
-                            backgroundColor: AppColor.primary,
-                            child: Center(
-                              child: SCText.headlineLarge(
-                                context,
-                                text:
-                                    matches?.first.goals?.scoreRed.toString() ??
-                                        context.l10n.numbertwo,
-                              ),
-                            ),
-                          ),
-                          CircleAvatar(
-                            backgroundColor: AppColor.onError,
-                            child: Center(
-                                child: SCText.headlineLarge(
-                              context,
-                              text: matches?.first.goals?.scoreVictory
-                                      .toString() ??
-                                  context.l10n.numberone,
-                            )),
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
+        : ListView.builder(
+            physics: const NeverScrollableScrollPhysics(),
+            itemCount: listHistory?.length,
+            shrinkWrap: true,
+            itemBuilder: (context, index) {
+              return _History(match: listHistory![index]);
+            },
+          );
+  }
+}
+
+class _History extends StatelessWidget {
+  const _History({required this.match});
+  final MatchModel match;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(
+        horizontal: 30,
+      ),
+      child: Column(
+        children: [
+          SizedBox(
+            height: context.getVerticalSize(50),
+            child: SCCard.match(
+              color: AppColor.whiteSmoke,
+              shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(20),
+                  topRight: Radius.circular(20),
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    IconButton(
-                      icon: SvgPicture.asset(
-                        SCIcons.calender,
-                      ),
-                      onPressed: () {},
-                    ),
-                    const SizedBox(
-                      width: 5,
-                    ),
-                    SCText.bodySmall(
-                      context,
-                      text: (dateTimeFormat(matches!.first.datetime)),
-                    ),
-                    const SizedBox(width: 10),
-                    SCText.bodySmall(
-                      context,
-                      text: (formattedTime(matches!.first.datetime)),
+              ),
+              child: Container(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 20,
+                ),
+                decoration: const BoxDecoration(
+                  boxShadow: [
+                    BoxShadow(
+                      color: AppColor.whiteSmoke,
+                      offset: Offset(0, 9),
+                      blurRadius: 8,
                     ),
                   ],
                 ),
-              ],
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    CircleAvatar(
+                      backgroundColor: AppColor.primary,
+                      child: Center(
+                        child: SCText.headlineLarge(
+                          context,
+                          text: match.goals?.scoreRed.toString() ??
+                              context.l10n.numbertwo,
+                        ),
+                      ),
+                    ),
+                    CircleAvatar(
+                      backgroundColor: AppColor.onError,
+                      child: Center(
+                          child: SCText.headlineLarge(
+                        context,
+                        text: match.goals?.scoreVictory.toString() ??
+                            context.l10n.numberone,
+                      )),
+                    )
+                  ],
+                ),
+              ),
             ),
-          );
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              IconButton(
+                icon: SvgPicture.asset(
+                  SCIcons.calender,
+                ),
+                onPressed: () {},
+              ),
+              const SizedBox(
+                width: 5,
+              ),
+              SCText.bodySmall(
+                context,
+                text: (dateTimeFormat(match.datetime)),
+              ),
+              const SizedBox(width: 10),
+              SCText.bodySmall(
+                context,
+                text: (formattedTime(match.datetime)),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
   }
 }
 
@@ -353,7 +290,7 @@ class _CardDetail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return (match == null)
-        ? const SizedBox.shrink()
+        ? const ShimmerCardDetail()
         : Column(
             children: [
               Center(
