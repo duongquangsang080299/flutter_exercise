@@ -221,7 +221,6 @@ class _CardInfo extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(vertical: 10),
                 child: Row(
                   children: [
-                    // Create a Row of widgets for the left side of the card.
                     IconButton(
                       icon: SvgPicture.asset(
                         SCIcons.calender,
@@ -262,9 +261,7 @@ class _NextMatch extends StatelessWidget {
                     context,
                     text: (dateMonthFormat(match!.datetime)),
                   ),
-                  const SizedBox(
-                    height: 3,
-                  ),
+                  const SizedBox(height: 3),
                   SCText.bodySmall(
                     context,
                     text: (yearsFormat(match!.datetime)),
@@ -286,9 +283,7 @@ class _NextMatch extends StatelessWidget {
                 style: context.textTheme.bodySmall
                     ?.copyWith(color: AppColor.blueBlur),
               ),
-              const SizedBox(
-                width: 20,
-              ),
+              const SizedBox(width: 20),
             ],
           );
   }
@@ -333,7 +328,6 @@ class _MatchItem extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   Image.asset(SCAssets.logoMatch),
-                  // Image.asset(match?.goals?.logo ?? SCAssets.logoSecondMatch),
                   SizedBox(
                     width: getSize(45),
                   ),
@@ -444,7 +438,6 @@ class _VideoHighlight extends StatelessWidget {
             border: Border.all(color: AppColor.primary),
           ),
           child: SCCard.avatar(
-            // child:ReelModel()
             child: CachedNetworkImage(
               imageUrl: SCAssets.playerMatch,
               fit: BoxFit.fill,

@@ -17,7 +17,6 @@ class GoalsRepository {
         apiUrl,
         queryParams: {'select': '*,team(*)'},
       );
-      print(response);
 
       // Convert the dynamic response into a list of GoalsModel objects.
       final List<GoalsModel> goals =

@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:soccer_club_app/core/error/error_exception.dart';
 
 class AuthRepo {
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -19,7 +20,7 @@ class AuthRepo {
         return user.displayName;
       }
     } catch (e) {
-      throw Exception('Failed to sign in: $e');
+      throw AppException(AppExceptionType.badResponse);
     }
     return null;
   }
@@ -39,7 +40,7 @@ class AuthRepo {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       prefs.setString('username', username);
     } catch (e) {
-      throw Exception('Failed to sign up: $e');
+      throw AppException(AppExceptionType.badResponse);
     }
   }
 
@@ -47,7 +48,7 @@ class AuthRepo {
     try {
       await _auth.sendPasswordResetEmail(email: email);
     } catch (e) {
-      throw Exception('Failed to reset password: $e');
+      throw AppException(AppExceptionType.badResponse);
     }
   }
 
@@ -59,7 +60,7 @@ class AuthRepo {
       /// Clear cache of SharePreferences
       prefs.clear();
     } catch (e) {
-      throw Exception('Failed to sign in: $e');
+      throw AppException(AppExceptionType.badResponse);
     }
   }
 }

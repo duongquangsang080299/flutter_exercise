@@ -69,9 +69,7 @@ class _NextMatchPage extends State<NextMatchPage> {
                         ),
                       );
                     } else if (index == 2) {
-                      return const SizedBox(
-                        height: 15,
-                      );
+                      return const SizedBox(height: 15);
                     } else {
                       return sliverListWidget();
                     }
@@ -81,15 +79,9 @@ class _NextMatchPage extends State<NextMatchPage> {
               ),
             ],
           ),
-          bottomNavigationBar: const SCBottomNavigationBar(
-              // Set the current selected index.
-              ),
-
-          /// Define the location of the floating action button.
+          bottomNavigationBar: const SCBottomNavigationBar(),
           floatingActionButtonLocation:
               FloatingActionButtonLocation.centerDocked,
-
-          /// Define the floating action button.
           floatingActionButton: FloatingActionButton(
             elevation: 0,
             onPressed: () {},
@@ -116,12 +108,10 @@ class _ShimmerCardMatchs extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(
-        horizontal: 30,
-      ),
+      padding: const EdgeInsets.symmetric(horizontal: 30),
       child: Shimmer.fromColors(
-        baseColor: Colors.grey[300]!,
-        highlightColor: Colors.grey[100]!,
+        baseColor: AppColor.graysuva,
+        highlightColor: AppColor.secondary,
         child: Column(
           children: [
             SizedBox(
@@ -179,13 +169,13 @@ class _ShimmerCardMatchs extends StatelessWidget {
                 Container(
                   width: 80,
                   height: 12,
-                  color: Colors.grey[300],
+                  color: AppColor.graysuva,
                 ),
                 const SizedBox(width: 10),
                 Container(
                   width: 50,
                   height: 12,
-                  color: Colors.grey[300],
+                  color: AppColor.graysuva,
                 ),
               ],
             ),
@@ -449,7 +439,7 @@ class _CardDetail extends StatelessWidget {
                 ],
               ),
               SizedBox(height: context.getVerticalSize(28)),
-              const _MatchCountDown(),
+              _MatchCountDown(matchDateTime: match!.datetime),
               const SizedBox(height: 20),
             ],
           );
@@ -457,7 +447,9 @@ class _CardDetail extends StatelessWidget {
 }
 
 class _MatchCountDown extends StatelessWidget {
-  const _MatchCountDown();
+  final DateTime matchDateTime;
+
+  const _MatchCountDown({required this.matchDateTime});
 
   @override
   Widget build(BuildContext context) {
@@ -492,26 +484,19 @@ class _MatchCountDown extends StatelessWidget {
                 ),
                 TimerCountdown(
                   format: CountDownTimerFormat.daysHoursMinutesSeconds,
-                  endTime: DateTime.now().add(
-                    const Duration(
-                      days: 2,
-                      hours: 08,
-                      minutes: 47,
-                      seconds: 01,
-                    ),
-                  ),
+                  endTime: matchDateTime,
                   timeTextStyle: const TextStyle(
-                    fontSize: 25,
+                    fontSize: 28,
                     color: AppColor.secondary,
                     fontWeight: FontWeight.bold,
                   ),
                   colonsTextStyle: const TextStyle(
-                    fontSize: 25,
+                    fontSize: 28,
                     color: AppColor.secondary,
                     fontWeight: FontWeight.bold,
                   ),
                   descriptionTextStyle: const TextStyle(
-                    fontSize: 12,
+                    fontSize: 14,
                     color: AppColor.secondary,
                     fontWeight: FontWeight.bold,
                   ),

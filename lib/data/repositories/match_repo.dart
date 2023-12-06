@@ -19,7 +19,7 @@ class MatchRepository {
           'select': '*,goals(*)',
         },
       );
-      print(response);
+
       // Convert the dynamic response into a list of MatchModel objects.
       final List<MatchModel> matches =
           response.map((e) => MatchModel.fromJson(e)).toList();
