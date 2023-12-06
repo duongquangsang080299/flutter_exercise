@@ -15,9 +15,6 @@ class HomeViewModel with _$HomeViewModel {
     MatchModel? nextMatch,
     List<MatchModel>? news,
     TicketModel? ticket,
-    bool? isPlaying,
-    bool? isPause,
-    bool? isLoading,
   }) = _HomeViewModel;
 
   factory HomeViewModel.fromJson(Map<String, dynamic> json) =>

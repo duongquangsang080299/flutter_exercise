@@ -1,13 +1,49 @@
 import 'package:bloc/bloc.dart';
-import 'package:equatable/equatable.dart';
+import 'package:soccer_club_app/blocs/next_match/next_match_event.dart';
+import 'package:soccer_club_app/blocs/next_match/next_match_state.dart';
+import 'package:soccer_club_app/core/constant/app_exceptions.dart';
+import 'package:soccer_club_app/data/models/match/match_model.dart';
+import 'package:soccer_club_app/data/repositories/match_repo.dart';
 
-part 'next_match_event.dart';
-part 'next_match_state.dart';
+class MatchDetailBloc extends Bloc<MatchDetailEvent, MatchDetailState> {
+  final MatchRepository matchRepository = MatchRepository();
 
-class NextMatchBloc extends Bloc<NextMatchEvent, NextMatchState> {
-  NextMatchBloc() : super(NextMatchInitial()) {
-    on<NextMatchEvent>((event, emit) {
-      // TODO: implement event handler
-    });
+  MatchDetailBloc() : super(MatchDetailInitialState(matchEmpty)) {
+    on<GetMatchDetailEvent>(_onGetMatchDetail);
+    on<GetListMatchEvent>(_onGetList);
+  }
+
+  Future<void> _onGetMatchDetail(
+      GetMatchDetailEvent event, Emitter<MatchDetailState> emit) async {
+    try {
+      emit(GetMatchDetailLoading(state.data));
+      final MatchModel news = await matchRepository.getMatch();
+
+      emit(GetMatchDetailSuccess(state.data.copyWith(match: news)));
+    } catch (e) {
+      emit(MatchDetailError(
+        data: state.data,
+        errorMessage: AppExceptionMessages.badRequest,
+
+        /// FIXME:we should correct error here
+      ));
+    }
+  }
+
+  Future<void> _onGetList(
+      GetListMatchEvent event, Emitter<MatchDetailState> emit) async {
+    try {
+      emit(GetListMatchLoading(state.data));
+      final List<MatchModel> matches = await matchRepository.getMatches();
+
+      emit(GetListMatchSuccess(state.data.copyWith(listHistory: matches)));
+    } catch (e) {
+      emit(MatchDetailError(
+        data: state.data,
+        errorMessage: AppExceptionMessages.badRequest,
+
+        /// FIXME:we should correct error here
+      ));
+    }
   }
 }

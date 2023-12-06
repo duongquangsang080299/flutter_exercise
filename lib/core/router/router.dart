@@ -6,7 +6,7 @@ import 'package:soccer_club_app/presentations/pages/auth/sign_up/sign_up.dart';
 import 'package:soccer_club_app/presentations/pages/favourite/player.dart';
 import 'package:soccer_club_app/presentations/pages/fixtures/fixtures.dart';
 import 'package:soccer_club_app/presentations/pages/home/home.dart';
-import 'package:soccer_club_app/presentations/pages/match/next_match_details.dart';
+import 'package:soccer_club_app/presentations/pages/match/next_match.dart';
 import 'package:soccer_club_app/presentations/pages/notifications/notifications.dart';
 import 'package:soccer_club_app/presentations/pages/onboarding/onboarding.dart';
 import 'package:soccer_club_app/presentations/pages/welcome/welcome.dart';

@@ -21,6 +21,11 @@ Future<void> main() async {
     storageBucket: 'sporrt-club-app.appspot.com',
   ));
   runApp(const MyApp());
+  // runApp(
+  //   DevicePreview(
+  //     builder: (context) => const MyApp(),
+  //   ),
+  // );
 }
 
 class MyApp extends StatelessWidget {

@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:soccer_club_app/core/utils/validator_utils.dart';
 import 'package:soccer_club_app/data/repositories/auth_repo.dart';
 import 'package:soccer_club_app/presentations/view_models/auth/sign_up/sign_up_view_model.dart';
@@ -22,6 +22,7 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
     on<SignUpSubmittedEvent>(_onSubmitted);
     on<TogglePasswordVisibility>(_onTogglePasswordVisibility);
   }
+
   void _onUsernameChanged(
     SignUpUsernameChangedEvent event,
     Emitter<SignUpState> emit,
@@ -33,6 +34,8 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
       form: event.form.copyWith(
         usernameError: usernameError,
         usernameValid: usernameValid,
+        formValid:
+            usernameValid && event.form.emailValid && event.form.passwordValid,
       ),
     ));
   }
@@ -47,6 +50,8 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
       form: event.form.copyWith(
         emailError: emailError,
         emailValid: emailValid,
+        formValid:
+            emailValid && event.form.usernameValid && event.form.passwordValid,
       ),
     ));
   }
@@ -60,10 +65,11 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
     final passwordValid = passwordError.isEmpty;
     emit(SignUpChangedState(
       form: event.form.copyWith(
-          passwordError: passwordError,
-          formValid: passwordValid &&
-              state.form.emailValid &&
-              state.form.usernameValid),
+        passwordError: passwordError,
+        passwordValid: passwordValid,
+        formValid:
+            passwordValid && event.form.usernameValid && event.form.emailValid,
+      ),
     ));
   }
 
@@ -77,7 +83,7 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
         password: event.form.password,
         username: event.form.username,
       );
-      // Update the state on successful create acccount
+      // Update the state on successful create account
       emit(SignUpSuccessState(
           form: event.form.copyWith(
               formValid: state.form.usernameValid &&

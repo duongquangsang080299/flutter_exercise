@@ -12,7 +12,6 @@ class SCInput extends StatelessWidget with InputValidationMixin {
     this.suffixIcon,
     this.keyboardType,
     this.labelText,
-    this.obscureText = true,
     this.validator,
     this.contentPadding,
     this.labelStyle,
@@ -20,8 +19,12 @@ class SCInput extends StatelessWidget with InputValidationMixin {
     this.showPassword = false,
     this.onTogglePassword,
     this.onChanged,
+    this.obscuringCharacter,
     this.hiddenSufixIcon = false,
     this.errorText,
+    this.controller,
+    this.obscureText,
+    this.errorBoder,
   });
 
   /// Input of username
@@ -51,6 +54,7 @@ class SCInput extends StatelessWidget with InputValidationMixin {
   factory SCInput.email({
     Key? key,
     String? labelText,
+    TextEditingController? controller,
     double? fontSize,
     Function(String)? onChanged,
     TextStyle? labelStyle,
@@ -62,6 +66,7 @@ class SCInput extends StatelessWidget with InputValidationMixin {
       key: key,
       labelText: labelText,
       fontSize: fontSize,
+      controller: controller,
       onChanged: onChanged,
       errorText: errorText,
       keyboardType: keyboardType,
@@ -83,27 +88,28 @@ class SCInput extends StatelessWidget with InputValidationMixin {
     String? errorText,
     bool? showPassword = false,
     Function()? onTogglePassword,
-    bool? obscureText = true,
+    bool? obscureText,
     TextInputType keyboardType = TextInputType.visiblePassword,
     EdgeInsetsGeometry? contentPadding,
+    Color? errorBoder,
   }) {
     return SCInput(
-      key: key,
-      labelText: labelText,
-      errorText: errorText,
-      obscureText: obscureText,
-      fontSize: fontSize,
-      suffixIcon: suffixIcon,
-      showPassword: showPassword,
-      onChanged: onChanged,
-      onTogglePassword: onTogglePassword,
-      keyboardType: keyboardType,
-      hiddenSufixIcon: true,
-      contentPadding: contentPadding,
-      validator: (password) =>
-          InputValidationMixin.validPassword(password ?? ''),
-      labelStyle: labelStyle,
-    );
+        key: key,
+        labelText: labelText,
+        errorText: errorText,
+        obscureText: obscureText,
+        fontSize: fontSize,
+        suffixIcon: suffixIcon,
+        showPassword: showPassword,
+        onChanged: onChanged,
+        onTogglePassword: onTogglePassword,
+        keyboardType: keyboardType,
+        hiddenSufixIcon: true,
+        contentPadding: contentPadding,
+        validator: (password) =>
+            InputValidationMixin.validPassword(password ?? ''),
+        labelStyle: labelStyle,
+        errorBoder: errorBoder);
   }
 
   final Widget? suffixIcon;
@@ -118,7 +124,10 @@ class SCInput extends StatelessWidget with InputValidationMixin {
   final bool? showPassword;
   final Function()? onTogglePassword;
   final bool? hiddenSufixIcon;
+  final String? obscuringCharacter;
+  final TextEditingController? controller;
   final String? errorText;
+  final Color? errorBoder;
 
   @override
   Widget build(BuildContext context) {
@@ -140,7 +149,7 @@ class SCInput extends StatelessWidget with InputValidationMixin {
           onChanged: (value) {
             onChanged?.call(value);
           },
-          obscureText: obscureText ?? true,
+          obscureText: obscureText ?? false,
           obscuringCharacter: '●',
           style: context.textTheme.headlineSmall?.copyWith(
             fontSize: fontSize,
@@ -148,10 +157,19 @@ class SCInput extends StatelessWidget with InputValidationMixin {
             fontWeight: AppFontWeight.regular,
           ),
           decoration: InputDecoration(
+            errorBorder: const UnderlineInputBorder(
+              borderSide: BorderSide(width: 1, color: AppColor.graysuva),
+            ),
+            focusedErrorBorder: UnderlineInputBorder(
+              borderSide: BorderSide(
+                width: 1,
+                color: errorBoder ?? AppColor.primary,
+              ),
+            ),
             suffixIcon: hiddenSufixIcon == true
                 ? IconButton(
                     onPressed: onTogglePassword,
-                    icon: (showPassword ?? false)
+                    icon: (showPassword ?? true)
                         ? SCIcon.hidden(
                             color: AppColor.primary,
                           )

@@ -22,6 +22,7 @@ MatchModel _$MatchModelFromJson(Map<String, dynamic> json) {
 mixin _$MatchModel {
   int get id => throw _privateConstructorUsedError;
   String get place => throw _privateConstructorUsedError;
+  String get start => throw _privateConstructorUsedError;
   DateTime get datetime => throw _privateConstructorUsedError;
   String get league => throw _privateConstructorUsedError;
   @JsonKey(name: 'goals_id')
@@ -44,6 +45,7 @@ abstract class $MatchModelCopyWith<$Res> {
   $Res call(
       {int id,
       String place,
+      String start,
       DateTime datetime,
       String league,
       @JsonKey(name: 'goals_id') int goalsID,
@@ -68,6 +70,7 @@ class _$MatchModelCopyWithImpl<$Res, $Val extends MatchModel>
   $Res call({
     Object? id = null,
     Object? place = null,
+    Object? start = null,
     Object? datetime = null,
     Object? league = null,
     Object? goalsID = null,
@@ -82,6 +85,10 @@ class _$MatchModelCopyWithImpl<$Res, $Val extends MatchModel>
       place: null == place
           ? _value.place
           : place // ignore: cast_nullable_to_non_nullable
+              as String,
+      start: null == start
+          ? _value.start
+          : start // ignore: cast_nullable_to_non_nullable
               as String,
       datetime: null == datetime
           ? _value.datetime
@@ -130,6 +137,7 @@ abstract class _$$MatchModelImplCopyWith<$Res>
   $Res call(
       {int id,
       String place,
+      String start,
       DateTime datetime,
       String league,
       @JsonKey(name: 'goals_id') int goalsID,
@@ -153,6 +161,7 @@ class __$$MatchModelImplCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? place = null,
+    Object? start = null,
     Object? datetime = null,
     Object? league = null,
     Object? goalsID = null,
@@ -167,6 +176,10 @@ class __$$MatchModelImplCopyWithImpl<$Res>
       place: null == place
           ? _value.place
           : place // ignore: cast_nullable_to_non_nullable
+              as String,
+      start: null == start
+          ? _value.start
+          : start // ignore: cast_nullable_to_non_nullable
               as String,
       datetime: null == datetime
           ? _value.datetime
@@ -198,6 +211,7 @@ class _$MatchModelImpl implements _MatchModel {
   const _$MatchModelImpl(
       {required this.id,
       required this.place,
+      required this.start,
       required this.datetime,
       required this.league,
       @JsonKey(name: 'goals_id') required this.goalsID,
@@ -211,6 +225,8 @@ class _$MatchModelImpl implements _MatchModel {
   final int id;
   @override
   final String place;
+  @override
+  final String start;
   @override
   final DateTime datetime;
   @override
@@ -226,7 +242,7 @@ class _$MatchModelImpl implements _MatchModel {
 
   @override
   String toString() {
-    return 'MatchModel(id: $id, place: $place, datetime: $datetime, league: $league, goalsID: $goalsID, goals: $goals, video: $video)';
+    return 'MatchModel(id: $id, place: $place, start: $start, datetime: $datetime, league: $league, goalsID: $goalsID, goals: $goals, video: $video)';
   }
 
   @override
@@ -236,6 +252,7 @@ class _$MatchModelImpl implements _MatchModel {
             other is _$MatchModelImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.place, place) || other.place == place) &&
+            (identical(other.start, start) || other.start == start) &&
             (identical(other.datetime, datetime) ||
                 other.datetime == datetime) &&
             (identical(other.league, league) || other.league == league) &&
@@ -247,7 +264,7 @@ class _$MatchModelImpl implements _MatchModel {
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
-      runtimeType, id, place, datetime, league, goalsID, goals, video);
+      runtimeType, id, place, start, datetime, league, goalsID, goals, video);
 
   @JsonKey(ignore: true)
   @override
@@ -267,6 +284,7 @@ abstract class _MatchModel implements MatchModel {
   const factory _MatchModel(
       {required final int id,
       required final String place,
+      required final String start,
       required final DateTime datetime,
       required final String league,
       @JsonKey(name: 'goals_id') required final int goalsID,
@@ -280,6 +298,8 @@ abstract class _MatchModel implements MatchModel {
   int get id;
   @override
   String get place;
+  @override
+  String get start;
   @override
   DateTime get datetime;
   @override

@@ -12,15 +12,30 @@ class AuthRepo {
     }
   }
 
-  Future<void> signUp(
-      {required String email,
-      required String password,
-      required String username}) async {
+  Future<String?> getUserName() async {
+    try {
+      User? user = _auth.currentUser;
+      if (user != null) {
+        return user.displayName;
+      }
+    } catch (e) {
+      throw Exception('Failed to sign in: $e');
+    }
+    return null;
+  }
+
+  Future<void> signUp({
+    required String email,
+    required String password,
+    required String username,
+  }) async {
     try {
       await _auth.createUserWithEmailAndPassword(
           email: email, password: password);
 
-      // Store user information in Shared Preferences
+      User? user = _auth.currentUser;
+      await user?.updateDisplayName(username);
+
       SharedPreferences prefs = await SharedPreferences.getInstance();
       prefs.setString('username', username);
     } catch (e) {
@@ -43,9 +58,8 @@ class AuthRepo {
 
       /// Clear cache of SharePreferences
       prefs.clear();
-      print("User signed out successfully");
     } catch (e) {
-      print("Error signing out: $e");
+      throw Exception('Failed to sign in: $e');
     }
   }
 }

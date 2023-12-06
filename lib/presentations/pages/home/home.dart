@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
@@ -12,16 +13,15 @@ import 'package:soccer_club_app/core/constant/icons.dart';
 import 'package:soccer_club_app/core/extention/builder_context_extension.dart';
 import 'package:soccer_club_app/core/l10n/l10n.dart';
 import 'package:soccer_club_app/core/router/router.dart';
-import 'package:soccer_club_app/core/typography/app_fontweight.dart';
 import 'package:soccer_club_app/core/utils/size_utils.dart';
 import 'package:soccer_club_app/data/models/match/match_model.dart';
 import 'package:soccer_club_app/data/models/ticket/ticket_model.dart';
+import 'package:soccer_club_app/data/repositories/auth_repo.dart';
 import 'package:soccer_club_app/presentations/layout/bottom_navigation_bar.dart';
-import 'package:soccer_club_app/presentations/layout/scaffold.dart';
 import 'package:soccer_club_app/presentations/widgets/app_bar.dart';
 import 'package:soccer_club_app/presentations/widgets/card.dart';
+import 'package:soccer_club_app/presentations/widgets/icon.dart';
 import 'package:soccer_club_app/presentations/widgets/text.dart';
-import 'package:video_player/video_player.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -31,116 +31,108 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  int _currentIndex = 0;
+  final authRepo = AuthRepo();
 
   @override
   Widget build(BuildContext context) {
     const sizedBox13 = SizedBox(height: 13);
-    return BlocProvider(
-      create: (context) => HomeBloc()
-        ..add(GetNewsEvent())
-        ..add(GetMatchEvent())
-        ..add(GetTicketEvent())
-        ..add(VideoLoadingEvent()),
-      child: BlocListener<HomeBloc, HomeState>(
-          listener: (context, state) {
+    return RepositoryProvider.value(
+      value: authRepo,
+      child: BlocProvider(
+        create: (context) => HomeBloc(authRepo: authRepo)
+          ..add(GetNewsEvent())
+          ..add(GetMatchEvent())
+          ..add(GetUserEvent())
+          ..add(GetTicketEvent()),
+        child: BlocBuilder<HomeBloc, HomeState>(
+          builder: (context, state) {
             if (state is HomeError) {
-              /// TODO: show snackbar here
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text(context.l10n.loadingfailed),
+                  duration: const Duration(microseconds: 800),
+                ),
+              );
             }
-          },
-          child: SCScaffold(
-            appBar: PreferredSize(
-              preferredSize: const Size.fromHeight(159),
-              child: SCAppBar.second(
-                toolbarHeight: getVerticalSize(139),
-                centerTitle: false,
-                leadingWidth: 30,
-                title: context.l10n.goodMorning,
-                subtitle: context.l10n.adrian,
-                actions: [
-                  IconButton(
-                    icon: SvgPicture.asset(
-                      SCIcons.notifications,
-                    ),
-                    onPressed: () {
-                      context.go(AppRoutes.notificationsPage.path);
-                    },
-                  ),
-                  const SizedBox(width: 10),
-                  Padding(
-                    padding: const EdgeInsets.all(20),
-                    child: IconButton(
+
+            return Scaffold(
+              appBar: PreferredSize(
+                preferredSize: const Size.fromHeight(159),
+                child: SCAppBar.second(
+                  toolbarHeight: getVerticalSize(139),
+                  centerTitle: false,
+                  leadingWidth: 30,
+                  title: context.l10n.goodMorning,
+                  subtitle: context
+                          .read<HomeBloc>()
+                          .state
+                          .data
+                          .userName
+                          ?.displayName ??
+                      context.l10n.adrian,
+                  actions: [
+                    IconButton(
                       icon: SvgPicture.asset(
-                        SCIcons.menu,
+                        SCIcons.notifications,
                       ),
-                      onPressed: () async {
-                        context.go(AppRoutes.onBoarding.path);
+                      onPressed: () {
+                        context.go(AppRoutes.notificationsPage.path);
                       },
                     ),
-                  ),
-                ],
+                    const SizedBox(width: 10),
+                    Padding(
+                      padding: const EdgeInsets.all(20),
+                      child: SCIcon.logOut(
+                        color: AppColor.secondary,
+                        onPressed: () async {
+                          await authRepo.signOut();
+                          // ignore: use_build_context_synchronously
+                          context.go(AppRoutes.onBoarding.path);
+                        },
+                      ),
+                    ),
+                  ],
+                ),
               ),
-            ),
-            body: SingleChildScrollView(
-              child: Column(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 29,
-                      vertical: 10,
+              body: SingleChildScrollView(
+                padding: const EdgeInsets.all(29),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SCText.headlineMedium(
+                      text: context.l10n.netxMatch,
+                      context,
                     ),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        SCText.headlineMedium(
-                          text: context.l10n.netxMatch,
-                          context,
-                        ),
-                      ],
+                    sizedBox13,
+                    const _CardInfo(),
+                    sizedBox13,
+                    SCText.headlineMedium(
+                      text: context.l10n.news,
+                      context,
                     ),
-                  ),
-                  sizedBox13,
-                  const _CardInfo(),
-                  sizedBox13,
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 29),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        SCText.headlineMedium(
-                          text: context.l10n.news,
-                          context,
-                        ),
-                      ],
-                    ),
-                  ),
-                  sizedBox13,
-                  const _MatchNews(),
-                  const SizedBox(height: 20),
-                  const _LiveMatch(),
-                  const SizedBox(height: 18),
-                  const _Stadium(),
-                  SizedBox(height: context.getVerticalSize(50)),
-                ],
+                    sizedBox13,
+                    const _MatchNews(),
+                    const SizedBox(height: 20),
+                    const _LiveMatch(),
+                    const SizedBox(height: 18),
+                    const _Ticket(),
+                    SizedBox(height: context.getVerticalSize(50)),
+                  ],
+                ),
               ),
-            ),
-            bottomNavigationBar: SCBottomNavigationBar(
-              currentIndex: _currentIndex,
-              onTap: (int index) {
-                setState(() {
-                  _currentIndex = index;
-                });
-              },
-            ),
-            floatingActionButtonLocation:
-                FloatingActionButtonLocation.centerDocked,
-            floatingActionButton: FloatingActionButton(
-              elevation: 0,
-              onPressed: () {},
-              backgroundColor: AppColor.secondary,
-              child: Image.asset(SCAssets.logoMatch),
-            ),
-          )),
+              bottomNavigationBar: const SCBottomNavigationBar(),
+              floatingActionButtonLocation:
+                  FloatingActionButtonLocation.centerDocked,
+              floatingActionButton: FloatingActionButton(
+                elevation: 0,
+                onPressed: () {},
+                backgroundColor: AppColor.secondary,
+                child: Image.asset(SCAssets.logoMatch),
+              ),
+            );
+          },
+        ),
+      ),
     );
   }
 }
@@ -154,39 +146,37 @@ class _CardInfo extends StatelessWidget {
       builder: (context, state) {
         return Column(
           children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 29),
-              child: GestureDetector(
-                onTap: () {
-                  context.go(AppRoutes.nextMatchPage.path);
-                },
-                child: SizedBox(
-                  height: 66,
-                  child: SCCard.match(
-                    color: AppColor.whiteSmoke,
-                    shape: const RoundedRectangleBorder(
-                      borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(20),
-                        topRight: Radius.circular(20),
-                      ),
+            GestureDetector(
+              onTap: () {
+                context.go(AppRoutes.nextMatchPage.path);
+              },
+              child: SizedBox(
+                height: context.getVerticalSize(66),
+                child: SCCard.match(
+                  color: AppColor.whiteSmoke,
+                  shape: const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(20),
+                      topRight: Radius.circular(20),
                     ),
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
-                      decoration: const BoxDecoration(
-                        boxShadow: [
-                          BoxShadow(
-                            color: AppColor.whiteSmoke,
-                            offset: Offset(0, 80),
-                            blurRadius: 8,
-                          ),
-                        ],
-                      ),
+                  ),
+                  child: Container(
+                    decoration: const BoxDecoration(
+                      boxShadow: [
+                        BoxShadow(
+                          color: AppColor.whiteSmoke,
+                          offset: Offset(0, 80),
+                          blurRadius: 8,
+                        ),
+                      ],
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(10),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Stack(
                             clipBehavior: Clip.none,
-                            alignment: Alignment.center,
                             children: [
                               Container(
                                 width: 35,
@@ -210,15 +200,9 @@ class _CardInfo extends StatelessWidget {
                               ),
                             ],
                           ),
-                          IconButton(
-                            onPressed: () {
-                              context.go(AppRoutes.nextMatchPage.path);
-                            },
-                            icon: const Icon(
-                              Icons.more_vert_outlined,
-                              color: AppColor.blueAzure,
-                            ),
-                          ),
+                          SCIcon.vertOutlined(
+                            color: AppColor.blueAzure,
+                          )
                         ],
                       ),
                     ),
@@ -226,33 +210,30 @@ class _CardInfo extends StatelessWidget {
                 ),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 29),
-              child: SCCard.match(
-                shape: const RoundedRectangleBorder(
-                  borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(20),
-                    bottomRight: Radius.circular(20),
-                  ),
+            SCCard.match(
+              shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.only(
+                  bottomLeft: Radius.circular(20),
+                  bottomRight: Radius.circular(20),
                 ),
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 10),
-                  child: Row(
-                    children: [
-                      // Create a Row of widgets for the left side of the card.
-                      IconButton(
-                        icon: SvgPicture.asset(
-                          SCIcons.calender,
-                        ),
-                        onPressed: () {},
+              ),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(vertical: 10),
+                child: Row(
+                  children: [
+                    // Create a Row of widgets for the left side of the card.
+                    IconButton(
+                      icon: SvgPicture.asset(
+                        SCIcons.calender,
                       ),
-                      Expanded(
-                        child: state is GetNewsLoading
-                            ? const CircularProgressIndicator()
-                            : _NextMatch(match: state.data.nextMatch),
-                      ),
-                    ],
-                  ),
+                      onPressed: () {},
+                    ),
+                    Expanded(
+                      child: state is GetNewsLoading
+                          ? const Center(child: CircularProgressIndicator())
+                          : _NextMatch(match: state.data.nextMatch),
+                    ),
+                  ],
                 ),
               ),
             ),
@@ -273,23 +254,27 @@ class _NextMatch extends StatelessWidget {
     return (match == null)
         ? const SizedBox.shrink()
         : Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              SCText.bodySmall(
-                context,
-                text: (dateTimeFormat(match!.datetime)),
-                style: context.textTheme.bodySmall?.copyWith(
-                  color: AppColor.scrim,
-                  fontWeight: AppFontWeight.regular,
-                ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SCText.bodySmall(
+                    context,
+                    text: (dateMonthFormat(match!.datetime)),
+                  ),
+                  const SizedBox(
+                    height: 3,
+                  ),
+                  SCText.bodySmall(
+                    context,
+                    text: (yearsFormat(match!.datetime)),
+                  ),
+                ],
               ),
               const Expanded(child: SizedBox()),
-
-              // Create a Row of widgets for the right side of the card.
               IconButton(
                 icon: SvgPicture.asset(
                   SCIcons.cup,
-                  // color: AppColor.primary,
                 ),
                 onPressed: () {
                   context.go(AppRoutes.fixturesPage.path);
@@ -337,7 +322,7 @@ class _MatchItem extends StatelessWidget {
               const SizedBox(height: 5),
               // Create SCText Body small widget for the text.
               SCText.labelMedium(
-                text: (dateTimeFormat(match!.datetime)),
+                text: (dateTimeFormatWithDay(match!.datetime)),
                 style: context.textTheme.labelMedium?.copyWith(
                   color: AppColor.blueAzure,
                 ),
@@ -345,9 +330,10 @@ class _MatchItem extends StatelessWidget {
               ),
               const SizedBox(height: 14),
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   Image.asset(SCAssets.logoMatch),
+                  // Image.asset(match?.goals?.logo ?? SCAssets.logoSecondMatch),
                   SizedBox(
                     width: getSize(45),
                   ),
@@ -363,7 +349,7 @@ class _MatchItem extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.symmetric(
                       vertical: 1,
-                      horizontal: 6,
+                      horizontal: 8,
                     ),
                     child: SCText.displaySmall(
                       context,
@@ -372,14 +358,14 @@ class _MatchItem extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(
-                    width: 27,
+                    width: 17,
                   ),
                   SCText.displaySmall(
                     context,
                     text: context.l10n.dash,
                   ),
                   const SizedBox(
-                    width: 24,
+                    width: 23,
                   ),
                   SCText.displaySmall(
                     context,
@@ -403,11 +389,10 @@ class _MatchNews extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<HomeBloc, HomeState>(
       builder: (context, state) {
-        return Container(
-          padding: const EdgeInsets.only(left: 29),
+        return SizedBox(
           height: 175,
           child: state is GetMatchLoading
-              ? const CircularProgressIndicator()
+              ? const Center(child: CircularProgressIndicator())
               : _News(matchs: state.data.news ?? []),
         );
       },
@@ -423,12 +408,15 @@ class _News extends StatelessWidget {
   Widget build(BuildContext context) {
     return (matchs?.isEmpty ?? false)
         ? const SizedBox.shrink()
-        : ListView.builder(
+        : ListView.separated(
             scrollDirection: Axis.horizontal,
             shrinkWrap: true,
-            itemCount: (matchs!.length / 4).ceil() * 4 - 1,
+            itemCount: matchs!.length + 3,
+            separatorBuilder: (context, index) {
+              return const SizedBox(width: 10);
+            },
             itemBuilder: (context, index) {
-              if (index % 4 == 0) {
+              if (index == 0) {
                 return _MatchItem(match: matchs![1]);
               } else {
                 return _VideoHighlight(match: matchs![1]);
@@ -445,86 +433,55 @@ class _VideoHighlight extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<HomeBloc, HomeState>(
-      builder: (context, state) {
-        final videoBloc = context.read<HomeBloc>();
-        final bool isPlaying = state.data.isPlaying!;
-        final VideoPlayerController controller =
-            VideoPlayerController.networkUrl(Uri.parse(match!.video!));
-        controller.initialize().then((_) {
-          if (isPlaying) {
-            controller.play();
-          } else {
-            controller.pause();
-          }
-        });
-
-        return Stack(
-          clipBehavior: Clip.none,
-          alignment: Alignment.center,
-          children: [
-            Container(
-              height: 170,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(18),
-                border: Border.all(color: AppColor.primary),
-              ),
-              child: GestureDetector(
-                onTap: () {
-                  if (isPlaying) {
-                    videoBloc.add(PauseVideoEvent());
-                  } else {
-                    videoBloc.add(PlayVideoEvent());
-                  }
-                },
-                child: AspectRatio(
-                  aspectRatio: controller.value.aspectRatio,
-                  child: VideoPlayer(controller),
-                ),
-              ),
+    return Stack(
+      clipBehavior: Clip.none,
+      alignment: Alignment.center,
+      children: [
+        Container(
+          height: 170,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(18),
+            border: Border.all(color: AppColor.primary),
+          ),
+          child: SCCard.avatar(
+            // child:ReelModel()
+            child: CachedNetworkImage(
+              imageUrl: SCAssets.playerMatch,
+              fit: BoxFit.fill,
             ),
-            Positioned(
-              bottom: 4,
-              child: SizedBox(
-                width: 149,
-                height: 42,
-                child: SCCard.avatar(
-                  borderRadius: const BorderRadius.only(
-                    bottomLeft: Radius.circular(15),
-                    bottomRight: Radius.circular(15),
-                  ),
-                  color: AppColor.transparent,
-                  child: const SizedBox.shrink(),
-                ),
+          ),
+        ),
+        Positioned(
+          bottom: 4,
+          child: SizedBox(
+            width: 149,
+            height: 42,
+            child: SCCard.avatar(
+              borderRadius: const BorderRadius.only(
+                bottomLeft: Radius.circular(15),
+                bottomRight: Radius.circular(15),
               ),
+              color: AppColor.transparent,
+              child: const SizedBox.shrink(),
             ),
-            Positioned(
-              top: 132,
-              left: 7,
-              child: SCText.titleLarge(
-                text: context.l10n.greatestGamsvVictoryGreatWinner,
-                context,
-              ),
-            ),
-            Positioned(
-              top: 100,
-              left: 10,
-              child: GestureDetector(
-                onTap: () {
-                  if (isPlaying) {
-                    videoBloc.add(PauseVideoEvent());
-                  } else {
-                    videoBloc.add(PlayVideoEvent());
-                  }
-                },
-                child: SvgPicture.asset(
-                  SCIcons.youtube,
-                ),
-              ),
-            ),
-          ],
-        );
-      },
+          ),
+        ),
+        Positioned(
+          top: 132,
+          left: 7,
+          child: SCText.titleLarge(
+            text: context.l10n.greatestGamsvVictoryGreatWinner,
+            context,
+          ),
+        ),
+        Positioned(
+          top: 100,
+          left: 10,
+          child: SvgPicture.asset(
+            SCIcons.youtube,
+          ),
+        ),
+      ],
     );
   }
 }
@@ -534,106 +491,102 @@ class _LiveMatch extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 29),
-      child: Stack(
-        clipBehavior: Clip.none,
-        children: [
-          SizedBox(
-            height: 199,
+    return Stack(
+      clipBehavior: Clip.none,
+      alignment: Alignment.center,
+      children: [
+        SizedBox(
+          width: double.infinity,
+          height: getSize(199),
+          child: SCCard.avatar(
+            shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(18)),
+              side: BorderSide(color: AppColor.primary),
+            ),
+            child: CachedNetworkImage(
+              imageUrl: SCAssets.soccerStadium,
+              fit: BoxFit.fill,
+            ),
+          ),
+        ),
+        Positioned(
+          bottom: 1,
+          child: SizedBox(
+            width: 317,
+            height: 71,
             child: SCCard.avatar(
-              shape: const RoundedRectangleBorder(
-                borderRadius: BorderRadius.all(Radius.circular(18)),
-                side: BorderSide(color: AppColor.primary),
+              borderRadius: const BorderRadius.only(
+                bottomLeft: Radius.circular(15),
+                bottomRight: Radius.circular(15),
               ),
-              child: Image.asset(
-                SCAssets.soccerStadium,
-                fit: BoxFit.fill,
-              ),
+              color: Colors.transparent,
+              child: const SizedBox.shrink(),
             ),
           ),
-          Positioned(
-            bottom: 1,
-            child: SizedBox(
-              width: 317,
-              height: 71,
-              child: SCCard.avatar(
-                borderRadius: const BorderRadius.only(
-                  bottomLeft: Radius.circular(15),
-                  bottomRight: Radius.circular(15),
-                ),
-                color: Colors.transparent,
-                child: const SizedBox.shrink(),
-              ),
-            ),
+        ),
+        Positioned(
+          top: 145,
+          left: 15,
+          child: Container(
+            decoration: const BoxDecoration(color: AppColor.primary),
+            width: 93,
+            height: 5,
           ),
-          Positioned(
-            top: 145,
-            left: 15,
-            child: Container(
-              decoration: const BoxDecoration(color: AppColor.primary),
-              width: 93,
-              height: 5,
-            ),
-          ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }
 
-class _Stadium extends StatelessWidget {
-  const _Stadium({Key? key}) : super(key: key);
+class _Ticket extends StatelessWidget {
+  const _Ticket({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<HomeBloc, HomeState>(
       builder: (context, state) {
-        return Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 27),
-          child: Stack(
-            clipBehavior: Clip.none,
-            alignment: Alignment.center,
-            children: [
-              SCCard.avatar(
-                height: 150,
-                child: Container(
-                  decoration: const BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(18)),
-                    gradient: LinearGradient(
-                      begin: Alignment(1, -4),
-                      end: Alignment(-1, 2),
-                      colors: AppColor.linearGradient,
-                    ),
+        return Stack(
+          clipBehavior: Clip.none,
+          alignment: Alignment.center,
+          children: [
+            SCCard.avatar(
+              height: 150,
+              child: Container(
+                decoration: const BoxDecoration(
+                  borderRadius: BorderRadius.all(Radius.circular(18)),
+                  gradient: LinearGradient(
+                    begin: Alignment(1, -4),
+                    end: Alignment(-1, 2),
+                    colors: AppColor.linearGradient,
                   ),
                 ),
               ),
-              Positioned(
-                top: 10,
-                right: 230,
-                child: Image.asset(
-                  SCAssets.stadium,
-                  width: getSize(145),
-                  height: getSize(125),
-                ),
+            ),
+            Positioned(
+              top: 10,
+              right: 230,
+              child: CachedNetworkImage(
+                imageUrl: SCAssets.stadium,
+                width: getSize(145),
+                height: getSize(125),
               ),
-              Positioned(
-                bottom: 15,
-                left: 170,
-                child: Container(
-                  width: 149,
-                  height: 30,
-                  decoration: BoxDecoration(
-                    color: AppColor.secondary.withOpacity(0.2),
-                    borderRadius: BorderRadius.circular(15),
-                  ),
-                  child: state is GetTicketLoading
-                      ? const CircularProgressIndicator()
-                      : _TicketSaleOff(ticket: state.data.ticket),
+            ),
+            Positioned(
+              bottom: 15,
+              left: 170,
+              child: Container(
+                width: 149,
+                height: 30,
+                decoration: BoxDecoration(
+                  color: AppColor.secondary.withOpacity(0.2),
+                  borderRadius: BorderRadius.circular(15),
                 ),
+                child: state is GetTicketLoading
+                    ? const Center(child: CircularProgressIndicator())
+                    : _TicketSaleOff(ticket: state.data.ticket),
               ),
-            ],
-          ),
+            ),
+          ],
         );
       },
     );
@@ -649,11 +602,17 @@ class _TicketSaleOff extends StatelessWidget {
     return (ticket == null)
         ? const SizedBox.shrink()
         : Center(
-            child: SCText.bodyLarge(
-              context,
-              text: ticket?.desc ?? context.l10n.getOFF,
-              style: context.textTheme.bodyLarge
-                  ?.copyWith(color: AppColor.secondary),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SCText.bodyLarge(
+                  context,
+                  text:
+                      '${context.l10n.get} ${ticket?.sale.toString()}${context.l10n.off}',
+                  style: context.textTheme.bodyLarge
+                      ?.copyWith(color: AppColor.secondary),
+                ),
+              ],
             ),
           );
   }

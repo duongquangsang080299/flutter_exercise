@@ -51,6 +51,20 @@ class GetMatchLoading extends HomeState {
   final HomeViewModel data;
 }
 
+class UserLoading extends HomeState {
+  const UserLoading(this.data) : super(data);
+
+  @override
+  final HomeViewModel data;
+}
+
+class UserSuccess extends HomeState {
+  const UserSuccess(this.data) : super(data);
+
+  @override
+  final HomeViewModel data;
+}
+
 class GetTicketSuccess extends HomeState {
   const GetTicketSuccess(this.data) : super(data);
 

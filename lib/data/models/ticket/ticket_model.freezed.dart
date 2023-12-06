@@ -22,7 +22,6 @@ TicketModel _$TicketModelFromJson(Map<String, dynamic> json) {
 mixin _$TicketModel {
   int get id => throw _privateConstructorUsedError;
   double get sale => throw _privateConstructorUsedError;
-  String get desc => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -36,7 +35,7 @@ abstract class $TicketModelCopyWith<$Res> {
           TicketModel value, $Res Function(TicketModel) then) =
       _$TicketModelCopyWithImpl<$Res, TicketModel>;
   @useResult
-  $Res call({int id, double sale, String desc});
+  $Res call({int id, double sale});
 }
 
 /// @nodoc
@@ -54,7 +53,6 @@ class _$TicketModelCopyWithImpl<$Res, $Val extends TicketModel>
   $Res call({
     Object? id = null,
     Object? sale = null,
-    Object? desc = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -65,10 +63,6 @@ class _$TicketModelCopyWithImpl<$Res, $Val extends TicketModel>
           ? _value.sale
           : sale // ignore: cast_nullable_to_non_nullable
               as double,
-      desc: null == desc
-          ? _value.desc
-          : desc // ignore: cast_nullable_to_non_nullable
-              as String,
     ) as $Val);
   }
 }
@@ -81,7 +75,7 @@ abstract class _$$TicketModelImplCopyWith<$Res>
       __$$TicketModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, double sale, String desc});
+  $Res call({int id, double sale});
 }
 
 /// @nodoc
@@ -97,7 +91,6 @@ class __$$TicketModelImplCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? sale = null,
-    Object? desc = null,
   }) {
     return _then(_$TicketModelImpl(
       id: null == id
@@ -108,10 +101,6 @@ class __$$TicketModelImplCopyWithImpl<$Res>
           ? _value.sale
           : sale // ignore: cast_nullable_to_non_nullable
               as double,
-      desc: null == desc
-          ? _value.desc
-          : desc // ignore: cast_nullable_to_non_nullable
-              as String,
     ));
   }
 }
@@ -119,8 +108,7 @@ class __$$TicketModelImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$TicketModelImpl implements _TicketModel {
-  const _$TicketModelImpl(
-      {required this.id, required this.sale, required this.desc});
+  const _$TicketModelImpl({required this.id, required this.sale});
 
   factory _$TicketModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$TicketModelImplFromJson(json);
@@ -129,12 +117,10 @@ class _$TicketModelImpl implements _TicketModel {
   final int id;
   @override
   final double sale;
-  @override
-  final String desc;
 
   @override
   String toString() {
-    return 'TicketModel(id: $id, sale: $sale, desc: $desc)';
+    return 'TicketModel(id: $id, sale: $sale)';
   }
 
   @override
@@ -143,13 +129,12 @@ class _$TicketModelImpl implements _TicketModel {
         (other.runtimeType == runtimeType &&
             other is _$TicketModelImpl &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.sale, sale) || other.sale == sale) &&
-            (identical(other.desc, desc) || other.desc == desc));
+            (identical(other.sale, sale) || other.sale == sale));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, sale, desc);
+  int get hashCode => Object.hash(runtimeType, id, sale);
 
   @JsonKey(ignore: true)
   @override
@@ -167,9 +152,7 @@ class _$TicketModelImpl implements _TicketModel {
 
 abstract class _TicketModel implements TicketModel {
   const factory _TicketModel(
-      {required final int id,
-      required final double sale,
-      required final String desc}) = _$TicketModelImpl;
+      {required final int id, required final double sale}) = _$TicketModelImpl;
 
   factory _TicketModel.fromJson(Map<String, dynamic> json) =
       _$TicketModelImpl.fromJson;
@@ -178,8 +161,6 @@ abstract class _TicketModel implements TicketModel {
   int get id;
   @override
   double get sale;
-  @override
-  String get desc;
   @override
   @JsonKey(ignore: true)
   _$$TicketModelImplCopyWith<_$TicketModelImpl> get copyWith =>

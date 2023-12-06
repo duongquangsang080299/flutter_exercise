@@ -1,8 +1,18 @@
-part of 'next_match_bloc.dart';
+import 'package:equatable/equatable.dart';
 
-sealed class NextMatchEvent extends Equatable {
-  const NextMatchEvent();
+abstract class MatchDetailEvent extends Equatable {
+  const MatchDetailEvent();
 
+  @override
+  List<Object> get props => [];
+}
+
+class GetMatchDetailEvent extends MatchDetailEvent {
+  @override
+  List<Object> get props => [];
+}
+
+class GetListMatchEvent extends MatchDetailEvent {
   @override
   List<Object> get props => [];
 }

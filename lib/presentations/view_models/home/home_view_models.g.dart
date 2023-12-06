@@ -20,9 +20,6 @@ _$HomeViewModelImpl _$$HomeViewModelImplFromJson(Map<String, dynamic> json) =>
       ticket: json['ticket'] == null
           ? null
           : TicketModel.fromJson(json['ticket'] as Map<String, dynamic>),
-      isPlaying: json['isPlaying'] as bool?,
-      isPause: json['isPause'] as bool?,
-      isLoading: json['isLoading'] as bool?,
     );
 
 Map<String, dynamic> _$$HomeViewModelImplToJson(_$HomeViewModelImpl instance) =>
@@ -31,7 +28,4 @@ Map<String, dynamic> _$$HomeViewModelImplToJson(_$HomeViewModelImpl instance) =>
       'nextMatch': instance.nextMatch,
       'news': instance.news,
       'ticket': instance.ticket,
-      'isPlaying': instance.isPlaying,
-      'isPause': instance.isPause,
-      'isLoading': instance.isLoading,
     };

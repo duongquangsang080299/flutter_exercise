@@ -4,20 +4,39 @@ import 'package:soccer_club_app/blocs/home/home_state.dart';
 import 'package:soccer_club_app/core/constant/app_exceptions.dart';
 import 'package:soccer_club_app/data/models/match/match_model.dart';
 import 'package:soccer_club_app/data/models/ticket/ticket_model.dart';
+import 'package:soccer_club_app/data/models/user/user_model.dart';
+import 'package:soccer_club_app/data/repositories/auth_repo.dart';
 import 'package:soccer_club_app/data/repositories/match_repo.dart';
 import 'package:soccer_club_app/data/repositories/ticket_repo.dart';
 
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
   final MatchRepository matchRepository = MatchRepository();
   final TicketRepository ticketRepository = TicketRepository();
-
-  HomeBloc() : super(HomeInitialState(homeEmpty)) {
+  final AuthRepo authRepo = AuthRepo();
+  HomeBloc({required AuthRepo authRepo}) : super(HomeInitialState(homeEmpty)) {
     on<GetNewsEvent>(_onGetNews);
     on<GetMatchEvent>(_onGetMatch);
     on<GetTicketEvent>(_onGetTicket);
-    on<VideoLoadingEvent>(_onVideoLoadingData);
-    on<PlayVideoEvent>(_onIsPlayVideo);
-    on<PauseVideoEvent>(_onIsPauseVideo);
+    on<GetUserEvent>(_onLoadUserProfile);
+  }
+
+  Future<void> _onLoadUserProfile(
+      GetUserEvent event, Emitter<HomeState> emit) async {
+    try {
+      emit(UserLoading(state.data));
+
+      String? displayName = await authRepo.getUserName();
+      final UserModel user = UserModel(displayName: displayName ?? '');
+
+      emit(UserSuccess(
+        state.data.copyWith(userName: user),
+      ));
+    } catch (e) {
+      emit(HomeError(
+        data: state.data,
+        errorMessage: AppExceptionMessages.badRequest,
+      ));
+    }
   }
 
   Future<void> _onGetNews(GetNewsEvent event, Emitter<HomeState> emit) async {
@@ -66,35 +85,5 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         /// FIXME:we should correct error here
       ));
     }
-  }
-
-  Future<void> _onVideoLoadingData(
-      VideoLoadingEvent event, Emitter<HomeState> emit) async {
-    emit(HomeVideoHandler(
-        data: state.data.copyWith(
-      isLoading: true,
-      isPause: false,
-      isPlaying: false,
-    )));
-  }
-
-  Future<void> _onIsPlayVideo(
-      PlayVideoEvent event, Emitter<HomeState> emit) async {
-    emit(HomeVideoHandler(
-        data: state.data.copyWith(
-      isLoading: false,
-      isPause: false,
-      isPlaying: true,
-    )));
-  }
-
-  Future<void> _onIsPauseVideo(
-      PauseVideoEvent event, Emitter<HomeState> emit) async {
-    emit(HomeVideoHandler(
-        data: state.data.copyWith(
-      isLoading: false,
-      isPause: true,
-      isPlaying: false,
-    )));
   }
 }

@@ -24,9 +24,6 @@ mixin _$HomeViewModel {
   MatchModel? get nextMatch => throw _privateConstructorUsedError;
   List<MatchModel>? get news => throw _privateConstructorUsedError;
   TicketModel? get ticket => throw _privateConstructorUsedError;
-  bool? get isPlaying => throw _privateConstructorUsedError;
-  bool? get isPause => throw _privateConstructorUsedError;
-  bool? get isLoading => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -44,10 +41,7 @@ abstract class $HomeViewModelCopyWith<$Res> {
       {UserModel? userName,
       MatchModel? nextMatch,
       List<MatchModel>? news,
-      TicketModel? ticket,
-      bool? isPlaying,
-      bool? isPause,
-      bool? isLoading});
+      TicketModel? ticket});
 
   $UserModelCopyWith<$Res>? get userName;
   $MatchModelCopyWith<$Res>? get nextMatch;
@@ -71,9 +65,6 @@ class _$HomeViewModelCopyWithImpl<$Res, $Val extends HomeViewModel>
     Object? nextMatch = freezed,
     Object? news = freezed,
     Object? ticket = freezed,
-    Object? isPlaying = freezed,
-    Object? isPause = freezed,
-    Object? isLoading = freezed,
   }) {
     return _then(_value.copyWith(
       userName: freezed == userName
@@ -92,18 +83,6 @@ class _$HomeViewModelCopyWithImpl<$Res, $Val extends HomeViewModel>
           ? _value.ticket
           : ticket // ignore: cast_nullable_to_non_nullable
               as TicketModel?,
-      isPlaying: freezed == isPlaying
-          ? _value.isPlaying
-          : isPlaying // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      isPause: freezed == isPause
-          ? _value.isPause
-          : isPause // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      isLoading: freezed == isLoading
-          ? _value.isLoading
-          : isLoading // ignore: cast_nullable_to_non_nullable
-              as bool?,
     ) as $Val);
   }
 
@@ -156,10 +135,7 @@ abstract class _$$HomeViewModelImplCopyWith<$Res>
       {UserModel? userName,
       MatchModel? nextMatch,
       List<MatchModel>? news,
-      TicketModel? ticket,
-      bool? isPlaying,
-      bool? isPause,
-      bool? isLoading});
+      TicketModel? ticket});
 
   @override
   $UserModelCopyWith<$Res>? get userName;
@@ -184,9 +160,6 @@ class __$$HomeViewModelImplCopyWithImpl<$Res>
     Object? nextMatch = freezed,
     Object? news = freezed,
     Object? ticket = freezed,
-    Object? isPlaying = freezed,
-    Object? isPause = freezed,
-    Object? isLoading = freezed,
   }) {
     return _then(_$HomeViewModelImpl(
       userName: freezed == userName
@@ -205,18 +178,6 @@ class __$$HomeViewModelImplCopyWithImpl<$Res>
           ? _value.ticket
           : ticket // ignore: cast_nullable_to_non_nullable
               as TicketModel?,
-      isPlaying: freezed == isPlaying
-          ? _value.isPlaying
-          : isPlaying // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      isPause: freezed == isPause
-          ? _value.isPause
-          : isPause // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      isLoading: freezed == isLoading
-          ? _value.isLoading
-          : isLoading // ignore: cast_nullable_to_non_nullable
-              as bool?,
     ));
   }
 }
@@ -228,10 +189,7 @@ class _$HomeViewModelImpl implements _HomeViewModel {
       {this.userName,
       this.nextMatch,
       final List<MatchModel>? news,
-      this.ticket,
-      this.isPlaying,
-      this.isPause,
-      this.isLoading})
+      this.ticket})
       : _news = news;
 
   factory _$HomeViewModelImpl.fromJson(Map<String, dynamic> json) =>
@@ -253,16 +211,10 @@ class _$HomeViewModelImpl implements _HomeViewModel {
 
   @override
   final TicketModel? ticket;
-  @override
-  final bool? isPlaying;
-  @override
-  final bool? isPause;
-  @override
-  final bool? isLoading;
 
   @override
   String toString() {
-    return 'HomeViewModel(userName: $userName, nextMatch: $nextMatch, news: $news, ticket: $ticket, isPlaying: $isPlaying, isPause: $isPause, isLoading: $isLoading)';
+    return 'HomeViewModel(userName: $userName, nextMatch: $nextMatch, news: $news, ticket: $ticket)';
   }
 
   @override
@@ -275,25 +227,13 @@ class _$HomeViewModelImpl implements _HomeViewModel {
             (identical(other.nextMatch, nextMatch) ||
                 other.nextMatch == nextMatch) &&
             const DeepCollectionEquality().equals(other._news, _news) &&
-            (identical(other.ticket, ticket) || other.ticket == ticket) &&
-            (identical(other.isPlaying, isPlaying) ||
-                other.isPlaying == isPlaying) &&
-            (identical(other.isPause, isPause) || other.isPause == isPause) &&
-            (identical(other.isLoading, isLoading) ||
-                other.isLoading == isLoading));
+            (identical(other.ticket, ticket) || other.ticket == ticket));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      userName,
-      nextMatch,
-      const DeepCollectionEquality().hash(_news),
-      ticket,
-      isPlaying,
-      isPause,
-      isLoading);
+  int get hashCode => Object.hash(runtimeType, userName, nextMatch,
+      const DeepCollectionEquality().hash(_news), ticket);
 
   @JsonKey(ignore: true)
   @override
@@ -314,10 +254,7 @@ abstract class _HomeViewModel implements HomeViewModel {
       {final UserModel? userName,
       final MatchModel? nextMatch,
       final List<MatchModel>? news,
-      final TicketModel? ticket,
-      final bool? isPlaying,
-      final bool? isPause,
-      final bool? isLoading}) = _$HomeViewModelImpl;
+      final TicketModel? ticket}) = _$HomeViewModelImpl;
 
   factory _HomeViewModel.fromJson(Map<String, dynamic> json) =
       _$HomeViewModelImpl.fromJson;
@@ -330,12 +267,6 @@ abstract class _HomeViewModel implements HomeViewModel {
   List<MatchModel>? get news;
   @override
   TicketModel? get ticket;
-  @override
-  bool? get isPlaying;
-  @override
-  bool? get isPause;
-  @override
-  bool? get isLoading;
   @override
   @JsonKey(ignore: true)
   _$$HomeViewModelImplCopyWith<_$HomeViewModelImpl> get copyWith =>

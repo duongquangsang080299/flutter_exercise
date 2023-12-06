@@ -112,7 +112,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
                       // Localize the 'Skip' text using context.l10n
                       text: context.l10n.btnSkip,
                       style: context.textTheme.headlineSmall
-                          ?.copyWith(color: AppColor.neonSilver),
+                          ?.copyWith(color: AppColor.onTertiary),
                     ),
                   ),
                   const SizedBox(width: 20),

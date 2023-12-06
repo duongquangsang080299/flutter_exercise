@@ -11,12 +11,14 @@ class GoalsRepository {
   Future<List<GoalsModel>> getListGoals() async {
     try {
       // Construct the API endpoint URL for goal
-      const String apiUrl = '${Apis.basedUrl}goal';
+      const String apiUrl = '${Apis.basedUrl}goals';
       // Make a GET request to the API using the MainApi instance
       final List<dynamic> response = await mainApi.get(
         apiUrl,
         queryParams: {'select': '*,team(*)'},
       );
+      print(response);
+
       // Convert the dynamic response into a list of GoalsModel objects.
       final List<GoalsModel> goals =
           response.map((e) => GoalsModel.fromJson(e)).toList();

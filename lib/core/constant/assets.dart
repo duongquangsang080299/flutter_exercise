@@ -17,11 +17,13 @@ class SCAssets {
 
   static const String stadium = 'assets/images/stadium.png';
 
+  static const String logoVictory = 'assets/images/logo_victory.png';
+
   static const String playerMatch = 'assets/images/player_match.png';
 
   static const String playerNextMatch = 'assets/images/player_next_match.png';
 
-  static const String logoMatchDetail = 'assets/images/logo_match_detail.png';
+  static const String logoRed = 'assets/images/logo_match_detail.png';
 
   static const String logoMatch = 'assets/images/logo_match.png';
 

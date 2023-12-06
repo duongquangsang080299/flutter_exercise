@@ -10,12 +10,10 @@ _$TicketModelImpl _$$TicketModelImplFromJson(Map<String, dynamic> json) =>
     _$TicketModelImpl(
       id: json['id'] as int,
       sale: (json['sale'] as num).toDouble(),
-      desc: json['desc'] as String,
     );
 
 Map<String, dynamic> _$$TicketModelImplToJson(_$TicketModelImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'sale': instance.sale,
-      'desc': instance.desc,
     };

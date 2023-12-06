@@ -44,14 +44,28 @@ class SCIcon extends StatelessWidget {
   }
 
   /// Factory constructor for Drawer icon
-  factory SCIcon.menu({
+  factory SCIcon.logOut({
     Color? color,
     double? width,
     double? height,
     VoidCallback? onPressed,
   }) {
     return SCIcon(
-      iconData: Icons.menu,
+      iconData: Icons.logout,
+      color: color,
+      height: height,
+      width: width,
+      onPressed: onPressed,
+    );
+  }
+  factory SCIcon.vertOutlined({
+    Color? color,
+    double? width,
+    double? height,
+    VoidCallback? onPressed,
+  }) {
+    return SCIcon(
+      iconData: Icons.more_vert_outlined,
       color: color,
       height: height,
       width: width,

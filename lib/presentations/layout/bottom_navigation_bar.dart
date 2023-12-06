@@ -3,21 +3,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
-import 'package:soccer_club_app/core/color/app_color.dart';
 import 'package:soccer_club_app/core/constant/icons.dart';
 import 'package:soccer_club_app/core/l10n/l10n.dart';
-import 'package:soccer_club_app/core/typography/typography.dart';
 import 'package:soccer_club_app/core/router/router.dart';
+import 'package:soccer_club_app/core/typography/typography.dart';
 
 class SCBottomNavigationBar extends StatelessWidget {
   const SCBottomNavigationBar({
-    required this.currentIndex,
-    required this.onTap,
     super.key,
   });
-
-  final int currentIndex;
-  final void Function(int) onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +36,7 @@ class SCBottomNavigationBar extends StatelessWidget {
             icon: SvgPicture.asset(
               SCIcons.home,
               height: 20,
-              color: currentIndex == 0 ? AppColor.primary : AppColor.tertiary,
+              // color: currentIndex == 0 ? AppColor.primary : AppColor.tertiary,
             ),
             label: context.l10n.news,
             index: 0,
@@ -52,7 +46,7 @@ class SCBottomNavigationBar extends StatelessWidget {
             icon: SvgPicture.asset(
               SCIcons.fixtures,
               height: 23,
-              color: currentIndex == 1 ? AppColor.primary : AppColor.tertiary,
+              // color: currentIndex == 1 ? AppColor.primary : AppColor.tertiary,
             ),
             label: context.l10n.fixtures,
             index: 1,
@@ -62,7 +56,7 @@ class SCBottomNavigationBar extends StatelessWidget {
             icon: SvgPicture.asset(
               SCIcons.shop,
               height: 23,
-              color: currentIndex == 2 ? AppColor.primary : AppColor.tertiary,
+              // color: currentIndex == 2 ? AppColor.primary : AppColor.tertiary,
             ),
             label: context.l10n.shop,
             index: 2,
@@ -73,7 +67,7 @@ class SCBottomNavigationBar extends StatelessWidget {
               fit: BoxFit.fitHeight,
               SCIcons.tickets,
               height: 23,
-              color: currentIndex == 3 ? AppColor.primary : AppColor.tertiary,
+              // color: currentIndex == 3 ? AppColor.primary : AppColor.tertiary,
             ),
             label: context.l10n.tickets,
             index: 3,
@@ -89,11 +83,11 @@ class SCBottomNavigationBar extends StatelessWidget {
     required String label,
     required int index,
   }) {
-    final isSelected = currentIndex == index;
+    // final isSelected = currentIndex == index;
 
     return GestureDetector(
       onTap: () {
-        onTap(index);
+        // onTap(index);
         switch (index) {
           case 0:
             context.go(AppRoutes.homePage.path);
@@ -111,7 +105,7 @@ class SCBottomNavigationBar extends StatelessWidget {
           Text(
             label,
             style: TextStyle(
-              color: isSelected ? AppColor.primary : AppColor.tertiary,
+              // color: isSelected ? AppColor.primary : AppColor.tertiary,
               fontSize: 9, // Set the font size of the Text
               fontWeight:
                   AppFontWeight.regular, // Set the font weight of the Text

@@ -118,6 +118,12 @@ class ResetPasswordForm extends StatelessWidget {
         if (state is ResetPasswordSuccessState) {
           context.go(AppRoutes.signIn.path);
         }
+        if (state is ResetPasswordErrorState) {
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            content: Text(context.l10n.resetfailed),
+            duration: const Duration(microseconds: 800),
+          ));
+        }
       },
       child: Form(
         key: context.read<ResetPasswordBloc>().state.form.formKey,
@@ -166,25 +172,32 @@ class _ResetPasswordButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<ResetPasswordBloc, ResetPasswordState>(
-      buildWhen: (previous, current) => current is ResetPasswordChangedState,
       builder: (context, state) {
+        bool isFormValid = state.form.emailValid;
         return SCButton(
-          onPressed: () {
-            // if (state.form.emailError) {
-            //   context.read<ResetPasswordBloc>().add(
-            //         ResetPasswordSubmittedEvent(
-            //           form: state.form,
-            //         ),
-            //       );
-            // }
-          },
+          onPressed: isFormValid
+              ? () {
+                  context.read<ResetPasswordBloc>().add(
+                        ResetPasswordSubmittedEvent(
+                          form: state.form,
+                        ),
+                      );
+                }
+              : null,
           text: state is ResetPasswordLoadingState
-              ? const CircularProgressIndicator()
-              : SCText.headlineSmall(context,
-                  text: context.l10n.btnResetPassword),
+              ? const CircularProgressIndicator(
+                  color: AppColor.secondary,
+                )
+              : SCText.headlineSmall(
+                  context,
+                  text: context.l10n.btnResetPassword,
+                  style: TextStyle(
+                    color: isFormValid ? AppColor.secondary : AppColor.dimGray,
+                  ),
+                ),
           style: context.textTheme.headlineSmall,
-          // backgroundColor:
-          // (state.form.emailError) ? AppColor.primary : AppColor.whiteFlash,
+          backgroundColor:
+              (state.form.emailValid) ? AppColor.primary : AppColor.whiteFlash,
         );
       },
     );
