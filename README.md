@@ -40,15 +40,15 @@ Before you continue, ensure you meet the following requirements:
 - [X] Epic 2: Setup environment
 - [X] Epic 3: Create skeleton structure practice
 - [X] Epic 4: Setup Firbase
-- [] Epic 5: Implement the UI using Bloc + API
-- [] Epic 6: Test the application and prepare for the review
+- [X] Epic 5: Implement the UI using Bloc + API
+- [X] Epic 6: Test the application and prepare for the review
 
 ## UI
-- [] Sign In Screen + Bloc + FireBase
-- [] Sign Up Screen + Bloc + FireBase
-- [] Forgot Password Screen + Bloc + FireBase
-- [] Home Screen + Bloc + API
-- [] Next Match Screen + Bloc + API
+- [X] Sign In Screen + Bloc + FireBase
+- [X] Sign Up Screen + Bloc + FireBase
+- [X] Forgot Password Screen + Bloc + FireBase
+- [X] Home Screen + Bloc + API
+- [X] Next Match Screen + Bloc + API
 
 ## Installation
 1. Clone the repository:
