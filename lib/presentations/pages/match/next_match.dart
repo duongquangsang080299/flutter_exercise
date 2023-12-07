@@ -59,7 +59,7 @@ class _NextMatchPage extends State<NextMatchPage> {
                 delegate: SliverChildBuilderDelegate(
                   (BuildContext context, int index) {
                     if (index == 0) {
-                      return SizedBox(height: context.getVerticalSize(420));
+                      return SizedBox(height: context.getVerticalSize(440));
                     } else if (index == 1) {
                       return Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 35),
@@ -391,10 +391,9 @@ class _MatchCountDown extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       child: SizedBox(
-        width: double.infinity,
-        height: 127,
+        height: 150,
         child: SCCard.avatar(
           child: Container(
             decoration: const BoxDecoration(
@@ -419,25 +418,30 @@ class _MatchCountDown extends StatelessWidget {
                 const SizedBox(
                   height: 17,
                 ),
-                TimerCountdown(
-                  format: CountDownTimerFormat.daysHoursMinutesSeconds,
-                  endTime: matchDateTime,
-                  timeTextStyle: const TextStyle(
-                    fontSize: 28,
-                    color: AppColor.secondary,
-                    fontWeight: FontWeight.bold,
-                  ),
-                  colonsTextStyle: const TextStyle(
-                    fontSize: 28,
-                    color: AppColor.secondary,
-                    fontWeight: FontWeight.bold,
-                  ),
-                  descriptionTextStyle: const TextStyle(
-                    fontSize: 14,
-                    color: AppColor.secondary,
-                    fontWeight: FontWeight.bold,
-                  ),
-                  onEnd: () {},
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    TimerCountdown(
+                      format: CountDownTimerFormat.daysHoursMinutesSeconds,
+                      endTime: matchDateTime,
+                      timeTextStyle: const TextStyle(
+                        fontSize: 28,
+                        color: AppColor.secondary,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      colonsTextStyle: const TextStyle(
+                        fontSize: 28,
+                        color: AppColor.secondary,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      descriptionTextStyle: const TextStyle(
+                        fontSize: 14,
+                        color: AppColor.secondary,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      onEnd: () {},
+                    ),
+                  ],
                 ),
               ],
             ),

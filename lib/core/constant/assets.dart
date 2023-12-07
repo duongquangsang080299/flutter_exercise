@@ -15,11 +15,13 @@ class SCAssets {
 
   static const String soccerStadium = 'assets/images/soccer_stadium.png';
 
-  static const String stadium = 'assets/images/stadium.png';
+  static const String liveMatch =
+      'https://images.pexels.com/photos/1884576/pexels-photo-1884576.jpeg?auto=compress&cs=tinysrgb&w=1600';
 
   static const String logoVictory = 'assets/images/logo_victory.png';
 
-  static const String playerMatch = 'assets/images/player_match.png';
+  static const String playerMatch =
+      'https://images.pexels.com/photos/159555/soccer-football-athlete-player-159555.jpeg?auto=compress&cs=tinysrgb&w=1600';
 
   static const String playerNextMatch = 'assets/images/player_next_match.png';
 
@@ -30,4 +32,6 @@ class SCAssets {
   static const String logoSecondMatch = 'assets/images/logo_second_match.png';
 
   static const String youtube = 'assets/images/youtube.png';
+
+  static const String stadium = 'assets/images/stadium.png';
 }

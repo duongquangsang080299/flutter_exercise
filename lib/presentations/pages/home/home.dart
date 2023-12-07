@@ -437,11 +437,16 @@ class _VideoHighlight extends StatelessWidget {
             borderRadius: BorderRadius.circular(18),
             border: Border.all(color: AppColor.primary),
           ),
-          child: SCCard.avatar(
-            child: CachedNetworkImage(
-              imageUrl: SCAssets.playerMatch,
-              fit: BoxFit.fill,
+          child: CachedNetworkImage(
+            imageBuilder: (context, imageProvider) => Container(
+              width: 150,
+              height: 170,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(17),
+                image: DecorationImage(image: imageProvider, fit: BoxFit.cover),
+              ),
             ),
+            imageUrl: SCAssets.playerMatch,
           ),
         ),
         Positioned(
@@ -489,7 +494,6 @@ class _LiveMatch extends StatelessWidget {
       alignment: Alignment.center,
       children: [
         SizedBox(
-          width: double.infinity,
           height: getSize(199),
           child: SCCard.avatar(
             shape: const RoundedRectangleBorder(
@@ -497,15 +501,22 @@ class _LiveMatch extends StatelessWidget {
               side: BorderSide(color: AppColor.primary),
             ),
             child: CachedNetworkImage(
-              imageUrl: SCAssets.soccerStadium,
-              fit: BoxFit.fill,
+              imageBuilder: (context, imageProvider) => Container(
+                height: 199,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.all(Radius.circular(18)),
+                  image:
+                      DecorationImage(image: imageProvider, fit: BoxFit.cover),
+                ),
+              ),
+              imageUrl: SCAssets.liveMatch,
             ),
           ),
         ),
         Positioned(
           bottom: 1,
           child: SizedBox(
-            width: 317,
+            width: 350,
             height: 71,
             child: SCCard.avatar(
               borderRadius: const BorderRadius.only(
@@ -558,8 +569,8 @@ class _Ticket extends StatelessWidget {
             Positioned(
               top: 10,
               right: 230,
-              child: CachedNetworkImage(
-                imageUrl: SCAssets.stadium,
+              child: Image.asset(
+                SCAssets.stadium,
                 width: getSize(145),
                 height: getSize(125),
               ),
