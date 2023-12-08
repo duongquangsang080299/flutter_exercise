@@ -20,6 +20,7 @@ class GlobalKeyConverter
 
 /// ResetPassword form model
 class ResetPasswordFormModel with _$ResetPasswordFormModel {
+  // ignore: invalid_annotation_target
   @JsonSerializable(explicitToJson: true)
   const factory ResetPasswordFormModel({
     String? emailError,

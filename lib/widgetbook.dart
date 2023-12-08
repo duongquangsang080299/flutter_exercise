@@ -13,6 +13,7 @@ import 'package:soccer_club_app/presentations/widgets/app_bar.dart';
 import 'package:soccer_club_app/presentations/widgets/button.dart';
 import 'package:soccer_club_app/presentations/widgets/card.dart';
 import 'package:soccer_club_app/presentations/widgets/dots_indicator.dart';
+import 'package:soccer_club_app/presentations/widgets/icon.dart';
 import 'package:soccer_club_app/presentations/widgets/text.dart';
 import 'package:soccer_club_app/widgetbook.directories.g.dart';
 import 'package:widgetbook/widgetbook.dart';
@@ -122,75 +123,68 @@ Widget goshtButton(BuildContext context) {
   name: 'Welcome Screen Button',
   type: SCButton,
 )
-Padding welcomeButton(BuildContext context) {
-  return Padding(
-    padding: const EdgeInsets.all(29),
-    child: Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        SCButton(
-          onPressed: () {},
-          text: SCText.headlineSmall(context, text: context.l10n.btnLogin),
-          backgroundColor: AppColor.primary,
-          style: context.textTheme.displayMedium?.copyWith(
-            fontWeight: AppFontWeight.semiBold,
-            fontSize: 16,
-            color: AppColor.secondary,
+Center welcomeButton(BuildContext context) {
+  return Center(
+    child: Padding(
+      padding: const EdgeInsets.all(28),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          SCButton(
+            onPressed: () {},
+            backgroundColor: AppColor.primary,
+            text: Text('Login with email'),
           ),
-        ),
-        const SizedBox(
-          height: 40,
-        ),
-        SCButton(
-          onPressed: () {},
-          text: SCText.headlineSmall(context, text: context.l10n.btnLogin),
-          backgroundColor: AppColor.onTertiary,
-          style: context.textTheme.displayMedium?.copyWith(
-            fontWeight: AppFontWeight.semiBold,
-            fontSize: 16,
-            color: AppColor.secondary,
+          const SizedBox(
+            height: 40,
           ),
-        ),
-      ],
+          SCButton(
+            onPressed: () {},
+            text: Text('Create an account'),
+            backgroundColor: AppColor.onTertiary,
+            style: context.textTheme.displayMedium?.copyWith(
+              fontWeight: AppFontWeight.semiBold,
+              fontSize: 16,
+              color: AppColor.secondary,
+            ),
+          ),
+        ],
+      ),
     ),
   );
 }
 
 @widgetbook.UseCase(
-  name: 'Sign In',
+  name: 'On Boarding',
   type: SCButton,
 )
-Padding signInButton(BuildContext context) {
-  return Padding(
-    padding: const EdgeInsets.all(29),
-    child: Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        SCButton(
-          onPressed: () {},
-          text: SCText.headlineSmall(context, text: context.l10n.btnLogin),
-          backgroundColor: AppColor.primary,
-          style: context.textTheme.displayMedium?.copyWith(
-            fontWeight: AppFontWeight.semiBold,
-            fontSize: 16,
-            color: AppColor.secondary,
+Center onBoarding(BuildContext context) {
+  return Center(
+    child: Padding(
+      padding: const EdgeInsets.all(28),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          SCButton(
+            onPressed: () {},
+            backgroundColor: AppColor.primary,
+            text: Text('Login with email'),
           ),
-        ),
-        const SizedBox(
-          height: 40,
-        ),
-        SCButton(
-          onPressed: () {},
-          text:
-              SCText.headlineSmall(context, text: context.l10n.createanAccount),
-          backgroundColor: AppColor.onTertiary,
-          style: context.textTheme.displayMedium?.copyWith(
-            fontWeight: AppFontWeight.semiBold,
-            fontSize: 16,
-            color: AppColor.secondary,
+          const SizedBox(
+            height: 40,
           ),
-        ),
-      ],
+          SCButton(
+            onPressed: () {},
+            text: Text('Create an account'),
+            backgroundColor: AppColor.onTertiary,
+            style: context.textTheme.displayMedium?.copyWith(
+              fontWeight: AppFontWeight.semiBold,
+              fontSize: 16,
+              color: AppColor.secondary,
+            ),
+          ),
+        ],
+      ),
     ),
   );
 }
@@ -199,16 +193,22 @@ Padding signInButton(BuildContext context) {
   name: 'AppBar Main',
   type: SCAppBar,
 )
-Scaffold appBar(BuildContext context) {
-  return Scaffold(
-    appBar: SCAppBar.main(
-      title: 'Schedule',
-      backgroundColor: AppColor.tertiary,
-      centerTitle: true,
-      leading: IconButton(
-        onPressed: () {},
-        icon: SvgPicture.asset(SCIcons.rightArrow),
-      ),
+Center appBar(BuildContext context) {
+  return Center(
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        SCAppBar.main(
+          toolbarHeight: getVerticalSize(139),
+          backgroundColor: AppColor.tertiary,
+          title: 'Match Detail',
+          centerTitle: true,
+          leading: IconButton(
+            onPressed: () {},
+            icon: SvgPicture.asset(SCIcons.rightArrow),
+          ),
+        ),
+      ],
     ),
   );
 }
@@ -217,23 +217,35 @@ Scaffold appBar(BuildContext context) {
   name: 'AppBar Home',
   type: SCAppBar,
 )
-Scaffold appBarHome(BuildContext context) {
-  return Scaffold(
-    appBar: SCAppBar.second(
-      toolbarHeight: getVerticalSize(139),
-      backgroundColor: AppColor.primary,
-      centerTitle: false,
-      leadingWidth: 30,
-      title: 'Good Morning',
-      subtitle: 'Adrian',
-      actions: [
-        // Define a list of action widgets to be displayed on the app bar.
-        IconButton(
-          // Create an icon button with an SVG icon.
-          icon: SvgPicture.asset(
-            SCIcons.notifications,
-          ),
-          onPressed: () {},
+Center appBarHome(BuildContext context) {
+  return Center(
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        SCAppBar.second(
+          toolbarHeight: getVerticalSize(139),
+          backgroundColor: AppColor.primary,
+          centerTitle: false,
+          leadingWidth: 30,
+          title: 'Good Morning',
+          subtitle: '',
+          actions: [
+            // Define a list of action widgets to be displayed on the app bar.
+            IconButton(
+              // Create an icon button with an SVG icon.
+              icon: SvgPicture.asset(
+                SCIcons.notifications,
+              ),
+              onPressed: () {},
+            ),
+            const SizedBox(width: 10),
+            Padding(
+              padding: const EdgeInsets.all(20),
+              child: SCIcon.logOut(
+                color: AppColor.secondary,
+              ),
+            ),
+          ],
         ),
       ],
     ),
@@ -326,9 +338,9 @@ Center dotsIndicator(BuildContext context) {
 }
 
 @widgetbook.UseCase(name: 'Bottom Navigation Bar', type: SCBottomNavigationBar)
-Scaffold bottomNavigationBar(BuildContext context) {
-  return Scaffold(
-    bottomNavigationBar: Container(
+Center bottomNavigationBar(BuildContext context) {
+  return Center(
+    child: Container(
       height: 72,
       decoration: BoxDecoration(
         color: Colors.white, // Background color

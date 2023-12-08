@@ -65,8 +65,8 @@ final directories = <_i1.WidgetbookNode>[
             name: 'SCButton',
             useCases: [
               _i1.WidgetbookUseCase(
-                name: 'Sign In',
-                builder: _i2.signInButton,
+                name: 'On Barding',
+                builder: _i2.onBoarding,
               ),
               _i1.WidgetbookUseCase(
                 name: 'Welcome Screen Button',

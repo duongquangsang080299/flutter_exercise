@@ -97,9 +97,9 @@ android {
 
     buildTypes {
         release {
-            signingConfig signingConfigs.release
+            signingConfig signingConfigs.debug
             minifyEnabled true
-            proguardFiles getDefaultProguardFile('proguard-android.txt')
+            // proguardFiles getDefaultProguardFile('proguard-android.txt')
         }
         debug {
             signingConfig signingConfigs.debug
@@ -120,4 +120,4 @@ dependencies {
     implementation("com.google.firebase:firebase-auth")
 }
 apply plugin: 'com.google.gms.google-services'
- 
+apply plugin: 'com.android.application'

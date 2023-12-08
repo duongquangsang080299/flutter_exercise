@@ -14,7 +14,6 @@ class SCInput extends StatelessWidget with InputValidationMixin {
     this.labelText,
     this.validator,
     this.contentPadding,
-    this.focusNode,
     this.labelStyle,
     this.fontSize,
     this.showPassword = false,
@@ -42,7 +41,6 @@ class SCInput extends StatelessWidget with InputValidationMixin {
   }) {
     return SCInput(
       key: key,
-      focusNode: focusNode,
       keyboardType: keyboardType,
       labelText: labelText,
       onChanged: onChanged,
@@ -70,7 +68,6 @@ class SCInput extends StatelessWidget with InputValidationMixin {
   }) {
     return SCInput(
       key: key,
-      focusNode: focusNode,
       labelText: labelText,
       fontSize: fontSize,
       controller: controller,
@@ -104,7 +101,6 @@ class SCInput extends StatelessWidget with InputValidationMixin {
   }) {
     return SCInput(
         key: key,
-        focusNode: focusNode,
         labelText: labelText,
         errorText: errorText,
         obscureText: obscureText,
@@ -133,7 +129,6 @@ class SCInput extends StatelessWidget with InputValidationMixin {
   final double? fontSize;
   final Function(String)? onChanged;
   final bool? showPassword;
-  final FocusNode? focusNode;
   final Function()? onTogglePassword;
   final bool? hiddenSufixIcon;
   final String? obscuringCharacter;
@@ -197,7 +192,6 @@ class SCInput extends StatelessWidget with InputValidationMixin {
           ),
           keyboardType: keyboardType,
           validator: validator,
-          focusNode: focusNode,
           textInputAction: textInputAction,
         ),
       ],

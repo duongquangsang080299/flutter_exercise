@@ -30,8 +30,13 @@ class ForgotPasswordPage extends StatelessWidget {
             initialState: ResetPasswordInitialState(emptyResetPasswordState),
           );
         },
-        child: const SCScaffold(
-          body: ResetPasswordBody(),
+        child: GestureDetector(
+          onTap: () {
+            FocusManager.instance.primaryFocus?.unfocus();
+          },
+          child: const SCScaffold(
+            body: ResetPasswordBody(),
+          ),
         ),
       ),
     );

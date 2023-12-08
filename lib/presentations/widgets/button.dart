@@ -6,7 +6,7 @@ import 'package:soccer_club_app/presentations/widgets/text.dart';
 class SCButton extends StatelessWidget {
   const SCButton({
     required this.text,
-    this.onPressed,
+    required this.onPressed,
     super.key,
     this.backgroundColor,
     this.height = 60,
@@ -43,7 +43,7 @@ class SCButton extends StatelessWidget {
 class SCButtonIcon extends StatelessWidget {
   const SCButtonIcon({
     required this.text,
-    this.onPressed,
+    required this.onPressed,
     super.key,
     this.icon,
     this.backgroundColor,
@@ -98,7 +98,7 @@ class SCOutlineButton extends StatelessWidget {
   const SCOutlineButton({
     required this.text,
     Key? key,
-    this.onPressed,
+    required this.onPressed,
     this.height = 60,
     this.width = double.infinity,
     this.style,

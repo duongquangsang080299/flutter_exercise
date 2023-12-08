@@ -33,8 +33,13 @@ class _SignInPageState extends State<SignInPage> {
             initialState: SignInInitialState(emptySignInState),
           );
         },
-        child: const SCScaffold(
-          body: SignInBody(),
+        child: GestureDetector(
+          onTap: () {
+            FocusManager.instance.primaryFocus?.unfocus();
+          },
+          child: const SCScaffold(
+            body: SignInBody(),
+          ),
         ),
       ),
     );
@@ -47,80 +52,74 @@ class SignInBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const sizedBox16 = SizedBox(height: 16);
-    return GestureDetector(
-      onTap: () {
-        FocusManager.instance.primaryFocus?.unfocus();
-      },
-      child: Padding(
-        padding: const EdgeInsets.all(28),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SizedBox(height: context.getVerticalSize(87)),
-            SCText.displaySmall(context,
-                text: context.l10n.signIn,
-                style: context.textTheme.displaySmall),
-            sizedBox16,
-            SCText.bodyLarge(
-              context,
-              text: context.l10n.description,
-            ),
-            SizedBox(height: getVerticalSize(30)),
-            const LoginForm(),
-            const Spacer(),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const _LoginButton(),
-                sizedBox16,
-                Text.rich(
-                  TextSpan(
-                    children: [
-                      TextSpan(
-                        text: context.l10n.forgotPassword,
-                        style: context.textTheme.bodyLarge?.copyWith(
-                          color: AppColor.dimGray,
-                        ),
+    return Padding(
+      padding: const EdgeInsets.all(28),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          SizedBox(height: context.getVerticalSize(87)),
+          SCText.displaySmall(context,
+              text: context.l10n.signIn, style: context.textTheme.displaySmall),
+          sizedBox16,
+          SCText.bodyLarge(
+            context,
+            text: context.l10n.description,
+          ),
+          SizedBox(height: getVerticalSize(30)),
+          const LoginForm(),
+          const Spacer(),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const _LoginButton(),
+              sizedBox16,
+              Text.rich(
+                TextSpan(
+                  children: [
+                    TextSpan(
+                      text: context.l10n.forgotPassword,
+                      style: context.textTheme.bodyLarge?.copyWith(
+                        color: AppColor.dimGray,
                       ),
-                      TextSpan(
-                        text: context.l10n.resetHere,
-                        style: context.textTheme.bodyLarge?.copyWith(
-                          fontWeight: FontWeight.bold,
-                          color: AppColor.primary,
-                        ),
-                        recognizer: TapGestureRecognizer()
-                          ..onTap = () {
-                            context.go(AppRoutes.forgotPasswordPage.path);
-                          },
+                    ),
+                    TextSpan(
+                      text: context.l10n.resetHere,
+                      style: context.textTheme.bodyLarge?.copyWith(
+                        fontWeight: FontWeight.bold,
+                        color: AppColor.primary,
                       ),
-                    ],
-                  ),
+                      recognizer: TapGestureRecognizer()
+                        ..onTap = () {
+                          context.go(AppRoutes.forgotPasswordPage.path);
+                        },
+                    ),
+                  ],
                 ),
-                SizedBox(height: getVerticalSize(30)),
-                Align(
-                  child: SCText.bodyLarge(
-                    context,
-                    text: context.l10n.donthaveaccount,
-                    style: context.textTheme.bodyLarge
-                        ?.copyWith(color: AppColor.graysuva),
-                  ),
+              ),
+              SizedBox(height: getVerticalSize(30)),
+              Align(
+                child: SCText.bodyLarge(
+                  context,
+                  text: context.l10n.donthaveaccount,
+                  style: context.textTheme.bodyLarge
+                      ?.copyWith(color: AppColor.graysuva),
                 ),
-                const SizedBox(
-                  height: 19,
-                ),
-                SCButton(
-                  text: SCText.headlineSmall(context,
-                      text: context.l10n.btnCreateAnAccount),
-                  style: context.textTheme.headlineSmall,
-                  backgroundColor: AppColor.onTertiary,
-                  onPressed: () {
-                    context.go(AppRoutes.signUp.path);
-                  },
-                ),
-              ],
-            ),
-          ],
-        ),
+              ),
+              const SizedBox(
+                height: 19,
+              ),
+              SCButton(
+                text: SCText.headlineSmall(context,
+                    text: context.l10n.btnCreateAnAccount),
+                style: context.textTheme.headlineSmall,
+                backgroundColor: AppColor.onTertiary,
+                onPressed: () {
+                  context.go(AppRoutes.signUp.path);
+                },
+              ),
+            ],
+          ),
+        ],
       ),
     );
   }

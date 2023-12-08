@@ -9,6 +9,7 @@ part 'sign_in_view_model.g.dart';
 
 /// SignIn form model
 class SignInFormModel with _$SignInFormModel {
+  // ignore: invalid_annotation_target
   @JsonSerializable(explicitToJson: true)
   const factory SignInFormModel({
     bool? formValid,

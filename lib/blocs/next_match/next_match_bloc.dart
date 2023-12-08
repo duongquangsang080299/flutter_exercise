@@ -2,6 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:soccer_club_app/blocs/next_match/next_match_event.dart';
 import 'package:soccer_club_app/blocs/next_match/next_match_state.dart';
 import 'package:soccer_club_app/core/constant/app_exceptions.dart';
+import 'package:soccer_club_app/core/error/error_exception.dart';
 import 'package:soccer_club_app/data/models/match/match_model.dart';
 import 'package:soccer_club_app/data/repositories/match_repo.dart';
 
@@ -21,11 +22,15 @@ class MatchDetailBloc extends Bloc<MatchDetailEvent, MatchDetailState> {
 
       emit(GetMatchDetailSuccess(state.data.copyWith(match: news)));
     } catch (e) {
+      String errorMessage;
+      if (e is AppException && e.type == AppExceptionType.badResponse) {
+        errorMessage = AppExceptionMessages.badGateway;
+      } else {
+        errorMessage = AppExceptionMessages.unknown;
+      }
       emit(MatchDetailError(
         data: state.data,
-        errorMessage: AppExceptionMessages.badRequest,
-
-        /// FIXME:we should correct error here
+        errorMessage: errorMessage,
       ));
     }
   }
@@ -38,11 +43,15 @@ class MatchDetailBloc extends Bloc<MatchDetailEvent, MatchDetailState> {
 
       emit(GetListMatchSuccess(state.data.copyWith(listHistory: matches)));
     } catch (e) {
+      String errorMessage;
+      if (e is AppException && e.type == AppExceptionType.badResponse) {
+        errorMessage = AppExceptionMessages.badGateway;
+      } else {
+        errorMessage = AppExceptionMessages.unknown;
+      }
       emit(MatchDetailError(
         data: state.data,
-        errorMessage: AppExceptionMessages.badRequest,
-
-        /// FIXME:we should correct error here
+        errorMessage: errorMessage,
       ));
     }
   }

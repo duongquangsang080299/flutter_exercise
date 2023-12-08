@@ -29,8 +29,13 @@ class SignUpPage extends StatelessWidget {
           authRepo: RepositoryProvider.of<AuthRepo>(context),
           initialState: SignUpInitialState(emptySignUpState),
         ),
-        child: const SCScaffold(
-          body: SignUpBody(),
+        child: GestureDetector(
+          onTap: () {
+            FocusManager.instance.primaryFocus?.unfocus();
+          },
+          child: const SCScaffold(
+            body: SignUpBody(),
+          ),
         ),
       ),
     );
@@ -70,7 +75,7 @@ class SignUpBody extends StatelessWidget {
           ),
           const SignUpForm(),
           const Spacer(),
-          const _LoginButton(),
+          const _SignUpButton(),
           const SizedBox(
             height: 16,
           ),
@@ -265,8 +270,8 @@ class _PasswordInput extends StatelessWidget {
   }
 }
 
-class _LoginButton extends StatelessWidget {
-  const _LoginButton();
+class _SignUpButton extends StatelessWidget {
+  const _SignUpButton();
 
   @override
   Widget build(BuildContext context) {

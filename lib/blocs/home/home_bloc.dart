@@ -2,6 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:soccer_club_app/blocs/home/home_event.dart';
 import 'package:soccer_club_app/blocs/home/home_state.dart';
 import 'package:soccer_club_app/core/constant/app_exceptions.dart';
+import 'package:soccer_club_app/core/error/error_exception.dart';
 import 'package:soccer_club_app/data/models/match/match_model.dart';
 import 'package:soccer_club_app/data/models/ticket/ticket_model.dart';
 import 'package:soccer_club_app/data/models/user/user_model.dart';
@@ -45,11 +46,15 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       final List<MatchModel> matches = await matchRepository.getMatches();
       emit(GetNewsSuccess(state.data.copyWith(news: matches)));
     } catch (e) {
+      String errorMessage;
+      if (e is AppException && e.type == AppExceptionType.badResponse) {
+        errorMessage = AppExceptionMessages.badGateway;
+      } else {
+        errorMessage = AppExceptionMessages.unknown;
+      }
       emit(HomeError(
         data: state.data,
-        errorMessage: AppExceptionMessages.badRequest,
-
-        /// FIXME:we should correct error here
+        errorMessage: errorMessage,
       ));
     }
   }
@@ -61,11 +66,15 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
       emit(GetMatchSuccess(state.data.copyWith(nextMatch: news)));
     } catch (e) {
+      String errorMessage;
+      if (e is AppException && e.type == AppExceptionType.badResponse) {
+        errorMessage = AppExceptionMessages.badGateway;
+      } else {
+        errorMessage = AppExceptionMessages.unknown;
+      }
       emit(HomeError(
         data: state.data,
-        errorMessage: AppExceptionMessages.badRequest,
-
-        /// FIXME:we should correct error here
+        errorMessage: errorMessage,
       ));
     }
   }
@@ -78,11 +87,15 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
       emit(GetTicketSuccess(state.data.copyWith(ticket: tickets)));
     } catch (e) {
+      String errorMessage;
+      if (e is AppException && e.type == AppExceptionType.badResponse) {
+        errorMessage = AppExceptionMessages.badGateway;
+      } else {
+        errorMessage = AppExceptionMessages.unknown;
+      }
       emit(HomeError(
         data: state.data,
-        errorMessage: AppExceptionMessages.badRequest,
-
-        /// FIXME:we should correct error here
+        errorMessage: errorMessage,
       ));
     }
   }
