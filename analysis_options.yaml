@@ -2,7 +2,7 @@
 # linter:
 #   rules:
 #     public_member_api_docs: false
-  
+
 include: package:flutter_lints/flutter.yaml
 linter:
   rules:

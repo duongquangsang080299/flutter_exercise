@@ -6,26 +6,15 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:soccer_club_app/core/constant/firebase_helper.dart';
 import 'package:soccer_club_app/core/router/router.dart';
 import 'package:soccer_club_app/core/theme/app_theme.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-      options: const FirebaseOptions(
-    apiKey: 'AIzaSyD9yxl_UPi_Lsdda067nDiUFY-ryvR-Jcs',
-    appId: '1:532223591041:web:eacc3e4e428a4862944380',
-    messagingSenderId: '532223591041',
-    projectId: 'sporrt-club-app',
-    authDomain: 'sporrt-club-app.firebaseapp.com',
-    storageBucket: 'sporrt-club-app.appspot.com',
-  ));
+  await Firebase.initializeApp(options: FirebaseOptionsHelper.options);
+
   runApp(const MyApp());
-  // runApp(
-  //   DevicePreview(
-  //     builder: (context) => const MyApp(),
-  //   ),
-  // );
 }
 
 class MyApp extends StatelessWidget {

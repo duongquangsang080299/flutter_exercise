@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:soccer_club_app/blocs/auth/sign_in/sign_in_bloc.dart';
 import 'package:soccer_club_app/core/color/app_color.dart';
+import 'package:soccer_club_app/core/constant/snackbar.dart';
 import 'package:soccer_club_app/core/extention/builder_context_extension.dart';
 import 'package:soccer_club_app/core/l10n/l10n.dart';
 import 'package:soccer_club_app/core/router/router.dart';
@@ -137,12 +138,7 @@ class LoginForm extends StatelessWidget {
           _context.go(AppRoutes.homePage.path);
         }
         if (state is SignInErrorState) {
-          ScaffoldMessenger.of(_context).showSnackBar(
-            SnackBar(
-              content: Text(_context.l10n.loginfailed),
-              duration: const Duration(microseconds: 800),
-            ),
-          );
+          SnackbarHelper.showSnackBar(context, context.l10n.loginfailed);
         }
       },
       child: Form(

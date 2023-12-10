@@ -8,6 +8,7 @@ import 'package:soccer_club_app/blocs/home/home_state.dart';
 import 'package:soccer_club_app/core/color/app_color.dart';
 import 'package:soccer_club_app/core/constant/assets.dart';
 import 'package:soccer_club_app/core/constant/icons.dart';
+import 'package:soccer_club_app/core/constant/snackbar.dart';
 import 'package:soccer_club_app/core/l10n/l10n.dart';
 import 'package:soccer_club_app/core/router/router.dart';
 import 'package:soccer_club_app/core/utils/size_utils.dart';
@@ -45,12 +46,7 @@ class _HomePageState extends State<HomePage> {
         child: BlocBuilder<HomeBloc, HomeState>(
           builder: (context, state) {
             if (state is HomeError) {
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  content: Text(context.l10n.loadingfailed),
-                  duration: const Duration(microseconds: 800),
-                ),
-              );
+              SnackbarHelper.showSnackBar(context, context.l10n.loadingfailed);
             }
 
             return Scaffold(
@@ -92,31 +88,37 @@ class _HomePageState extends State<HomePage> {
                   ],
                 ),
               ),
-              body: SingleChildScrollView(
-                padding: const EdgeInsets.all(29),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SCText.headlineMedium(
-                      text: context.l10n.netxMatch,
-                      context,
+              body: Column(
+                children: [
+                  Expanded(
+                    child: SingleChildScrollView(
+                      padding: const EdgeInsets.all(29),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          SCText.headlineMedium(
+                            text: context.l10n.netxMatch,
+                            context,
+                          ),
+                          sizedBox13,
+                          const NextMatch(),
+                          sizedBox13,
+                          SCText.headlineMedium(
+                            text: context.l10n.news,
+                            context,
+                          ),
+                          sizedBox13,
+                          const MatchNews(),
+                          const SizedBox(height: 20),
+                          const LiveMatch(),
+                          const SizedBox(height: 18),
+                          const Ticket(),
+                          SizedBox(height: context.getVerticalSize(50)),
+                        ],
+                      ),
                     ),
-                    sizedBox13,
-                    const NextMatch(),
-                    sizedBox13,
-                    SCText.headlineMedium(
-                      text: context.l10n.news,
-                      context,
-                    ),
-                    sizedBox13,
-                    const MatchNews(),
-                    const SizedBox(height: 20),
-                    const LiveMatch(),
-                    const SizedBox(height: 18),
-                    const Ticket(),
-                    SizedBox(height: context.getVerticalSize(50)),
-                  ],
-                ),
+                  ),
+                ],
               ),
               bottomNavigationBar: const SCBottomNavigationBar(),
               floatingActionButtonLocation:

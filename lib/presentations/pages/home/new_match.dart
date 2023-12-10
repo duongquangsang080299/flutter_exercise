@@ -123,6 +123,7 @@ class _VideoHighlight extends StatelessWidget {
     );
   }
 }
+
 class _MatchItem extends StatelessWidget {
   final MatchModel? match;
   const _MatchItem({this.match});

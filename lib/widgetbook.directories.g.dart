@@ -14,20 +14,22 @@ import 'package:widgetbook/widgetbook.dart' as _i1;
 
 final directories = <_i1.WidgetbookNode>[
   _i1.WidgetbookFolder(
-    name: 'core',
+    name: 'theme',
     children: [
-      _i1.WidgetbookFolder(
-        name: 'color',
-        children: [
-          _i1.WidgetbookLeafComponent(
-            name: 'AppColor',
-            useCase: _i1.WidgetbookUseCase(
-              name: 'Color',
-              builder: _i2.appColor,
-            ),
-          )
-        ],
-      )
+      _i1.WidgetbookLeafComponent(
+        name: 'AppColor',
+        useCase: _i1.WidgetbookUseCase(
+          name: 'Color',
+          builder: _i2.appColor,
+        ),
+      ),
+      _i1.WidgetbookLeafComponent(
+        name: 'Typhography',
+        useCase: _i1.WidgetbookUseCase(
+          name: 'Typhography',
+          builder: _i2.textWidget,
+        ),
+      ),
     ],
   ),
   _i1.WidgetbookFolder(
@@ -37,19 +39,26 @@ final directories = <_i1.WidgetbookNode>[
         name: 'layout',
         children: [
           _i1.WidgetbookLeafComponent(
-            name: 'SCBottomNavigationBar',
+            name: 'Bottom NavigationBar',
             useCase: _i1.WidgetbookUseCase(
               name: 'Bottom Navigation Bar',
               builder: _i2.bottomNavigationBar,
             ),
-          )
+          ),
+          _i1.WidgetbookLeafComponent(
+            name: 'Dots Indicator',
+            useCase: _i1.WidgetbookUseCase(
+              name: 'Dots Indicator',
+              builder: _i2.dotsIndicator,
+            ),
+          ),
         ],
       ),
       _i1.WidgetbookFolder(
         name: 'widgets',
         children: [
           _i1.WidgetbookComponent(
-            name: 'SCAppBar',
+            name: 'AppBar',
             useCases: [
               _i1.WidgetbookUseCase(
                 name: 'AppBar Home',
@@ -62,20 +71,24 @@ final directories = <_i1.WidgetbookNode>[
             ],
           ),
           _i1.WidgetbookComponent(
-            name: 'SCButton',
+            name: 'Button',
             useCases: [
               _i1.WidgetbookUseCase(
-                name: 'On Barding',
+                name: 'Secondary',
                 builder: _i2.onBoarding,
               ),
               _i1.WidgetbookUseCase(
-                name: 'Welcome Screen Button',
+                name: 'Primary',
                 builder: _i2.welcomeButton,
+              ),
+              _i1.WidgetbookUseCase(
+                name: 'Tertiary',
+                builder: _i2.tertiary,
               ),
             ],
           ),
           _i1.WidgetbookComponent(
-            name: 'SCCard',
+            name: 'Card',
             useCases: [
               _i1.WidgetbookUseCase(
                 name: 'Card Avatar',
@@ -87,34 +100,17 @@ final directories = <_i1.WidgetbookNode>[
               ),
             ],
           ),
-          _i1.WidgetbookLeafComponent(
-            name: 'SCDotsIndicator',
-            useCase: _i1.WidgetbookUseCase(
-              name: 'Dots Indicator',
-              builder: _i2.dotsIndicator,
-            ),
-          ),
-          _i1.WidgetbookLeafComponent(
-            name: 'SCText',
-            useCase: _i1.WidgetbookUseCase(
-              name: 'Text',
-              builder: _i2.textWidget,
-            ),
+          _i1.WidgetbookComponent(
+            name: 'Input',
+            useCases: [
+              _i1.WidgetbookUseCase(
+                name: 'Input',
+                builder: _i2.input,
+              ),
+            ],
           ),
         ],
       ),
-    ],
-  ),
-  _i1.WidgetbookFolder(
-    name: 'widgets',
-    children: [
-      _i1.WidgetbookLeafComponent(
-        name: 'Widget',
-        useCase: _i1.WidgetbookUseCase(
-          name: 'Onboarding Screen Button',
-          builder: _i2.goshtButton,
-        ),
-      )
     ],
   ),
 ];

@@ -1,11 +1,11 @@
 // ignore_for_file: depend_on_referenced_packages
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:soccer_club_app/core/color/app_color.dart';
 import 'package:soccer_club_app/core/constant/assets.dart';
 import 'package:soccer_club_app/core/constant/icons.dart';
 import 'package:soccer_club_app/core/extention/builder_context_extension.dart';
-import 'package:soccer_club_app/core/l10n/l10n.dart';
 import 'package:soccer_club_app/core/typography/app_fontweight.dart';
 import 'package:soccer_club_app/core/utils/size_utils.dart';
 import 'package:soccer_club_app/presentations/layout/bottom_navigation_bar.dart';
@@ -14,6 +14,7 @@ import 'package:soccer_club_app/presentations/widgets/button.dart';
 import 'package:soccer_club_app/presentations/widgets/card.dart';
 import 'package:soccer_club_app/presentations/widgets/dots_indicator.dart';
 import 'package:soccer_club_app/presentations/widgets/icon.dart';
+import 'package:soccer_club_app/presentations/widgets/input.dart';
 import 'package:soccer_club_app/presentations/widgets/text.dart';
 import 'package:soccer_club_app/widgetbook.directories.g.dart';
 import 'package:widgetbook/widgetbook.dart';
@@ -77,51 +78,8 @@ class WidgetbookApp extends StatelessWidget {
 }
 
 @widgetbook.UseCase(
-  name: 'Onboarding Screen Button',
-  type: Widget,
-)
-Widget goshtButton(BuildContext context) {
-  return Center(
-    child: Padding(
-      padding: const EdgeInsets.all(29),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Expanded(
-            child: SCOutlineButton(
-              onPressed: () {},
-              text: 'SKIP',
-              style: context.textTheme.displayMedium
-                  ?.copyWith(fontWeight: AppFontWeight.semiBold, fontSize: 16),
-            ),
-          ),
-          const SizedBox(
-            width: 10,
-          ),
-          Expanded(
-            child: SCButton(
-              text: SCText.headlineSmall(
-                context,
-                text: context.l10n.btnCampaigns,
-              ),
-              onPressed: () {},
-              backgroundColor: AppColor.primary,
-              style: context.textTheme.displayMedium?.copyWith(
-                fontWeight: AppFontWeight.semiBold,
-                fontSize: 16,
-                color: AppColor.secondary,
-              ),
-            ),
-          ),
-        ],
-      ),
-    ),
-  );
-}
-
-@widgetbook.UseCase(
-  name: 'Welcome Screen Button',
-  type: SCButton,
+  name: 'Primary',
+  type: SCButtonIcon,
 )
 Center welcomeButton(BuildContext context) {
   return Center(
@@ -135,9 +93,23 @@ Center welcomeButton(BuildContext context) {
             backgroundColor: AppColor.primary,
             text: Text('Login with email'),
           ),
-          const SizedBox(
-            height: 40,
-          ),
+        ],
+      ),
+    ),
+  );
+}
+
+@widgetbook.UseCase(
+  name: 'Secondary',
+  type: SCButton,
+)
+Center onBoarding(BuildContext context) {
+  return Center(
+    child: Padding(
+      padding: const EdgeInsets.all(28),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
           SCButton(
             onPressed: () {},
             text: Text('Create an account'),
@@ -155,32 +127,23 @@ Center welcomeButton(BuildContext context) {
 }
 
 @widgetbook.UseCase(
-  name: 'On Boarding',
-  type: SCButton,
+  name: 'Tertiary',
+  type: SCOutlineButton,
 )
-Center onBoarding(BuildContext context) {
+Center tertiary(BuildContext context) {
   return Center(
     child: Padding(
       padding: const EdgeInsets.all(28),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          SCButton(
+          SCOutlineButton(
             onPressed: () {},
-            backgroundColor: AppColor.primary,
-            text: Text('Login with email'),
-          ),
-          const SizedBox(
-            height: 40,
-          ),
-          SCButton(
-            onPressed: () {},
-            text: Text('Create an account'),
-            backgroundColor: AppColor.onTertiary,
+            text: 'SKIP',
             style: context.textTheme.displayMedium?.copyWith(
               fontWeight: AppFontWeight.semiBold,
               fontSize: 16,
-              color: AppColor.secondary,
+              color: AppColor.dimGray,
             ),
           ),
         ],
@@ -253,6 +216,39 @@ Center appBarHome(BuildContext context) {
 }
 
 @widgetbook.UseCase(
+  name: 'Input',
+  type: SCInput,
+)
+Center input(BuildContext context) {
+  return Center(
+    child: Padding(
+      padding: const EdgeInsets.all(29),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          SCInput.username(
+            labelText: 'Username',
+          ),
+          SizedBox(
+            height: 15,
+          ),
+          SCInput.email(
+            labelText: 'Email',
+          ),
+          SizedBox(
+            height: 15,
+          ),
+          SCInput.password(
+            labelText: 'Password',
+          ),
+        ],
+      ),
+    ),
+  );
+}
+
+@widgetbook.UseCase(
   name: 'Card Fixture',
   type: SCCard,
 )
@@ -303,14 +299,19 @@ Center cardAvatar(BuildContext context) {
       padding: const EdgeInsets.symmetric(horizontal: 29),
       child: SizedBox(
         child: SCCard.avatar(
-          height: 199,
           shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.all(Radius.circular(18)),
             side: BorderSide(color: AppColor.primary),
           ),
-          child: Image.asset(
-            SCAssets.soccerStadium,
-            fit: BoxFit.fill,
+          child: CachedNetworkImage(
+            imageBuilder: (context, imageProvider) => Container(
+              height: 199,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.all(Radius.circular(18)),
+                image: DecorationImage(image: imageProvider, fit: BoxFit.cover),
+              ),
+            ),
+            imageUrl: SCAssets.liveMatch,
           ),
         ),
       ),
@@ -380,35 +381,53 @@ Center bottomNavigationBar(BuildContext context) {
 
 @widgetbook.UseCase(
   name: 'Text',
-  type: SCText,
+  type: Typography,
 )
 Center textWidget(BuildContext context) {
   return Center(
     child: Padding(
-      padding: const EdgeInsets.all(29),
+      padding: const EdgeInsets.all(20),
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SCText.displayLarge(context, text: 'Soccer App'),
+          SCText.displayMedium(context, text: 'Welcome to Victory Greens App'),
           const SizedBox(
             height: 15,
           ),
-          SCText.displayMedium(context, text: 'Soccer App'),
+          SCText.displaySmall(context, text: 'Welcome to Victory Greens App'),
           const SizedBox(
             height: 15,
           ),
-          SCText.displaySmall(context, text: 'Soccer App'),
+          SCText.headlineLarge(context, text: 'Welcome to Victory Greens App'),
           const SizedBox(
             height: 15,
           ),
-          SCText.bodyLarge(context, text: 'Soccer App'),
+          SCText.headlineMedium(context, text: 'Welcome to Victory Greens App'),
           const SizedBox(
             height: 15,
           ),
-          SCText.bodyMedium(context, text: 'Soccer App'),
+          SCText.headlineSmall(context, text: 'Welcome to Victory Greens App'),
           const SizedBox(
             height: 15,
           ),
-          SCText.bodySmall(context, text: 'Soccer App'),
+          SCText.bodyLarge(context, text: 'Welcome to Victory Greens App'),
+          const SizedBox(
+            height: 15,
+          ),
+          SCText.bodySmall(context, text: 'Welcome to Victory Greens App'),
+          const SizedBox(
+            height: 15,
+          ),
+          SCText.labelSmall(context, text: 'Welcome to Victory Greens App'),
+          const SizedBox(
+            height: 15,
+          ),
+          SCText.labelLarge(context, text: 'Welcome to Victory Greens App'),
+          const SizedBox(
+            height: 15,
+          ),
+          SCText.labelMedium(context, text: 'Welcome to Victory Greens App'),
         ],
       ),
     ),
@@ -421,14 +440,218 @@ Center textWidget(BuildContext context) {
 )
 Center appColor(BuildContext context) {
   return Center(
-    child: Column(
-      children: [
-        Container(
-          width: 30,
-          height: 30,
-          color: AppColor.primary,
-        ),
-      ],
+    child: Padding(
+      padding: const EdgeInsets.all(20),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                width: 30,
+                height: 30,
+                color: AppColor.primary,
+              ),
+              SizedBox(
+                width: 10,
+              ),
+              Text('Primary')
+            ],
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                width: 30,
+                height: 30,
+                color: AppColor.onPrimary,
+              ),
+              SizedBox(
+                width: 10,
+              ),
+              Text('On Primary')
+            ],
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                width: 30,
+                height: 30,
+                color: AppColor.primaryContainer,
+              ),
+              SizedBox(
+                width: 10,
+              ),
+              Text('Primary Container')
+            ],
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                width: 30,
+                height: 30,
+                color: AppColor.secondary,
+              ),
+              SizedBox(
+                width: 10,
+              ),
+              Text('Secondary')
+            ],
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                width: 30,
+                height: 30,
+                color: AppColor.surface,
+              ),
+              SizedBox(
+                width: 10,
+              ),
+              Text('Surface')
+            ],
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                width: 30,
+                height: 30,
+                color: AppColor.tertiary,
+              ),
+              SizedBox(
+                width: 10,
+              ),
+              Text('Tertiary')
+            ],
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                width: 30,
+                height: 30,
+                color: AppColor.tertiaryContainer,
+              ),
+              SizedBox(
+                width: 10,
+              ),
+              Text('Tertiary Container')
+            ],
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                width: 30,
+                height: 30,
+                color: AppColor.error,
+              ),
+              SizedBox(
+                width: 10,
+              ),
+              Text('Error')
+            ],
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                width: 30,
+                height: 30,
+                color: AppColor.blueAzure,
+              ),
+              SizedBox(
+                width: 10,
+              ),
+              Text('Blue Azure')
+            ],
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                width: 30,
+                height: 30,
+                color: AppColor.dimGray,
+              ),
+              SizedBox(
+                width: 10,
+              ),
+              Text('Dim Gray')
+            ],
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                width: 30,
+                height: 30,
+                color: AppColor.scrim,
+              ),
+              SizedBox(
+                width: 10,
+              ),
+              Text('Scrim')
+            ],
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                width: 30,
+                height: 30,
+                color: AppColor.blueBlur,
+              ),
+              SizedBox(
+                width: 10,
+              ),
+              Text('blue Blur')
+            ],
+          ),
+          SizedBox(
+            height: 10,
+          ),
+        ],
+      ),
     ),
   );
 }

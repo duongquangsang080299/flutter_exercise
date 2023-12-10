@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:soccer_club_app/blocs/home/home_state.dart';
-
 import 'package:soccer_club_app/blocs/home/home_bloc.dart';
+import 'package:soccer_club_app/blocs/home/home_state.dart';
 import 'package:soccer_club_app/core/color/app_color.dart';
 import 'package:soccer_club_app/core/constant/assets.dart';
 import 'package:soccer_club_app/core/extention/builder_context_extension.dart';

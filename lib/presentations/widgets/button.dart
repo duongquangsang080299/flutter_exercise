@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:soccer_club_app/core/color/app_color.dart';
 import 'package:soccer_club_app/presentations/widgets/text.dart';
 
 /// Define SCButton widget with text
@@ -102,7 +101,6 @@ class SCOutlineButton extends StatelessWidget {
     this.height = 60,
     this.width = double.infinity,
     this.style,
-    this.borderColor = AppColor.error,
   }) : super(key: key);
 
   final String text;
@@ -110,7 +108,6 @@ class SCOutlineButton extends StatelessWidget {
   final double height;
   final double width;
   final TextStyle? style;
-  final Color borderColor;
 
   @override
   Widget build(BuildContext context) {
@@ -123,7 +120,6 @@ class SCOutlineButton extends StatelessWidget {
           shape: MaterialStateProperty.all<RoundedRectangleBorder>(
             RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(40),
-              side: BorderSide(color: borderColor),
             ),
           ),
         ),

@@ -6,6 +6,7 @@ import 'package:go_router/go_router.dart';
 import 'package:soccer_club_app/blocs/auth/reset_password/reset_password_bloc.dart';
 import 'package:soccer_club_app/core/color/app_color.dart';
 import 'package:soccer_club_app/core/constant/icons.dart';
+import 'package:soccer_club_app/core/constant/snackbar.dart';
 import 'package:soccer_club_app/core/extention/builder_context_extension.dart';
 import 'package:soccer_club_app/core/l10n/l10n.dart';
 import 'package:soccer_club_app/core/router/router.dart';
@@ -124,10 +125,7 @@ class ResetPasswordForm extends StatelessWidget {
           context.go(AppRoutes.signIn.path);
         }
         if (state is ResetPasswordErrorState) {
-          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-            content: Text(context.l10n.resetfailed),
-            duration: const Duration(microseconds: 800),
-          ));
+          SnackbarHelper.showSnackBar(context, context.l10n.resetfailed);
         }
       },
       child: Form(

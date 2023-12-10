@@ -8,6 +8,7 @@ import 'package:soccer_club_app/blocs/next_match/next_match_state.dart';
 import 'package:soccer_club_app/core/color/app_color.dart';
 import 'package:soccer_club_app/core/constant/assets.dart';
 import 'package:soccer_club_app/core/constant/icons.dart';
+import 'package:soccer_club_app/core/constant/snackbar.dart';
 import 'package:soccer_club_app/core/l10n/l10n.dart';
 import 'package:soccer_club_app/core/router/router.dart';
 import 'package:soccer_club_app/core/utils/size_utils.dart';
@@ -37,12 +38,7 @@ class _NextMatchPage extends State<NextMatchPage> {
       child: BlocListener<MatchDetailBloc, MatchDetailState>(
         listener: (context, state) {
           if (state is MatchDetailError) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Text(context.l10n.loadingfailed),
-                duration: const Duration(microseconds: 800),
-              ),
-            );
+            SnackbarHelper.showSnackBar(context, context.l10n.loadingfailed);
           }
         },
         child: SCScaffold(
