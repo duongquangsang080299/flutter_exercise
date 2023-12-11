@@ -22,7 +22,13 @@ class NextMatch extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<HomeBloc, HomeState>(
-      // buildWhen: (_, current) => current is GetMatchLoading,
+      buildWhen: (_, current) {
+        return current is GetMatchLoading ||
+            current is GetTicketLoading ||
+            current is HomeError ||
+            current is GetMatchSuccess ||
+            current is GetTicketSuccess;
+      },
       builder: (context, state) {
         return Column(
           children: [

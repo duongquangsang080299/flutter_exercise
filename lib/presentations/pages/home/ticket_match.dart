@@ -17,7 +17,11 @@ class Ticket extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<HomeBloc, HomeState>(
-      // buildWhen: (_, current) => current is GetTicketLoading,
+      buildWhen: (_, current) {
+        return current is GetTicketLoading ||
+            current is HomeError ||
+            current is GetTicketSuccess;
+      },
       builder: (context, state) {
         return Stack(
           clipBehavior: Clip.none,

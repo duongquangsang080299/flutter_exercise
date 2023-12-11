@@ -21,7 +21,11 @@ class MatchNews extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<HomeBloc, HomeState>(
-      // buildWhen: (_, current) => current is GetNewsLoading,
+      buildWhen: (_, current) {
+        return current is GetMatchLoading ||
+            current is GetNewsSuccess ||
+            current is HomeError;
+      },
       builder: (context, state) {
         return SizedBox(
           height: 175,
