@@ -62,8 +62,13 @@ class SignUpSuccessState extends SignUpState {
 }
 
 class SignUpErrorState extends SignUpState {
-  const SignUpErrorState({required SignUpFormModel form}) : super(form: form);
+  final String errorMessage;
+
+  const SignUpErrorState({
+    required SignUpFormModel form,
+    required this.errorMessage,
+  }) : super(form: form);
 
   @override
-  List<Object> get props => ['SignUpErrorState', form];
+  List<Object> get props => ['SignUpErrorState', form, errorMessage];
 }

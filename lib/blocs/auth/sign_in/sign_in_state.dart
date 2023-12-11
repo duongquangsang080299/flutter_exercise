@@ -61,10 +61,12 @@ class SignInSuccessState extends SignInState {
 }
 
 class SignInErrorState extends SignInState {
+  final String errorMessage;
   const SignInErrorState({
+    required this.errorMessage,
     required SignInFormModel form,
   }) : super(form: form);
 
   @override
-  List<Object> get props => ['SignInErrorState', form];
+  List<Object> get props => ['SignInErrorState', form, errorMessage];
 }

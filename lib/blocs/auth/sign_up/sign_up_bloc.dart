@@ -1,6 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:soccer_club_app/core/constant/app_exceptions.dart';
 import 'package:soccer_club_app/core/utils/validator_utils.dart';
 import 'package:soccer_club_app/data/repositories/auth_repo.dart';
 import 'package:soccer_club_app/presentations/view_models/auth/sign_up/sign_up_view_model.dart';
@@ -91,7 +92,10 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
                   state.form.passwordValid)));
     } catch (e) {
       // Handle errors during sign-up
-      emit(SignUpErrorState(form: event.form));
+      emit(SignUpErrorState(
+        form: event.form,
+        errorMessage: AppExceptionMessages.badRequest,
+      ));
     }
   }
 

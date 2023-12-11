@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:soccer_club_app/core/constant/app_exceptions.dart';
 import 'package:soccer_club_app/core/utils/validator_utils.dart';
 import 'package:soccer_club_app/data/repositories/auth_repo.dart';
 import 'package:soccer_club_app/presentations/view_models/auth/reset_password/reset_password_view_model.dart';
@@ -58,7 +59,9 @@ class ResetPasswordBloc extends Bloc<ResetPasswordEvent, ResetPasswordState> {
     } catch (e) {
       // Handle errors by emitting an error state
       emit(ResetPasswordErrorState(
-          form: event.form, errorMessage: event.form.errorMessage ?? ''));
+        form: event.form,
+        errorMessage: AppExceptionMessages.badRequest,
+      ));
     }
   }
 }

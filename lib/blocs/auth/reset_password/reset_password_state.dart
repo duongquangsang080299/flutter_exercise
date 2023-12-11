@@ -52,11 +52,13 @@ class ResetPasswordSuccessState extends ResetPasswordState {
 }
 
 class ResetPasswordErrorState extends ResetPasswordState {
+  final String errorMessage;
+
   const ResetPasswordErrorState({
-    required String errorMessage,
+    required this.errorMessage,
     required ResetPasswordFormModel form,
   }) : super(form: form);
 
   @override
-  List<Object> get props => ['ResetPasswordErrorState', form];
+  List<Object> get props => ['ResetPasswordErrorState', form, errorMessage];
 }

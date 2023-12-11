@@ -1,6 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:soccer_club_app/core/constant/app_exceptions.dart';
 import 'package:soccer_club_app/core/utils/validator_utils.dart';
 import 'package:soccer_club_app/data/repositories/auth_repo.dart';
 import 'package:soccer_club_app/presentations/view_models/auth/sign_in/sign_in_view_model.dart';
@@ -73,7 +74,10 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
               formValid: state.form.emailValid && state.form.passwordValid)));
     } catch (e) {
       // Handle errors during sign-in
-      emit(SignInErrorState(form: event.form));
+      emit(SignInErrorState(
+        form: event.form,
+         errorMessage: AppExceptionMessages.badRequest,
+      ));
     }
   }
 

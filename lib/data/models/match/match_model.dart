@@ -12,6 +12,7 @@ class MatchModel with _$MatchModel {
     required String start,
     required DateTime datetime,
     required String league,
+    // ignore: invalid_annotation_target
     @JsonKey(name: 'goals_id') required int goalsID,
     GoalsModel? goals,
     @Default('') String? image,

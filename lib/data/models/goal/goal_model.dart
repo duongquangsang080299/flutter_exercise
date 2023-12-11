@@ -8,9 +8,13 @@ part 'goal_model.g.dart';
 class GoalsModel with _$GoalsModel {
   const factory GoalsModel({
     required int id,
+    // ignore: invalid_annotation_target
     @JsonKey(name: 'team_red') required int teamRed,
+    // ignore: invalid_annotation_target
     @JsonKey(name: 'team_victory') required int teamVictory,
+    // ignore: invalid_annotation_target
     @JsonKey(name: 'score_red') required int scoreRed,
+    // ignore: invalid_annotation_target
     @JsonKey(name: 'score_victory') required int scoreVictory,
     @Default('') String? logo,
     TeamModel? team,
