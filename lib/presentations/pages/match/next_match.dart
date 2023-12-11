@@ -52,7 +52,7 @@ class _NextMatchPage extends State<NextMatchPage> {
                 delegate: SliverChildBuilderDelegate(
                   (BuildContext context, int index) {
                     if (index == 0) {
-                      return SizedBox(height: context.getVerticalSize(440));
+                      return SizedBox(height: context.getVerticalSize(480));
                     } else if (index == 1) {
                       return Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 35),

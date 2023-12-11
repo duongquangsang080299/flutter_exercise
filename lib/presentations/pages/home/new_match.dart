@@ -45,15 +45,15 @@ class _News extends StatelessWidget {
         : ListView.separated(
             scrollDirection: Axis.horizontal,
             shrinkWrap: true,
-            itemCount: matchs!.length + 3,
+            itemCount: matchs!.length,
             separatorBuilder: (context, index) {
               return const SizedBox(width: 10);
             },
             itemBuilder: (context, index) {
               if (index == 0) {
-                return _MatchItem(match: matchs![1]);
+                return _MatchItem(match: matchs![index]);
               } else {
-                return _VideoHighlight(match: matchs![1]);
+                return _VideoHighlight(match: matchs![index]);
               }
             },
           );
@@ -86,7 +86,7 @@ class _VideoHighlight extends StatelessWidget {
                 image: DecorationImage(image: imageProvider, fit: BoxFit.cover),
               ),
             ),
-            imageUrl: SCAssets.playerMatch,
+            imageUrl: match?.image?.toString() ?? SCAssets.stadium,
           ),
         ),
         Positioned(

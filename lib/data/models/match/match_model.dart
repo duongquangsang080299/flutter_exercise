@@ -14,7 +14,7 @@ class MatchModel with _$MatchModel {
     required String league,
     @JsonKey(name: 'goals_id') required int goalsID,
     GoalsModel? goals,
-    @Default('') String? video,
+    @Default('') String? image,
   }) = _MatchModel;
 
   factory MatchModel.fromJson(Map<String, Object?> json) =>

@@ -17,7 +17,7 @@ _$MatchModelImpl _$$MatchModelImplFromJson(Map<String, dynamic> json) =>
       goals: json['goals'] == null
           ? null
           : GoalsModel.fromJson(json['goals'] as Map<String, dynamic>),
-      video: json['video'] as String? ?? '',
+      image: json['image'] as String? ?? '',
     );
 
 Map<String, dynamic> _$$MatchModelImplToJson(_$MatchModelImpl instance) =>
@@ -29,5 +29,5 @@ Map<String, dynamic> _$$MatchModelImplToJson(_$MatchModelImpl instance) =>
       'league': instance.league,
       'goals_id': instance.goalsID,
       'goals': instance.goals,
-      'video': instance.video,
+      'image': instance.image,
     };

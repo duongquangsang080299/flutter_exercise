@@ -15,6 +15,7 @@ Future<void> main() async {
   await Firebase.initializeApp(options: FirebaseOptionsHelper.options);
 
   runApp(const MyApp());
+  // runApp(DevicePreview(builder: (context) => const MyApp()));
 }
 
 class MyApp extends StatelessWidget {

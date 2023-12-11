@@ -28,7 +28,7 @@ mixin _$MatchModel {
   @JsonKey(name: 'goals_id')
   int get goalsID => throw _privateConstructorUsedError;
   GoalsModel? get goals => throw _privateConstructorUsedError;
-  String? get video => throw _privateConstructorUsedError;
+  String? get image => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -50,7 +50,7 @@ abstract class $MatchModelCopyWith<$Res> {
       String league,
       @JsonKey(name: 'goals_id') int goalsID,
       GoalsModel? goals,
-      String? video});
+      String? image});
 
   $GoalsModelCopyWith<$Res>? get goals;
 }
@@ -75,7 +75,7 @@ class _$MatchModelCopyWithImpl<$Res, $Val extends MatchModel>
     Object? league = null,
     Object? goalsID = null,
     Object? goals = freezed,
-    Object? video = freezed,
+    Object? image = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -106,9 +106,9 @@ class _$MatchModelCopyWithImpl<$Res, $Val extends MatchModel>
           ? _value.goals
           : goals // ignore: cast_nullable_to_non_nullable
               as GoalsModel?,
-      video: freezed == video
-          ? _value.video
-          : video // ignore: cast_nullable_to_non_nullable
+      image: freezed == image
+          ? _value.image
+          : image // ignore: cast_nullable_to_non_nullable
               as String?,
     ) as $Val);
   }
@@ -142,7 +142,7 @@ abstract class _$$MatchModelImplCopyWith<$Res>
       String league,
       @JsonKey(name: 'goals_id') int goalsID,
       GoalsModel? goals,
-      String? video});
+      String? image});
 
   @override
   $GoalsModelCopyWith<$Res>? get goals;
@@ -166,7 +166,7 @@ class __$$MatchModelImplCopyWithImpl<$Res>
     Object? league = null,
     Object? goalsID = null,
     Object? goals = freezed,
-    Object? video = freezed,
+    Object? image = freezed,
   }) {
     return _then(_$MatchModelImpl(
       id: null == id
@@ -197,9 +197,9 @@ class __$$MatchModelImplCopyWithImpl<$Res>
           ? _value.goals
           : goals // ignore: cast_nullable_to_non_nullable
               as GoalsModel?,
-      video: freezed == video
-          ? _value.video
-          : video // ignore: cast_nullable_to_non_nullable
+      image: freezed == image
+          ? _value.image
+          : image // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
   }
@@ -216,7 +216,7 @@ class _$MatchModelImpl implements _MatchModel {
       required this.league,
       @JsonKey(name: 'goals_id') required this.goalsID,
       this.goals,
-      this.video = ''});
+      this.image = ''});
 
   factory _$MatchModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$MatchModelImplFromJson(json);
@@ -238,11 +238,11 @@ class _$MatchModelImpl implements _MatchModel {
   final GoalsModel? goals;
   @override
   @JsonKey()
-  final String? video;
+  final String? image;
 
   @override
   String toString() {
-    return 'MatchModel(id: $id, place: $place, start: $start, datetime: $datetime, league: $league, goalsID: $goalsID, goals: $goals, video: $video)';
+    return 'MatchModel(id: $id, place: $place, start: $start, datetime: $datetime, league: $league, goalsID: $goalsID, goals: $goals, image: $image)';
   }
 
   @override
@@ -258,13 +258,13 @@ class _$MatchModelImpl implements _MatchModel {
             (identical(other.league, league) || other.league == league) &&
             (identical(other.goalsID, goalsID) || other.goalsID == goalsID) &&
             (identical(other.goals, goals) || other.goals == goals) &&
-            (identical(other.video, video) || other.video == video));
+            (identical(other.image, image) || other.image == image));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
-      runtimeType, id, place, start, datetime, league, goalsID, goals, video);
+      runtimeType, id, place, start, datetime, league, goalsID, goals, image);
 
   @JsonKey(ignore: true)
   @override
@@ -289,7 +289,7 @@ abstract class _MatchModel implements MatchModel {
       required final String league,
       @JsonKey(name: 'goals_id') required final int goalsID,
       final GoalsModel? goals,
-      final String? video}) = _$MatchModelImpl;
+      final String? image}) = _$MatchModelImpl;
 
   factory _MatchModel.fromJson(Map<String, dynamic> json) =
       _$MatchModelImpl.fromJson;
@@ -310,7 +310,7 @@ abstract class _MatchModel implements MatchModel {
   @override
   GoalsModel? get goals;
   @override
-  String? get video;
+  String? get image;
   @override
   @JsonKey(ignore: true)
   _$$MatchModelImplCopyWith<_$MatchModelImpl> get copyWith =>
